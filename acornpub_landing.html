@@ -245,7 +245,7 @@ input[type=text]:focus,input[type=email]:focus,textarea:focus,select:focus{borde
 /* ══ FOOTER ══ */
 footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:42px 22px 26px}
 .fw{max-width:1200px;margin:0 auto}
-.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
+.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:28px;margin-bottom:28px}
 .fbrand .flogo{font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
 .flogo span{color:var(--teal)}
 .fbrand p{font-size:12px;color:rgba(255,255,255,.36);line-height:1.7;margin-bottom:3px}
@@ -337,26 +337,11 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
           <li><a href="epub_reader.html" target="_blank">📖 ePub 3.0 리더</a></li>
         </ul>
       </li>
-      <li><a href="#" onclick="go('errata');return false">오류 신고</a></li>
-      <li class="hdrop">
-        <button onclick="go('sns')">SNS · 채널 ▾</button>
-        <ul class="dmenu">
-          <li><a id="snav-instagram" href="https://www.instagram.com/acornpub/" target="_blank">📷 Instagram</a></li>
-          <li><a id="snav-facebook"  href="https://www.facebook.com/acornpub"   target="_blank">f  Facebook</a></li>
-          <li><a id="snav-youtube"   href="https://www.youtube.com/@acornpub"   target="_blank">▶ YouTube</a></li>
-          <li><a id="snav-linkedin"  href="https://www.linkedin.com/company/acornpub" target="_blank">in LinkedIn</a></li>
-          <li><a id="snav-x"         href="https://twitter.com/acornpub"        target="_blank">𝕏 X (Twitter)</a></li>
-          <li><a id="snav-blog"      href="https://blog.naver.com/acornpub"     target="_blank">✍ 블로그</a></li>
-          <li><a id="snav-github"    href="https://github.com/AcornPublishing"  target="_blank">⌥ GitHub</a></li>
-          <li style="border-top:1px solid rgba(255,255,255,.08);margin-top:4px;padding-top:4px">
-            <button onclick="go('sns')" style="color:var(--teal);font-size:12px">⚙ 채널 관리 →</button>
-          </li>
-        </ul>
-      </li>
+
     </ul>
     <a class="ncta" href="publishing-proposal.html">저자 등록 신청 →</a>
     <a href="page_connection_map.html" target="_blank" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⊞ 연결 맵</a>
-    <a href="acorn_admin.html" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⚙ 편집부</a>
+    <a href="acorn_admin.html" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⚙ 관리자</a>
   </div>
 </nav>
 
@@ -2460,6 +2445,19 @@ window.go = function(page) {
           <li><button onclick="goCat('보안·네트워크')">보안 · 네트워크</button></li>
           <li><button onclick="goCat('프로그래밍')">프로그래밍</button></li>
           <li><button onclick="goCat('인문·교양')">인문 · 교양</button></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fcolh">SNS · 채널</div>
+        <ul>
+          <li><a id="snav-instagram" href="https://www.instagram.com/acornpub/" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">📷 Instagram</a></li>
+          <li><a id="snav-facebook"  href="https://www.facebook.com/acornpub"   target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">f  Facebook</a></li>
+          <li><a id="snav-youtube"   href="https://www.youtube.com/@acornpub"   target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">▶ YouTube</a></li>
+          <li><a id="snav-linkedin"  href="https://www.linkedin.com/company/acornpub" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">in LinkedIn</a></li>
+          <li><a id="snav-x"         href="https://twitter.com/acornpub"        target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">𝕏 X (Twitter)</a></li>
+          <li><a id="snav-blog"      href="https://blog.naver.com/acornpub"     target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">✍ 블로그</a></li>
+          <li><a id="snav-github"    href="https://github.com/AcornPublishing"  target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">⌥ GitHub</a></li>
+          <li style="margin-top:8px"><button onclick="go('sns')" style="color:var(--teal);font-size:12px;background:none;border:none;cursor:pointer;font-family:inherit;padding:0">⚙ 채널 관리 →</button></li>
         </ul>
       </div>
     </div>
