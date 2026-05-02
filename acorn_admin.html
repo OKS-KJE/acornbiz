@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에이콘 편집부 — 제안서 관리</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#0A1628;--navy2:#0D1C35;
+  --teal:#1D9E75;--teal2:#0F6E56;--teal3:#E1F5EE;
+  --amber:#EF9F27;--amberD:#854F0B;--amberBg:#FAEEDA;
+  --burg:#7A1F2B;--burgD:#5A1520;--burgBg:rgba(122,31,43,.07);
+  --purple:#534AB7;--purpleBg:#EEEDFE;
+  --coral:#C94D27;
+  --bg:#F5F4F0;--card:#fff;
+  --text:#0F1923;--muted:#586070;--muted2:#8A94A3;
+  --bd:rgba(0,0,0,.07);--bdm:rgba(0,0,0,.12);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Noto Serif KR',serif;
+  --sans:'Pretendard',-apple-system,sans-serif;
+
+  /* 상태 색상 */
+  --s-new:#2563EB;      --s-new-bg:#EFF6FF;
+  --s-review:#854F0B;   --s-review-bg:#FAEEDA;
+  --s-accept:#0F6E56;   --s-accept-bg:#E1F5EE;
+  --s-revise:#6D28D9;   --s-revise-bg:#EDE9FE;
+  --s-reject:#9F1239;   --s-reject-bg:#FFF1F2;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}
+
+/* ── TOP NAV ── */
+.top-nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--navy);border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;height:56px;padding:0 24px;gap:0;
+}
+.tn-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:32px}
+.tn-logo-txt{font-size:15px;font-weight:700;color:#fff}
+.tn-logo-txt span{color:var(--teal)}
+.tn-badge{font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(122,31,43,.6);color:#fff;letter-spacing:.06em;text-transform:uppercase}
+.tn-links{display:flex;gap:2px;list-style:none;flex:1}
+.tn-link{background:none;border:none;font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.65);padding:6px 11px;border-radius:5px;cursor:pointer;transition:all .14s;white-space:nowrap}
+.tn-link:hover,.tn-link.on{color:#fff;background:rgba(255,255,255,.08)}
+.tn-link.on{color:var(--teal)}
+.tn-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tn-user{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.55)}
+.tn-avatar{width:28px;height:28px;border-radius:50%;background:var(--teal2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.tn-back{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:5px;transition:all .14s}
+.tn-back:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 56px)}
+
+/* ── SIDEBAR ── */
+.sidebar{background:var(--card);border-right:1px solid var(--bdm);padding:20px 0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.sb-sec{padding:0 14px;margin-bottom:22px}
+.sb-sec-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);padding:0 8px;margin-bottom:6px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .13s;border:none;background:none;font-family:var(--sans);width:100%;text-align:left}
+.sb-item:hover{background:var(--bg);color:var(--text)}
+.sb-item.on{background:var(--teal3);color:var(--teal2);font-weight:600}
+.sb-item-ico{font-size:15px;flex-shrink:0}
+.sb-cnt{margin-left:auto;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:10px;background:var(--bg);border:1px solid var(--bd)}
+.sb-item.on .sb-cnt{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+/* 상태 필터 */
+.sb-status{display:flex;flex-direction:column;gap:4px;padding:0 14px}
+.sb-st{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;cursor:pointer;font-size:12.5px;color:var(--muted);transition:all .13s;border:none;background:none;font-family:var(--sans);width:100%;text-align:left}
+.sb-st:hover{background:var(--bg)}
+.sb-st.on{font-weight:600}
+.sb-st-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.sb-st-cnt{margin-left:auto;font-size:10.5px;font-family:var(--mono);color:var(--muted2)}
+
+/* ── MAIN ── */
+.main{padding:28px 28px 60px;overflow-y:auto}
+.page{display:none}.page.on{display:block}
+
+/* ── DASHBOARD ── */
+.dash-top{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
+.kpi{background:var(--card);border:1px solid var(--bdm);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.kpi.all::after{background:var(--teal)}
+.kpi.new::after{background:var(--s-new)}
+.kpi.review::after{background:var(--amber)}
+.kpi.accept::after{background:var(--s-accept)}
+.kpi.reject::after{background:var(--coral)}
+.kpi-n{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1;margin-bottom:5px}
+.kpi.all .kpi-n{color:var(--text)}
+.kpi.new .kpi-n{color:var(--s-new)}
+.kpi.review .kpi-n{color:var(--amberD)}
+.kpi.accept .kpi-n{color:var(--s-accept)}
+.kpi.reject .kpi-n{color:var(--coral)}
+.kpi-l{font-size:11.5px;color:var(--muted);font-weight:500}
+.kpi-sub{font-size:10px;color:var(--muted2);margin-top:4px;font-family:var(--mono)}
+
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.dash-card{background:var(--card);border:1px solid var(--bdm);border-radius:10px;padding:20px}
+.dc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
+.dc-title{font-size:14px;font-weight:700;color:var(--text)}
+.dc-sub{font-size:11.5px;color:var(--muted)}
+
+/* 최근 제안서 테이블 */
+.prop-table{width:100%;border-collapse:collapse}
+.prop-table th{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted2);text-align:left;padding:0 0 10px;border-bottom:1px solid var(--bdm)}
+.prop-table td{padding:11px 0;border-bottom:1px solid var(--bd);font-size:13px;vertical-align:middle}
+.prop-table tr:last-child td{border-bottom:none}
+.prop-table tr{cursor:pointer;transition:background .1s}
+.prop-table tr:hover td{background:rgba(29,158,117,.03)}
+.pt-title{font-weight:500;color:var(--text);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pt-author{color:var(--muted);font-size:12px}
+.pt-cat{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--bdm);white-space:nowrap}
+.pt-date{font-size:11.5px;color:var(--muted2);font-family:var(--mono);white-space:nowrap}
+
+/* 상태 배지 */
+.st-badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.st-badge::before{content:'';width:5px;height:5px;border-radius:50%}
+.st-new{background:var(--s-new-bg);color:var(--s-new)}.st-new::before{background:var(--s-new)}
+.st-review{background:var(--s-review-bg);color:var(--s-review)}.st-review::before{background:var(--s-review)}
+.st-accept{background:var(--s-accept-bg);color:var(--s-accept)}.st-accept::before{background:var(--s-accept)}
+.st-revise{background:var(--s-revise-bg);color:var(--s-revise)}.st-revise::before{background:var(--s-revise)}
+.st-reject{background:var(--s-reject-bg);color:var(--s-reject)}.st-reject::before{background:var(--s-reject)}
+
+/* 카테고리 차트 */
+.cat-bars{display:flex;flex-direction:column;gap:8px}
+.cat-row{display:flex;align-items:center;gap:10px;font-size:12.5px}
+.cat-label{width:140px;flex-shrink:0;color:var(--text);font-weight:500}
+.cat-bar-wrap{flex:1;background:var(--bg);border-radius:3px;height:8px;overflow:hidden}
+.cat-bar{height:100%;border-radius:3px;background:var(--teal);transition:width .6s ease}
+.cat-cnt{font-family:var(--mono);font-size:11px;color:var(--muted2);width:32px;text-align:right;flex-shrink:0}
+
+/* 월별 차트 */
+.month-chart{display:flex;align-items:flex-end;gap:6px;height:80px;margin-top:8px}
+.mc-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.mc-bar{width:100%;border-radius:3px 3px 0 0;background:var(--teal);min-height:3px;transition:height .5s ease}
+.mc-label{font-size:9.5px;color:var(--muted2);font-family:var(--mono)}
+
+/* ── PROPOSAL LIST PAGE ── */
+.list-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.lt-search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--bdm);border-radius:8px;padding:0 14px;flex:1;max-width:360px;height:38px}
+.lt-search input{border:none;outline:none;font-family:var(--sans);font-size:13px;color:var(--text);background:transparent;flex:1}
+.lt-search svg{width:14px;height:14px;stroke:var(--muted2);fill:none;stroke-width:2;flex-shrink:0}
+.lt-select{height:38px;padding:0 12px;border:1px solid var(--bdm);border-radius:8px;font-family:var(--sans);font-size:12.5px;color:var(--text);background:var(--card);cursor:pointer;outline:none}
+.lt-cnt{font-size:12.5px;color:var(--muted);margin-left:auto}
+
+/* 카드 목록 */
+.prop-cards{display:flex;flex-direction:column;gap:10px}
+.prop-card{
+  background:var(--card);border:1px solid var(--bdm);border-radius:10px;
+  padding:16px 18px;cursor:pointer;transition:all .15s;
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;
+}
+.prop-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-1px)}
+.prop-card.selected{border-color:var(--teal);box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.pc-title{font-size:14.5px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4}
+.pc-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.pc-author{font-size:12.5px;color:var(--muted)}
+.pc-cat{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--bdm);color:var(--muted)}
+.pc-svc{font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:100px}
+.pc-svc.plan{background:var(--teal3);color:var(--teal2)}
+.pc-svc.self{background:var(--amberBg);color:var(--amberD)}
+.pc-summary{font-size:12.5px;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.pc-date{font-size:11px;color:var(--muted2);font-family:var(--mono)}
+.pc-pages{font-size:11px;color:var(--muted2)}
+.pc-score{font-size:11px;font-weight:600;font-family:var(--mono)}
+
+/* ── DETAIL PAGE ── */
+.detail-layout{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
+.det-back{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);padding:6px 13px;border-radius:7px;border:1px solid var(--bdm);background:var(--card);cursor:pointer;margin-bottom:20px;font-family:var(--sans);transition:background .12s}
+.det-back:hover{background:var(--bg)}
+
+/* 제안서 내용 */
+.det-hero{background:var(--navy);border-radius:12px;padding:24px;margin-bottom:16px;position:relative;overflow:hidden}
+.det-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:.3}
+.det-h-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.det-title{font-size:20px;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.3}
+.det-author-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.det-author{font-size:13.5px;color:rgba(255,255,255,.65)}
+.det-cats{display:flex;gap:6px;flex-wrap:wrap}
+.det-cat{font-size:11px;font-weight:500;padding:3px 10px;border-radius:100px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
+.det-meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+.det-meta-item{font-size:11.5px;color:rgba(255,255,255,.45)}
+.det-meta-item b{color:rgba(255,255,255,.8)}
+
+.det-section{background:var(--card);border:1px solid var(--bdm);border-radius:10px;margin-bottom:12px}
+.det-sec-head{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.det-sec-title{font-size:13px;font-weight:600;color:var(--text)}
+.det-sec-body{padding:16px 18px;font-size:13.5px;color:var(--muted);line-height:1.82}
+.det-sec-body b{color:var(--text);font-weight:500}
+
+/* 마케팅 채널 */
+.mkt-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.mkt-tag{font-size:11px;padding:2px 9px;background:var(--bg);border:1px solid var(--bdm);border-radius:100px;color:var(--muted)}
+
+/* ePub 체크 */
+.epub-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.epub-chk-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);padding:5px 8px;background:var(--bg);border-radius:5px}
+.epub-chk-ico{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.epub-chk-ico.y{background:var(--teal3);color:var(--teal2)}
+.epub-chk-ico.n{background:var(--bg);border:1px solid var(--bdm);color:var(--muted2)}
+
+/* 첨부 파일 */
+.attach-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border:1px solid var(--bdm);border-radius:6px;font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.attach-row:last-child{margin-bottom:0}
+.attach-ico{font-size:18px;flex-shrink:0}
+.attach-name{flex:1;font-weight:500;color:var(--text)}
+
+/* ── 평가 패널 ── */
+.eval-panel{position:sticky;top:84px}
+.eval-card{background:var(--card);border:1px solid var(--bdm);border-radius:10px;margin-bottom:12px;overflow:hidden}
+.eval-card-head{padding:13px 16px;background:var(--bg);border-bottom:1px solid var(--bdm);font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;justify-content:space-between}
+.eval-card-body{padding:16px}
+
+/* 상태 변경 */
+.st-btns{display:flex;flex-direction:column;gap:6px}
+.st-btn{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:7px;border:1.5px solid;cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:500;transition:all .15s;background:none;text-align:left}
+.st-btn:hover{opacity:.82}
+.st-btn.active{font-weight:700}
+.st-btn-new{border-color:var(--s-new);color:var(--s-new)}.st-btn-new.active{background:var(--s-new-bg)}
+.st-btn-review{border-color:var(--amberD);color:var(--amberD)}.st-btn-review.active{background:var(--amberBg)}
+.st-btn-accept{border-color:var(--s-accept);color:var(--s-accept)}.st-btn-accept.active{background:var(--s-accept-bg)}
+.st-btn-revise{border-color:var(--s-revise);color:var(--s-revise)}.st-btn-revise.active{background:var(--s-revise-bg)}
+.st-btn-reject{border-color:var(--s-reject);color:var(--s-reject)}.st-btn-reject.active{background:var(--s-reject-bg)}
+
+/* 점수 슬라이더 */
+.score-section{margin-bottom:14px}
+.score-row{margin-bottom:10px}
+.score-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;font-size:12px}
+.score-label{color:var(--muted);font-weight:500}
+.score-val{font-family:var(--mono);font-weight:600;color:var(--burg)}
+.score-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--bg);border-radius:2px;outline:none;border:1px solid var(--bdm)}
+.score-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--burg);cursor:pointer;border:2px solid #fff;box-shadow:0 0 0 1px var(--burg)}
+.total-score{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--navy);border-radius:7px;margin-top:8px}
+.ts-label{font-size:12px;font-weight:600;color:rgba(255,255,255,.7)}
+.ts-val{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--teal);line-height:1}
+.ts-grade{font-size:11px;color:rgba(255,255,255,.5);text-align:right}
+
+/* 등급 */
+.grade-badge{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;font-family:var(--serif);font-size:20px;font-weight:700}
+.grade-S{background:#FFF7ED;color:#B45309}
+.grade-A{background:var(--teal3);color:var(--teal2)}
+.grade-B{background:var(--purpleBg);color:var(--purple)}
+.grade-C{background:var(--amberBg);color:var(--amberD)}
+.grade-D{background:#FFF1F2;color:#9F1239}
+
+/* 편집자 메모 */
+.memo-area{width:100%;min-height:100px;padding:10px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;color:var(--text);background:var(--bg);resize:vertical;line-height:1.7;outline:none;transition:border .15s}
+.memo-area:focus{border-color:var(--teal);background:#fff}
+
+/* 저장 버튼 */
+.save-btn{width:100%;padding:11px;background:var(--teal);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:opacity .15s}
+.save-btn:hover{opacity:.86}
+.danger-btn{width:100%;padding:9px;background:none;color:var(--coral);border:1px solid var(--coral);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .15s;margin-top:6px}
+.danger-btn:hover{background:#FFF1F2}
+
+/* 편집자 히스토리 */
+.hist-item{padding:10px 0;border-bottom:1px solid var(--bd)}
+.hist-item:last-child{border-bottom:none}
+.hist-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.hist-who{font-size:12px;font-weight:600;color:var(--text)}
+.hist-time{font-size:10.5px;color:var(--muted2);font-family:var(--mono)}
+.hist-txt{font-size:12px;color:var(--muted);line-height:1.65}
+
+/* 인세 시뮬레이션 */
+.sim-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--bd);font-size:12.5px}
+.sim-row:last-child{border-bottom:none}
+.sim-lbl{color:var(--muted)}
+.sim-val{font-family:var(--mono);font-weight:600;color:var(--text)}
+.sim-val.hi{color:var(--teal2)}
+
+/* toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;font-size:13px;padding:12px 20px;border-radius:9px;z-index:999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;border-left:3px solid var(--teal)}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:1100px){.detail-layout{grid-template-columns:1fr}.eval-panel{position:static}}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.sidebar{display:none}.dash-top{grid-template-columns:repeat(3,1fr)}.dash-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a class="tn-logo" href="acornpub_landing.html">
+    <span class="tn-logo-txt">에이콘<span>출판사</span></span>
+    <span class="tn-badge">편집부</span>
+  </a>
+  <ul class="tn-links">
+    <li><button class="tn-link on" onclick="showPage('dashboard')">대시보드</button></li>
+    <li><button class="tn-link" onclick="showPage('proposals')">제안서 목록</button></li>
+    <li><button class="tn-link" onclick="showPage('analytics')">통계</button></li>
+  </ul>
+  <div class="tn-right">
+    <div class="tn-user">
+      <div class="tn-avatar">편</div>
+      <span>편집장</span>
+    </div>
+    <a class="tn-back" href="acornpub_landing.html">← 홈으로</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-sec">
+      <div class="sb-sec-label">보기</div>
+      <button class="sb-item on" onclick="showPage('dashboard')"><span class="sb-item-ico">📊</span>대시보드<span class="sb-cnt" id="sb-all-cnt">0</span></button>
+      <button class="sb-item" onclick="showPage('proposals')"><span class="sb-item-ico">📋</span>전체 제안서<span class="sb-cnt" id="sb-list-cnt">0</span></button>
+      <button class="sb-item" onclick="showPage('analytics')"><span class="sb-item-ico">📈</span>통계 분석</button>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-sec-label">상태별 필터</div>
+      <div class="sb-status" id="sb-status-list"></div>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-sec-label">카테고리</div>
+      <div class="sb-status" id="sb-cat-list"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ══ DASHBOARD PAGE ══ -->
+    <div class="page on" id="page-dashboard">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:5px">Dashboard</div>
+          <h1 style="font-size:22px;font-weight:700;letter-spacing:-.02em">출간 제안서 관리 현황</h1>
+        </div>
+        <button onclick="openNewProposal()" style="background:var(--teal);color:#fff;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:7px">
+          ＋ 제안서 직접 등록
+        </button>
+      </div>
+      <!-- KPI -->
+      <div class="dash-top" id="kpi-row"></div>
+      <!-- 차트 그리드 -->
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dc-head"><span class="dc-title">카테고리별 제안 현황</span><span class="dc-sub">전체 기간</span></div>
+          <div class="cat-bars" id="cat-chart"></div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-head"><span class="dc-title">월별 제안서 접수</span><span class="dc-sub">최근 6개월</span></div>
+          <div class="month-chart" id="month-chart"></div>
+        </div>
+      </div>
+      <!-- 최근 제안서 -->
+      <div class="dash-card">
+        <div class="dc-head"><span class="dc-title">최근 제안서</span><span class="dc-sub" style="cursor:pointer;color:var(--teal2)" onclick="showPage('proposals')">전체 보기 →</span></div>
+        <table class="prop-table" id="recent-table">
+          <thead><tr><th>도서명</th><th>저자</th><th>카테고리</th><th>상태</th><th>접수일</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PROPOSALS LIST PAGE ══ -->
+    <div class="page" id="page-proposals">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+        <h1 style="font-size:20px;font-weight:700;letter-spacing:-.02em">전체 제안서</h1>
+        <button onclick="openNewProposal()" style="background:var(--teal);color:#fff;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans)">＋ 직접 등록</button>
+      </div>
+      <div class="list-toolbar">
+        <div class="lt-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-input" placeholder="도서명 · 저자명 검색…" oninput="filterProposals()">
+        </div>
+        <select class="lt-select" id="filter-status" onchange="filterProposals()">
+          <option value="">전체 상태</option>
+          <option value="신규">신규</option>
+          <option value="검토중">검토중</option>
+          <option value="채택">채택</option>
+          <option value="보완요청">보완요청</option>
+          <option value="반려">반려</option>
+        </select>
+        <select class="lt-select" id="filter-svc" onchange="filterProposals()">
+          <option value="">전체 유형</option>
+          <option value="기획출판">기획출판</option>
+          <option value="자비출판">자비출판</option>
+        </select>
+        <select class="lt-select" id="filter-sort" onchange="filterProposals()">
+          <option value="newest">최신순</option>
+          <option value="oldest">오래된순</option>
+          <option value="score">점수순</option>
+          <option value="title">가나다순</option>
+        </select>
+        <div class="lt-cnt" id="list-cnt-txt"></div>
+      </div>
+      <div class="prop-cards" id="prop-card-list"></div>
+    </div>
+
+    <!-- ══ DETAIL PAGE ══ -->
+    <div class="page" id="page-detail">
+      <button class="det-back" onclick="showPage('proposals')">← 목록으로</button>
+      <div class="detail-layout" id="detail-inner"></div>
+    </div>
+
+    <!-- ══ ANALYTICS PAGE ══ -->
+    <div class="page" id="page-analytics">
+      <h1 style="font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:22px">통계 분석</h1>
+      <div class="dash-grid" id="analytics-grid"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NEW PROPOSAL MODAL -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;display:none;align-items:center;justify-content:center;padding:24px">
+  <div style="background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;padding:28px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <h2 style="font-size:18px;font-weight:700">제안서 직접 등록</h2>
+      <button onclick="closeModal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)">×</button>
+    </div>
+    <div id="modal-form"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const STATUSES = ['신규','검토중','채택','보완요청','반려'];
+const STATUS_CLASS = {'신규':'new','검토중':'review','채택':'accept','보완요청':'revise','반려':'reject'};
+const STATUS_KO = {'신규':'신규','검토중':'검토중','채택':'채택','보완요청':'보완요청','반려':'반려'};
+
+// 샘플 제안서 데이터
+const SAMPLE = [
+  {id:'p001',title:'파이썬으로 배우는 LLM 엔지니어링',subtitle:'LangChain부터 RAG, 파인튜닝까지',author:'김민준',email:'minjun@example.com',phone:'010-1234-5678',org:'AI 스타트업',pos:'수석 ML 엔지니어',cat:'IT > AI · 머신러닝',svc:'기획출판',amazon:true,pages:520,price:32000,status:'채택',date:'2026-04-02',summary:'ChatGPT·Claude 등 LLM을 실무에 적용하는 개발자를 위한 종합 가이드.',career:'10년차 ML 엔지니어. LLM 기반 추천 시스템 설계 및 운영 경험.',mkt_online:'LinkedIn 팔로워 3,200명, 기술 블로그 월 5만 UV',mkt_media:'인프런 파트너십 통한 강의 연계 출시 예정',scores:{market:88,diff:82,author:90,plan:85,pub:87},memo:'저자 플랫폼 탄탄. 시장성 우수. 채택 적극 권장.',history:[{who:'편집장',time:'2026-04-05',txt:'1차 검토 완료. 저자 경력 및 시장성 모두 우수. 채택 결정.'}],epub:['glossary-inline','summary-tail','check-qa','update-tech','code-github']},
+  {id:'p002',title:'쿠버네티스 운영 실전 가이드',subtitle:'프로덕션 환경의 K8s 아키텍처와 최적화',author:'이서연',email:'seoyeon@example.com',phone:'010-2345-6789',org:'클라우드 기업',pos:'SRE',cat:'IT > DevOps · 클라우드',svc:'기획출판',amazon:false,pages:612,price:38000,status:'검토중',date:'2026-04-08',summary:'쿠버네티스를 프로덕션에서 운영하는 엔지니어를 위한 심층 가이드.',career:'AWS·GCP 공인 아키텍트. 금융권 대규모 K8s 클러스터 설계 경험.',mkt_online:'CNCF 한국 앰배서더. LinkedIn 1,800명.',mkt_media:'KubeCon Korea 발표 예정',scores:{market:80,diff:75,author:85,plan:78,pub:82},memo:'시장 경쟁 도서 존재. 차별점 보강 필요.',history:[{who:'편집자A',time:'2026-04-10',txt:'기초 검토 완료. 경쟁 도서 대비 차별점 추가 확인 필요.'}],epub:['summary-head','code-comment','code-github','fig-hires']},
+  {id:'p003',title:'실전 사이버보안 침투테스트',subtitle:'Kali Linux로 배우는 공격과 방어 전략',author:'박지현',email:'jihyun@example.com',phone:'010-3456-7890',org:'보안 컨설팅',pos:'침투테스터',cat:'IT > 보안 · 네트워크',svc:'기획출판',amazon:true,pages:480,price:30000,status:'보완요청',date:'2026-03-25',summary:'실무 침투테스터가 직접 쓴 현장 중심 가이드.',career:'OSCP·CEH·CISSP 자격 보유. 금융권 보안 취약점 진단 다수.',mkt_online:'보안 커뮤니티 운영자. 팔로워 2,100명.',mkt_media:'보안 컨퍼런스 발표 의향',scores:{market:72,diff:68,author:80,plan:65,pub:70},memo:'법적 경고 문구 보강 및 실습 환경 구성 설명 보완 요청.',history:[{who:'편집장',time:'2026-03-28',txt:'법적 고지 및 실습 환경 구성 섹션 보완 후 재검토 요청.'}],epub:['check-quiz','update-errata','code-comment']},
+  {id:'p004',title:'디지털 시대의 철학적 사유',subtitle:'AI·알고리즘 시대, 인간을 다시 묻다',author:'송하은',email:'haeun@example.com',phone:'010-4567-8901',org:'고려대학교',pos:'철학과 박사',cat:'인문 > 철학 · 사상',svc:'기획출판',amazon:false,pages:280,price:18000,status:'신규',date:'2026-04-15',summary:'AI·소셜미디어 시대의 인간 조건을 철학적으로 탐구하는 교양 에세이.',career:'고려대 철학과 박사. 디지털 철학·AI 윤리 전문. 한국철학회 회원.',mkt_online:'브런치스토리 구독자 1,800명. 인스타 팔로워 3,200명.',mkt_media:'씨네21 기고 의향. 독서 팟캐스트 출연 가능.',scores:{market:70,diff:72,author:78,plan:68,pub:65},memo:'',history:[],epub:['glossary-mini','summary-head','summary-tail']},
+  {id:'p005',title:'MLOps 실전: ML 파이프라인 자동화',subtitle:'Kubeflow·MLflow·Airflow 통합 운영',author:'노민준',email:'minjun2@example.com',phone:'010-5678-9012',org:'빅테크',pos:'ML 플랫폼 엔지니어',cat:'IT > AI · 머신러닝',svc:'기획출판',amazon:true,pages:544,price:34000,status:'신규',date:'2026-04-18',summary:'ML 모델을 프로덕션에 배포하고 운영하기 위한 MLOps 실전 가이드.',career:'카카오·네이버 ML 플랫폼 팀 출신. Kubeflow·MLflow 오픈소스 기여자.',mkt_online:'GitHub Stars 2,300+. 기술 블로그 월 8만 UV.',mkt_media:'MLOps Korea 커뮤니티 운영자',scores:{market:85,diff:80,author:90,plan:82,pub:85},memo:'',history:[],epub:['code-comment','code-github','update-tech','fig-svg']},
+  {id:'p006',title:'나만의 책 만들기 — 자비출판 완전 가이드',subtitle:'원고 작성부터 서점 출판까지',author:'최현진',email:'hyunjin@example.com',phone:'010-6789-0123',org:'프리랜서',pos:'작가',cat:'기타 > 기타',svc:'자비출판',amazon:false,pages:220,price:14000,status:'신규',date:'2026-04-20',summary:'자비출판을 처음 시도하는 일반인을 위한 단계별 실전 가이드.',career:'기술 블로거 5년. 자기계발 에세이 1권 출간 경험.',mkt_online:'블로그 월 2만 UV. SNS 없음.',mkt_media:'특별한 미디어 계획 없음.',scores:{market:55,diff:50,author:60,plan:58,pub:52},memo:'',history:[],epub:['summary-tail']},
+];
+
+let proposals = JSON.parse(localStorage.getItem('acorn_proposals') || 'null') || SAMPLE;
+let currentFilter = {status:'', svc:'', search:'', sort:'newest'};
+let currentDetailId = null;
+let currentPage = 'dashboard';
+
+function saveProposals() { localStorage.setItem('acorn_proposals', JSON.stringify(proposals)); }
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+function showPage(name) {
+  currentPage = name;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.getElementById('page-'+name)?.classList.add('on');
+  document.querySelectorAll('.tn-link').forEach(l => l.classList.remove('on'));
+  document.querySelectorAll('.sb-item').forEach(l => l.classList.remove('on'));
+  if (name==='dashboard') {
+    document.querySelectorAll('.tn-link')[0].classList.add('on');
+    document.querySelectorAll('.sb-item')[0].classList.add('on');
+    renderDashboard();
+  } else if (name==='proposals') {
+    document.querySelectorAll('.tn-link')[1].classList.add('on');
+    document.querySelectorAll('.sb-item')[1].classList.add('on');
+    renderProposalList();
+  } else if (name==='analytics') {
+    document.querySelectorAll('.tn-link')[2].classList.add('on');
+    renderAnalytics();
+  }
+  renderSidebar();
+}
+
+// ═══════════════════════════════════════════
+// SIDEBAR
+// ═══════════════════════════════════════════
+function renderSidebar() {
+  document.getElementById('sb-all-cnt').textContent = proposals.length;
+  document.getElementById('sb-list-cnt').textContent = proposals.length;
+
+  // 상태별
+  const sList = document.getElementById('sb-status-list');
+  const counts = {};
+  STATUSES.forEach(s => counts[s] = 0);
+  proposals.forEach(p => { if(counts[p.status]!==undefined) counts[p.status]++; });
+  sList.innerHTML = STATUSES.map(s => `
+    <button class="sb-st${currentFilter.status===s?' on':''}" onclick="filterByStatus('${s}')">
+      <span class="sb-st-dot" style="background:var(--s-${STATUS_CLASS[s]})"></span>
+      ${s} <span class="sb-st-cnt">${counts[s]}</span>
+    </button>`).join('');
+
+  // 카테고리별
+  const cCounts = {};
+  proposals.forEach(p => {
+    const c = p.cat.split(' > ')[0] || '기타';
+    cCounts[c] = (cCounts[c]||0)+1;
+  });
+  const cList = document.getElementById('sb-cat-list');
+  cList.innerHTML = Object.entries(cCounts).map(([c,n]) =>
+    `<button class="sb-st" onclick="filterByCat('${c}')">
+      <span class="sb-st-dot" style="background:var(--teal)"></span>
+      ${c} <span class="sb-st-cnt">${n}</span>
+    </button>`).join('');
+}
+
+function filterByStatus(s) {
+  currentFilter.status = currentFilter.status===s ? '' : s;
+  showPage('proposals');
+}
+function filterByCat(c) {
+  currentFilter.search = c;
+  document.getElementById('search-input').value = c;
+  showPage('proposals');
+}
+
+// ═══════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════
+function renderDashboard() {
+  // KPI
+  const total = proposals.length;
+  const counts = {};
+  STATUSES.forEach(s => counts[s]=0);
+  proposals.forEach(p => { if(counts[p.status]!==undefined) counts[p.status]++; });
+  const acceptRate = total ? Math.round(counts['채택']/total*100) : 0;
+
+  document.getElementById('kpi-row').innerHTML = `
+    <div class="kpi all"><div class="kpi-n">${total}</div><div class="kpi-l">전체 제안서</div><div class="kpi-sub">누적 접수</div></div>
+    <div class="kpi new"><div class="kpi-n">${counts['신규']}</div><div class="kpi-l">신규 접수</div><div class="kpi-sub">검토 대기</div></div>
+    <div class="kpi review"><div class="kpi-n">${counts['검토중']}</div><div class="kpi-l">검토중</div><div class="kpi-sub">진행 중</div></div>
+    <div class="kpi accept"><div class="kpi-n">${counts['채택']}</div><div class="kpi-l">채택</div><div class="kpi-sub">채택률 ${acceptRate}%</div></div>
+    <div class="kpi reject"><div class="kpi-n">${counts['반려']}</div><div class="kpi-l">반려</div><div class="kpi-sub">${counts['보완요청']}건 보완중</div></div>`;
+
+  // 카테고리 차트
+  const catMap = {};
+  proposals.forEach(p => {
+    const c = (p.cat||'기타').split(' > ')[0];
+    catMap[c] = (catMap[c]||0)+1;
+  });
+  const maxC = Math.max(...Object.values(catMap), 1);
+  document.getElementById('cat-chart').innerHTML = Object.entries(catMap)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([c,n])=>`
+      <div class="cat-row">
+        <div class="cat-label">${c}</div>
+        <div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(n/maxC*100)}%"></div></div>
+        <div class="cat-cnt">${n}</div>
+      </div>`).join('');
+
+  // 월별 차트
+  const now = new Date();
+  const months = Array.from({length:6},(_,i)=>{
+    const d = new Date(now.getFullYear(), now.getMonth()-5+i, 1);
+    return {key:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`,
+            label:`${d.getMonth()+1}월`, cnt:0};
+  });
+  proposals.forEach(p => {
+    const mk = p.date?.slice(0,7);
+    const m = months.find(m=>m.key===mk);
+    if(m) m.cnt++;
+  });
+  const maxM = Math.max(...months.map(m=>m.cnt), 1);
+  document.getElementById('month-chart').innerHTML = months.map(m=>`
+    <div class="mc-bar-wrap">
+      <div class="mc-bar" style="height:${Math.max(Math.round(m.cnt/maxM*70),3)}px"></div>
+      <div class="mc-label">${m.label}</div>
+    </div>`).join('');
+
+  // 최근 5건
+  const recent = [...proposals].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
+  document.querySelector('#recent-table tbody').innerHTML = recent.map(p=>`
+    <tr onclick="openDetail('${p.id}')">
+      <td><div class="pt-title">${p.title}</div></td>
+      <td><div class="pt-author">${p.author}</div></td>
+      <td><span class="pt-cat">${(p.cat||'').split(' > ').pop()}</span></td>
+      <td>${statusBadge(p.status)}</td>
+      <td><div class="pt-date">${p.date}</div></td>
+    </tr>`).join('');
+}
+
+// ═══════════════════════════════════════════
+// PROPOSAL LIST
+// ═══════════════════════════════════════════
+function filterProposals() {
+  currentFilter.search = document.getElementById('search-input').value.toLowerCase();
+  currentFilter.status = document.getElementById('filter-status').value;
+  currentFilter.svc    = document.getElementById('filter-svc').value;
+  currentFilter.sort   = document.getElementById('filter-sort').value;
+  renderProposalList();
+}
+
+function renderProposalList() {
+  document.getElementById('filter-status').value = currentFilter.status;
+  document.getElementById('filter-svc').value    = currentFilter.svc;
+  document.getElementById('search-input').value  = currentFilter.search;
+
+  let list = [...proposals];
+  if(currentFilter.status) list = list.filter(p=>p.status===currentFilter.status);
+  if(currentFilter.svc)    list = list.filter(p=>p.svc===currentFilter.svc);
+  if(currentFilter.search) list = list.filter(p=>
+    p.title.toLowerCase().includes(currentFilter.search) ||
+    p.author.toLowerCase().includes(currentFilter.search) ||
+    (p.cat||'').toLowerCase().includes(currentFilter.search));
+  if(currentFilter.sort==='oldest')  list.sort((a,b)=>a.date.localeCompare(b.date));
+  else if(currentFilter.sort==='score') list.sort((a,b)=>totalScore(b)-totalScore(a));
+  else if(currentFilter.sort==='title') list.sort((a,b)=>a.title.localeCompare(b.title,'ko'));
+  else list.sort((a,b)=>b.date.localeCompare(a.date));
+
+  document.getElementById('list-cnt-txt').textContent = `${list.length}건`;
+  document.getElementById('prop-card-list').innerHTML = list.length === 0
+    ? '<div style="text-align:center;padding:60px;color:var(--muted2);font-size:14px">검색 결과가 없습니다.</div>'
+    : list.map(p=>`
+      <div class="prop-card${currentDetailId===p.id?' selected':''}" onclick="openDetail('${p.id}')">
+        <div>
+          <div class="pc-title">${p.title}</div>
+          <div class="pc-meta">
+            <span class="pc-author">✍ ${p.author}</span>
+            <span class="pc-cat">${(p.cat||'').split(' > ').pop()}</span>
+            <span class="pc-svc ${p.svc==='기획출판'?'plan':'self'}">${p.svc}</span>
+            ${p.amazon ? '<span style="font-size:10.5px;padding:2px 8px;border-radius:100px;background:#FFF7ED;color:#B45309;font-weight:600">+ KDP</span>' : ''}
+          </div>
+          <div class="pc-summary">${p.summary}</div>
+        </div>
+        <div class="pc-right">
+          ${statusBadge(p.status)}
+          <div class="pc-date">${p.date}</div>
+          <div class="pc-pages" style="font-size:11px;color:var(--muted2)">${(p.pages||0).toLocaleString()}p</div>
+          <div class="pc-score" style="color:${gradeColor(scoreGrade(totalScore(p)))}">
+            ${gradeEmoji(scoreGrade(totalScore(p)))} ${Math.round(totalScore(p))}점
+          </div>
+        </div>
+      </div>`).join('');
+}
+
+// ═══════════════════════════════════════════
+// DETAIL + EVALUATION
+// ═══════════════════════════════════════════
+function openDetail(id) {
+  const p = proposals.find(x=>x.id===id);
+  if(!p) return;
+  currentDetailId = id;
+  const scores = p.scores || {market:70,diff:70,author:70,plan:70,pub:70};
+  const total = totalScore(p);
+  const grade = scoreGrade(total);
+
+  document.getElementById('detail-inner').innerHTML = `
+    <!-- 왼쪽: 제안서 내용 -->
+    <div>
+      <div class="det-hero">
+        <div class="det-h-top">
+          <div>
+            <div class="det-cats">
+              ${statusBadge(p.status)}
+              <span class="det-cat">${p.cat||''}</span>
+              <span class="det-cat">${p.svc}</span>
+              ${p.amazon?'<span class="det-cat">Amazon KDP</span>':''}
+            </div>
+          </div>
+          <div class="grade-badge grade-${grade}">${grade}</div>
+        </div>
+        <div class="det-title" style="margin-top:10px">${p.title}</div>
+        <div class="det-author-row" style="margin-top:6px">
+          <span class="det-author">✍ ${p.author}</span>
+          <span class="det-author">✉ ${p.email}</span>
+          ${p.phone?`<span class="det-author">📱 ${p.phone}</span>`:''}
+          ${p.org?`<span class="det-author">🏢 ${p.org} · ${p.pos}</span>`:''}
+        </div>
+        <div class="det-meta-row">
+          <span class="det-meta-item">분량: <b>${(p.pages||0).toLocaleString()}p</b></span>
+          <span class="det-meta-item">정가: <b>₩${(p.price||0).toLocaleString()}</b></span>
+          <span class="det-meta-item">접수: <b>${p.date}</b></span>
+          <span class="det-meta-item">총점: <b style="color:var(--teal)">${Math.round(total)}점</b></span>
+        </div>
+      </div>
+
+      <!-- 도서 요약 -->
+      <div class="det-section">
+        <div class="det-sec-head"><span class="det-sec-title">📚 도서 요약</span></div>
+        <div class="det-sec-body">${p.summary||'-'}
+          ${p.career?`<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--bd)"><b>저자 경력</b><br>${p.career}</div>`:''}
+        </div>
+      </div>
+
+      <!-- 마케팅 전략 -->
+      ${(p.mkt_online||p.mkt_media)?`
+      <div class="det-section">
+        <div class="det-sec-head"><span class="det-sec-title">📣 마케팅 전략</span></div>
+        <div class="det-sec-body">
+          ${p.mkt_online?`<b>온라인 채널</b><br>${p.mkt_online}<br><br>`:''}
+          ${p.mkt_media?`<b>언론·미디어</b><br>${p.mkt_media}`:''}
+        </div>
+      </div>`:''}
+
+      <!-- 인세 시뮬레이션 -->
+      <div class="det-section">
+        <div class="det-sec-head"><span class="det-sec-title">💰 인세 시뮬레이션</span>
+          <span style="font-size:11px;color:var(--muted2)">${p.svc==='자비출판'?'자비출판 · 인세율 90%':'기획출판 · 공급율 65%'}</span>
+        </div>
+        <div class="det-sec-body" id="sim-body-${p.id}">${renderSimSection(p)}</div>
+      </div>
+
+      <!-- ePub 지원 체크 -->
+      ${p.epub&&p.epub.length?`
+      <div class="det-section">
+        <div class="det-sec-head"><span class="det-sec-title">📖 ePub 3.0 저자 지원 선택</span>
+          <span class="st-badge st-accept">${p.epub.length}개 선택됨</span>
+        </div>
+        <div class="det-sec-body">
+          <div class="epub-check-grid">${renderEpubChecks(p.epub)}</div>
+        </div>
+      </div>`:''}
+    </div>
+
+    <!-- 오른쪽: 평가 패널 -->
+    <div class="eval-panel">
+
+      <!-- 상태 변경 -->
+      <div class="eval-card">
+        <div class="eval-card-head">진행 상태 <span style="font-size:11px;color:var(--muted2)">클릭하여 변경</span></div>
+        <div class="eval-card-body">
+          <div class="st-btns">
+            ${STATUSES.map(s=>`
+              <button class="st-btn st-btn-${STATUS_CLASS[s]}${p.status===s?' active':''}" onclick="changeStatus('${p.id}','${s}')">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--s-${STATUS_CLASS[s]});flex-shrink:0"></span>
+                ${s}
+              </button>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- 점수 평가 -->
+      <div class="eval-card">
+        <div class="eval-card-head">
+          편집장 평가
+          <div class="grade-badge grade-${grade}" id="det-grade-badge">${grade}</div>
+        </div>
+        <div class="eval-card-body">
+          <div class="score-section">
+            ${[['market','시장성'],['diff','차별성'],['author','저자 적합도'],['plan','기획 완성도'],['pub','출간 가능성']].map(([k,l])=>`
+              <div class="score-row">
+                <div class="score-top"><span class="score-label">${l}</span><span class="score-val" id="sv-${p.id}-${k}">${scores[k]||70}점</span></div>
+                <input type="range" class="score-slider" min="0" max="100" value="${scores[k]||70}"
+                  oninput="updateScore('${p.id}','${k}',this.value)">
+              </div>`).join('')}
+          </div>
+          <div class="total-score">
+            <div class="ts-label">종합 점수</div>
+            <div>
+              <div class="ts-val" id="ts-val-${p.id}">${Math.round(total)}</div>
+              <div class="ts-grade" id="ts-grade-${p.id}">${gradeDesc(grade)}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 편집자 메모 -->
+      <div class="eval-card">
+        <div class="eval-card-head">편집자 메모</div>
+        <div class="eval-card-body">
+          <textarea class="memo-area" id="memo-${p.id}" placeholder="검토 의견, 보완 요청 사항, 채택 사유 등을 기록하세요…">${p.memo||''}</textarea>
+          <button class="save-btn" style="margin-top:10px" onclick="saveMemo('${p.id}')">메모 저장</button>
+        </div>
+      </div>
+
+      <!-- 검토 히스토리 -->
+      <div class="eval-card">
+        <div class="eval-card-head">검토 히스토리 <span style="font-size:11px;color:var(--muted2)">${(p.history||[]).length}건</span></div>
+        <div class="eval-card-body" style="max-height:200px;overflow-y:auto">
+          ${(p.history||[]).length===0
+            ? '<div style="font-size:12.5px;color:var(--muted2);text-align:center;padding:16px">아직 기록이 없습니다.</div>'
+            : (p.history||[]).map(h=>`
+              <div class="hist-item">
+                <div class="hist-top"><span class="hist-who">${h.who}</span><span class="hist-time">${h.time}</span></div>
+                <div class="hist-txt">${h.txt}</div>
+              </div>`).join('')}
+        </div>
+        <div class="eval-card-body" style="border-top:1px solid var(--bd)">
+          <textarea class="memo-area" id="hist-input-${p.id}" placeholder="히스토리에 추가할 내용…" style="min-height:60px"></textarea>
+          <button class="save-btn" style="margin-top:8px;background:var(--navy)" onclick="addHistory('${p.id}')">히스토리 추가</button>
+        </div>
+      </div>
+
+      <!-- 삭제 -->
+      <button class="danger-btn" onclick="deleteProposal('${p.id}')">제안서 삭제</button>
+    </div>`;
+
+  showPage('detail');
+}
+
+function renderSimSection(p) {
+  const SUPPLY = 0.65;
+  const isSelf = p.svc === '자비출판';
+  const printRate = isSelf ? 0.9 : 0.1;
+  const ebookRate = isSelf ? 0.9 : 0.2;
+  const copies = 1000;
+  const edl = 500;
+  const price = p.price || 0;
+  const ePrice = Math.floor(price * 0.65 / 1000) * 1000;
+  const printY1 = price * SUPPLY * printRate * copies;
+  const ebookY1 = ePrice * SUPPLY * ebookRate * edl;
+  const y1 = printY1 + ebookY1;
+  const y3 = y1 * 2.1;
+  const fmt = n => Math.round(n).toLocaleString('ko-KR');
+  return `
+    <div class="sim-row"><span class="sim-lbl">정가</span><span class="sim-val">₩ ${fmt(price)}</span></div>
+    <div class="sim-row"><span class="sim-lbl">종이책 인세율</span><span class="sim-val">${(printRate*100).toFixed(0)}% (공급율 65% 적용)</span></div>
+    <div class="sim-row"><span class="sim-lbl">1년 예상 판매 (1,000부 기준)</span><span class="sim-val hi">₩ ${fmt(printY1)}</span></div>
+    <div class="sim-row"><span class="sim-lbl">전자책 포함 1년 인세</span><span class="sim-val hi">₩ ${fmt(y1)}</span></div>
+    <div class="sim-row"><span class="sim-lbl">3년 누적 예상 인세</span><span class="sim-val hi">₩ ${fmt(y3)}</span></div>`;
+}
+
+const EPUB_LABELS = {
+  'glossary-inline':'인라인 툴팁','glossary-mini':'권말 용어집',
+  'summary-head':'장 시작 요약','summary-tail':'장 끝 요약',
+  'check-qa':'복습 Q&A','check-quiz':'인터랙티브 퀴즈','check-list':'학습 체크리스트',
+  'update-errata':'정오표 패치','update-tech':'기술 업데이트','update-bonus':'보너스 콘텐츠',
+  'code-comment':'코드 주석','code-github':'GitHub 연동','code-run':'실행환경 안내',
+  'fig-hires':'고해상도 이미지','fig-svg':'SVG 다이어그램','fig-caption':'도표 캡션',
+};
+function renderEpubChecks(selected) {
+  return Object.entries(EPUB_LABELS).map(([k,l]) =>
+    `<div class="epub-chk-item"><div class="epub-chk-ico ${selected.includes(k)?'y':'n'}">${selected.includes(k)?'✓':''}</div>${l}</div>`
+  ).join('');
+}
+
+// ═══════════════════════════════════════════
+// ANALYTICS
+// ═══════════════════════════════════════════
+function renderAnalytics() {
+  const total = proposals.length;
+  const accepted = proposals.filter(p=>p.status==='채택').length;
+  const avgScore = total ? Math.round(proposals.reduce((s,p)=>s+totalScore(p),0)/total) : 0;
+  const avgPages = total ? Math.round(proposals.reduce((s,p)=>s+(p.pages||0),0)/total) : 0;
+  const planning = proposals.filter(p=>p.svc==='기획출판').length;
+
+  const catCounts = {};
+  proposals.forEach(p => {
+    const c = (p.cat||'기타').split(' > ')[0];
+    catCounts[c] = (catCounts[c]||0)+1;
+  });
+
+  document.getElementById('analytics-grid').innerHTML = `
+    <div class="dash-card">
+      <div class="dc-head"><span class="dc-title">종합 지표</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${[
+          ['전체 접수',total+'건',''],
+          ['채택률',accepted+'건 / '+Math.round(accepted/Math.max(total,1)*100)+'%','color:var(--teal2)'],
+          ['평균 종합점수',avgScore+'점',''],
+          ['평균 분량',avgPages+'p',''],
+          ['기획출판 비율',Math.round(planning/Math.max(total,1)*100)+'%',''],
+          ['Amazon KDP 희망',proposals.filter(p=>p.amazon).length+'건',''],
+        ].map(([l,v,s])=>`
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px">
+            <span style="color:var(--muted)">${l}</span><b style="${s}">${v}</b>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="dash-card">
+      <div class="dc-head"><span class="dc-title">상태별 분포</span></div>
+      <div class="cat-bars">
+        ${STATUSES.map(s=>{
+          const n = proposals.filter(p=>p.status===s).length;
+          return `<div class="cat-row">
+            <div class="cat-label">${s}</div>
+            <div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(n/Math.max(total,1)*100)}%;background:var(--s-${STATUS_CLASS[s]})"></div></div>
+            <div class="cat-cnt">${n}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="dash-card">
+      <div class="dc-head"><span class="dc-title">카테고리별 분포</span></div>
+      <div class="cat-bars">
+        ${Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).map(([c,n])=>
+          `<div class="cat-row">
+            <div class="cat-label">${c}</div>
+            <div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(n/Math.max(total,1)*100)}%"></div></div>
+            <div class="cat-cnt">${n}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="dash-card">
+      <div class="dc-head"><span class="dc-title">평균 점수 항목별</span></div>
+      <div class="cat-bars">
+        ${[['시장성','market'],['차별성','diff'],['저자 적합도','author'],['기획 완성도','plan'],['출간 가능성','pub']].map(([l,k])=>{
+          const avg = total ? Math.round(proposals.reduce((s,p)=>s+(p.scores?.[k]||70),0)/total) : 0;
+          return `<div class="cat-row">
+            <div class="cat-label">${l}</div>
+            <div class="cat-bar-wrap"><div class="cat-bar" style="width:${avg}%"></div></div>
+            <div class="cat-cnt">${avg}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════
+// ACTIONS
+// ═══════════════════════════════════════════
+function changeStatus(id, status) {
+  const p = proposals.find(x=>x.id===id);
+  if(!p) return;
+  p.status = status;
+  p.history = p.history || [];
+  p.history.push({who:'편집장', time:new Date().toISOString().slice(0,10), txt:`상태 변경: ${status}`});
+  saveProposals();
+  toast(`상태가 "${status}"로 변경됐습니다.`);
+  openDetail(id);
+}
+
+function updateScore(id, key, val) {
+  const p = proposals.find(x=>x.id===id);
+  if(!p) return;
+  p.scores = p.scores || {};
+  p.scores[key] = +val;
+  const el = document.getElementById(`sv-${id}-${key}`);
+  if(el) el.textContent = val+'점';
+  const t = totalScore(p);
+  const grade = scoreGrade(t);
+  const tv = document.getElementById(`ts-val-${id}`);
+  const tg = document.getElementById(`ts-grade-${id}`);
+  const gb = document.getElementById('det-grade-badge');
+  if(tv) tv.textContent = Math.round(t);
+  if(tg) tg.textContent = gradeDesc(grade);
+  if(gb) { gb.textContent = grade; gb.className = 'grade-badge grade-'+grade; }
+  saveProposals();
+}
+
+function saveMemo(id) {
+  const p = proposals.find(x=>x.id===id);
+  if(!p) return;
+  const el = document.getElementById(`memo-${id}`);
+  if(el) p.memo = el.value;
+  saveProposals();
+  toast('메모가 저장됐습니다.');
+}
+
+function addHistory(id) {
+  const p = proposals.find(x=>x.id===id);
+  const el = document.getElementById(`hist-input-${id}`);
+  if(!p || !el || !el.value.trim()) return;
+  p.history = p.history || [];
+  p.history.push({who:'편집장', time:new Date().toISOString().slice(0,10), txt:el.value.trim()});
+  el.value = '';
+  saveProposals();
+  toast('히스토리가 추가됐습니다.');
+  openDetail(id);
+}
+
+function deleteProposal(id) {
+  if(!confirm('제안서를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) return;
+  proposals = proposals.filter(x=>x.id!==id);
+  saveProposals();
+  currentDetailId = null;
+  toast('제안서가 삭제됐습니다.');
+  showPage('proposals');
+}
+
+// ═══════════════════════════════════════════
+// NEW PROPOSAL MODAL
+// ═══════════════════════════════════════════
+function openNewProposal() {
+  document.getElementById('modal-form').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">저자명 *</label><input id="np-author" placeholder="홍길동" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"></div>
+        <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">이메일 *</label><input id="np-email" type="email" placeholder="author@example.com" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"></div>
+      </div>
+      <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">도서 가제 *</label><input id="np-title" placeholder="예: 파이썬으로 배우는 LLM 엔지니어링" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">카테고리</label><input id="np-cat" placeholder="IT > AI · 머신러닝" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"></div>
+        <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">출판 유형</label><select id="np-svc" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"><option>기획출판</option><option>자비출판</option></select></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">예상 분량</label><input id="np-pages" type="number" placeholder="450" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"></div>
+        <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">예상 정가</label><input id="np-price" type="number" placeholder="28000" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none"></div>
+      </div>
+      <div><label style="font-size:11.5px;font-weight:600;display:block;margin-bottom:5px">한 줄 요약</label><textarea id="np-summary" rows="2" placeholder="도서 핵심 가치를 한 문장으로…" style="width:100%;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none;resize:vertical"></textarea></div>
+      <button onclick="saveNewProposal()" style="background:var(--teal);color:#fff;padding:12px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sans)">등록하기</button>
+    </div>`;
+  const overlay = document.getElementById('modal-overlay');
+  overlay.style.display = 'flex';
+}
+function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+function saveNewProposal() {
+  const title = document.getElementById('np-title').value.trim();
+  const author = document.getElementById('np-author').value.trim();
+  const email = document.getElementById('np-email').value.trim();
+  if(!title || !author) { alert('저자명과 도서 가제는 필수입니다.'); return; }
+  const newP = {
+    id: 'p'+Date.now(),
+    title, author, email,
+    cat: document.getElementById('np-cat').value || '미분류',
+    svc: document.getElementById('np-svc').value,
+    pages: +document.getElementById('np-pages').value || 0,
+    price: +document.getElementById('np-price').value || 0,
+    summary: document.getElementById('np-summary').value,
+    status: '신규',
+    date: new Date().toISOString().slice(0,10),
+    scores:{market:70,diff:70,author:70,plan:70,pub:70},
+    memo:'', history:[], epub:[],
+  };
+  proposals.unshift(newP);
+  saveProposals();
+  closeModal();
+  toast('제안서가 등록됐습니다.');
+  openDetail(newP.id);
+}
+
+// ═══════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════
+function totalScore(p) {
+  const s = p.scores||{};
+  return ([s.market,s.diff,s.author,s.plan,s.pub].reduce((a,v)=>a+(v||70),0)/5);
+}
+function scoreGrade(score) {
+  if(score>=90) return 'S';
+  if(score>=80) return 'A';
+  if(score>=70) return 'B';
+  if(score>=60) return 'C';
+  return 'D';
+}
+function gradeDesc(g) {
+  return {S:'즉시 채택 권장',A:'채택 권장',B:'검토 후 결정',C:'보완 후 재검토',D:'채택 어려움'}[g]||'';
+}
+function gradeColor(g) {
+  return {S:'#B45309',A:'var(--teal2)',B:'var(--purple)',C:'var(--amberD)',D:'var(--coral)'}[g]||'var(--muted)';
+}
+function gradeEmoji(g) {
+  return {S:'🏆',A:'⭐',B:'✅',C:'🔄',D:'❌'}[g]||'';
+}
+function statusBadge(s) {
+  const cls = STATUS_CLASS[s]||'new';
+  return `<span class="st-badge st-${cls}">${s}</span>`;
+}
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 2800);
+}
+
+// 모달 외부 클릭 닫기
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if(e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+showPage('dashboard');
+</script>
+</body>
+</html>

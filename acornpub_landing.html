@@ -1,0 +1,2757 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에이콘 출판사 — IT 기술도서 전문</title>
+<meta name="description" content="에이콘 출판사 — IT·인문 분야 2,000여 종 전문 출판. AI·클라우드·보안·네트워크·데이터사이언스 기술도서. 저자 기획출판·자비출판·Amazon KDP 서비스.">
+<meta name="keywords" content="IT 기술도서, 파이썬, 인공지능, 클라우드, 보안, 네트워크, 데이터사이언스, 전자책, ePub, 에이콘출판">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#0A1628;--navy2:#0D1C35;--navy3:#0F2142;
+  --teal:#1D9E75;--teal2:#0F6E56;--teal3:#E1F5EE;--teal4:#085041;
+  --amber:#EF9F27;--amberBg:#FAEEDA;--amberD:#854F0B;
+  --purple:#534AB7;--purpleBg:#EEEDFE;--purpleD:#3C3489;
+  --coral:#C94D27;--coralBg:#FAECE7;
+  --bg:#F5F4F0;--card:#FFF;
+  --text:#0F1923;--muted:#586070;--muted2:#8A94A3;
+  --bd:rgba(0,0,0,.07);--bdm:rgba(0,0,0,.12);
+  --r:10px;
+}
+body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.65}
+
+/* ══ NAV ══ */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.06)}
+.nw{max-width:1200px;margin:0 auto;padding:0 22px;display:flex;align-items:center;height:60px;gap:0}
+.logo-a{text-decoration:none;margin-right:32px;flex-shrink:0}
+.logo-a .lt{font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.logo-a .lt span{color:var(--teal)}
+.nsearch{flex:1;max-width:320px;position:relative}
+.nsearch input{width:100%;height:34px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:0 34px 0 12px;font-size:13px;color:#fff;font-family:inherit;outline:none;transition:border .15s}
+.nsearch input::placeholder{color:rgba(255,255,255,.35)}
+.nsearch input:focus{border-color:var(--teal);background:rgba(255,255,255,.13)}
+.nsearch svg{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:rgba(255,255,255,.38);fill:none;stroke-width:2;pointer-events:none}
+.sres{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--navy2);border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;z-index:400}
+.sri{padding:10px 14px;font-size:13px;color:rgba(255,255,255,.8);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.05);transition:background .1s}
+.sri:last-child{border-bottom:none}
+.sri:hover{background:rgba(255,255,255,.07)}
+.sri-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:rgba(29,158,117,.2);color:var(--teal);white-space:nowrap}
+.nlinks{display:flex;list-style:none;margin-left:28px;gap:2px;align-items:center}
+.nlinks>li>a,.nlinks>li>button{background:none;border:none;font-family:inherit;font-size:13.5px;color:rgba(255,255,255,.68);text-decoration:none;padding:6px 11px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s;display:block}
+.nlinks>li>a:hover,.nlinks>li>button:hover,.nlinks>li>a.act{color:#fff;background:rgba(255,255,255,.08)}
+.hdrop{position:relative}
+.dmenu{display:none;position:absolute;top:calc(100% + 5px);left:0;background:var(--navy2);border:1px solid rgba(255,255,255,.1);border-radius:10px;min-width:175px;padding:6px;list-style:none;z-index:300;box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.hdrop:hover .dmenu{display:block}
+.dmenu a,.dmenu button{display:block;width:100%;text-align:left;background:none;border:none;font-family:inherit;font-size:13px;color:rgba(255,255,255,.75);padding:9px 13px;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .1s}
+.dmenu a:hover,.dmenu button:hover{background:rgba(255,255,255,.07);color:#fff}
+.ncta{margin-left:auto;flex-shrink:0;background:var(--teal);color:#fff;font-size:12.5px;font-weight:600;padding:8px 18px;border-radius:7px;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.ncta:hover{opacity:.85}
+
+/* ══ CAROUSEL ══ */
+.carousel-wrap{background:var(--navy3);border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden}
+.c-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.cslide{min-width:20%;padding:14px 13px;cursor:pointer;border-right:1px solid rgba(255,255,255,.05);transition:background .18s;position:relative;display:flex;align-items:center;gap:12px}
+.cslide:hover,.cslide.act{background:rgba(29,158,117,.11)}
+.cslide.act::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--teal)}
+.ccover{width:42px;height:58px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10px;letter-spacing:-.01em;text-align:center;line-height:1.3;padding:4px}
+.cmeta .cbadge{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);margin-bottom:2px}
+.cmeta .ctitle{font-size:12px;font-weight:500;color:#fff;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cmeta .cauthor{font-size:10.5px;color:rgba(255,255,255,.38);margin-top:2px}
+
+/* ══ PAGE SHELL ══ */
+.pg{display:none}.pg.on{display:block}
+
+/* ══ HOME LAYOUT ══ */
+.hlayout{max-width:1200px;margin:0 auto;padding:32px 22px 72px;display:grid;grid-template-columns:210px 1fr;gap:26px;align-items:start}
+.sidebar{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r);overflow:hidden;position:sticky;top:72px}
+.sbhead{padding:13px 16px;background:var(--navy)}
+.sbhead-txt{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.sbcat{display:flex;align-items:center;gap:0;padding:10px 15px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .12s;position:relative}
+.sbcat:last-child{border-bottom:none}
+.sbcat:hover{background:var(--bg)}
+.sbcat.on{background:var(--teal3)}
+.sbcat.on .sbcat-txt{color:var(--teal4);font-weight:600}
+.sbcat.on::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal)}
+.sbcat-ico{font-size:14px;margin-right:9px;flex-shrink:0}
+.sbcat-txt{font-size:12.5px;color:var(--muted)}
+.sbcat-cnt{margin-left:auto;font-size:10.5px;font-weight:600;background:var(--bg);color:var(--muted2);padding:2px 6px;border-radius:100px;border:1px solid var(--bd)}
+.chtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:8px}
+.chtitle{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.stabs{display:flex;gap:5px}
+.stab{background:none;border:1px solid var(--bdm);font-size:11.5px;font-family:inherit;padding:5px 11px;border-radius:6px;cursor:pointer;color:var(--muted);transition:all .15s}
+.stab.on,.stab:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bcard{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.bcard:hover{transform:translateY(-4px);box-shadow:0 8px 26px rgba(0,0,0,.1)}
+.bcov{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;text-align:center;padding:10px;line-height:1.4}
+.binfo{padding:10px 12px 13px}
+.btitle{font-size:12.5px;font-weight:600;line-height:1.45;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bauthor{font-size:11px;color:var(--muted);margin-bottom:7px}
+.btags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px}
+.btag{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:500}
+.bprice{font-size:12.5px;font-weight:700}
+
+/* ══ DETAIL ══ */
+.dw{max-width:1080px;margin:0 auto;padding:34px 22px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);padding:7px 14px;border-radius:7px;border:1px solid var(--bdm);background:var(--card);cursor:pointer;margin-bottom:26px;font-family:inherit;transition:background .12s}
+.back-btn:hover{background:var(--bg)}
+.dgrid{display:grid;grid-template-columns:250px 1fr;gap:38px;margin-bottom:44px}
+.dcov{width:250px;aspect-ratio:3/4;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;text-align:center;padding:20px;line-height:1.4;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.dcat{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.dtitle{font-size:24px;font-weight:700;letter-spacing:-.025em;margin-bottom:7px;line-height:1.25}
+.dsub{font-size:14.5px;color:var(--muted);margin-bottom:14px}
+.dauth{font-size:13.5px;color:var(--muted);margin-bottom:18px}
+.dbadges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.dbadge{font-size:11.5px;font-weight:500;padding:3px 11px;border-radius:100px;border:1px solid}
+.buy-box{background:var(--bg);border:1px solid var(--bdm);border-radius:12px;padding:18px}
+.buy-lbl{font-size:13px;font-weight:600;margin-bottom:12px}
+.buygrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+.bbtn{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.bbtn:hover{opacity:.86}
+.bbtn .bpr{font-size:11px;font-weight:400;opacity:.8}
+.bkyobo{background:#0077C0;color:#fff}
+.byes{background:#FF0000;color:#fff}
+.baladin{background:#EF5B25;color:#fff}
+.bepub{background:var(--teal);color:#fff;grid-column:1/-1}
+.hdiv{border:none;border-top:1px solid var(--bdm);margin:12px 0}
+.rpromo{background:var(--teal3);border:1px solid rgba(15,110,86,.18);border-radius:8px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start}
+.rp-ico{font-size:20px;flex-shrink:0;margin-top:2px}
+.rp-h{font-size:12.5px;font-weight:600;color:var(--teal4);margin-bottom:3px}
+.rp-d{font-size:11.5px;color:var(--teal2);line-height:1.65}
+.rp-cta{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;color:var(--teal2);text-decoration:underline;cursor:pointer}
+.dtabs{display:flex;border-bottom:1px solid var(--bdm);margin-bottom:24px}
+.dtab{background:none;border:none;font-family:inherit;font-size:13.5px;padding:11px 17px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
+.dtab.on{color:var(--teal);border-bottom-color:var(--teal);font-weight:600}
+.dtpane{display:none}.dtpane.on{display:block}
+.toclist{list-style:none}
+.tocitem{padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px;color:var(--muted);display:flex;gap:9px}
+.tocitem:last-child{border-bottom:none}
+.tocnum{font-size:10.5px;font-weight:600;color:var(--muted2);min-width:24px;flex-shrink:0}
+.acard{display:flex;gap:18px;padding:18px;background:var(--bg);border-radius:10px}
+.aav{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;flex-shrink:0}
+.aname{font-size:14px;font-weight:600;margin-bottom:3px}
+.atitle{font-size:12px;color:var(--muted);margin-bottom:7px}
+.abio{font-size:13px;color:var(--muted);line-height:1.75}
+
+/* ══ ABOUT ══ */
+.aw{max-width:920px;margin:0 auto;padding:46px 22px 80px}
+.ahero{background:var(--navy);border-radius:14px;padding:44px;margin-bottom:36px;overflow:hidden;position:relative}
+.ahero::before{content:'ACO';position:absolute;right:-20px;bottom:-30px;font-size:160px;font-weight:900;color:rgba(255,255,255,.025);line-height:1;pointer-events:none}
+.aeye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.ah{font-size:28px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:-.025em}
+.asub{font-size:14.5px;color:rgba(255,255,255,.58);line-height:1.82;max-width:520px}
+.astatrow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
+.ast{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r);padding:18px 14px;text-align:center}
+.astn{font-size:26px;font-weight:700;color:var(--teal);margin-bottom:4px;letter-spacing:-.02em}
+.astl{font-size:11.5px;color:var(--muted);line-height:1.55}
+.sec-h{font-size:19px;font-weight:700;letter-spacing:-.02em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bdm)}
+.awgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
+.awcard{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r);padding:15px 17px;display:flex;gap:12px}
+.awico{font-size:22px;flex-shrink:0;margin-top:1px}
+.awtitle{font-size:13.5px;font-weight:600;margin-bottom:3px}
+.awdesc{font-size:12px;color:var(--muted);line-height:1.65}
+.histlist{list-style:none}
+.hitem{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--bd)}
+.hitem:last-child{border-bottom:none}
+.hyear{font-size:12.5px;font-weight:700;color:var(--teal);min-width:54px;flex-shrink:0;padding-top:2px}
+.hdesc{font-size:13px;color:var(--muted);line-height:1.7}
+.hdesc strong{color:var(--text)}
+.mapbox{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r);height:200px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;color:var(--muted2);font-size:13.5px;margin-top:18px}
+
+/* ══ SERVICE ══ */
+.svw{max-width:1060px;margin:0 auto;padding:46px 22px 80px}
+.svhero{background:linear-gradient(135deg,var(--navy),var(--navy3));border-radius:14px;padding:44px;margin-bottom:36px;overflow:hidden;position:relative}
+.svhero::before{content:'저자';position:absolute;right:36px;top:50%;transform:translateY(-50%);font-size:110px;font-weight:900;color:rgba(255,255,255,.025);line-height:1;pointer-events:none}
+.svtabs{display:flex;border-bottom:2px solid var(--bdm);margin-bottom:32px}
+.svtab{background:none;border:none;font-family:inherit;font-size:14.5px;font-weight:500;padding:13px 22px;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s}
+.svtab.on{color:var(--teal);border-bottom-color:var(--teal);font-weight:700}
+.svtp{display:none}.svtp.on{display:block}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px}
+.fcard{background:var(--card);border:1px solid var(--bdm);border-radius:12px;padding:20px 22px;border-left:3px solid var(--teal)}
+.fcard.am{border-left-color:var(--amber)}
+.fcard.fu{grid-column:1/-1;border-left-color:var(--purple)}
+.fnum{font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--teal);margin-bottom:7px}
+.fcard.am .fnum{color:var(--amberD)}
+.fcard.fu .fnum{color:var(--purple)}
+.fttl{font-size:14.5px;font-weight:600;margin-bottom:9px;line-height:1.45}
+.fbody{font-size:12.5px;color:var(--muted);line-height:1.82}
+.fbody strong{color:var(--text);font-weight:500}
+.fpills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.fp{font-size:11px;font-weight:500;padding:3px 9px;border-radius:100px;border:1px solid}
+.fpt{background:var(--teal3);color:var(--teal4);border-color:var(--teal2)}
+.fpg{background:#F1EFE8;color:#444441;border-color:#888780}
+.fpa{background:var(--amberBg);color:#633806;border-color:var(--amberD)}
+.fpp{background:var(--purpleBg);color:var(--purpleD);border-color:var(--purple)}
+.steps{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:9px}
+.step{font-size:10.5px;padding:2px 7px;background:#F1EFE8;border-radius:4px;color:#636259}
+.sarr{font-size:9px;color:#bbb;align-self:center}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
+.chip{font-size:11px;padding:3px 8px;background:var(--bg);border:1px solid var(--bdm);border-radius:100px;color:var(--muted)}
+.cbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--purpleBg);color:var(--purpleD);border:1px solid var(--purple);margin-bottom:8px}
+.exbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--amberBg);color:var(--amberD);border:1px solid var(--amber);margin-bottom:8px}
+.actabox{background:var(--navy);border-radius:14px;padding:32px 38px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:8px}
+.acta-eye{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.acta-h{font-size:20px;font-weight:700;color:#fff;margin-bottom:7px;letter-spacing:-.02em}
+.acta-d{font-size:13.5px;color:rgba(255,255,255,.52);max-width:400px;line-height:1.7}
+.actabtns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
+.actabp{background:var(--teal);color:#fff;font-size:13.5px;font-weight:600;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:opacity .15s}
+.actabp:hover{opacity:.86}
+.actabg{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.78);font-size:13.5px;padding:12px 24px;border-radius:8px;background:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s}
+.actabg:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.propbox{background:var(--card);border:1px solid var(--bdm);border-radius:14px;padding:30px 34px;margin-top:44px}
+.prop-h{font-size:19px;font-weight:700;margin-bottom:5px;letter-spacing:-.02em}
+.prop-s{font-size:13.5px;color:var(--muted);margin-bottom:24px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg.fu{grid-column:1/-1}
+label{font-size:12px;font-weight:600;color:var(--text)}
+input[type=text],input[type=email],textarea,select{font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s;resize:vertical;width:100%}
+input[type=text]:focus,input[type=email]:focus,textarea:focus,select:focus{border-color:var(--teal);background:#fff}
+.fsubmit{margin-top:6px;background:var(--teal);color:#fff;font-size:13.5px;font-weight:600;padding:12px 30px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.fsubmit:hover{opacity:.86}
+
+/* ══ READER ══ */
+.rw{max-width:920px;margin:0 auto;padding:46px 22px 80px}
+.rhero{background:linear-gradient(135deg,var(--teal2),var(--teal4));border-radius:14px;padding:44px;margin-bottom:32px}
+.rh-e{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:10px}
+.rh-h{font-size:28px;font-weight:700;color:#fff;margin-bottom:9px;letter-spacing:-.025em}
+.rh-s{font-size:14.5px;color:rgba(255,255,255,.62);max-width:460px;line-height:1.8}
+.plangrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px}
+.pcard{background:var(--card);border:1.5px solid var(--bdm);border-radius:14px;padding:26px 22px;text-align:center;position:relative}
+.pcard.feat{border-color:var(--teal);box-shadow:0 0 0 4px rgba(29,158,117,.08)}
+.pbadge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--teal);color:#fff;font-size:10.5px;font-weight:700;padding:3px 11px;border-radius:100px;white-space:nowrap}
+.pname{font-size:16px;font-weight:700;margin-bottom:5px}
+.pprice{font-size:28px;font-weight:700;color:var(--teal);margin-bottom:3px;letter-spacing:-.02em}
+.pprice span{font-size:13px;font-weight:400;color:var(--muted)}
+.pdesc{font-size:12px;color:var(--muted);margin-bottom:17px;line-height:1.6}
+.pfeats{list-style:none;margin-bottom:20px;text-align:left}
+.pfeats li{font-size:12.5px;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px}
+.pfeats li:last-child{border-bottom:none}
+.pfeats li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+.pbtn{width:100%;padding:11px;border-radius:8px;font-size:13.5px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.pbtnp{background:var(--teal);color:#fff}
+.pbtnp:hover{opacity:.86}
+.pbtng{background:var(--bg);color:var(--text);border:1.5px solid var(--bdm)}
+.pbtng:hover{border-color:var(--teal);color:var(--teal)}
+.rfgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rfc{background:var(--card);border:1px solid var(--bdm);border-radius:var(--r);padding:18px}
+.rfico{font-size:22px;margin-bottom:8px}
+.rfttl{font-size:13.5px;font-weight:600;margin-bottom:5px}
+.rfdesc{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* ══ FOOTER ══ */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:42px 22px 26px}
+.fw{max-width:1200px;margin:0 auto}
+.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
+.fbrand .flogo{font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
+.flogo span{color:var(--teal)}
+.fbrand p{font-size:12px;color:rgba(255,255,255,.36);line-height:1.7;margin-bottom:3px}
+.fcolh{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:12px}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:7px}
+.fcol a,.fcol button{font-size:12.5px;color:rgba(255,255,255,.48);text-decoration:none;background:none;border:none;font-family:inherit;cursor:pointer;transition:color .15s;padding:0}
+.fcol a:hover,.fcol button:hover{color:rgba(255,255,255,.82)}
+.fbot{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fbiz{font-size:11px;color:rgba(255,255,255,.28);line-height:1.7}
+.fcopy{font-size:11px;color:rgba(255,255,255,.22)}
+
+/* ══ UTIL ══ */
+.eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.sh{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:5px}
+.ss{font-size:13.5px;color:var(--muted);margin-bottom:24px}
+
+@media(max-width:880px){
+  .hlayout{grid-template-columns:1fr}
+  .sidebar{position:static;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto}
+  .sbhead{display:none}
+  .bgrid{grid-template-columns:repeat(3,1fr)}
+  .cslide{min-width:33.33%}
+  .dgrid{grid-template-columns:1fr}
+  .dcov{width:100%;aspect-ratio:auto;height:200px}
+}
+@media(max-width:640px){
+  .nlinks{display:none}
+  .nsearch{max-width:150px}
+  .bgrid{grid-template-columns:repeat(2,1fr)}
+  .ftop{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr}
+  .fcard.fu{grid-column:auto}
+  .astatrow{grid-template-columns:repeat(2,1fr)}
+  .awgrid{grid-template-columns:1fr}
+  .plangrid{grid-template-columns:1fr}
+  .rfgrid{grid-template-columns:1fr}
+  .cslide{min-width:50%}
+  .actabox{flex-direction:column}
+  .buygrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nw">
+    <a class="logo-a" href="#" onclick="go('home');return false">
+      <div class="lt">에이콘<span>출판사</span></div>
+    </a>
+    <div class="nsearch">
+      <input type="text" id="sinput" placeholder="키워드 검색 (AI, Python, 보안…)" autocomplete="off">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <div class="sres" id="sres"></div>
+    </div>
+    <ul class="nlinks">
+      <li class="hdrop">
+        <button onclick="go('about')">About Us ▾</button>
+        <ul class="dmenu">
+          <li><button onclick="go('about')">회사 소개</button></li>
+          <li><button onclick="go('about')">연혁</button></li>
+          <li><button onclick="go('about')">찾아오시는 길</button></li>
+        </ul>
+      </li>
+      <li class="hdrop">
+        <button onclick="go('home')">Book ▾</button>
+        <ul class="dmenu">
+          <li><button onclick="goCat('all')">전체 도서</button></li>
+          <li><button onclick="goCat('신간')">신간</button></li>
+          <li><button onclick="goCat('전자책')">전자책</button></li>
+          <li><button onclick="goCat('ePub')">ePub 3.0</button></li>
+        </ul>
+      </li>
+      <li class="hdrop">
+        <button onclick="go('service')">저자 Service ▾</button>
+        <ul class="dmenu">
+          <li><button onclick="goSvc('planning')">기획출판</button></li>
+          <li><button onclick="goSvc('self')">자비출판</button></li>
+          <li><button onclick="goSvc('amazon')">Amazon KDP</button></li>
+          <li><a href="https://author.acornpub.kr/" target="_blank">저자 사이트 →</a></li>
+        </ul>
+      </li>
+      <li class="hdrop">
+        <a href="#" onclick="go('reader');return false">멤버십 라운지 ▾</a>
+        <ul class="dmenu">
+          <li><a href="#" onclick="go('reader');return false">멤버십 소개</a></li>
+          <li><a href="mypage.html" target="_blank">📚 내 서재 (MyPage)</a></li>
+          <li><a href="epub_reader.html" target="_blank">📖 ePub 3.0 리더</a></li>
+        </ul>
+      </li>
+      <li><a href="#" onclick="go('errata');return false">오류 신고</a></li>
+      <li class="hdrop">
+        <button onclick="go('sns')">SNS · 채널 ▾</button>
+        <ul class="dmenu">
+          <li><a id="snav-instagram" href="https://www.instagram.com/acornpub/" target="_blank">📷 Instagram</a></li>
+          <li><a id="snav-facebook"  href="https://www.facebook.com/acornpub"   target="_blank">f  Facebook</a></li>
+          <li><a id="snav-youtube"   href="https://www.youtube.com/@acornpub"   target="_blank">▶ YouTube</a></li>
+          <li><a id="snav-linkedin"  href="https://www.linkedin.com/company/acornpub" target="_blank">in LinkedIn</a></li>
+          <li><a id="snav-x"         href="https://twitter.com/acornpub"        target="_blank">𝕏 X (Twitter)</a></li>
+          <li><a id="snav-blog"      href="https://blog.naver.com/acornpub"     target="_blank">✍ 블로그</a></li>
+          <li><a id="snav-github"    href="https://github.com/AcornPublishing"  target="_blank">⌥ GitHub</a></li>
+          <li style="border-top:1px solid rgba(255,255,255,.08);margin-top:4px;padding-top:4px">
+            <button onclick="go('sns')" style="color:var(--teal);font-size:12px">⚙ 채널 관리 →</button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <a class="ncta" href="publishing-proposal.html">저자 등록 신청 →</a>
+    <a href="page_connection_map.html" target="_blank" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⊞ 연결 맵</a>
+    <a href="acorn_admin.html" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⚙ 편집부</a>
+  </div>
+</nav>
+
+<!-- CAROUSEL -->
+<div class="carousel-wrap" id="carWrap">
+  <div class="c-track" id="ctrack"></div>
+</div>
+
+<!-- PAGE: HOME -->
+<div class="pg" id="pg-home">
+  <div class="hlayout">
+    <aside class="sidebar" id="sbEl"></aside>
+    <main>
+      <div class="chtop">
+        <div>
+          <div class="eye">카테고리</div>
+          <div class="chtitle" id="catTitle">전체 도서</div>
+        </div>
+        <div class="stabs">
+          <button class="stab on" onclick="setSort(this,'newest')">최신순</button>
+          <button class="stab" onclick="setSort(this,'name')">가나다순</button>
+        </div>
+      </div>
+      <div class="bgrid" id="bgrid"></div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE: DETAIL -->
+<div class="pg" id="pg-detail">
+  <div class="dw" id="dContent"></div>
+</div>
+
+<!-- PAGE: ABOUT -->
+<div class="pg" id="pg-about">
+  <div class="aw">
+    <div class="ahero">
+      <div class="aeye">About Us</div>
+      <div class="ah">1996년부터 IT 지식을 전달해온<br>국내 대표 기술도서 출판사</div>
+      <div class="asub">에이콘 출판사는 창업 이후 28년간 2,000여 종의 IT·인문 도서를 출간하며 국내 기술 생태계와 함께 성장해왔습니다. 2024년 에이콘온을 출범하여 디지털·글로벌 출판으로 영역을 확장하고 있습니다.</div>
+    </div>
+    <div class="astatrow">
+      <div class="ast"><div class="astn">2,000+</div><div class="astl">누적 출간 도서</div></div>
+      <div class="ast"><div class="astn">28년</div><div class="astl">업력 (1996년 창립)</div></div>
+      <div class="ast"><div class="astn">30+</div><div class="astl">수상 도서</div></div>
+      <div class="ast"><div class="astn">11개</div><div class="astl">통합 마케팅 채널</div></div>
+    </div>
+    <div class="sec-h">수상 이력 및 출간 성과</div>
+    <div class="awgrid">
+      <div class="awcard"><div class="awico">🏆</div><div><div class="awtitle">대한민국학술원 우수학술도서 선정</div><div class="awdesc">다수 IT 전문서가 대한민국학술원 우수학술도서로 선정되어 학술적 가치를 공인받았습니다.</div></div></div>
+      <div class="awcard"><div class="awico">🎖️</div><div><div class="awtitle">세종도서 학술·교양 부문 선정</div><div class="awdesc">세종도서 학술·교양 부문에 다수 도서가 선정되어 출판 품질을 국가 기관으로부터 인정받았습니다.</div></div></div>
+      <div class="awcard"><div class="awico">🌏</div><div><div class="awtitle">K-북 글로벌 100 프로젝트 선정</div><div class="awdesc">한국 출판물 글로벌 보급 프로그램에 다수 도서가 선정되었습니다.</div></div></div>
+      <div class="awcard"><div class="awico">📚</div><div><div class="awtitle">KPIPA 우수출판콘텐츠 선정</div><div class="awdesc">한국출판문화산업진흥원 우수출판콘텐츠 선정으로 콘텐츠 경쟁력을 인정받고 있습니다.</div></div></div>
+    </div>
+    <div class="sec-h">회사 연혁</div>
+    <ul class="histlist">
+      <li class="hitem"><div class="hyear">1996</div><div class="hdesc"><strong>에이콘출판사 창립</strong> — IT 기술도서 전문 출판사로 출발</div></li>
+      <li class="hitem"><div class="hyear">2000년대</div><div class="hdesc">국내 IT 기술도서 시장 선도, <strong>누적 500종 달성</strong></div></li>
+      <li class="hitem"><div class="hyear">2010년대</div><div class="hdesc">AI·클라우드·빅데이터·보안 선제 출간, <strong>누적 1,000종 돌파</strong></div></li>
+      <li class="hitem"><div class="hyear">2020</div><div class="hdesc">ePub 3.0 전자출판 인프라 도입, 전자책 서비스 본격화</div></li>
+      <li class="hitem"><div class="hyear">2024</div><div class="hdesc"><strong>에이콘온(AcornOn) 출범</strong> — 인문·교양 도서 및 디지털 플랫폼 확장</div></li>
+      <li class="hitem"><div class="hyear">2025</div><div class="hdesc">KJ엔지니어링 Publishing Studio 기반 저자·독자 통합 서비스 런칭, 글로벌 사업 착수</div></li>
+      <li class="hitem"><div class="hyear">2026</div><div class="hdesc">누적 출간 <strong>2,000종 달성</strong>, Amazon KDP 글로벌 출간 확대</div></li>
+    </ul>
+    <div class="sec-h" style="margin-top:30px">찾아오시는 길</div>
+    <div class="fbody" style="font-size:13.5px;color:var(--muted);margin-bottom:11px">(07547) 서울특별시 강서구 양천로 583 우림블루나인비즈니스센터 A동 2009호 &nbsp;|&nbsp; 대표전화 02-2653-7600 &nbsp;|&nbsp; acornpub@acornpub.co.kr</div>
+    <div class="mapbox"><div style="font-size:30px">🗺️</div><div>지도 삽입 영역 (Google Maps / 카카오맵)</div></div>
+  </div>
+</div>
+
+<!-- PAGE: SERVICE -->
+<div class="pg" id="pg-service">
+
+<!-- ── Google Fonts for studio style ── -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Noto+Serif+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Studio Design Tokens ── */
+.svc-studio{
+  --paper:#F5EEE1;--paper-deep:#EBE1CD;--paper-light:#FBF6EC;
+  --ink:#1C2028;--ink-soft:#3A3D45;--ink-mute:#6B6B68;
+  --rule:#C9BFA8;--rule-soft:#D8CFBB;
+  --burg:#7A1F2B;--burg-deep:#5A1520;
+  --gold:#B89B54;--gold-soft:#D4BE85;
+  --forest:#2D4A3A;
+  --display:'Fraunces',serif;
+  --ksr:'Noto Serif KR',serif;
+  --mono:'JetBrains Mono',monospace;
+  --shd:0 12px 40px -12px rgba(28,32,40,.18),0 2px 6px rgba(28,32,40,.06);
+  --shd-lg:0 30px 80px -20px rgba(28,32,40,.25),0 8px 20px rgba(28,32,40,.08);
+  font-family:'Pretendard',-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+.svc-studio *,
+.svc-studio *::before,
+.svc-studio *::after{box-sizing:border-box}
+
+/* ── Layout ── */
+.sv-wrap{max-width:1140px;margin:0 auto;padding:0 32px}
+.sv-wrap-wide{max-width:1280px;margin:0 auto;padding:0 32px}
+
+/* ── Hero ── */
+.sv-hero{
+  background:var(--ink);padding:80px 0 72px;position:relative;overflow:hidden;
+  background-image:radial-gradient(circle at 80% 50%,rgba(122,31,43,.12) 0,transparent 55%);
+}
+.sv-hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent)}
+.sv-ch{
+  font-family:var(--display);font-style:italic;font-size:12px;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--gold-soft);
+  margin-bottom:24px;display:flex;align-items:center;gap:12px;
+}
+.sv-ch::before{content:"";width:32px;height:1px;background:var(--gold)}
+.sv-h1{
+  font-family:var(--ksr);font-weight:400;
+  font-size:clamp(38px,5vw,68px);line-height:1.1;
+  letter-spacing:-.02em;color:var(--paper-light);margin-bottom:24px;
+}
+.sv-h1 em{font-family:var(--display);font-style:italic;color:var(--gold-soft);font-weight:300}
+.sv-sub{font-size:16px;color:rgba(251,246,236,.65);line-height:1.8;max-width:560px;margin-bottom:36px}
+.sv-sub b{color:var(--paper-light)}
+.sv-meta{
+  display:flex;gap:32px;font-family:var(--display);font-style:italic;
+  font-size:12.5px;color:rgba(251,246,236,.45);flex-wrap:wrap;
+}
+.sv-meta span::before{content:"— ";color:var(--gold-soft)}
+.sv-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.sv-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;font-size:13.5px;font-weight:600;
+  letter-spacing:.02em;border-radius:2px;
+  transition:all .25s;font-family:inherit;text-decoration:none;border:none;cursor:pointer;
+}
+.sv-btn-burg{background:var(--burg);color:var(--paper-light);border:1px solid var(--burg)}
+.sv-btn-burg:hover{background:var(--burg-deep);border-color:var(--burg-deep);transform:translateY(-1px)}
+.sv-btn-ghost{background:transparent;color:rgba(251,246,236,.8);border:1px solid rgba(251,246,236,.25)}
+.sv-btn-ghost:hover{border-color:rgba(251,246,236,.6);color:var(--paper-light)}
+.sv-btn-gold{background:var(--gold);color:var(--ink);border:1px solid var(--gold)}
+.sv-btn-gold:hover{background:var(--gold-soft);transform:translateY(-1px)}
+.sv-btn-arr{font-size:15px;transition:transform .25s}
+.sv-btn:hover .sv-btn-arr{transform:translateX(3px)}
+
+/* ── Stat strip ── */
+.sv-stats{
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:36px 0;background:var(--paper-deep);
+}
+.sv-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.sv-stat{position:relative;padding-left:20px}
+.sv-stat:not(:first-child)::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:var(--rule)}
+.sv-stat-n{font-family:var(--display);font-weight:400;font-size:44px;letter-spacing:-.02em;color:var(--ink);line-height:1;margin-bottom:8px}
+.sv-stat-n .s{font-style:italic;color:var(--burg);font-size:.5em;vertical-align:super;margin-left:2px}
+.sv-stat-l{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
+.sv-stat-s{font-size:11px;color:var(--ink-mute);margin-top:3px;font-family:var(--display);font-style:italic}
+
+/* ── Section head ── */
+.sv-sec-head{text-align:center;margin-bottom:64px}
+.sv-sec-num{
+  font-family:var(--display);font-style:italic;font-size:13px;
+  letter-spacing:.4em;color:var(--burg);margin-bottom:14px;text-transform:uppercase;
+}
+.sv-sec-title{
+  font-family:var(--ksr);font-weight:400;
+  font-size:clamp(32px,4.4vw,52px);line-height:1.18;
+  letter-spacing:-.018em;color:var(--ink);margin-bottom:18px;
+}
+.sv-sec-title em{font-family:var(--display);font-style:italic;color:var(--burg)}
+.sv-sec-lede{font-size:16px;color:var(--ink-soft);line-height:1.78;max-width:640px;margin:0 auto}
+
+/* ── SERVICE TABS ── */
+.sv-tabs{display:flex;border-bottom:1.5px solid var(--rule);margin-bottom:0;padding-top:48px;background:var(--paper)}
+.sv-tab-btn{
+  background:none;border:none;font-family:var(--ksr);font-size:14px;font-weight:500;
+  padding:14px 28px;cursor:pointer;color:var(--ink-mute);
+  border-bottom:3px solid transparent;margin-bottom:-1.5px;
+  transition:all .2s;letter-spacing:.02em;
+}
+.sv-tab-btn.on{color:var(--burg);border-bottom-color:var(--burg);font-weight:600}
+.sv-tab-btn:hover:not(.on){color:var(--ink)}
+.sv-tab-pane{display:none;background:var(--paper)}
+.sv-tab-pane.on{display:block}
+
+/* ── PROMISE style sections ── */
+.sv-promise{padding:80px 0;border-bottom:1px solid var(--rule)}
+.sv-promise.alt{background:var(--paper-deep)}
+.sv-promise-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.sv-promise-grid.rev{direction:rtl}
+.sv-promise-grid.rev>*{direction:ltr}
+
+.sv-promise-tag{display:flex;align-items:flex-start;gap:16px;margin-bottom:26px}
+.sv-roman{
+  font-family:var(--display);font-style:italic;font-weight:300;
+  font-size:80px;line-height:.85;color:var(--burg);letter-spacing:-.04em;flex-shrink:0;
+}
+.sv-roman::before{content:"§ ";font-size:.4em;color:var(--gold);vertical-align:top;line-height:1.2;display:inline-block}
+.sv-promise-meta{padding-top:12px}
+.sv-meta-en{
+  font-family:var(--display);font-style:italic;font-size:11px;
+  letter-spacing:.3em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:5px;
+}
+.sv-meta-num{font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--burg);letter-spacing:.1em}
+.sv-promise-title{
+  font-family:var(--ksr);font-weight:500;
+  font-size:clamp(24px,2.8vw,36px);
+  line-height:1.28;letter-spacing:-.015em;color:var(--ink);margin-bottom:20px;
+}
+.sv-promise-title em{font-family:var(--display);font-style:italic;color:var(--burg);font-weight:400}
+.sv-promise-desc{font-size:15px;color:var(--ink-soft);line-height:1.82;margin-bottom:24px}
+.sv-promise-desc b{color:var(--ink);font-weight:600}
+.sv-points{list-style:none;border-top:1px solid var(--rule);padding-top:6px}
+.sv-points li{
+  padding:13px 0;border-bottom:1px dashed var(--rule-soft);
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;font-size:13.5px;
+}
+.sv-points li:last-child{border-bottom:none}
+.sv-pp-lbl{color:var(--ink-soft);flex:1}
+.sv-pp-val{font-family:var(--mono);font-weight:500;color:var(--ink);font-size:12.5px;white-space:nowrap}
+.sv-pp-val .hi{color:var(--burg)}
+
+/* ── CARD base ── */
+.sv-card{
+  background:var(--paper-light);border:1px solid var(--rule);
+  border-radius:3px;padding:30px;box-shadow:var(--shd);position:relative;
+}
+.sv-card.top-burg::before{content:"";position:absolute;top:-1px;left:28px;right:28px;height:3px;background:var(--burg)}
+.sv-card.top-gold::before{content:"";position:absolute;top:-1px;left:28px;right:28px;height:3px;background:var(--gold)}
+.sv-card.top-forest::before{content:"";position:absolute;top:-1px;left:28px;right:28px;height:3px;background:var(--forest)}
+.sv-card-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-bottom:1px solid var(--rule-soft);padding-bottom:14px;margin-bottom:22px;
+}
+.sv-card-head h3{font-family:var(--ksr);font-weight:600;font-size:17px;color:var(--ink)}
+.sv-card-en{
+  font-family:var(--display);font-style:italic;font-size:10.5px;
+  letter-spacing:.28em;color:var(--burg);text-transform:uppercase;display:block;margin-bottom:3px;
+}
+
+/* ── Simulator ── */
+.sv-sim-tabs{display:flex;background:var(--paper-deep);border-radius:2px;padding:3px;font-size:11.5px}
+.sv-stab{padding:6px 13px;color:var(--ink-mute);font-weight:500;border-radius:2px;cursor:pointer;transition:all .2s}
+.sv-stab.on{background:var(--ink);color:var(--paper-light)}
+.sv-sim-row{margin-bottom:16px}
+.sv-sim-rt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;font-size:11.5px}
+.sv-sim-lbl{color:var(--ink-soft);letter-spacing:.04em;font-weight:500}
+.sv-sim-val{font-family:var(--mono);font-weight:600;color:var(--burg);font-size:12.5px}
+.sv-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:4px;background:var(--paper-deep);border-radius:2px;
+  outline:none;border:1px solid var(--rule-soft);
+}
+.sv-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--burg);cursor:pointer;border:3px solid var(--paper-light);
+  box-shadow:0 0 0 1px var(--burg);transition:transform .2s;
+}
+.sv-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.sv-sim-result{
+  margin-top:24px;padding-top:22px;border-top:2px solid var(--ink);
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+.sv-res-item{
+  background:var(--paper);border:1px solid var(--rule-soft);
+  padding:14px 16px;border-radius:2px;position:relative;
+}
+.sv-res-item.hi::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold)}
+.sv-res-lbl{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:5px;font-family:var(--display);font-style:italic}
+.sv-res-num{font-family:var(--display);font-weight:400;font-size:28px;color:var(--ink);line-height:1;letter-spacing:-.01em}
+.sv-res-num .cur{font-size:.55em;color:var(--ink-mute);margin-right:2px;font-style:italic}
+.sv-res-meta{font-size:9.5px;color:var(--ink-mute);margin-top:5px;font-family:var(--mono)}
+.sv-sim-foot{
+  margin-top:16px;font-size:10.5px;color:var(--ink-mute);line-height:1.6;
+  padding:11px 13px;background:var(--paper-deep);border-radius:2px;border-left:2px solid var(--gold);
+}
+
+/* ── Timeline ── */
+.sv-tl-row{
+  display:grid;grid-template-columns:72px 1fr;gap:18px;
+  padding:16px 0;border-bottom:1px dashed var(--rule-soft);
+}
+.sv-tl-row:last-child{border-bottom:none}
+.sv-tl-wk{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:12.5px;color:var(--burg);letter-spacing:.06em;text-align:right;padding-top:2px;
+}
+.sv-tl-wk .wk{font-size:9.5px;color:var(--ink-mute);display:block;letter-spacing:.18em;text-transform:uppercase;margin-bottom:2px;font-style:normal;font-weight:600}
+.sv-tl-h{font-family:var(--ksr);font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:3px}
+.sv-tl-p{font-size:11.5px;color:var(--ink-mute);line-height:1.6}
+.sv-ai-tag{
+  display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  color:var(--burg);background:rgba(122,31,43,.08);padding:2px 6px;border-radius:2px;
+  margin-top:4px;margin-right:4px;
+}
+.sv-tl-summary{
+  margin-top:22px;padding:16px 20px;background:var(--ink);color:var(--paper-light);
+  border-radius:2px;display:flex;justify-content:space-between;align-items:center;
+}
+.sv-tl-sl{font-family:var(--display);font-style:italic;font-size:11px;color:var(--gold-soft);letter-spacing:.18em;text-transform:uppercase}
+.sv-tl-sr{font-family:var(--display);font-weight:300;font-size:28px;font-style:italic;color:var(--paper-light)}
+.sv-tl-sr small{font-size:12px;color:var(--gold-soft);margin-left:3px;font-weight:400}
+
+/* ── Channels ── */
+.sv-ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.sv-ch-item{
+  background:var(--paper);border:1px solid var(--rule-soft);
+  padding:12px 10px;border-radius:2px;text-align:center;
+  transition:all .22s;cursor:default;
+}
+.sv-ch-item:hover{border-color:var(--burg);transform:translateY(-2px);box-shadow:0 4px 12px rgba(28,32,40,.08)}
+.sv-ch-num{font-family:var(--display);font-style:italic;font-size:9.5px;color:var(--gold);letter-spacing:.14em;margin-bottom:5px;font-weight:500}
+.sv-ch-ico{font-size:20px;margin-bottom:5px;line-height:1}
+.sv-ch-name{font-size:11.5px;color:var(--ink);font-weight:600;line-height:1.3}
+.sv-ch-sub{font-size:8.5px;color:var(--ink-mute);margin-top:2px;font-family:var(--display);font-style:italic}
+.sv-ch-zero{
+  margin-top:20px;padding:16px 22px;background:var(--ink);color:var(--paper-light);
+  border-radius:2px;display:flex;justify-content:space-between;align-items:center;
+}
+.sv-ch-zero-l{font-family:var(--ksr);font-weight:500;font-size:13.5px}
+.sv-ch-zero-l small{display:block;font-size:9.5px;color:var(--gold-soft);font-family:var(--display);font-style:italic;letter-spacing:.18em;text-transform:uppercase;margin-bottom:3px}
+.sv-ch-zero-r{font-family:var(--display);font-weight:300;font-style:italic;font-size:38px;color:var(--gold);line-height:1}
+.sv-ch-zero-r small{font-size:13px;color:var(--paper-light);font-style:normal;font-family:var(--ksr);margin-left:5px;font-weight:400}
+
+/* ── KDP Table ── */
+.sv-kdp-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:16px}
+.sv-kdp-table th{text-align:left;padding:12px 8px;border-bottom:2px solid var(--ink);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:700;font-family:var(--display);font-style:italic}
+.sv-kdp-table th.r{text-align:right}
+.sv-kdp-table td{padding:12px 8px;border-bottom:1px dashed var(--rule-soft);color:var(--ink)}
+.sv-kdp-table td.r{text-align:right;font-family:var(--mono);font-weight:500}
+.sv-kdp-table tr.hi td{background:rgba(184,155,84,.08)}
+.sv-kdp-table .best{font-family:var(--display);font-style:italic;font-size:9px;color:var(--burg);letter-spacing:.16em;text-transform:uppercase;margin-left:5px}
+.sv-kdp-table .ry{color:var(--burg);font-weight:600}
+.sv-kdp-flags{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid var(--rule-soft);text-align:center}
+.sv-kdp-flag{font-size:22px;margin-bottom:5px}
+.sv-kdp-lbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
+.sv-kdp-st{font-size:9.5px;color:var(--burg);font-family:var(--display);font-style:italic;margin-top:2px}
+
+/* ── Process strip ── */
+.sv-process{padding:80px 0;background:var(--paper-deep)}
+.sv-proc-strip{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:var(--paper-light);border:1px solid var(--rule);border-radius:3px;overflow:hidden;
+}
+.sv-proc-step{
+  padding:28px 20px;border-right:1px solid var(--rule);position:relative;transition:background .25s;
+}
+.sv-proc-step:last-child{border-right:none;background:var(--ink);color:var(--paper-light)}
+.sv-proc-step:hover:not(:last-child){background:var(--paper)}
+.sv-proc-step:last-child:hover{background:var(--burg)}
+.sv-proc-num{font-family:var(--display);font-style:italic;font-size:10.5px;letter-spacing:.28em;color:var(--burg);font-weight:500;margin-bottom:12px}
+.sv-proc-step:last-child .sv-proc-num{color:var(--gold-soft)}
+.sv-proc-ico{
+  width:34px;height:34px;border:1px solid var(--rule);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  font-family:var(--display);font-style:italic;font-size:14px;color:var(--ink);background:var(--paper);
+}
+.sv-proc-step:last-child .sv-proc-ico{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.sv-proc-title{font-family:var(--ksr);font-weight:600;font-size:13.5px;margin-bottom:3px}
+.sv-proc-sub{font-size:10.5px;color:var(--ink-mute);line-height:1.5;font-family:var(--display);font-style:italic}
+.sv-proc-step:last-child .sv-proc-sub{color:rgba(251,246,236,.6)}
+.sv-proc-arr{
+  position:absolute;right:-9px;top:50%;z-index:2;
+  width:16px;height:16px;background:var(--paper-light);
+  border-top:1px solid var(--rule);border-right:1px solid var(--rule);
+  transform:translateY(-50%) rotate(45deg);
+}
+.sv-proc-step:last-child .sv-proc-arr{display:none}
+
+/* ── Proposal / CTA dark ── */
+.sv-proposal{padding:100px 0;background:var(--ink);position:relative;overflow:hidden}
+.sv-proposal::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent)}
+.sv-prop-grid{display:grid;grid-template-columns:1fr 520px;gap:56px;align-items:start}
+.sv-prop-head .sv-sec-num{color:var(--gold-soft)}
+.sv-prop-head .sv-sec-title{color:var(--paper-light);text-align:left;margin-bottom:14px}
+.sv-prop-head .sv-sec-title em{color:var(--gold-soft)}
+.sv-prop-lede{font-size:15px;color:rgba(251,246,236,.65);line-height:1.78;margin-bottom:28px;max-width:500px}
+.sv-bullets{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:12px}
+.sv-bullets li{
+  padding-left:28px;position:relative;font-size:14px;color:rgba(251,246,236,.82);line-height:1.7;
+}
+.sv-bullets li::before{content:"§";position:absolute;left:0;top:-1px;font-family:var(--display);font-style:italic;color:var(--gold);font-size:16px;font-weight:400}
+.sv-bullets li b{color:var(--paper-light);font-weight:600}
+.sv-prop-ctas{display:flex;gap:11px;flex-wrap:wrap}
+
+/* Proposal mock card */
+.sv-prop-card{
+  background:var(--paper-light);color:var(--ink);
+  border-radius:3px;padding:20px 18px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.5);
+  border:1px solid rgba(184,155,84,.28);
+  overflow:visible;
+}
+.sv-prop-card-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-bottom:12px;border-bottom:1.5px solid var(--ink);margin-bottom:16px;
+}
+.sv-prop-card-head h4{font-family:var(--ksr);font-weight:600;font-size:14.5px;color:var(--ink)}
+.sv-prop-card-head h4 small{display:block;font-family:var(--display);font-style:italic;font-size:9.5px;color:var(--burg);letter-spacing:.26em;text-transform:uppercase;font-weight:500;margin-bottom:3px}
+.sv-step-info{font-family:var(--display);font-style:italic;font-size:10.5px;color:var(--ink-mute);letter-spacing:.08em}
+.sv-step-info b{color:var(--burg);font-style:normal;font-family:var(--mono);font-weight:600}
+.sv-step-bar{display:flex;gap:3px;margin-bottom:18px}
+.sv-step-pip{flex:1;height:3px;background:var(--paper-deep);border-radius:2px}
+.sv-step-pip.done{background:var(--gold)}
+.sv-step-pip.on{background:var(--burg)}
+.sv-pf{margin-bottom:12px}
+.sv-pf label{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:5px;font-family:var(--display);font-style:italic}
+.sv-pi{width:100%;padding:9px 11px;background:var(--paper);border:1px solid var(--rule);border-radius:2px;font-size:12.5px;color:var(--ink);font-family:inherit}
+.sv-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.sv-chip{font-size:9.5px;padding:3px 9px;border:1px solid var(--rule);border-radius:12px;color:var(--ink-mute);font-weight:500;cursor:pointer}
+.sv-chip.on{background:var(--burg);border-color:var(--burg);color:var(--paper-light)}
+.sv-prop-grade{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px;background:var(--paper);border:1px solid var(--rule);border-radius:2px;margin-top:6px;
+}
+.sv-grade-l{font-size:10.5px}
+.sv-grade-l b{display:block;font-family:var(--ksr);font-weight:600;font-size:12.5px;color:var(--ink)}
+.sv-grade-l small{color:var(--ink-mute)}
+.sv-grade-r{font-family:var(--display);font-weight:400;font-size:36px;color:var(--burg);font-style:italic;letter-spacing:-.02em;line-height:1}
+.sv-grade-r small{font-size:10.5px;color:var(--ink-mute);margin-left:3px;font-style:normal;font-family:var(--ksr)}
+.sv-prop-next{
+  width:100%;padding:11px;background:var(--ink);color:var(--paper-light);
+  border-radius:2px;font-size:12.5px;font-weight:600;letter-spacing:.04em;
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-family:inherit;cursor:pointer;border:none;
+}
+.sv-prop-next:hover{background:var(--burg)}
+
+/* ── Testimony ── */
+.sv-testimony{padding:100px 0;background:var(--paper)}
+.sv-quote{max-width:860px;margin:0 auto;text-align:center;position:relative}
+.sv-qmark{font-family:var(--display);font-style:italic;font-weight:300;font-size:120px;line-height:1;color:var(--gold);opacity:.5;margin-bottom:-24px}
+.sv-qtext{font-family:var(--ksr);font-weight:400;font-size:clamp(20px,2.4vw,28px);line-height:1.55;color:var(--ink);letter-spacing:-.01em;margin-bottom:28px}
+.sv-qtext em{font-family:var(--display);font-style:italic;color:var(--burg)}
+.sv-qcite{font-size:12.5px;color:var(--ink-mute);letter-spacing:.1em}
+
+/* ── Self-publish section ── */
+.sv-self-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:40px}
+.sv-self-card{
+  background:var(--paper-light);border:1px solid var(--rule);border-radius:3px;padding:22px 24px;
+  border-top:3px solid var(--gold);
+}
+.sv-self-num{font-family:var(--display);font-style:italic;font-size:10.5px;color:var(--gold);letter-spacing:.1em;margin-bottom:7px}
+.sv-self-title{font-family:var(--ksr);font-weight:600;font-size:14.5px;margin-bottom:10px;line-height:1.45;color:var(--ink)}
+.sv-self-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.82}
+.sv-self-desc b{color:var(--ink);font-weight:600}
+.sv-self-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.sv-fpill{font-size:10.5px;font-weight:500;padding:3px 9px;border-radius:100px;border:1px solid}
+.sv-fpill-t{background:#E1F5EE;color:#085041;border-color:#0F6E56}
+.sv-fpill-g{background:#F1EFE8;color:#444441;border-color:#888780}
+.sv-fpill-a{background:#FAEEDA;color:#633806;border-color:#854F0B}
+
+/* ── Responsive ── */
+@media(max-width:1000px){
+  .sv-promise-grid,.sv-promise-grid.rev{grid-template-columns:1fr;gap:44px;direction:ltr}
+  .sv-prop-grid{grid-template-columns:1fr;gap:44px}
+  .sv-stat-row{grid-template-columns:repeat(2,1fr);gap:24px}
+  .sv-proc-strip{grid-template-columns:1fr 1fr}
+  .sv-proc-step{border-right:none;border-bottom:1px solid var(--rule)}
+  .sv-proc-step:nth-child(odd){border-right:1px solid var(--rule)}
+  .sv-proc-arr{display:none}
+}
+@media(max-width:640px){
+  .sv-promise-grid{gap:32px}
+  .sv-roman{font-size:60px}
+  .sv-sim-result{grid-template-columns:1fr}
+  .sv-ch-grid{grid-template-columns:repeat(2,1fr)}
+  .sv-proc-strip{grid-template-columns:1fr}
+  .sv-proc-step{border-right:none !important}
+  .sv-self-grid{grid-template-columns:1fr}
+  .sv-prop-grid{grid-template-columns:1fr}
+  .sv-hero-btns{flex-direction:column}
+}
+
+/* ── Reveal ── */
+.svr{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.19,1,.22,1)}
+.svr.in{opacity:1;transform:translateY(0)}
+</style>
+
+<div class="svc-studio">
+
+  <!-- HERO -->
+  <div class="sv-hero">
+    <div class="sv-wrap">
+      <div class="sv-ch svr">Chapter III · 저자 Service</div>
+      <h1 class="sv-h1 svr">머릿속 한 챕터를,<br><em>한 권의 책</em>으로.</h1>
+      <p class="sv-sub svr">기획출판·자비출판·Amazon KDP 글로벌 출간까지 — <b>IT 및 인문 분야</b> 저·역자를 위한 완결형 출판 서비스 플랫폼입니다.</p>
+      <div class="sv-meta svr">
+        <span>원고 수령 후 4–6개월 출간</span>
+        <span>저자 마케팅 비용 ₩ 0</span>
+        <span>편집장 5영업일 회신</span>
+      </div>
+      <div style="height:28px"></div>
+      <div class="sv-hero-btns svr">
+        <a class="sv-btn sv-btn-burg" href="publishing-proposal.html">출간 제안하기 <span class="sv-btn-arr">→</span></a>
+        <a class="sv-btn sv-btn-ghost" href="https://author.acornpub.kr/" target="_blank">저자 사이트 접속 →</a>
+        <button class="sv-btn sv-btn-ghost" onclick="document.getElementById('sv-tabs').scrollIntoView({behavior:'smooth'})">서비스 살펴보기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="sv-stats">
+    <div class="sv-wrap">
+      <div class="sv-stat-row">
+        <div class="sv-stat svr">
+          <div class="sv-stat-n">30<span class="s">yrs</span></div>
+          <div class="sv-stat-l">IT 전문 출판</div>
+          <div class="sv-stat-s">— since 1996</div>
+        </div>
+        <div class="sv-stat svr">
+          <div class="sv-stat-n">2,000<span style="font-style:italic;color:var(--burg);font-size:.5em;vertical-align:super">+</span></div>
+          <div class="sv-stat-l">발간 도서</div>
+          <div class="sv-stat-s">— Korean IT titles</div>
+        </div>
+        <div class="sv-stat svr">
+          <div class="sv-stat-n">11</div>
+          <div class="sv-stat-l">통합 마케팅 채널</div>
+          <div class="sv-stat-s">— author cost ₩ 0</div>
+        </div>
+        <div class="sv-stat svr">
+          <div class="sv-stat-n">5</div>
+          <div class="sv-stat-l">저자에게 드리는 약속</div>
+          <div class="sv-stat-s">— Publisher Studio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="sv-tabs" id="sv-tabs">
+    <div class="sv-wrap" style="display:flex">
+      <button class="sv-tab-btn on" onclick="setSvTab(this,'planning')">기획출판</button>
+      <button class="sv-tab-btn" onclick="setSvTab(this,'self')">자비출판</button>
+      <button class="sv-tab-btn" onclick="setSvTab(this,'amazon')">Amazon KDP</button>
+    </div>
+  </div>
+
+  <!-- ── TAB: 기획출판 ── -->
+  <div class="sv-tab-pane on" id="svt-planning">
+
+    <!-- ── 5가지 약속: 탭 패널 UI ── -->
+    <div class="sv-promises-ui">
+
+      <!-- 스타일 (이 섹션 전용) -->
+      <style>
+      .sv-promises-ui{
+        background:var(--paper);
+        padding:56px 0 0;
+        border-bottom:1px solid var(--rule);
+      }
+      .promises-shell{
+        max-width:1200px;margin:0 auto;padding:0 32px;
+      }
+      /* 섹션 헤드 */
+      .promises-head{
+        margin-bottom:36px;
+      }
+      .promises-head .sv-sec-num{margin-bottom:10px}
+      .promises-head .sv-sec-title{
+        font-size:clamp(28px,3.6vw,44px);margin-bottom:10px;
+      }
+      .promises-head .sv-sec-lede{
+        font-size:14.5px;max-width:600px;margin:0;
+      }
+
+      /* 두 컬럼 레이아웃: 좌=탭 목록, 우=카드 */
+      .promises-layout{
+        display:grid;
+        grid-template-columns:280px 1fr;
+        gap:0;
+        min-height:580px;
+        border:1px solid var(--rule);
+        border-radius:3px;
+        overflow:hidden;
+        background:var(--paper-light);
+        box-shadow:0 12px 40px -12px rgba(28,32,40,.14),0 2px 6px rgba(28,32,40,.05);
+      }
+
+      /* 좌측: 약속 목록 */
+      .promises-nav{
+        border-right:1px solid var(--rule);
+        background:var(--paper-deep);
+        display:flex;
+        flex-direction:column;
+      }
+      .pnav-header{
+        padding:22px 24px 18px;
+        border-bottom:1px solid var(--rule);
+      }
+      .pnav-header-en{
+        font-family:var(--display);font-style:italic;font-size:10px;
+        letter-spacing:.32em;text-transform:uppercase;color:var(--burg);
+        display:block;margin-bottom:4px;
+      }
+      .pnav-header-ko{
+        font-family:var(--ksr);font-weight:600;font-size:15px;color:var(--ink);
+      }
+      .pnav-item{
+        display:flex;align-items:center;gap:14px;
+        padding:16px 24px;border:none;background:none;
+        text-align:left;cursor:pointer;font-family:inherit;
+        border-bottom:1px solid var(--rule-soft);
+        transition:background .18s;
+        position:relative;
+      }
+      .pnav-item:last-child{border-bottom:none}
+      .pnav-item:hover{background:rgba(15,110,86,.04)}
+      .pnav-item.on{background:var(--paper-light)}
+      .pnav-item.on::after{
+        content:'';position:absolute;right:-1px;top:0;bottom:0;width:2px;
+        background:var(--burg);
+      }
+      .pnav-roman{
+        font-family:var(--display);font-style:italic;font-weight:300;
+        font-size:28px;color:var(--burg);line-height:1;
+        width:32px;flex-shrink:0;text-align:center;
+      }
+      .pnav-item.on .pnav-roman{color:var(--burg)}
+      .pnav-texts{}
+      .pnav-num{
+        font-family:var(--mono);font-size:9px;color:var(--ink-mute);
+        letter-spacing:.12em;margin-bottom:3px;
+      }
+      .pnav-title{
+        font-family:var(--ksr);font-weight:500;font-size:13px;color:var(--ink-soft);
+        line-height:1.4;
+      }
+      .pnav-item.on .pnav-title{color:var(--ink);font-weight:600}
+      .pnav-dot{
+        width:6px;height:6px;border-radius:50%;background:var(--rule);
+        flex-shrink:0;margin-left:auto;transition:background .18s;
+      }
+      .pnav-item.on .pnav-dot{background:var(--burg)}
+
+      /* 우측: 콘텐츠 패널 */
+      .promises-panels{flex:1;position:relative;overflow:hidden}
+      .ppanel{
+        display:none;
+        padding:36px 40px;
+        height:100%;
+        animation:ppFadeIn .32s ease;
+      }
+      .ppanel.on{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+      @keyframes ppFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+      /* 패널 헤드 */
+      .pp-tag{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+      .pp-roman{
+        font-family:var(--display);font-style:italic;font-weight:300;
+        font-size:60px;line-height:.85;color:var(--burg);letter-spacing:-.04em;flex-shrink:0;
+      }
+      .pp-roman::before{content:"§ ";font-size:.38em;color:var(--gold);vertical-align:top;line-height:1.3;display:inline-block}
+      .pp-meta{padding-top:8px}
+      .pp-meta-en{
+        font-family:var(--display);font-style:italic;font-size:10px;
+        letter-spacing:.28em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:4px;
+      }
+      .pp-meta-num{font-family:var(--mono);font-size:10px;color:var(--burg);letter-spacing:.08em}
+      .pp-title{
+        font-family:var(--ksr);font-weight:500;
+        font-size:clamp(20px,2.2vw,28px);
+        line-height:1.3;letter-spacing:-.015em;color:var(--ink);margin-bottom:14px;
+      }
+      .pp-title em{font-family:var(--display);font-style:italic;color:var(--burg);font-weight:400}
+      .pp-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.82;margin-bottom:16px}
+      .pp-desc b{color:var(--ink);font-weight:600}
+      .pp-points{list-style:none;border-top:1px solid var(--rule);padding-top:4px}
+      .pp-points li{
+        padding:10px 0;border-bottom:1px dashed var(--rule-soft);
+        display:flex;justify-content:space-between;align-items:baseline;
+        gap:14px;font-size:12.5px;
+      }
+      .pp-points li:last-child{border-bottom:none}
+      .pp-lbl{color:var(--ink-soft);flex:1}
+      .pp-val{font-family:var(--mono);font-weight:500;color:var(--ink);font-size:11.5px;white-space:nowrap}
+      .pp-val .hi{color:var(--burg)}
+
+      /* 카드 (우측 비주얼) */
+      .pp-card{
+        background:var(--paper);border:1px solid var(--rule);
+        border-radius:2px;padding:22px;box-shadow:0 4px 16px rgba(28,32,40,.07);
+        position:relative;
+      }
+      .pp-card.top-burg::before{content:"";position:absolute;top:-1px;left:18px;right:18px;height:2px;background:var(--burg)}
+      .pp-card.top-gold::before{content:"";position:absolute;top:-1px;left:18px;right:18px;height:2px;background:var(--gold)}
+      .pp-card.top-forest::before{content:"";position:absolute;top:-1px;left:18px;right:18px;height:2px;background:var(--forest)}
+      .pp-card-head{
+        display:flex;justify-content:space-between;align-items:flex-end;
+        border-bottom:1px solid var(--rule-soft);padding-bottom:12px;margin-bottom:18px;
+      }
+      .pp-card-head h4{font-family:var(--ksr);font-weight:600;font-size:14px;color:var(--ink)}
+      .pp-card-en{
+        font-family:var(--display);font-style:italic;font-size:9.5px;
+        letter-spacing:.24em;color:var(--burg);text-transform:uppercase;display:block;margin-bottom:2px;
+      }
+
+      /* 시뮬레이터 (컴팩트) */
+      .pp-sim-tabs{display:flex;background:var(--paper-deep);border-radius:2px;padding:2px;font-size:11px}
+      .pp-stab{padding:5px 11px;color:var(--ink-mute);font-weight:500;border-radius:2px;cursor:pointer;transition:all .18s}
+      .pp-stab.on{background:var(--ink);color:var(--paper-light)}
+      .pp-sim-row{margin-bottom:12px}
+      .pp-sim-rt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;font-size:11px}
+      .pp-sim-lbl{color:var(--ink-soft);font-weight:500}
+      .pp-sim-val{font-family:var(--mono);font-weight:600;color:var(--burg);font-size:11.5px}
+      .pp-slider{
+        -webkit-appearance:none;appearance:none;
+        width:100%;height:3px;background:var(--paper-deep);border-radius:2px;
+        outline:none;border:1px solid var(--rule-soft);
+      }
+      .pp-slider::-webkit-slider-thumb{
+        -webkit-appearance:none;width:14px;height:14px;border-radius:50%;
+        background:var(--burg);cursor:pointer;border:2px solid var(--paper-light);
+        box-shadow:0 0 0 1px var(--burg);transition:transform .18s;
+      }
+      .pp-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+      .pp-sim-result{
+        margin-top:16px;padding-top:14px;border-top:1.5px solid var(--ink);
+        display:grid;grid-template-columns:1fr 1fr;gap:8px;
+      }
+      .pp-res{background:var(--paper-light);border:1px solid var(--rule-soft);padding:10px 12px;border-radius:2px;position:relative}
+      .pp-res.hi::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--gold)}
+      .pp-res-lbl{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:4px;font-family:var(--display);font-style:italic}
+      .pp-res-num{font-family:var(--display);font-weight:400;font-size:22px;color:var(--ink);line-height:1}
+      .pp-res-num .cur{font-size:.5em;color:var(--ink-mute);margin-right:1px;font-style:italic}
+      .pp-res-meta{font-size:8.5px;color:var(--ink-mute);margin-top:3px;font-family:var(--mono)}
+
+      /* 타임라인 (컴팩트) */
+      .pp-tl-row{display:grid;grid-template-columns:60px 1fr;gap:12px;padding:10px 0;border-bottom:1px dashed var(--rule-soft)}
+      .pp-tl-row:last-child{border-bottom:none}
+      .pp-tl-wk{font-family:var(--display);font-style:italic;font-weight:500;font-size:11px;color:var(--burg);letter-spacing:.05em;text-align:right;padding-top:1px}
+      .pp-tl-wk .wk{font-size:8.5px;color:var(--ink-mute);display:block;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1px;font-style:normal;font-weight:600}
+      .pp-tl-h{font-family:var(--ksr);font-weight:600;font-size:12px;color:var(--ink);margin-bottom:2px}
+      .pp-tl-p{font-size:10.5px;color:var(--ink-mute);line-height:1.5}
+      .pp-ai-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.08em;color:var(--burg);background:rgba(15,110,86,.08);padding:1px 5px;border-radius:2px;margin-top:3px;margin-right:3px}
+      .pp-tl-summary{margin-top:14px;padding:12px 16px;background:var(--ink);color:var(--paper-light);border-radius:2px;display:flex;justify-content:space-between;align-items:center}
+      .pp-tl-sl{font-family:var(--display);font-style:italic;font-size:10px;color:var(--gold-soft);letter-spacing:.14em;text-transform:uppercase}
+      .pp-tl-sr{font-family:var(--display);font-weight:300;font-size:22px;font-style:italic;color:var(--paper-light)}
+      .pp-tl-sr small{font-size:11px;color:var(--gold-soft);margin-left:2px;font-weight:400}
+
+      /* 채널 그리드 (컴팩트) */
+      .pp-ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+      .pp-ch-item{background:var(--paper-deep);border:1px solid var(--rule-soft);padding:9px 7px;border-radius:2px;text-align:center;transition:all .18s;cursor:default}
+      .pp-ch-item:hover{border-color:var(--burg);transform:translateY(-1px)}
+      .pp-ch-num{font-family:var(--display);font-style:italic;font-size:8.5px;color:var(--gold);letter-spacing:.12em;margin-bottom:3px}
+      .pp-ch-ico{font-size:16px;margin-bottom:3px;line-height:1}
+      .pp-ch-name{font-size:10.5px;color:var(--ink);font-weight:600;line-height:1.3}
+      .pp-ch-sub{font-size:8px;color:var(--ink-mute);margin-top:1px;font-family:var(--display);font-style:italic}
+      .pp-ch-zero{margin-top:12px;padding:11px 16px;background:var(--ink);color:var(--paper-light);border-radius:2px;display:flex;justify-content:space-between;align-items:center}
+      .pp-ch-zero-l{font-family:var(--ksr);font-weight:500;font-size:12.5px}
+      .pp-ch-zero-l small{display:block;font-size:8.5px;color:var(--gold-soft);font-family:var(--display);font-style:italic;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+      .pp-ch-zero-r{font-family:var(--display);font-weight:300;font-style:italic;font-size:28px;color:var(--gold);line-height:1}
+      .pp-ch-zero-r small{font-size:11px;color:var(--paper-light);font-style:normal;font-family:var(--ksr);margin-left:3px;font-weight:400}
+
+      /* 대시보드 목업 (컴팩트) */
+      .pp-dash-bar{padding:7px 12px;background:var(--paper-deep);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:7px}
+      .pp-dash-dots{display:flex;gap:4px}
+      .pp-dash-dots span{width:7px;height:7px;border-radius:50%}
+      .pp-dash-addr{flex:1;text-align:center;font-family:var(--display);font-style:italic;font-size:9px;color:var(--ink-mute);letter-spacing:.06em}
+      .pp-dash-live{font-family:var(--mono);font-size:9px;color:var(--burg);font-weight:500;display:flex;align-items:center;gap:4px}
+      .pp-dash-live::before{content:"";width:5px;height:5px;background:var(--burg);border-radius:50%;animation:svpulse 1.5s ease-in-out infinite;flex-shrink:0}
+      .pp-dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
+      .pp-dash-kpi{padding:10px 11px;background:var(--paper-light);border:1px solid var(--rule);border-radius:2px;position:relative;overflow:hidden}
+      .pp-dash-kpi::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--burg)}
+      .pp-dash-kpi:nth-child(2)::before{background:var(--gold)}
+      .pp-dash-kpi:nth-child(3)::before{background:var(--forest)}
+      .pp-dash-kpi-lbl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:4px}
+      .pp-dash-kpi-val{font-family:var(--display);font-weight:500;font-size:17px;color:var(--ink);line-height:1}
+      .pp-dash-kpi-val small{font-size:9px;color:var(--ink-mute);margin-left:2px;font-weight:400}
+      .pp-dash-kpi-d{font-size:8.5px;color:var(--forest);font-family:var(--mono);margin-top:2px}
+      .pp-dash-ch{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px}
+      .pp-dash-ch-item{background:var(--paper-light);border:1px solid var(--rule-soft);padding:7px 9px;border-radius:2px;display:flex;justify-content:space-between;align-items:center;font-size:10px}
+      .pp-dash-ch-l{color:var(--ink);font-weight:500}
+      .pp-dash-ch-l small{color:var(--ink-mute);font-size:8.5px;display:block;font-family:var(--display);font-style:italic}
+      .pp-dash-ch-r{font-family:var(--mono);font-size:10px;color:var(--burg);font-weight:600;text-align:right}
+      .pp-dash-ch-r small{display:block;font-size:8px;color:var(--ink-mute);font-weight:400}
+      .pp-dash-audit{background:var(--ink);color:var(--paper-light);padding:9px 13px;display:flex;justify-content:space-between;align-items:center}
+      .pp-dash-audit-l{font-size:9px;color:var(--gold-soft);font-family:var(--display);font-style:italic;letter-spacing:.12em;text-transform:uppercase}
+      .pp-dash-audit-l b{display:block;color:var(--paper-light);font-style:normal;font-family:var(--ksr);font-weight:500;font-size:10px;letter-spacing:.02em;text-transform:none;margin-top:2px}
+      .pp-dash-audit-r{font-family:var(--display);font-style:italic;font-size:11px;color:var(--paper-light)}
+
+      /* KDP 테이블 (컴팩트) */
+      .pp-kdp-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+      .pp-kdp-table th{text-align:left;padding:9px 7px;border-bottom:1.5px solid var(--ink);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:700;font-family:var(--display);font-style:italic}
+      .pp-kdp-table th.r{text-align:right}
+      .pp-kdp-table td{padding:9px 7px;border-bottom:1px dashed var(--rule-soft);color:var(--ink)}
+      .pp-kdp-table td.r{text-align:right;font-family:var(--mono);font-weight:500}
+      .pp-kdp-table tr.hi td{background:rgba(184,155,84,.07)}
+      .pp-kdp-table .ry{color:var(--burg);font-weight:600}
+      .pp-kdp-table .best{font-family:var(--display);font-style:italic;font-size:8px;color:var(--burg);letter-spacing:.12em;text-transform:uppercase;margin-left:4px}
+      .pp-kdp-flags{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule-soft);text-align:center}
+      .pp-kdp-flag{font-size:18px;margin-bottom:3px}
+      .pp-kdp-lbl{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
+      .pp-kdp-st{font-size:8.5px;color:var(--burg);font-family:var(--display);font-style:italic;margin-top:1px}
+
+      /* 반응형 */
+      @media(max-width:920px){
+        .promises-layout{grid-template-columns:1fr}
+        .promises-nav{flex-direction:row;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--rule)}
+        .pnav-header{display:none}
+        .pnav-item{flex:1;min-width:120px;flex-direction:column;align-items:center;padding:12px 8px;text-align:center;border-bottom:none;border-right:1px solid var(--rule-soft)}
+        .pnav-item.on::after{top:auto;bottom:-1px;right:0;left:0;width:auto;height:2px}
+        .pnav-roman{font-size:20px;width:auto}
+        .pnav-dot{display:none}
+        .ppanel.on{grid-template-columns:1fr}
+        .ppanel{padding:24px}
+      }
+      @media(max-width:640px){
+        .pnav-item{min-width:80px}
+        .pnav-num{display:none}
+      }
+      </style>
+
+      <div class="promises-shell">
+        <!-- 헤드 -->
+        <div class="promises-head">
+          <div class="sv-sec-num">— Chapter I · 다섯 가지 약속 —</div>
+          <h2 class="sv-sec-title">저자를 위한, <em>5가지 약속</em>.</h2>
+          <p class="sv-sec-lede sv-sec-lede--sm">에이콘은 단순한 출판 대행이 아닙니다 — 인세·워크플로우·마케팅·사후 지원·글로벌까지, 모든 단계에서 지키는 약속입니다.</p>
+        </div>
+
+        <!-- 탭 레이아웃 -->
+        <div class="promises-layout">
+
+          <!-- 좌: 탭 목록 -->
+          <nav class="promises-nav">
+            <div class="pnav-header">
+              <span class="pnav-header-en">— 5 Promises —</span>
+              <span class="pnav-header-ko">약속을 선택하세요</span>
+            </div>
+            <button class="pnav-item on" onclick="setPromise(this,0)">
+              <div class="pnav-roman">I</div>
+              <div class="pnav-texts">
+                <div class="pnav-num">Promise · Royalty</div>
+                <div class="pnav-title">투명한 인세 구조와 사전 시뮬레이션</div>
+              </div>
+              <div class="pnav-dot"></div>
+            </button>
+            <button class="pnav-item" onclick="setPromise(this,1)">
+              <div class="pnav-roman">II</div>
+              <div class="pnav-texts">
+                <div class="pnav-num">Promise · AI-Assisted</div>
+                <div class="pnav-title">AI 보조 출판 워크플로우</div>
+              </div>
+              <div class="pnav-dot"></div>
+            </button>
+            <button class="pnav-item" onclick="setPromise(this,2)">
+              <div class="pnav-roman">III</div>
+              <div class="pnav-texts">
+                <div class="pnav-num">Promise · Marketing</div>
+                <div class="pnav-title">11개 채널 통합 마케팅</div>
+              </div>
+              <div class="pnav-dot"></div>
+            </button>
+            <button class="pnav-item" onclick="setPromise(this,3)">
+              <div class="pnav-roman">IV</div>
+              <div class="pnav-texts">
+                <div class="pnav-num">Promise · After-Care</div>
+                <div class="pnav-title">출간 후 실시간 대시보드 & 지속 지원</div>
+              </div>
+              <div class="pnav-dot"></div>
+            </button>
+            <button class="pnav-item" onclick="setPromise(this,4)">
+              <div class="pnav-roman">V</div>
+              <div class="pnav-texts">
+                <div class="pnav-num">Promise · Global</div>
+                <div class="pnav-title">ePub 3.x 및 Amazon KDP 글로벌 출간 지원</div>
+              </div>
+              <div class="pnav-dot"></div>
+            </button>
+          </nav>
+
+          <!-- 우: 콘텐츠 패널 -->
+          <div class="promises-panels">
+
+            <!-- Panel 0: 인세 시뮬레이터 -->
+            <div class="ppanel on" id="pp-0">
+              <div>
+                <div class="pp-tag">
+                  <div class="pp-roman">I</div>
+                  <div class="pp-meta">
+                    <div class="pp-meta-en">Promise · Royalty</div>
+                    <div class="pp-meta-num">10–12% · 20–25% · D+30</div>
+                  </div>
+                </div>
+                <h3 class="pp-title">투명한 인세 구조와<br><em>사전 시뮬레이션</em>.</h3>
+                <p class="pp-desc">종이책 <b>10–12%</b>, 전자책 <b>20–25%</b> — 업계 최상위 표준. 출간 전 인세 시뮬레이터로 1년·3년 예상 수익을 직접 확인하실 수 있습니다. <b>1쇄 인세는 출간일 기준 30일 이내 지급</b>, 2쇄부터 분기별 정산.</p>
+                <ul class="pp-points">
+                  <li><span class="pp-lbl">종이책 인세율</span><span class="pp-val"><span class="hi">10 – 12%</span> · 정가 기준</span></li>
+                  <li><span class="pp-lbl">전자책 인세율</span><span class="pp-val"><span class="hi">20 – 25%</span> · 정가 기준</span></li>
+                  <li><span class="pp-lbl">1쇄 인세 지급</span><span class="pp-val">출간일 + 30일 이내</span></li>
+                  <li><span class="pp-lbl">2쇄 이후 정산</span><span class="pp-val">분기별 정산</span></li>
+                </ul>
+              </div>
+              <div>
+                <div class="pp-card top-burg">
+                  <div class="pp-card-head">
+                    <div><span class="pp-card-en">— Royalty Simulator —</span><h4>인세 사전 시뮬레이터</h4></div>
+                    <div class="pp-sim-tabs">
+                      <span class="pp-stab on" data-mode="print">종이책</span>
+                      <span class="pp-stab" data-mode="ebook">전자책</span>
+                    </div>
+                  </div>
+                  <div class="pp-sim-row">
+                    <div class="pp-sim-rt"><span class="pp-sim-lbl">정가</span><span class="pp-sim-val" id="pp-price-val">₩ 28,000</span></div>
+                    <input type="range" class="pp-slider" id="pp-price" min="15000" max="50000" step="1000" value="28000">
+                  </div>
+                  <div class="pp-sim-row">
+                    <div class="pp-sim-rt"><span class="pp-sim-lbl">인세율</span><span class="pp-sim-val" id="pp-rate-val">11.0%</span></div>
+                    <input type="range" class="pp-slider" id="pp-rate" min="100" max="120" step="5" value="110">
+                  </div>
+                  <div class="pp-sim-row">
+                    <div class="pp-sim-rt"><span class="pp-sim-lbl">1년 예상 판매</span><span class="pp-sim-val" id="pp-copies-val">2,000부</span></div>
+                    <input type="range" class="pp-slider" id="pp-copies" min="500" max="10000" step="100" value="2000">
+                  </div>
+                  <div class="pp-sim-result">
+                    <div class="pp-res">
+                      <div class="pp-res-lbl">1년 인세</div>
+                      <div class="pp-res-num"><span class="cur">₩</span><span id="pp-y1">6,160,000</span></div>
+                      <div class="pp-res-meta" id="pp-y1-meta">@ 11% × 2,000부 × ₩28,000</div>
+                    </div>
+                    <div class="pp-res hi">
+                      <div class="pp-res-lbl">3년 누적 인세</div>
+                      <div class="pp-res-num"><span class="cur">₩</span><span id="pp-y3">14,784,000</span></div>
+                      <div class="pp-res-meta" id="pp-y3-meta">— 보수 추정 (재쇄 포함)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 1: AI 워크플로우 -->
+            <div class="ppanel" id="pp-1">
+              <div>
+                <div class="pp-tag">
+                  <div class="pp-roman">II</div>
+                  <div class="pp-meta">
+                    <div class="pp-meta-en">Promise · AI-Assisted</div>
+                    <div class="pp-meta-num">4–6 months · LLM-augmented</div>
+                  </div>
+                </div>
+                <h3 class="pp-title">AI 보조<br><em>출판 워크플로우</em>.</h3>
+                <p class="pp-desc"><b>집필</b> 단계에서는 AI 윤문·팩트체크 도구를 무상 제공합니다. <b>편집</b>은 AI 교정·인덱싱으로 주기를 단축하고, <b>디자인</b>은 표지·내지 시안을 24시간 이내 회신합니다. 평균 출간 소요 기간 — <b>원고 수령 후 4–6개월</b>.</p>
+                <ul class="pp-points">
+                  <li><span class="pp-lbl">집필 보조 (AI 윤문·팩트체크)</span><span class="pp-val"><span class="hi">무상 제공</span></span></li>
+                  <li><span class="pp-lbl">편집 (AI 교정·인덱싱)</span><span class="pp-val">주기 단축</span></li>
+                  <li><span class="pp-lbl">표지·내지 시안 회신</span><span class="pp-val">24h 이내</span></li>
+                  <li><span class="pp-lbl">평균 출간 소요</span><span class="pp-val"><span class="hi">4–6개월</span></span></li>
+                </ul>
+              </div>
+              <div>
+                <div class="pp-card top-gold">
+                  <div class="pp-card-head"><div><span class="pp-card-en">— Avg. Production Timeline —</span><h4>출간 일정 표준안</h4></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>1–4</div><div><div class="pp-tl-h">원고 수령 · 검토</div><div class="pp-tl-p">편집장 직접 검토 · 구조 의견 회신</div><span class="pp-ai-tag">[ai] 팩트체크</span><span class="pp-ai-tag">[ai] 윤문</span></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>5–10</div><div><div class="pp-tl-h">1차 · 2차 교정</div><div class="pp-tl-p">편집자 + AI 협업 교정 · 저자 확인 사이클</div><span class="pp-ai-tag">[ai] 자동 교정</span><span class="pp-ai-tag">[ai] 인덱싱</span></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>11–14</div><div><div class="pp-tl-h">표지 · 내지 디자인</div><div class="pp-tl-p">시안 24시간 이내 회신 · 저자 의견 반영</div><span class="pp-ai-tag">[ai] 시안 생성</span></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>15–18</div><div><div class="pp-tl-h">최종 교정 · 인쇄 · 배포</div><div class="pp-tl-p">온라인·오프라인 채널 동시 입고</div></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>19–24</div><div><div class="pp-tl-h">마케팅 가속 · KDP 동시 출간</div><div class="pp-tl-p">11개 채널 동시 점화</div></div></div>
+                  <div class="pp-tl-summary"><div class="pp-tl-sl">— 원고에서 출간까지 —</div><div class="pp-tl-sr">4–6<small>개월</small></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: 11채널 마케팅 -->
+            <div class="ppanel" id="pp-2">
+              <div>
+                <div class="pp-tag">
+                  <div class="pp-roman">III</div>
+                  <div class="pp-meta">
+                    <div class="pp-meta-en">Promise · Marketing</div>
+                    <div class="pp-meta-num">11 channels · ₩ 0 to author</div>
+                  </div>
+                </div>
+                <h3 class="pp-title">11개 채널 통합 마케팅.</h3>
+                <p class="pp-desc">인스타그램·페이스북·X·LinkedIn·유튜브·스티비 뉴스레터 5종·카카오 챗봇·홈페이지 블로그까지 — <b>11개 채널</b>이 출간과 동시에 자동 적용됩니다.</p>
+                <ul class="pp-points">
+                  <li><span class="pp-lbl">SNS · 영상 채널</span><span class="pp-val">7개 채널</span></li>
+                  <li><span class="pp-lbl">뉴스레터 · 메신저</span><span class="pp-val">스티비 5종 + 카카오</span></li>
+                  <li><span class="pp-lbl">홈페이지 블로그 · SEO</span><span class="pp-val">자동 게시</span></li>
+                  <li><span class="pp-lbl">저자 부담 비용</span><span class="pp-val"><span class="hi">₩ 0</span></span></li>
+                </ul>
+              </div>
+              <div>
+                <div class="pp-card top-forest">
+                  <div class="pp-card-head"><div><span class="pp-card-en">— 11 Marketing Channels —</span><h4>출간 즉시 자동 점화</h4></div></div>
+                  <div class="pp-ch-grid">
+                    <div class="pp-ch-item"><div class="pp-ch-num">01</div><div class="pp-ch-ico">📷</div><div class="pp-ch-name">Instagram</div><div class="pp-ch-sub">IT 전용</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">02</div><div class="pp-ch-ico">📷</div><div class="pp-ch-name">Instagram</div><div class="pp-ch-sub">일반서</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">03</div><div class="pp-ch-ico">f</div><div class="pp-ch-name">Facebook</div><div class="pp-ch-sub">페이지</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">04</div><div class="pp-ch-ico">𝕏</div><div class="pp-ch-name">X (Twitter)</div><div class="pp-ch-sub">실시간</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">05</div><div class="pp-ch-ico">in</div><div class="pp-ch-name">LinkedIn</div><div class="pp-ch-sub">전문가</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">06</div><div class="pp-ch-ico">▶</div><div class="pp-ch-name">YouTube</div><div class="pp-ch-sub">Shorts</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">07</div><div class="pp-ch-ico">▶</div><div class="pp-ch-name">YouTube</div><div class="pp-ch-sub">Long-form</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">08</div><div class="pp-ch-ico">✉</div><div class="pp-ch-name">스티비</div><div class="pp-ch-sub">×5 종</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">09</div><div class="pp-ch-ico">💬</div><div class="pp-ch-name">카카오 챗봇</div><div class="pp-ch-sub">Conversational</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">10</div><div class="pp-ch-ico">⌘</div><div class="pp-ch-name">블로그</div><div class="pp-ch-sub">SEO 최적화</div></div>
+                    <div class="pp-ch-item"><div class="pp-ch-num">11</div><div class="pp-ch-ico">⊕</div><div class="pp-ch-name">통합 캠페인</div><div class="pp-ch-sub">Cross-channel</div></div>
+                  </div>
+                  <div class="pp-ch-zero"><div class="pp-ch-zero-l"><small>— Author Cost —</small>저자 부담 비용</div><div class="pp-ch-zero-r">₩ 0<small>원</small></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: 사후 지원 & 대시보드 -->
+            <div class="ppanel" id="pp-3">
+              <div>
+                <div class="pp-tag">
+                  <div class="pp-roman">IV</div>
+                  <div class="pp-meta">
+                    <div class="pp-meta-en">Promise · After-Care</div>
+                    <div class="pp-meta-num">Daily · Audit-grade · Revision</div>
+                  </div>
+                </div>
+                <h3 class="pp-title">출간 후에도<br><em>함께합니다</em>.</h3>
+                <p class="pp-desc">정오표 업데이트, 독자 피드백 수렴, <b>개정판 우선 협의</b>. 실시간 판매 대시보드로 국내·KDP 글로벌 판매를 <b>하나의 화면</b>에서 확인. <b>외부감사 기준 정산 명세 공개.</b></p>
+                <ul class="pp-points">
+                  <li><span class="pp-lbl">정오표 · 독자 피드백</span><span class="pp-val">지속 관리</span></li>
+                  <li><span class="pp-lbl">개정판 협의 우선권</span><span class="pp-val">저자 우선 제공</span></li>
+                  <li><span class="pp-lbl">판매 대시보드 갱신</span><span class="pp-val">Daily · 매일</span></li>
+                  <li><span class="pp-lbl">정산 명세 투명성</span><span class="pp-val"><span class="hi">외부감사 기준 공개</span></span></li>
+                </ul>
+              </div>
+              <div>
+                <div class="pp-card top-burg" style="padding:0;overflow:hidden">
+                  <div class="pp-dash-bar">
+                    <div class="pp-dash-dots"><span style="background:#D87C6E"></span><span style="background:#E0B96A"></span><span style="background:#7AAF7A"></span></div>
+                    <div class="pp-dash-addr">acornpub.studio / dashboard / sales</div>
+                    <div class="pp-dash-live">LIVE</div>
+                  </div>
+                  <div style="padding:16px 18px">
+                    <div style="font-family:var(--ksr);font-weight:500;font-size:13px;color:var(--ink);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--rule-soft)">
+                      <small style="display:block;font-family:var(--display);font-style:italic;font-size:9px;color:var(--burg);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2px">— Real-time Sales —</small>
+                      신간 판매 현황
+                    </div>
+                    <div class="pp-dash-kpis">
+                      <div class="pp-dash-kpi"><div class="pp-dash-kpi-lbl">국내 누적</div><div class="pp-dash-kpi-val">1,284<small>부</small></div><div class="pp-dash-kpi-d">↑ +18 (24h)</div></div>
+                      <div class="pp-dash-kpi"><div class="pp-dash-kpi-lbl">KDP 글로벌</div><div class="pp-dash-kpi-val">412<small>units</small></div><div class="pp-dash-kpi-d">↑ +7 (24h)</div></div>
+                      <div class="pp-dash-kpi"><div class="pp-dash-kpi-lbl">예상 인세</div><div class="pp-dash-kpi-val">₩4.8<small>M</small></div><div class="pp-dash-kpi-d">+ $1,240</div></div>
+                    </div>
+                    <div class="pp-dash-ch">
+                      <div class="pp-dash-ch-item"><div class="pp-dash-ch-l">YES24<small>온라인 · 국내</small></div><div class="pp-dash-ch-r">426부<small>↑ +12</small></div></div>
+                      <div class="pp-dash-ch-item"><div class="pp-dash-ch-l">교보문고<small>온라인 · 국내</small></div><div class="pp-dash-ch-r">312부<small>↑ +8</small></div></div>
+                      <div class="pp-dash-ch-item"><div class="pp-dash-ch-l">알라딘<small>온라인 · 국내</small></div><div class="pp-dash-ch-r">218부<small>↑ +4</small></div></div>
+                      <div class="pp-dash-ch-item"><div class="pp-dash-ch-l">Amazon US<small>KDP · English</small></div><div class="pp-dash-ch-r">218 units<small>↑ +5</small></div></div>
+                    </div>
+                    <div class="pp-dash-audit"><div class="pp-dash-audit-l">— Audit-Grade —<b>외부감사 기준 정산 명세 공개</b></div><div class="pp-dash-audit-r">✓ Verified</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 4: ePub + KDP -->
+            <div class="ppanel" id="pp-4">
+              <div>
+                <div class="pp-tag">
+                  <div class="pp-roman">V</div>
+                  <div class="pp-meta">
+                    <div class="pp-meta-en">Promise · Global Reach</div>
+                    <div class="pp-meta-num">ePub 3.0 · KDP 70% · EN/JP/CN</div>
+                  </div>
+                </div>
+                <h3 class="pp-title">ePub 3.x 및<br><em>Amazon KDP</em> 글로벌 출간 지원.</h3>
+                <p class="pp-desc">종이책·전자책·PDF·<b>ePub 3.0</b> 4종 포맷 동시 출간. IT 도서는 코드 블록·수식 최적화, 인문 도서는 서체 심미성 특화 템플릿 적용. 원고 채택 시 <b>영문판 동시 출간 옵션</b> 제공. Amazon KDP <b>70% 인세 구간</b> 자동 설정.</p>
+                <ul class="pp-points">
+                  <li><span class="pp-lbl">Amazon KDP 인세 구간</span><span class="pp-val">70% · 자동 설정</span></li>
+                  <li><span class="pp-lbl">예상 부수당 인세 (USD)</span><span class="pp-val"><span class="hi">$2 — $7</span></span></li>
+                  <li><span class="pp-lbl">현지화 언어</span><span class="pp-val">EN · JP · CN</span></li>
+                  <li><span class="pp-lbl">ePub 3.0 포맷</span><span class="pp-val">IT · 인문 특화 템플릿</span></li>
+                </ul>
+              </div>
+              <div>
+                <div class="pp-card top-gold">
+                  <div class="pp-card-head"><div><span class="pp-card-en">— Amazon KDP · Royalty Tier —</span><h4>가격대별 부수당 인세</h4></div></div>
+                  <table class="pp-kdp-table">
+                    <thead><tr><th>가격대 (USD)</th><th class="r">인세율</th><th class="r">부수당 인세</th></tr></thead>
+                    <tbody>
+                      <tr><td>$ 2.99</td><td class="r">70%</td><td class="r ry">$ 2.09</td></tr>
+                      <tr class="hi"><td>$ 4.99 <span class="best">— Best</span></td><td class="r">70%</td><td class="r ry">$ 3.49</td></tr>
+                      <tr><td>$ 6.99</td><td class="r">70%</td><td class="r ry">$ 4.89</td></tr>
+                      <tr><td>$ 9.99</td><td class="r">70%</td><td class="r ry">$ 6.99</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pp-kdp-flags">
+                    <div><div class="pp-kdp-flag">🇺🇸 🇬🇧</div><div class="pp-kdp-lbl">English</div><div class="pp-kdp-st">동시 출간 옵션</div></div>
+                    <div><div class="pp-kdp-flag">🇯🇵</div><div class="pp-kdp-lbl">Japanese</div><div class="pp-kdp-st">파트너 매칭</div></div>
+                    <div><div class="pp-kdp-flag">🇨🇳 🇹🇼</div><div class="pp-kdp-lbl">Chinese</div><div class="pp-kdp-st">현지 파트너</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /promises-panels -->
+        </div><!-- /promises-layout -->
+      </div><!-- /promises-shell -->
+
+      <!-- 탭 전환 스크립트 + 인세 시뮬레이터 -->
+      <script>
+      function setPromise(btn, idx){
+        document.querySelectorAll('.pnav-item').forEach(b=>b.classList.remove('on'));
+        btn.classList.add('on');
+        document.querySelectorAll('.ppanel').forEach(p=>p.classList.remove('on'));
+        document.getElementById('pp-'+idx)?.classList.add('on');
+        // 시뮬레이터 초기화 (Panel 0 열릴 때)
+        if(idx===0) bindPPSim();
+      }
+
+      // 인세 시뮬레이터 (컴팩트 버전)
+      (function(){
+        const fmt = n => Math.round(n).toLocaleString('ko-KR');
+        let ppSim = {mode:'print', price:28000, rate:110, copies:2000};
+        function updatePP(){
+          const r = ppSim.rate/10;
+          const y1 = ppSim.price * (r/100) * ppSim.copies;
+          const y3 = y1 * 2.1;
+          const pv=document.getElementById('pp-price-val');
+          const rv=document.getElementById('pp-rate-val');
+          const cv=document.getElementById('pp-copies-val');
+          const y1v=document.getElementById('pp-y1');
+          const y3v=document.getElementById('pp-y3');
+          const y1m=document.getElementById('pp-y1-meta');
+          const y3m=document.getElementById('pp-y3-meta');
+          if(pv) pv.textContent='₩ '+fmt(ppSim.price);
+          if(rv) rv.textContent=r.toFixed(1)+'%';
+          if(cv) cv.textContent=fmt(ppSim.copies)+(ppSim.mode==='ebook'?' DL':'부');
+          if(y1v) y1v.textContent=fmt(y1);
+          if(y3v) y3v.textContent=fmt(y3);
+          if(y1m) y1m.textContent=`@ ${r.toFixed(1)}% × ${fmt(ppSim.copies)}${ppSim.mode==='ebook'?' DL':'부'} × ₩${fmt(ppSim.price)}`;
+          if(y3m) y3m.textContent='— 보수 추정 (재쇄 포함)';
+        }
+        window.bindPPSim = function(){
+          const sp=document.getElementById('pp-price');
+          const sr=document.getElementById('pp-rate');
+          const sc=document.getElementById('pp-copies');
+          if(sp) sp.oninput=e=>{ppSim.price=+e.target.value;updatePP()};
+          if(sr) sr.oninput=e=>{ppSim.rate=+e.target.value;updatePP()};
+          if(sc) sc.oninput=e=>{ppSim.copies=+e.target.value;updatePP()};
+          document.querySelectorAll('.pp-stab').forEach(t=>{
+            t.onclick=()=>{
+              document.querySelectorAll('.pp-stab').forEach(x=>x.classList.remove('on'));
+              t.classList.add('on'); ppSim.mode=t.dataset.mode;
+              const sp2=document.getElementById('pp-price');
+              const sr2=document.getElementById('pp-rate');
+              if(ppSim.mode==='ebook'){
+                if(sp2){sp2.min=8000;sp2.max=35000;sp2.value=18000} ppSim.price=18000;
+                if(sr2){sr2.min=200;sr2.max=250;sr2.value=220} ppSim.rate=220;
+              } else {
+                if(sp2){sp2.min=15000;sp2.max=50000;sp2.value=28000} ppSim.price=28000;
+                if(sr2){sr2.min=100;sr2.max=120;sr2.value=110} ppSim.rate=110;
+              }
+              updatePP();
+            };
+          });
+          updatePP();
+        };
+        // 초기 실행 (Panel 0이 기본 on)
+        bindPPSim();
+      })();
+      </script>
+
+    </div><!-- /sv-promises-ui -->
+
+    <!-- Process 5-step -->
+    <div class="sv-process">
+      <div class="sv-wrap">
+        <div class="sv-sec-head svr" style="margin-bottom:40px">
+          <div class="sv-sec-num">— Chapter II · 흐름 —</div>
+          <h2 class="sv-sec-title">제안에서 출간까지,<br><em>단절 없는</em> 다섯 단계.</h2>
+        </div>
+        <div class="sv-proc-strip svr">
+          <div class="sv-proc-step"><div class="sv-proc-num">— Step I —</div><div class="sv-proc-ico">i</div><div class="sv-proc-title">제안서 작성</div><div class="sv-proc-sub">5분 작성<br>AI 자동 분석</div><div class="sv-proc-arr"></div></div>
+          <div class="sv-proc-step"><div class="sv-proc-num">— Step II —</div><div class="sv-proc-ico">ii</div><div class="sv-proc-title">평가 · 채택</div><div class="sv-proc-sub">편집장 검토<br>5영업일 회신</div><div class="sv-proc-arr"></div></div>
+          <div class="sv-proc-step"><div class="sv-proc-num">— Step III —</div><div class="sv-proc-ico">iii</div><div class="sv-proc-title">계약 · 집필</div><div class="sv-proc-sub">표준 인세 적용<br>AI 윤문 지원</div><div class="sv-proc-arr"></div></div>
+          <div class="sv-proc-step"><div class="sv-proc-num">— Step IV —</div><div class="sv-proc-ico">iv</div><div class="sv-proc-title">편집 · 출간</div><div class="sv-proc-sub">4–6개월<br>표지 24h 회신</div><div class="sv-proc-arr"></div></div>
+          <div class="sv-proc-step"><div class="sv-proc-num">— Step V —</div><div class="sv-proc-ico">v</div><div class="sv-proc-title">글로벌 · 정산</div><div class="sv-proc-sub">11채널 마케팅<br>분기별 정산</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimony -->
+    <div class="sv-testimony">
+      <div class="sv-wrap">
+        <div class="sv-quote svr">
+          <div class="sv-qmark">"</div>
+          <p class="sv-qtext">IT 책을 쓴다는 것은 외로운 일이라 생각했습니다. 그런데 에이콘과 함께한 후로는, <em>집필 외의 모든 것</em>을 누군가 맡아주는 느낌입니다. 인세 시뮬레이션부터 KDP 영문판, 11채널 마케팅까지 — 저는 글에만 집중할 수 있었습니다.</p>
+          <p class="sv-qcite">— <b>에이콘</b> 발간 저자 · IT 분야</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proposal CTA -->
+    <div class="sv-proposal">
+      <div class="sv-wrap-wide">
+        <div class="sv-prop-grid">
+          <div class="sv-prop-head svr">
+            <div class="sv-sec-num">— Chapter III · Submission —</div>
+            <h2 class="sv-sec-title">머릿속 한 챕터를,<br><em>한 권의 책</em>으로.</h2>
+            <p class="sv-prop-lede">PUBLISHER STUDIO의 출간 제안서 모듈로 5분 만에 제안을 시작하세요. AI가 시장 적합도를 분석하고, 편집장이 직접 회신해드립니다.</p>
+            <ul class="sv-bullets">
+              <li><b>5분 작성, 자동 분석</b> — 카테고리·타깃 독자·경쟁 도서를 입력하면 AI가 시장 적합도와 예상 BEP를 즉시 계산합니다.</li>
+              <li><b>S / A / B / C / D 등급 평가</b> — 45개 항목 체크리스트 기반 객관적 평가.</li>
+              <li><b>1년 · 3년 인세 시뮬레이션</b> — 제안 단계에서 예상 수익을 미리 확인.</li>
+              <li><b>편집장 직접 회신</b> — 평균 5영업일 이내, 채택/보완/반려 의견을 명확히 전달.</li>
+            </ul>
+            <div class="sv-prop-ctas">
+              <a class="sv-btn sv-btn-gold" href="publishing-proposal.html">출간 제안 시작하기 <span class="sv-btn-arr">→</span></a>
+              <a class="sv-btn sv-btn-ghost" href="mailto:editor@acornpub.co.kr">도입상담 예약</a>
+            </div>
+          </div>
+          <div class="svr">
+            <div class="sv-prop-card">
+              <div class="sv-prop-card-head">
+                <h4><small>— New Proposal —</small>출간 제안서 작성</h4>
+                <div class="sv-step-info">Step <b>3</b> / 5</div>
+              </div>
+              <div class="sv-step-bar"><div class="sv-step-pip done"></div><div class="sv-step-pip done"></div><div class="sv-step-pip on"></div><div class="sv-step-pip"></div><div class="sv-step-pip"></div></div>
+
+              <!-- ─ 출판 유형 선택 (기획 / 자비 라디오 + Amazon 체크박스) ─ -->
+              <div style="margin-bottom:14px">
+                <div style="font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6B6B68;font-family:'JetBrains Mono',monospace;margin-bottom:8px">출판 서비스 선택</div>
+
+                <!-- 라디오: 기획 / 자비 -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px">
+                  <button id="psvc-planning" onclick="pSvcRadio('planning')"
+                    style="padding:11px 8px;border:1.5px solid #7A1F2B;border-radius:2px;background:#faf4ef;cursor:pointer;font-family:inherit;text-align:center;transition:all .18s">
+                    <div style="font-family:'Fraunces',serif;font-style:italic;font-size:9px;color:#7A1F2B;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px">Planning</div>
+                    <div style="font-family:'Noto Serif KR',serif;font-weight:600;font-size:13px;color:#1C2028">기획출판</div>
+                    <div style="font-size:9.5px;color:#6B6B68;margin-top:2px;font-family:'Fraunces',serif;font-style:italic">인세 계약 · 공동 출판</div>
+                  </button>
+                  <button id="psvc-self" onclick="pSvcRadio('self')"
+                    style="padding:11px 8px;border:1.5px solid #C9BFA8;border-radius:2px;background:#FBF6EC;cursor:pointer;font-family:inherit;text-align:center;transition:all .18s">
+                    <div style="font-family:'Fraunces',serif;font-style:italic;font-size:9px;color:#6B6B68;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px">Self-Pub</div>
+                    <div style="font-family:'Noto Serif KR',serif;font-weight:600;font-size:13px;color:#1C2028">자비출판</div>
+                    <div style="font-size:9.5px;color:#6B6B68;margin-top:2px;font-family:'Fraunces',serif;font-style:italic">원고 대행 · 유통 연결</div>
+                  </button>
+                </div>
+
+                <!-- 체크박스: Amazon KDP (공통 추가 옵션) -->
+                <button id="psvc-amazon" onclick="pSvcToggleAmazon()"
+                  style="width:100%;padding:9px 14px;border:1.5px solid #C9BFA8;border-radius:2px;background:#FBF6EC;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:10px;text-align:left;transition:all .18s">
+                  <span id="psvc-amazon-check" style="width:16px;height:16px;border:1.5px solid #C9BFA8;border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;background:#fff;transition:all .18s"></span>
+                  <span>
+                    <span style="font-family:'Fraunces',serif;font-style:italic;font-size:9px;color:#6B6B68;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:1px">+ Global Option</span>
+                    <span style="font-family:'Noto Serif KR',serif;font-weight:600;font-size:12.5px;color:#1C2028">Amazon KDP 글로벌 출간 추가</span>
+                    <span style="font-size:9.5px;color:#6B6B68;margin-left:8px;font-family:'Fraunces',serif;font-style:italic">영문판 · 글로벌 동시 출간</span>
+                  </span>
+                </button>
+
+                <!-- 설명 줄 -->
+                <div id="psvc-desc" style="margin-top:8px;padding:9px 12px;background:#EBE1CD;border-radius:2px;border-left:2px solid #7A1F2B;font-size:11px;color:#3A3D45;line-height:1.65;font-family:inherit">
+                  인세 계약 기반 공동 출판. AI 보조 워크플로우, 11개 채널 마케팅 포함. 편집장 5영업일 회신.
+                </div>
+              </div>
+
+              <div class="sv-pf"><label>가제</label><div class="sv-pi">하이엔드 Python 데이터 엔지니어링</div></div>
+              <div class="sv-pf"><label>카테고리</label><div class="sv-chips"><span class="sv-chip">AI · 머신러닝</span><span class="sv-chip on">데이터 엔지니어링</span><span class="sv-chip">백엔드</span><span class="sv-chip">DevOps</span></div></div>
+              <div class="sv-pf"><label>타깃 독자</label><div class="sv-pi">중급 데이터 엔지니어 · 백엔드 개발자 (3–7년차)</div></div>
+              <div class="sv-pf"><label>예상 분량 · 가격</label><div class="sv-pi">450–500p · 정가 ₩ 38,000 (제안)</div></div>
+              <div class="sv-prop-grade"><div class="sv-grade-l"><small>— AI 시장 적합도 평가 —</small><b>채택 권장 · 시장성 우수</b></div><div class="sv-grade-r">A<small>등급</small></div></div>
+              <a class="sv-prop-next" href="publishing-proposal.html" style="display:flex;align-items:center;justify-content:center;gap:8px;color:#FBF6EC;text-decoration:none">출간 제안서 작성하기 <span class="sv-btn-arr">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    // ── 제안서 카드: 서비스 유형 선택 ──
+    let pSvcType = 'planning';
+    let pSvcAmazon = false;
+    const pDescs = {
+      planning: '인세 계약 기반 공동 출판. AI 보조 워크플로우, 11개 채널 마케팅 포함. 편집장 5영업일 회신.',
+      self:     '원고를 전달하시면 교정·디자인·조판·ISBN 등록·서점 유통까지 에이콘이 대행합니다.',
+    };
+    const ACTIVE_STYLE  = {border:'1.5px solid #7A1F2B', background:'#faf4ef'};
+    const PASSIVE_STYLE = {border:'1.5px solid #C9BFA8', background:'#FBF6EC'};
+
+    function applyStyle(el, active) {
+      el.style.border = active ? '1.5px solid #7A1F2B' : '1.5px solid #C9BFA8';
+      el.style.background = active ? '#faf4ef' : '#FBF6EC';
+      const label = el.querySelector('div:first-child') || el.querySelector('span:first-child > span:first-child');
+      if (label) label.style.color = active ? '#7A1F2B' : '#6B6B68';
+    }
+
+    function updateDesc() {
+      let base = pDescs[pSvcType];
+      if (pSvcAmazon) base += ' + Amazon KDP 글로벌 동시 출간 포함.';
+      document.getElementById('psvc-desc').textContent = base;
+    }
+
+    function pSvcRadio(type) {
+      pSvcType = type;
+      applyStyle(document.getElementById('psvc-planning'), type === 'planning');
+      applyStyle(document.getElementById('psvc-self'),     type === 'self');
+      // label 색도 맞춤
+      document.getElementById('psvc-planning').querySelectorAll('div')[0].style.color = type==='planning'?'#7A1F2B':'#6B6B68';
+      document.getElementById('psvc-self').querySelectorAll('div')[0].style.color = type==='self'?'#7A1F2B':'#6B6B68';
+      updateDesc();
+    }
+
+    function pSvcToggleAmazon() {
+      pSvcAmazon = !pSvcAmazon;
+      const btn = document.getElementById('psvc-amazon');
+      const chk = document.getElementById('psvc-amazon-check');
+      btn.style.border = pSvcAmazon ? '1.5px solid #7A1F2B' : '1.5px solid #C9BFA8';
+      btn.style.background = pSvcAmazon ? '#faf4ef' : '#FBF6EC';
+      chk.textContent = pSvcAmazon ? '✓' : '';
+      chk.style.background = pSvcAmazon ? '#7A1F2B' : '#fff';
+      chk.style.color = '#fff';
+      chk.style.borderColor = pSvcAmazon ? '#7A1F2B' : '#C9BFA8';
+      updateDesc();
+    }
+    </script>
+
+  </div><!-- /svt-planning -->
+
+  <!-- ── TAB: 자비출판 ── -->
+  <div class="sv-tab-pane" id="svt-self">
+    <div class="sv-wrap" style="padding-top:72px;padding-bottom:72px">
+      <div class="sv-sec-head svr">
+        <div class="sv-sec-num">— Self-Publishing —</div>
+        <h2 class="sv-sec-title">원고가 있다면,<br><em>지금 바로 시작</em>하세요.</h2>
+        <p class="sv-sec-lede">원고 접수부터 출판·유통까지 에이콘이 대행합니다. 포맷 자유 선택, ISBN 등록·납본, 국내 주요 서점 유통 채널 연결까지 원스톱.</p>
+      </div>
+      <div class="sv-self-grid svr">
+        <div class="sv-self-card"><div class="sv-self-num">— 01 —</div><div class="sv-self-title">원스톱 자비 출판 대행</div><div class="sv-self-pills"><span class="sv-fpill sv-fpill-g">ISBN 등록·납본</span><span class="sv-fpill sv-fpill-g">교보·YES24·알라딘 유통</span></div><div class="sv-self-desc">원고 접수부터 출판까지 전 과정 대행. 투명한 공정 단가 견적. 국내 주요 서점 유통 채널 연결까지 원스톱 처리.</div></div>
+        <div class="sv-self-card"><div class="sv-self-num">— 02 —</div><div class="sv-self-title">포맷 자유 선택</div><div class="sv-self-pills"><span class="sv-fpill sv-fpill-g">종이책</span><span class="sv-fpill sv-fpill-g">전자책</span><span class="sv-fpill sv-fpill-t">ePub 3.0</span></div><div class="sv-self-desc">종이책·전자책·ePub 3.0을 필요에 따라 조합 선택. 각 포맷별 제작 단가 투명 공개.</div></div>
+        <div class="sv-self-card"><div class="sv-self-num">— 03 —</div><div class="sv-self-title">편집·디자인 패키지</div><div class="sv-self-desc">교정교열, 표지 디자인, 내지 조판을 패키지 또는 단품 선택 가능. 전문 편집자·디자이너 매칭.</div></div>
+        <div class="sv-self-card"><div class="sv-self-num">— 04 —</div><div class="sv-self-title">마케팅 애드온 옵션</div><div class="sv-self-desc">에이콘 마케팅 채널(SNS·뉴스레터·유튜브) 활용 옵션 선택 가능. 별도 비용 협의.</div></div>
+      </div>
+      <div style="text-align:center;margin-top:16px">
+        <a class="sv-btn sv-btn-gold" href="publishing-proposal.html">자비출판 상담 신청 <span class="sv-btn-arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: Amazon KDP ── -->
+  <div class="sv-tab-pane" id="svt-amazon">
+    <div class="sv-wrap" style="padding-top:72px;padding-bottom:72px">
+      <div class="sv-sec-head svr">
+        <div class="sv-sec-num">— Global Reach —</div>
+        <h2 class="sv-sec-title">세계 독자에게 닿는<br><em>첫 걸음</em>.</h2>
+        <p class="sv-sec-lede">에이콘의 Amazon KDP 서비스로 국내 도서를 전 세계 독자에게 선보이세요.</p>
+      </div>
+      <div class="sv-promise-grid svr" style="max-width:960px;margin:0 auto 48px;gap:48px">
+        <div class="sv-card top-gold">
+          <div class="sv-card-head"><div><span class="sv-card-en">— Amazon KDP · Royalty Tier —</span><h3>가격대별 부수당 인세</h3></div></div>
+          <table class="sv-kdp-table">
+            <thead><tr><th>가격대 (USD)</th><th class="r">인세율</th><th class="r">부수당 인세</th></tr></thead>
+            <tbody>
+              <tr><td>$ 2.99</td><td class="r">70%</td><td class="r ry">$ 2.09</td></tr>
+              <tr class="hi"><td>$ 4.99 <span class="best">— Best</span></td><td class="r">70%</td><td class="r ry">$ 3.49</td></tr>
+              <tr><td>$ 6.99</td><td class="r">70%</td><td class="r ry">$ 4.89</td></tr>
+              <tr><td>$ 9.99</td><td class="r">70%</td><td class="r ry">$ 6.99</td></tr>
+            </tbody>
+          </table>
+          <div class="sv-kdp-flags">
+            <div><div class="sv-kdp-flag">🇺🇸 🇬🇧</div><div class="sv-kdp-lbl">English</div><div class="sv-kdp-st">동시 출간 옵션</div></div>
+            <div><div class="sv-kdp-flag">🇯🇵</div><div class="sv-kdp-lbl">Japanese</div><div class="sv-kdp-st">파트너 매칭</div></div>
+            <div><div class="sv-kdp-flag">🇨🇳 🇹🇼</div><div class="sv-kdp-lbl">Chinese</div><div class="sv-kdp-st">현지 파트너</div></div>
+          </div>
+        </div>
+        <div>
+          <ul class="sv-points" style="border-top:none;padding-top:0">
+            <li><span class="sv-pp-lbl">KDP 등록·메타데이터 최적화</span><span class="sv-pp-val">에이콘 팀 담당</span></li>
+            <li><span class="sv-pp-lbl">글로벌 프라이싱 전략</span><span class="sv-pp-val">국가별 맞춤 설정</span></li>
+            <li><span class="sv-pp-lbl">ePub 3.0 → KDP 포맷 변환</span><span class="sv-pp-val">Kindle 최적화</span></li>
+            <li><span class="sv-pp-lbl">Amazon KDP 인세 구간</span><span class="sv-pp-val">70% 자동 설정</span></li>
+          </ul>
+          <div style="margin-top:28px">
+            <a class="sv-btn sv-btn-gold" href="publishing-proposal.html">글로벌 출간 상담 신청 <span class="sv-btn-arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /svc-studio -->
+</div><!-- /pg-service -->
+
+<!-- PAGE: READER -->
+<div class="pg" id="pg-reader">
+
+<style>
+/* ── Membership Lounge 전용 스타일 ── */
+.ml-wrap{max-width:1060px;margin:0 auto;padding:0 24px 88px}
+
+/* Hero */
+.ml-hero{
+  background:linear-gradient(135deg,#0F1923 0%,#0A2018 60%,#0F2E20 100%);
+  padding:72px 0 0;margin-bottom:0;position:relative;overflow:hidden;
+}
+.ml-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 40%,rgba(29,158,117,.12) 0,transparent 55%),
+             radial-gradient(ellipse at 20% 80%,rgba(15,110,86,.08) 0,transparent 45%);
+}
+.ml-hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal) 50%,transparent);
+  opacity:.4;
+}
+.ml-hero-in{max-width:1060px;margin:0 auto;padding:0 24px;position:relative}
+.ml-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:20px;
+}
+.ml-eyebrow::before{content:'';width:24px;height:1px;background:var(--teal)}
+.ml-h1{
+  font-size:clamp(32px,5vw,58px);font-weight:700;line-height:1.12;
+  letter-spacing:-.025em;color:#fff;margin-bottom:16px;
+}
+.ml-h1 em{font-style:normal;color:var(--teal)}
+.ml-lead{font-size:15px;color:rgba(255,255,255,.58);line-height:1.8;max-width:560px;margin-bottom:40px}
+.ml-lead b{color:rgba(255,255,255,.82)}
+
+/* 핵심 포지셔닝 배지 */
+.ml-diff-bar{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px;
+}
+.ml-diff-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:500;padding:7px 14px;
+  border-radius:100px;border:1px solid rgba(29,158,117,.3);
+  background:rgba(29,158,117,.08);color:rgba(255,255,255,.75);
+}
+.ml-diff-pill::before{content:'✓';color:var(--teal);font-weight:700}
+
+/* 구독 플랜 */
+.ml-plans{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin-bottom:64px;
+}
+.ml-plan{
+  background:#fff;border:1.5px solid var(--bdm);
+  border-radius:14px;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.ml-plan:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.1)}
+.ml-plan.feat{border-color:var(--teal);box-shadow:0 0 0 4px rgba(29,158,117,.08)}
+.ml-plan-band{height:3px;background:var(--bdm)}
+.ml-plan.feat .ml-plan-band{background:linear-gradient(90deg,var(--teal2),var(--teal))}
+.ml-plan-body{padding:24px 22px 22px}
+.ml-plan-badge{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:2px 10px;border-radius:100px;
+  background:var(--teal);color:#fff;margin-bottom:10px;letter-spacing:.04em;
+}
+.ml-plan-name{font-size:17px;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+.ml-plan-price{font-size:32px;font-weight:700;color:var(--teal);line-height:1;margin-bottom:3px;letter-spacing:-.02em}
+.ml-plan-price span{font-size:13px;font-weight:400;color:var(--muted)}
+.ml-plan-desc{font-size:12.5px;color:var(--muted);margin-bottom:18px;line-height:1.55}
+.ml-plan-list{list-style:none;border-top:1px solid var(--bd);padding-top:14px;margin-bottom:20px}
+.ml-plan-list li{
+  font-size:12.5px;color:var(--muted);padding:7px 0;
+  border-bottom:1px solid var(--bd);
+  display:flex;align-items:flex-start;gap:8px;line-height:1.5;
+}
+.ml-plan-list li:last-child{border-bottom:none}
+.ml-plan-list li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:1px}
+.ml-plan-list li.dim::before{content:'○';color:var(--muted2)}
+.ml-plan-list li.dim{color:var(--muted2)}
+.ml-plan-list li b{color:var(--text);font-weight:600}
+.ml-plan-btn{
+  width:100%;padding:12px;border-radius:8px;font-size:14px;font-weight:600;
+  border:none;cursor:pointer;font-family:inherit;transition:all .15s;letter-spacing:-.01em;
+}
+.ml-plan-btn-p{background:var(--teal);color:#fff}
+.ml-plan-btn-p:hover{opacity:.87}
+.ml-plan-btn-g{background:var(--bg);color:var(--text);border:1.5px solid var(--bdm)}
+.ml-plan-btn-g:hover{border-color:var(--teal);color:var(--teal)}
+
+/* 섹션 타이틀 */
+.ml-sh{margin-bottom:36px}
+.ml-sh .eye{margin-bottom:7px}
+.ml-sh h2{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+.ml-sh p{font-size:14px;color:var(--muted);line-height:1.7;max-width:620px}
+
+/* 핵심 서비스 카드 (대형) */
+.ml-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:64px}
+.ml-svc-card{
+  background:#fff;border:1px solid var(--bdm);border-radius:14px;
+  padding:28px 26px;position:relative;overflow:hidden;
+  transition:box-shadow .2s;
+}
+.ml-svc-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07)}
+.ml-svc-card.wide{grid-column:1/-1}
+.ml-svc-accent{
+  position:absolute;top:0;left:24px;right:24px;height:2px;
+  background:linear-gradient(90deg,var(--teal2),var(--teal));
+  border-radius:0 0 2px 2px;
+}
+.ml-svc-accent.amber{background:linear-gradient(90deg,#b87c0b,var(--amber))}
+.ml-svc-accent.purple{background:linear-gradient(90deg,var(--purpleD),var(--purple))}
+.ml-svc-accent.coral{background:linear-gradient(90deg,#812e14,var(--coral))}
+.ml-svc-ico{font-size:30px;margin-bottom:14px;line-height:1}
+.ml-svc-tag{
+  font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal2);margin-bottom:8px;
+}
+.ml-svc-tag.amber{color:var(--amberD)}
+.ml-svc-tag.purple{color:var(--purpleD)}
+.ml-svc-tag.coral{color:var(--coralD)}
+.ml-svc-title{font-size:17px;font-weight:700;letter-spacing:-.015em;margin-bottom:10px;line-height:1.35}
+.ml-svc-desc{font-size:13px;color:var(--muted);line-height:1.82;margin-bottom:16px}
+.ml-svc-desc b{color:var(--text);font-weight:500}
+.ml-svc-list{list-style:none;border-top:1px solid var(--bd);padding-top:10px}
+.ml-svc-list li{font-size:12.5px;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--bd);display:flex;align-items:baseline;gap:8px}
+.ml-svc-list li:last-child{border-bottom:none}
+.ml-svc-list li::before{content:'→';color:var(--teal);font-size:11px;flex-shrink:0}
+.ml-svc-list li.a::before{color:var(--amberD)}
+.ml-svc-list li.p::before{color:var(--purpleD)}
+.ml-svc-list li.c::before{color:var(--coral)}
+
+/* 비교표 */
+.ml-compare{background:#fff;border:1px solid var(--bdm);border-radius:14px;overflow:hidden;margin-bottom:64px}
+.ml-compare table{width:100%;border-collapse:collapse;font-size:13px}
+.ml-compare th{
+  padding:14px 18px;text-align:left;background:var(--bg);
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--bdm);
+}
+.ml-compare th:not(:first-child){text-align:center;min-width:90px}
+.ml-compare td{padding:13px 18px;border-bottom:1px solid var(--bd);color:var(--muted);vertical-align:middle}
+.ml-compare td:not(:first-child){text-align:center;font-size:15px}
+.ml-compare tr:last-child td{border-bottom:none}
+.ml-compare tr:hover td{background:rgba(29,158,117,.02)}
+.ml-compare .feat-name{color:var(--text);font-weight:500;font-size:13.5px}
+.ml-compare .feat-sub{font-size:11px;color:var(--muted2);margin-top:2px}
+.ml-compare .ck{color:var(--teal);font-weight:700}
+.ml-compare .no{color:var(--muted2)}
+.ml-compare .part{color:var(--amber);font-size:11.5px;font-weight:600}
+.ml-compare .only{
+  color:var(--teal2);font-size:10px;font-weight:700;
+  background:var(--teal3);padding:2px 7px;border-radius:4px;white-space:nowrap;
+}
+.ml-compare .thead-acorn{background:var(--teal3);color:var(--teal4) !important}
+
+/* CTA 배너 */
+.ml-cta{
+  background:linear-gradient(135deg,var(--navy) 0%,#0A2018 100%);
+  border-radius:16px;padding:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:28px;flex-wrap:wrap;
+}
+.ml-cta-left{}
+.ml-cta-eye{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.ml-cta-h{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:8px}
+.ml-cta-d{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;max-width:440px}
+.ml-cta-btns{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.ml-btn-teal{background:var(--teal);color:#fff;font-size:14px;font-weight:600;padding:13px 26px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.ml-btn-teal:hover{opacity:.86}
+.ml-btn-outline{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:14px;font-weight:500;padding:13px 22px;border-radius:8px;background:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.ml-btn-outline:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+@media(max-width:760px){
+  .ml-plans{grid-template-columns:1fr}
+  .ml-svc-grid{grid-template-columns:1fr}
+  .ml-svc-card.wide{grid-column:auto}
+  .ml-cta{flex-direction:column}
+  .ml-compare{overflow-x:auto}
+}
+</style>
+
+<!-- HERO -->
+<div class="ml-hero">
+  <div class="ml-hero-in">
+    <div class="ml-eyebrow">Membership Lounge</div>
+    <h1 class="ml-h1">에이콘만 줄 수 있는<br><em>독자 경험</em>.</h1>
+    <p class="ml-lead">단순 도서 판매를 넘어 — <b>저자와 직접 소통하고, 책이 출간 후에도 살아있도록</b> 지원합니다.<br>교보·알라딘·YES24가 제공하지 못하는, 에이콘 독자만의 전용 서비스입니다.</p>
+    <div class="ml-diff-bar">
+      <span class="ml-diff-pill">저자 직접 Q&A</span>
+      <span class="ml--pill">신간·개정판 조기 알림</span>
+      <span class="ml-diff-pill">ePub 3.0 인터랙티브</span>
+      <span class="ml-diff-pill">보완 자료 독점 제공</span>
+      <span class="ml-diff-pill">에러타 우선 반영</span>
+      <span class="ml-diff-pill">저자 강연 멤버 전용 초청</span>
+    </div>
+  </div>
+</div>
+
+<div class="ml-wrap" style="padding-top:48px">
+
+  <!-- ── 멤버십 혜택 ── -->
+  <div class="ml-sh">
+    <div class="eye">Membership Plan</div>
+    <h2>에이콘 멤버십 — 무료</h2>
+    <p>에이콘 도서를 구매하신 모든 독자에게 무료로 제공됩니다. 별도 요금 없이 아래 혜택을 모두 이용하세요.</p>
+  </div>
+  <div style="max-width:560px;margin:0 auto 64px">
+    <div class="ml-plan feat" style="max-width:100%">
+      <div class="ml-plan-band"></div>
+      <div class="ml-plan-body">
+        <div class="ml-plan-badge">전체 무료 · No Cost</div>
+        <div class="ml-plan-name">에이콘 멤버십</div>
+        <div class="ml-plan-price">0<span>원/월</span></div>
+        <div class="ml-plan-desc">도서를 구매한 모든 독자에게 자동 제공 — 별도 결제 없음</div>
+        <ul class="ml-plan-list">
+          <li><b>저자 직접 Q&A</b> — 도서별 저자 답변 채널</li>
+          <li><b>ePub 3.0</b> — 구매 도서 자동 제공</li>
+          <li><b>신간·개정판 얼리 액세스</b> — 출간 7일 전 열람</li>
+          <li><b>보완 자료 전체 다운로드</b> — 코드·데이터셋·업데이트 노트</li>
+          <li><b>개정판 무상 업그레이드</b> — 구매 도서 한정</li>
+          <li><b>저자 강연·웨비나</b> — 온·오프라인 초청</li>
+          <li><b>정오표 우선 반영</b> + 감사 크레딧 등재</li>
+          <li><b>북클럽 오프라인 행사</b> 우선 참여</li>
+        </ul>
+        <a href="mypage.html" target="_blank" class="ml-plan-btn ml-plan-btn-p" style="text-decoration:none;display:block;text-align:center">무료 멤버십 시작</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 핵심 서비스 상세 ── -->
+  <div class="ml-sh">
+    <div class="eye">Core Services</div>
+    <h2>에이콘 독자만의 6가지 서비스</h2>
+    <p>출판사가 직접 운영하기 때문에 가능한 서비스들입니다. 유통 플랫폼에서는 절대 받을 수 없습니다.</p>
+  </div>
+  <div class="ml-svc-grid">
+
+    <!-- 1. 저자 직접 Q&A -->
+    <div class="ml-svc-card">
+      <div class="ml-svc-accent"></div>
+      <div class="ml-svc-ico">💬</div>
+      <div class="ml-svc-tag">Author Direct Q&A</div>
+      <div class="ml-svc-title">저자에게 직접 묻는<br>Q&A 채널</div>
+      <div class="ml-svc-desc">도서별 전용 Q&A 채널에서 <b>저자가 직접 답변</b>합니다. 오탈자·내용 문의부터 심화 질문까지 — 댓글이 아닌 진짜 소통입니다.</div>
+      <ul class="ml-svc-list">
+        <li>도서별 Q&A 스레드 — 저자 직접 응답</li>
+        <li>직접 질문 횟수 제한 없음</li>
+        <li>기존 Q&A 아카이브 — 스탠다드도 열람 가능</li>
+        <li>저자 답변 평균 응답: 5영업일 이내</li>
+      </ul>
+    </div>
+
+    <!-- 2. 신간·개정판 조기 알림 -->
+    <div class="ml-svc-card">
+      <div class="ml-svc-accent amber"></div>
+      <div class="ml-svc-ico">🔔</div>
+      <div class="ml-svc-tag amber">Early Alert System</div>
+      <div class="ml-svc-title">신간·개정판<br>조기 알림 & 얼리 액세스</div>
+      <div class="ml-svc-desc">관심 저자·카테고리·기술 키워드를 등록하면 <b>공식 출간 전</b>에 알림을 보내드립니다. 멤버 전체가 출간 7일 전 미리 읽을 수 있습니다.</div>
+      <ul class="ml-svc-list a">
+        <li>관심 저자·카테고리·기술 키워드 맞춤 알림</li>
+        <li>보유 도서 개정판 — 출간 즉시 알림</li>
+        <li>출간 7일 전 얼리 액세스 ePub 제공</li>
+        <li>연간 에이콘 출판 로드맵 사전 공유</li>
+      </ul>
+    </div>
+
+    <!-- 3. ePub 3.0 인터랙티브 -->
+    <div class="ml-svc-card">
+      <div class="ml-svc-accent purple"></div>
+      <div class="ml-svc-ico">📖</div>
+      <div class="ml-svc-tag purple">ePub 3.0 Interactive</div>
+      <div class="ml-svc-title">종이책을 사도<br>ePub 3.0 자동 제공</div>
+      <div class="ml-svc-desc">에이콘 도서를 어디서 구매하든 <b>멤버십 등록 후 ePub 3.0 신청</b>하면 무상 제공합니다. 코드 하이라이팅·인터랙티브 목차·하이퍼링크가 살아있습니다.</div>
+      <ul class="ml-svc-list p">
+        <li>코드 블록 하이라이팅 + 복사 기능</li>
+        <li>챕터별 하이퍼링크·인터랙티브 목차</li>
+        <li>다크모드·폰트 크기 조절 지원</li>
+        <li>개정판 출간 시 ePub 자동 업데이트</li>
+      </ul>
+    </div>
+
+    <!-- 4. 보완 자료 독점 제공 -->
+    <div class="ml-svc-card">
+      <div class="ml-svc-accent amber"></div>
+      <div class="ml-svc-ico">📦</div>
+      <div class="ml-svc-tag amber">Companion Resources</div>
+      <div class="ml-svc-title">책이 살아있게 하는<br>보완 자료 허브</div>
+      <div class="ml-svc-desc">출간 이후 기술이 바뀌면 저자가 <b>보완 노트·업데이트 코드·추가 실습 데이터</b>를 직접 업로드합니다. 책이 낡지 않습니다.</div>
+      <ul class="ml-svc-list a">
+        <li>저자 업데이트 노트 (기술 변화 반영)</li>
+        <li>예제 코드 최신 버전 & 데이터셋</li>
+        <li>오류 수정 패치 노트 (정오표 이상)</li>
+        <li>미공개 추가 챕터·연습문제 제공</li>
+      </ul>
+    </div>
+
+    <!-- 5. 정오표 우선 반영 -->
+    <div class="ml-svc-card">
+      <div class="ml-svc-accent coral"></div>
+      <div class="ml-svc-ico">✏️</div>
+      <div class="ml-svc-tag coral">Errata Priority</div>
+      <div class="ml-svc-title">독자가 발견한 오류<br>우선 반영 & 감사 크레딧</div>
+      <div class="ml-svc-desc">오탈자·내용 오류를 신고하면 편집부가 검토 후 <b>정오표에 반영하고 결과를 회신</b>합니다. 기여도 높은 신고자는 개정판 감사 크레딧에 이름이 올라갑니다.</div>
+      <ul class="ml-svc-list c">
+        <li>신고 → 편집부 검토 → 결과 회신 (5영업일)</li>
+        <li>정오표 실시간 업데이트 + 멤버 자동 통보</li>
+        <li>우수 신고자 — 개정판 감사 크레딧 등재</li>
+        <li>누적 기여 배지 시스템</li>
+      </ul>
+    </div>
+
+    <!-- 6. 저자 강연·웨비나 -->
+    <div class="ml-svc-card">
+      <div class="ml-svc-accent"></div>
+      <div class="ml-svc-ico">🎤</div>
+      <div class="ml-svc-tag">Author Events</div>
+      <div class="ml-svc-title">저자와 만나는<br>강연·웨비나·북클럽</div>
+      <div class="ml-svc-desc">모든 멤버가 <b>저자가 직접 진행하는 온·오프라인 행사</b>에 초청됩니다. 책 너머의 인사이트를 저자에게 직접 듣는 자리입니다.</div>
+      <ul class="ml-svc-list">
+        <li>월 1회 저자 온라인 웨비나</li>
+        <li>분기 오프라인 북클럽 우선 참여</li>
+        <li>기업팀: 사내 저자 초청 강연 연결</li>
+        <li>강연 녹화본 아카이브 멤버 전용 제공</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── 경쟁 비교표 ── -->
+  <div class="ml-sh">
+    <div class="eye">Why Acorn Lounge</div>
+    <h2>왜 에이콘 멤버십인가</h2>
+    <p>일반 유통 플랫폼과의 차이를 정직하게 비교합니다.</p>
+  </div>
+  <div class="ml-compare">
+    <table>
+      <thead>
+        <tr>
+          <th>서비스 항목</th>
+          <th>교보 / YES24 / 알라딘</th>
+          <th class="thead-acorn">에이콘 멤버십 라운지</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="feat-name">저자 직접 Q&A</div><div class="feat-sub">저자가 직접 답변하는 채널</div></td>
+          <td class="no">✕</td>
+          <td><span class="ck">✓ 전체 제공</span></td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">ePub 3.0 인터랙티브</div><div class="feat-sub">코드 하이라이팅·인터랙티브 목차</div></td>
+          <td class="no">✕</td>
+          <td class="ck">✓ 구매 시 자동 제공</td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">개정판 자동 업데이트</div><div class="feat-sub">구매 도서 개정판 무상 업그레이드</div></td>
+          <td class="no">✕</td>
+          <td><span class="ck">✓ 전체 제공</span></td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">보완 자료 & 업데이트 코드</div><div class="feat-sub">기술 변화 반영 저자 추가 자료</div></td>
+          <td class="no">✕</td>
+          <td class="ck">✓ 스탠다드 기본 제공</td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">신간 얼리 액세스</div><div class="feat-sub">출간 전 미리 읽기</div></td>
+          <td class="no">✕</td>
+          <td><span class="ck">✓ 전체 제공</span></td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">오류 신고 & 정오표 반영</div><div class="feat-sub">독자 신고 → 편집부 회신</div></td>
+          <td class="part">일부</td>
+          <td class="ck">✓ 5영업일 이내 회신</td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">저자 강연·웨비나 초청</div><div class="feat-sub">온·오프라인 행사 우선 참여</div></td>
+          <td class="no">✕</td>
+          <td><span class="ck">✓ 전체 제공</span></td>
+        </tr>
+        <tr>
+          <td><div class="feat-name">도서 구매</div><div class="feat-sub">종이책·전자책 판매</div></td>
+          <td class="ck">✓ (주요 기능)</td>
+          <td class="part">외부 채널 연결 제공</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="ml-cta">
+    <div class="ml-cta-left">
+      <div class="ml-cta-eye">Join Membership Lounge</div>
+      <div class="ml-cta-h">지금 시작하세요 — 무료입니다</div>
+      <div class="ml-cta-d">스탠다드 멤버십은 무료입니다. ePub 3.0 수령·정오표 우선 반영·보완 자료 다운로드를 바로 이용하세요. 저자와 더 깊이 연결되고 싶다면 프리미엄으로 업그레이드하세요.</div>
+    </div>
+    <div class="ml-cta-btns">
+      <a href="mypage.html" target="_blank" class="ml-btn-teal" style="text-decoration:none">무료 멤버십 시작</a>
+      <a href="epub_reader.html" target="_blank" class="ml-btn-outline" style="text-decoration:none">📖 ePub 3.0 리더 미리보기</a>
+    </div>
+  </div>
+
+</div><!-- /ml-wrap -->
+</div><!-- /pg-reader -->
+
+<!-- PAGE: ERRATA -->
+<div class="pg" id="pg-errata">
+  <div style="max-width:780px;margin:0 auto;padding:48px 24px 80px">
+
+    <!-- 헤더 -->
+    <div style="background:var(--navy);border-radius:14px;padding:40px 44px;margin-bottom:32px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:30px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.06;pointer-events:none">📝</div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Errata Report</div>
+      <h1 style="font-size:26px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:10px">오류 · 오탈자 신고</h1>
+      <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.8;max-width:480px">에이콘 도서의 오탈자·내용 오류·링크 오류를 신고해 주세요.<br>편집팀이 검토 후 정오표를 업데이트하고, 신고자에게 결과를 회신드립니다.</p>
+    </div>
+
+    <!-- 신고 양식 -->
+    <div style="background:#fff;border:1px solid var(--bdm);border-radius:14px;padding:32px 36px;margin-bottom:24px">
+      <h2 style="font-size:17px;font-weight:700;margin-bottom:5px;letter-spacing:-.015em">신고 양식</h2>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:26px">* 표시 항목은 필수입니다.</p>
+
+      <!-- 도서 정보 -->
+      <div style="margin-bottom:18px">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd)">도서 정보</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">도서명 *</label>
+            <input type="text" id="err-title" placeholder="예: 파이썬으로 배우는 LLM 엔지니어링"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">ISBN (13자리)</label>
+            <input type="text" id="err-isbn" placeholder="978-89-6077-000-0"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+          </div>
+        </div>
+      </div>
+
+      <!-- 오류 위치 -->
+      <div style="margin-bottom:18px">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd)">오류 위치</div>
+        <div style="display:grid;grid-template-columns:80px 80px 1fr;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">페이지 *</label>
+            <input type="text" id="err-page" placeholder="예: 142"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">줄</label>
+            <input type="text" id="err-line" placeholder="예: 3번째"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">오류 유형 *</label>
+            <select id="err-type"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+              <option>오탈자</option>
+              <option>내용 오류</option>
+              <option>코드 오류</option>
+              <option>링크 오류</option>
+              <option>그림·표 오류</option>
+              <option>번역 오류</option>
+              <option>기타</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 오류 내용 -->
+      <div style="margin-bottom:18px">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd)">오류 내용</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">현재 내용 (잘못된 부분) *</label>
+            <textarea id="err-wrong" rows="3" placeholder="책에 인쇄된 잘못된 내용을 그대로 입력해 주세요."
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);resize:vertical;transition:border .15s;line-height:1.7"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'"></textarea>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">올바른 내용 (수정 제안) *</label>
+            <textarea id="err-correct" rows="3" placeholder="올바르게 수정되어야 할 내용을 입력해 주세요."
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);resize:vertical;transition:border .15s;line-height:1.7"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'"></textarea>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">추가 설명 (선택)</label>
+            <textarea id="err-note" rows="2" placeholder="참고 URL, 출처, 부연 설명 등이 있으면 입력해 주세요."
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);resize:vertical;transition:border .15s;line-height:1.7"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 신고자 정보 -->
+      <div style="margin-bottom:22px">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd)">신고자 정보 (회신 원하실 경우)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">성명</label>
+            <input type="text" id="err-name" placeholder="홍길동"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:12px;font-weight:600;color:var(--text)">이메일</label>
+            <input type="email" id="err-email" placeholder="example@email.com"
+              style="font-family:inherit;font-size:13px;padding:10px 13px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--bdm)'">
+          </div>
+        </div>
+      </div>
+
+      <!-- 제출 -->
+      <div style="display:flex;gap:10px;align-items:center">
+        <button onclick="submitErrata()"
+          style="background:var(--teal);color:#fff;font-size:14px;font-weight:600;padding:13px 32px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s"
+          onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">오류 신고 제출</button>
+        <button onclick="go('home')"
+          style="background:none;border:1px solid var(--bdm);color:var(--muted);font-size:13.5px;font-weight:500;padding:13px 20px;border-radius:8px;cursor:pointer;font-family:inherit;transition:all .15s"
+          onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='none'">취소</button>
+      </div>
+    </div>
+
+    <!-- 완료 메시지 (hidden) -->
+    <div id="errata-success" style="display:none;background:var(--teal3);border:1px solid var(--teal);border-radius:14px;padding:32px 36px;text-align:center">
+      <div style="font-size:36px;margin-bottom:14px">✅</div>
+      <h2 style="font-size:20px;font-weight:700;color:var(--teal4);margin-bottom:8px">신고가 접수되었습니다</h2>
+      <p style="font-size:14px;color:var(--teal2);line-height:1.75;margin-bottom:6px">에이콘 편집팀이 검토 후 정오표를 업데이트하겠습니다.<br>이메일을 남겨주셨다면 처리 결과를 회신해 드립니다.</p>
+      <p style="font-size:12px;color:var(--teal2);margin-bottom:22px">소중한 피드백에 감사드립니다.</p>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <button onclick="resetErrata()"
+          style="background:var(--teal);color:#fff;font-size:13.5px;font-weight:600;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;font-family:inherit">추가 신고하기</button>
+        <button onclick="go('home')"
+          style="background:#fff;border:1px solid var(--teal);color:var(--teal2);font-size:13.5px;font-weight:600;padding:11px 20px;border-radius:8px;cursor:pointer;font-family:inherit">도서 목록으로</button>
+      </div>
+    </div>
+
+    <!-- 안내 -->
+    <div style="background:#fff;border:1px solid var(--bd);border-radius:10px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:22px;flex-shrink:0">💡</div>
+      <div>
+        <div style="font-size:13.5px;font-weight:600;margin-bottom:5px">이메일로도 신고하실 수 있습니다</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.75">
+          <a href="mailto:editor@acornpub.co.kr" style="color:var(--teal2);font-weight:500">editor@acornpub.co.kr</a>로 도서명, 페이지, 오류 내용을 보내주세요.<br>
+          정오표는 에이콘 홈페이지 각 도서 상세 페이지에서 확인하실 수 있습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: SNS -->
+<div class="pg" id="pg-sns">
+<div style="max-width:820px;margin:0 auto;padding:48px 24px 80px">
+
+  <!-- 헤더 -->
+  <div style="background:var(--navy);border-radius:14px;padding:38px 44px;margin-bottom:28px;position:relative;overflow:hidden">
+    <div style="position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:90px;opacity:.05;pointer-events:none;line-height:1">📡</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Social Channels</div>
+    <h1 style="font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:8px">SNS · 블로그 · GitHub</h1>
+    <p style="font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.75">에이콘 출판사의 공식 채널입니다. 채널 URL을 수정하면 상단 메뉴 링크에 즉시 반영됩니다.</p>
+  </div>
+
+  <!-- 채널 카드 그리드 -->
+  <div id="sns-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px"></div>
+
+  <!-- 저장 안내 -->
+  <div style="background:#fff;border:1px solid var(--bd);border-radius:10px;padding:18px 22px;display:flex;align-items:center;gap:14px;margin-bottom:20px">
+    <div style="font-size:20px;flex-shrink:0">💾</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7">URL 수정 후 <b style="color:var(--text)">저장</b> 버튼을 클릭하세요. 변경 내용은 브라우저에 저장되어 다음 방문 시에도 유지됩니다.<br>초기화 버튼으로 에이콘 공식 기본값으로 되돌릴 수 있습니다.</div>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button onclick="saveSNS()"
+      style="background:var(--teal);color:#fff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s"
+      onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">변경 내용 저장</button>
+    <button onclick="resetSNS()"
+      style="background:#fff;border:1px solid var(--bdm);color:var(--muted);font-size:13.5px;padding:12px 20px;border-radius:8px;cursor:pointer;font-family:inherit"
+      onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='#fff'">기본값으로 초기화</button>
+    <button onclick="go('home')"
+      style="background:#fff;border:1px solid var(--bdm);color:var(--muted);font-size:13.5px;padding:12px 20px;border-radius:8px;cursor:pointer;font-family:inherit;margin-left:auto"
+      onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='#fff'">← 홈으로</button>
+  </div>
+</div>
+</div>
+
+<style>
+.sns-card{background:#fff;border:1px solid var(--bdm);border-radius:10px;padding:18px 20px}
+.sns-icon{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-bottom:12px}
+.sns-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.sns-handle{font-size:11.5px;color:var(--muted);margin-bottom:10px}
+.sns-input{width:100%;font-family:inherit;font-size:12.5px;padding:9px 12px;border:1.5px solid var(--bdm);border-radius:7px;outline:none;color:var(--text);background:var(--bg);transition:border .15s}
+.sns-input:focus{border-color:var(--teal);background:#fff}
+.sns-open{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12px;color:var(--teal2);text-decoration:none;font-weight:500;transition:opacity .15s}
+.sns-open:hover{opacity:.75}
+</style>
+
+<script>
+// ── SNS 채널 기본값 및 관리 ──
+const SNS_DEFAULT = [
+  {id:'instagram', icon:'📷', bg:'#F5EAF7', name:'Instagram',   handle:'@acornpub',    url:'https://www.instagram.com/acornpub/'},
+  {id:'facebook',  icon:'f',  bg:'#E8F0FE', name:'Facebook',    handle:'acornpub',     url:'https://www.facebook.com/acornpub'},
+  {id:'youtube',   icon:'▶',  bg:'#FDE8E8', name:'YouTube',     handle:'@acornpub',    url:'https://www.youtube.com/@acornpub'},
+  {id:'linkedin',  icon:'in', bg:'#E8F4FE', name:'LinkedIn',    handle:'acornpub',     url:'https://www.linkedin.com/company/acornpub'},
+  {id:'x',         icon:'𝕏',  bg:'#E8E8E8', name:'X (Twitter)', handle:'@acornpub',   url:'https://twitter.com/acornpub'},
+  {id:'blog',      icon:'✍',  bg:'#E8F5EE', name:'블로그 (Naver)', handle:'acornpub', url:'https://blog.naver.com/acornpub'},
+  {id:'github',    icon:'⌥',  bg:'#F0EEF8', name:'GitHub',      handle:'AcornPublishing', url:'https://github.com/AcornPublishing'},
+  {id:'newsletter',icon:'✉',  bg:'#FFF4E8', name:'뉴스레터 (Stibee)', handle:'에이콘 뉴스레터', url:'https://stibee.com/api/v1.0/emails/subscribe/acornpub'},
+];
+
+let snsData = {};
+
+function loadSNS() {
+  try { snsData = JSON.parse(localStorage.getItem('acorn_sns') || '{}'); } catch(e) { snsData = {}; }
+  SNS_DEFAULT.forEach(s => { if (!snsData[s.id]) snsData[s.id] = s.url; });
+}
+
+function renderSNSGrid() {
+  const grid = document.getElementById('sns-grid');
+  if (!grid) return;
+  grid.innerHTML = SNS_DEFAULT.map(s => `
+    <div class="sns-card">
+      <div class="sns-icon" style="background:${s.bg}">${s.icon}</div>
+      <div class="sns-name">${s.name}</div>
+      <div class="sns-handle">${s.handle}</div>
+      <input class="sns-input" id="sns-inp-${s.id}" type="url" value="${snsData[s.id] || s.url}" placeholder="${s.url}">
+      <a class="sns-open" id="sns-link-${s.id}" href="${snsData[s.id] || s.url}" target="_blank">↗ 채널 바로가기</a>
+    </div>`).join('');
+}
+
+function saveSNS() {
+  SNS_DEFAULT.forEach(s => {
+    const inp = document.getElementById('sns-inp-' + s.id);
+    if (inp) snsData[s.id] = inp.value.trim() || s.url;
+  });
+  try { localStorage.setItem('acorn_sns', JSON.stringify(snsData)); } catch(e) {}
+  // nav 링크도 즉시 업데이트
+  SNS_DEFAULT.forEach(s => {
+    const navEl = document.getElementById('snav-' + s.id);
+    if (navEl) navEl.href = snsData[s.id];
+    const lnkEl = document.getElementById('sns-link-' + s.id);
+    if (lnkEl) { lnkEl.href = snsData[s.id]; }
+  });
+  alert('저장되었습니다. 상단 SNS 메뉴 링크가 업데이트되었습니다.');
+}
+
+function resetSNS() {
+  if (!confirm('모든 채널 URL을 에이콘 공식 기본값으로 초기화하시겠습니까?')) return;
+  snsData = {};
+  SNS_DEFAULT.forEach(s => { snsData[s.id] = s.url; });
+  try { localStorage.setItem('acorn_sns', JSON.stringify(snsData)); } catch(e) {}
+  renderSNSGrid();
+  // nav 링크 초기화
+  SNS_DEFAULT.forEach(s => {
+    const navEl = document.getElementById('snav-' + s.id);
+    if (navEl) navEl.href = s.url;
+  });
+}
+
+// 초기 로드
+loadSNS();
+
+// nav 링크 초기 적용
+function applySNSToNav() {
+  SNS_DEFAULT.forEach(s => {
+    const navEl = document.getElementById('snav-' + s.id);
+    if (navEl) navEl.href = snsData[s.id] || s.url;
+  });
+}
+applySNSToNav();
+
+// SNS 페이지 열릴 때 그리드 렌더
+const _origGo = window.go;
+window.go = function(page) {
+  _origGo(page);
+  if (page === 'sns') { loadSNS(); renderSNSGrid(); }
+};
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fw">
+    <div class="ftop">
+      <div class="fbrand">
+        <div class="flogo">에이콘<span>출판사</span></div>
+        <p>(07547) 서울특별시 강서구 양천로 583</p><p>우림블루나인비즈니스센터 A동 2009호</p>
+        <p>대표전화: 02-2653-7600</p>
+        <p>acornpub@acornpub.co.kr</p>
+        <p>editor@acornpub.co.kr</p>
+      </div>
+      <div class="fcol">
+        <div class="fcolh">사이트맵</div>
+        <ul>
+          <li><button onclick="go('about')">About Us</button></li>
+          <li><button onclick="go('home')">전체 도서</button></li>
+          <li><button onclick="go('service')">저자 서비스</button></li>
+          <li><button onclick="go('reader')">멤버십 라운지</button></li>
+          <li><button onclick="go('errata')">오류·오탈자 신고</button></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fcolh">저자 서비스</div>
+        <ul>
+          <li><button onclick="goSvc('planning')">기획출판</button></li>
+          <li><button onclick="goSvc('self')">자비출판</button></li>
+          <li><button onclick="goSvc('amazon')">Amazon KDP</button></li>
+          <li><button onclick="go('service')">도서 기획안 제안</button></li>
+          <li><a href="https://author.acornpub.kr/" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">저자 사이트 →</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fcolh">도서 카테고리</div>
+        <ul>
+          <li><button onclick="goCat('AI·머신러닝')">AI · 머신러닝</button></li>
+          <li><button onclick="goCat('클라우드·DevOps')">클라우드 · DevOps</button></li>
+          <li><button onclick="goCat('보안·네트워크')">보안 · 네트워크</button></li>
+          <li><button onclick="goCat('프로그래밍')">프로그래밍</button></li>
+          <li><button onclick="goCat('인문·교양')">인문 · 교양</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <div class="fbiz">사업자등록번호 111-81-27685 &nbsp;|&nbsp; 대표: 황영주 &nbsp;|&nbsp; 통신판매업신고 제0000호<br>© 2026 에이콘 출판사. All rights reserved. &nbsp;|&nbsp; KJ엔지니어링 Publishing Studio 기반</div>
+      <div class="fcopy">개인정보처리방침 &nbsp;|&nbsp; 이용약관</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── DATA ─── */
+const CATS=[
+  {id:'all',icon:'📚',label:'전체 도서',cnt:12},
+  {id:'AI·머신러닝',icon:'🤖',label:'AI · 머신러닝',cnt:3},
+  {id:'클라우드·DevOps',icon:'☁️',label:'클라우드 · DevOps',cnt:2},
+  {id:'보안·네트워크',icon:'🔐',label:'보안 · 네트워크',cnt:2},
+  {id:'프로그래밍',icon:'💻',label:'프로그래밍',cnt:2},
+  {id:'데이터·DB',icon:'📊',label:'데이터 · DB',cnt:2},
+  {id:'인문·교양',icon:'🏛️',label:'인문 · 교양',cnt:1},
+];
+const BOOKS=[
+  {id:1,title:'파이썬으로 배우는 LLM 엔지니어링',sub:'LangChain부터 RAG, 파인튜닝까지',auth:'김민준 지음',cat:'AI·머신러닝',tags:['신간','AI','Python'],price:'38,000',bg:'#1a3a5c',fg:'#5BC8F5',ct:'LLM\nEng.',paper:'38,000',ebook:'26,600',isbn:'978-89-6077-000-0',pages:520,pub:'2025.03',
+   toc:['1부 LLM 기초와 생태계','1장 대형 언어 모델의 이해','2장 프롬프트 엔지니어링','2부 LangChain 실전','3장 LangChain 아키텍처','4장 체인과 에이전트','3부 RAG 구현','5장 벡터 데이터베이스','6장 RAG 파이프라인 구성'],
+   desc:'ChatGPT·Claude·Gemini를 실무에 적용하는 개발자를 위한 종합 가이드. LangChain 프레임워크부터 RAG 시스템 구축, LoRA 파인튜닝, 프로덕션 배포까지 단계별로 다룹니다.',
+   aname:'김민준',atitle:'AI 엔지니어 / LLM 전문가',abio:'서울대학교 컴퓨터공학과 졸업 후 국내 주요 AI 스타트업에서 LLM 시스템을 설계·운영해온 실무 전문가.',acol:'#1D9E75'},
+  {id:2,title:'쿠버네티스 운영 실전 가이드',sub:'프로덕션 환경의 K8s 아키텍처와 최적화',auth:'이서연 지음',cat:'클라우드·DevOps',tags:['베스트셀러','K8s'],price:'42,000',bg:'#0d3b5e',fg:'#3DB8E0',ct:'K8s\nOps',paper:'42,000',ebook:'29,400',isbn:'978-89-6077-001-7',pages:612,pub:'2025.01',
+   toc:['1부 쿠버네티스 아키텍처','2부 워크로드 관리','3부 네트워킹과 스토리지','4부 보안과 RBAC','5부 모니터링과 장애 대응','6부 대규모 클러스터 최적화'],
+   desc:'쿠버네티스를 프로덕션 환경에서 운영하는 엔지니어를 위한 심층 가이드. 아키텍처 설계부터 장애 대응, 비용 최적화까지 실무 노하우를 담았습니다.',
+   aname:'이서연',atitle:'SRE / 클라우드 아키텍트',abio:'AWS·GCP 공인 아키텍트. 금융권 대규모 K8s 클러스터 설계·운영 경험.',acol:'#534AB7'},
+  {id:3,title:'실전 사이버보안 침투테스트',sub:'Kali Linux로 배우는 공격과 방어 전략',auth:'박지현 지음',cat:'보안·네트워크',tags:['신간','보안'],price:'36,000',bg:'#1a1a2e',fg:'#E94560',ct:'Cyber\nSec',paper:'36,000',ebook:'25,200',isbn:'978-89-6077-002-4',pages:480,pub:'2025.04',
+   toc:['1부 침투테스트 개요','2부 정찰 및 스캐닝','3부 취약점 분석','4부 익스플로잇 기법','5부 사후 침투 활동','6부 보고서 작성'],
+   desc:'실무 침투테스터가 직접 쓴 현장 중심 가이드. Kali Linux 기반 도구 활용부터 윤리적 해킹의 법적 테두리까지 체계적으로 안내합니다.',
+   aname:'박지현',atitle:'침투테스트 전문가 / OSCP',abio:'국내 주요 보안 컨설팅 기업 출신. OSCP·CEH·CISSP 자격 보유.',acol:'#C94D27'},
+  {id:4,title:'Go 언어로 만드는 고성능 서버',sub:'동시성 프로그래밍과 마이크로서비스 실전',auth:'최현우 지음',cat:'프로그래밍',tags:['Go','백엔드'],price:'35,000',bg:'#00758f',fg:'#79D7E7',ct:'Go\nHigh\nPerf',paper:'35,000',ebook:'24,500',isbn:'978-89-6077-003-1',pages:440,pub:'2025.02',
+   toc:['1부 Go 동시성 기초','2부 gRPC와 REST','3부 데이터베이스 연동','4부 마이크로서비스 패턴','5부 성능 최적화'],
+   desc:'Go 언어의 고루틴·채널을 활용한 고성능 백엔드 서버 구현 가이드.',
+   aname:'최현우',atitle:'백엔드 엔지니어',abio:'네이버·라인 출신 백엔드 엔지니어. Go 언어 오픈소스 기여자.',acol:'#00758f'},
+  {id:5,title:'생성형 AI 시대의 UX 디자인',sub:'AI 제품을 위한 인터랙션 원칙과 패턴',auth:'강나영 지음',cat:'AI·머신러닝',tags:['UX','AI'],price:'33,000',bg:'#6a0572',fg:'#F4A7D9',ct:'AI\nUX',paper:'33,000',ebook:'23,100',isbn:'978-89-6077-004-8',pages:380,pub:'2025.03',
+   toc:['1부 AI 제품 UX 개론','2부 대화형 인터페이스','3부 신뢰와 투명성 설계','4부 에러 핸들링 패턴','5부 평가와 반복'],
+   desc:'ChatGPT·Copilot 등 AI 제품을 설계하는 UX 디자이너와 PM을 위한 실전 가이드.',
+   aname:'강나영',atitle:'UX 디자인 리서처',abio:'삼성전자·카카오 UX 리서처 출신. AI 제품 설계 전문.',acol:'#6a0572'},
+  {id:6,title:'아파치 카프카 실전 아키텍처',sub:'대용량 데이터 스트리밍 설계와 운영',auth:'윤성호 지음',cat:'데이터·DB',tags:['Kafka','데이터'],price:'40,000',bg:'#1a1a1a',fg:'#FF6B35',ct:'Kafka\nArch',paper:'40,000',ebook:'28,000',isbn:'978-89-6077-005-5',pages:580,pub:'2024.12',
+   toc:['1부 카프카 아키텍처','2부 프로듀서와 컨슈머','3부 클러스터 운영','4부 Kafka Streams','5부 데이터 파이프라인 설계'],
+   desc:'실무에서 바로 적용할 수 있는 Kafka 아키텍처 설계와 운영 가이드.',
+   aname:'윤성호',atitle:'데이터 엔지니어',abio:'토스·배달의민족 데이터 플랫폼 팀 출신.',acol:'#FF6B35'},
+  {id:7,title:'제로 트러스트 보안 아키텍처',sub:'현대 기업 보안 모델의 설계와 구현',auth:'한정훈 지음',cat:'보안·네트워크',tags:['보안','제로트러스트'],price:'39,000',bg:'#0a2e1c',fg:'#00E676',ct:'Zero\nTrust',paper:'39,000',ebook:'27,300',isbn:'978-89-6077-006-2',pages:500,pub:'2024.11',
+   toc:['1부 제로 트러스트 개념','2부 ID·접근 관리','3부 네트워크 세그멘테이션','4부 엔드포인트 보안','5부 구현 로드맵'],
+   desc:'NIST SP 800-207 기반 제로 트러스트 보안 모델 구현 가이드.',
+   aname:'한정훈',atitle:'보안 아키텍트 / CISSP',abio:'금융보안원 출신. 엔터프라이즈 보안 아키텍처 설계 10년 경력.',acol:'#00998A'},
+  {id:8,title:'리액트 18 + Next.js 14 마스터',sub:'서버 컴포넌트부터 App Router까지',auth:'임지훈 지음',cat:'프로그래밍',tags:['React','Next.js'],price:'37,000',bg:'#20232a',fg:'#61DAFB',ct:'React\n18',paper:'37,000',ebook:'25,900',isbn:'978-89-6077-007-9',pages:560,pub:'2024.10',
+   toc:['1부 React 18 새 기능','2부 Next.js 14 App Router','3부 서버 컴포넌트','4부 데이터 페칭 패턴','5부 성능 최적화','6부 배포와 운영'],
+   desc:'React 18의 Concurrent 기능과 Next.js 14 App Router를 실전 프로젝트로 익히는 완결 가이드.',
+   aname:'임지훈',atitle:'프론트엔드 엔지니어',abio:'당근마켓·쿠팡 프론트엔드 엔지니어 출신. React 오픈소스 기여자.',acol:'#61DAFB'},
+  {id:9,title:'AWS 솔루션 아키텍처 실전',sub:'SAA-C03 자격증과 실무를 동시에',auth:'정미라 지음',cat:'클라우드·DevOps',tags:['AWS','자격증'],price:'44,000',bg:'#232f3e',fg:'#FF9900',ct:'AWS\nArch',paper:'44,000',ebook:'30,800',isbn:'978-89-6077-008-6',pages:640,pub:'2024.09',
+   toc:['1부 AWS 핵심 서비스','2부 고가용성 설계','3부 보안 아키텍처','4부 비용 최적화','5부 실전 모의고사'],
+   desc:'AWS SAA-C03 시험 합격과 실무 설계 역량을 동시에 키우는 올인원 가이드.',
+   aname:'정미라',atitle:'AWS 공인 솔루션 아키텍트',abio:'AWS Professional·Security 자격 보유.',acol:'#FF9900'},
+  {id:10,title:'PostgreSQL 성능 최적화',sub:'인덱스 설계부터 쿼리 튜닝, 파티셔닝까지',auth:'오준혁 지음',cat:'데이터·DB',tags:['PostgreSQL','DB'],price:'38,000',bg:'#336791',fg:'#fff',ct:'PgSQL\nPerf',paper:'38,000',ebook:'26,600',isbn:'978-89-6077-009-3',pages:488,pub:'2024.08',
+   toc:['1부 실행 계획 분석','2부 인덱스 전략','3부 쿼리 최적화','4부 파티셔닝','5부 커넥션 풀링','6부 모니터링'],
+   desc:'DBA와 백엔드 개발자를 위한 PostgreSQL 성능 튜닝 심층 가이드.',
+   aname:'오준혁',atitle:'DBA / 데이터 아키텍트',abio:'국내 주요 포털 DBA 출신. PostgreSQL 커뮤니티 운영진.',acol:'#336791'},
+  {id:11,title:'디지털 시대의 철학적 사유',sub:'AI·알고리즘 시대, 인간을 다시 묻다',auth:'송하은 지음',cat:'인문·교양',tags:['인문','철학'],price:'22,000',bg:'#2c1810',fg:'#D4A574',ct:'哲學',paper:'22,000',ebook:'15,400',isbn:'978-89-6077-010-9',pages:280,pub:'2025.01',
+   toc:['1장 알고리즘 앞의 자유의지','2장 데이터화된 감정','3장 디지털 기억과 망각','4장 가상 공동체의 윤리','5장 기술 시대의 인간됨'],
+   desc:'철학자의 눈으로 바라본 AI·소셜미디어·알고리즘 시대의 인간 조건. 디지털 전환 시대를 살아가는 모든 이를 위한 인문 에세이.',
+   aname:'송하은',atitle:'철학 박사 / 연구자',abio:'고려대학교 철학과 박사. 디지털 철학·AI 윤리 전문.',acol:'#D4A574'},
+  {id:12,title:'MLOps 실전: ML 파이프라인 자동화',sub:'Kubeflow·MLflow·Airflow 통합 운영',auth:'노민준 지음',cat:'AI·머신러닝',tags:['MLOps','ML'],price:'41,000',bg:'#0d1b2a',fg:'#4CC9F0',ct:'MLOps',paper:'41,000',ebook:'28,700',isbn:'978-89-6077-011-6',pages:544,pub:'2024.07',
+   toc:['1부 MLOps 개요','2부 데이터 파이프라인','3부 모델 학습 자동화','4부 모델 서빙','5부 모니터링과 재학습'],
+   desc:'머신러닝 모델을 프로덕션에 배포하고 지속적으로 운영하기 위한 MLOps 실전 가이드.',
+   aname:'노민준',atitle:'ML 엔지니어 / MLOps 전문가',abio:'카카오·네이버 ML 플랫폼 팀 출신.',acol:'#4CC9F0'},
+];
+const NEWBOOKS=[0,4,2,1,7].map(i=>BOOKS[i]);
+
+/* ─── STATE ─── */
+let curCat='all', curSort='newest';
+
+/* ─── CAROUSEL ─── */
+function buildCarousel(){
+  const track=document.getElementById('ctrack');
+  const slides=[...NEWBOOKS,...NEWBOOKS];
+  track.innerHTML=slides.map((b,i)=>`
+    <div class="cslide${i===0?' act':''}" onclick="openBook(${b.id})" onmouseenter="hlSlide(this)">
+      <div class="ccover" style="background:${b.bg};color:${b.fg}">${b.ct.replace('\n','<br>')}</div>
+      <div class="cmeta">
+        <div class="cbadge">신간</div>
+        <div class="ctitle">${b.title}</div>
+        <div class="cauthor">${b.auth}</div>
+      </div>
+    </div>`).join('');
+}
+function hlSlide(el){document.querySelectorAll('.cslide').forEach(s=>s.classList.remove('act'));el.classList.add('act')}
+
+/* ─── SIDEBAR ─── */
+function buildSB(){
+  document.getElementById('sbEl').innerHTML=
+    '<div class="sbhead"><div class="sbhead-txt">카테고리</div></div>'+
+    CATS.map(c=>`<div class="sbcat${c.id===curCat?' on':''}" onclick="selCat('${c.id}')">
+      <span class="sbcat-ico">${c.icon}</span><span class="sbcat-txt">${c.label}</span>
+      <span class="sbcat-cnt">${c.cnt}</span></div>`).join('');
+}
+function selCat(id){curCat=id;buildSB();buildGrid();document.getElementById('catTitle').textContent=CATS.find(c=>c.id===id)?.label||'전체 도서'}
+
+/* ─── GRID ─── */
+function buildGrid(){
+  let books=curCat==='all'?BOOKS:BOOKS.filter(b=>b.cat===curCat);
+  if(curSort==='name') books=[...books].sort((a,b)=>a.title.localeCompare(b.title,'ko'));
+  document.getElementById('bgrid').innerHTML=books.map(b=>`
+    <div class="bcard" onclick="openBook(${b.id})">
+      <div class="bcov" style="background:${b.bg};color:${b.fg}">${b.ct.replace(/\n/g,'<br>')}</div>
+      <div class="binfo">
+        <div class="btitle">${b.title}</div>
+        <div class="bauthor">${b.auth}</div>
+        <div class="btags">${b.tags.map(t=>`<span class="btag" style="background:${b.bg}22;color:${b.bg};border:1px solid ${b.bg}44">${t}</span>`).join('')}</div>
+        <div class="bprice">₩${b.price}</div>
+      </div>
+    </div>`).join('');
+}
+function setSort(btn,s){document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');curSort=s;buildGrid()}
+
+/* ─── DETAIL ─── */
+function openBook(id){
+  const b=BOOKS.find(x=>x.id===id);if(!b)return;
+  document.getElementById('dContent').innerHTML=`
+    <button class="back-btn" onclick="go('home')">← 도서 목록으로</button>
+    <div class="dgrid">
+      <div class="dcov" style="background:${b.bg};color:${b.fg}">${b.ct.replace(/\n/g,'<br>')}</div>
+      <div>
+        <div class="dcat">${b.cat}</div>
+        <div class="dtitle">${b.title}</div>
+        <div class="dsub">${b.sub}</div>
+        <div class="dauth">저자: <strong>${b.auth}</strong> &nbsp;|&nbsp; ${b.pages}쪽 &nbsp;|&nbsp; ${b.pub} &nbsp;|&nbsp; ISBN ${b.isbn}</div>
+        <div class="dbadges">${b.tags.map(t=>`<span class="dbadge" style="background:${b.bg}18;color:${b.bg};border-color:${b.bg}55">${t}</span>`).join('')}</div>
+        <div class="buy-box">
+          <div class="buy-lbl">구매하기</div>
+          <div class="buygrid">
+            <a class="bbtn bkyobo" href="https://www.kyobobook.co.kr" target="_blank"><span>교보문고</span><span class="bpr">₩${b.paper}</span></a>
+            <a class="bbtn byes" href="https://www.yes24.com" target="_blank"><span>YES24</span><span class="bpr">₩${b.paper}</span></a>
+            <a class="bbtn baladin" href="https://www.aladin.co.kr" target="_blank"><span>알라딘</span><span class="bpr">₩${b.paper}</span></a>
+            <a class="bbtn bepub" href="mypage.html" target="_blank"><span>전자책 + ePub 3.0 구매</span><span class="bpr">₩${b.ebook}</span></a>
+          </div>
+          <div class="hdiv"></div>
+          <div class="rpromo">
+            <div class="rp-ico">🎁</div>
+            <div>
+              <div class="rp-h">종이책 구매 시 ePub 3.0 무료 제공</div>
+              <div class="rp-d">에이콘 멤버십 라운지 가입 후 구매하시면 ePub 3.0이 자동 연동됩니다. 저자 Q&A·독서 진행 관리·신간 알림까지.</div>
+              <div style="display:flex;gap:8px;margin-top:7px;flex-wrap:wrap">
+                <a class="rp-cta" href="mypage.html" target="_blank" style="text-decoration:none">📚 내 서재 (MyPage) →</a>
+                <a class="rp-cta" href="epub_reader.html" target="_blank" style="text-decoration:none;color:var(--teal4)">📖 ePub 3.0 리더 미리보기 →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dtabs">
+      <button class="dtab on" onclick="setDT(this,'i')">도서 소개</button>
+      <button class="dtab" onclick="setDT(this,'t')">목차</button>
+      <button class="dtab" onclick="setDT(this,'a')">저자 소개</button>
+    </div>
+    <div class="dtpane on" id="dt-i"><p style="font-size:14px;color:var(--muted);line-height:1.9;max-width:680px">${b.desc}</p></div>
+    <div class="dtpane" id="dt-t"><ul class="toclist">${b.toc.map((t,i)=>`<li class="tocitem"><span class="tocnum">${String(i+1).padStart(2,'0')}</span><span>${/^\d부/.test(t)?`<strong>${t}</strong>`:t}</span></li>`).join('')}</ul></div>
+    <div class="dtpane" id="dt-a"><div class="acard"><div class="aav" style="background:${b.acol}">${b.aname.charAt(0)}</div><div><div class="aname">${b.aname}</div><div class="atitle">${b.atitle}</div><div class="abio">${b.abio}</div></div></div></div>`;
+  go('detail');
+}
+function setDT(btn,id){document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.dtpane').forEach(p=>p.classList.remove('on'));document.getElementById('dt-'+id)?.classList.add('on')}
+
+/* ─── SERVICE TAB ─── */
+function setSvTab(btn,id){
+  document.querySelectorAll('.sv-tab-btn').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.sv-tab-pane').forEach(p=>p.classList.remove('on'));
+  document.getElementById('svt-'+id)?.classList.add('on');
+}
+
+/* ─── SEARCH ─── */
+document.getElementById('sinput').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  const el=document.getElementById('sres');
+  if(!q){el.style.display='none';return}
+  const m=BOOKS.filter(b=>b.title.toLowerCase().includes(q)||b.cat.toLowerCase().includes(q)||b.tags.some(t=>t.toLowerCase().includes(q))||b.sub.toLowerCase().includes(q)).slice(0,6);
+  if(!m.length){el.style.display='none';return}
+  el.style.display='block';
+  el.innerHTML=m.map(b=>`<div class="sri" onclick="openBook(${b.id})"><div><div style="font-size:13px;color:#fff">${b.title}</div><div style="font-size:11px;color:rgba(255,255,255,.4)">${b.auth}</div></div><span class="sri-tag">${b.cat}</span></div>`).join('');
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.nsearch'))document.getElementById('sres').style.display='none'});
+
+/* ─── ROUTER ─── */
+function go(page){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  const t=document.getElementById('pg-'+page);
+  if(t)t.classList.add('on');
+  document.getElementById('carWrap').style.display=(page==='home'||page==='books')?'block':'none';
+  if(page==='home'){buildSB();buildGrid()}
+  // errata: 폼 리셋
+  if(page==='errata'){
+    document.querySelector('#pg-errata > div > div:nth-child(2)').style.display='block';
+    const suc=document.getElementById('errata-success');
+    if(suc)suc.style.display='none';
+  }
+  window.scrollTo(0,0);
+}
+
+function submitErrata(){
+  const title=document.getElementById('err-title')?.value.trim();
+  const page=document.getElementById('err-page')?.value.trim();
+  const wrong=document.getElementById('err-wrong')?.value.trim();
+  const correct=document.getElementById('err-correct')?.value.trim();
+  if(!title||!page||!wrong||!correct){
+    alert('도서명, 페이지, 현재 내용, 올바른 내용은 필수 입력 항목입니다.');
+    return;
+  }
+  document.querySelector('#pg-errata > div > div:nth-child(2)').style.display='none';
+  document.getElementById('errata-success').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function resetErrata(){
+  ['err-title','err-isbn','err-page','err-line','err-wrong','err-correct','err-note','err-name','err-email'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+  document.querySelector('#pg-errata > div > div:nth-child(2)').style.display='block';
+  document.getElementById('errata-success').style.display='none';
+}
+function goCat(cat){
+  curCat=CATS.find(c=>c.id===cat)?cat:'all';
+  document.getElementById('catTitle').textContent=CATS.find(c=>c.id===cat)?.label||cat;
+  go('home');
+}
+function goSvc(tab){
+  go('service');
+  setTimeout(()=>{const btn=document.querySelector(`.svtab[onclick*="'${tab}'"]`);if(btn)setSvTab(btn,tab)},60);
+}
+
+/* ─── INIT ─── */
+buildCarousel();
+go('home');
+
+// ── Studio service page simulator ──
+(function(){
+  const qs = id => document.getElementById(id);
+  const fmt = n => Math.round(n).toLocaleString('ko-KR');
+  const sim = {mode:'print', price:28000, rate:110, copies:2000};
+
+  function updateSim(){
+    const r = sim.rate/10;
+    const y1 = sim.price * (r/100) * sim.copies;
+    const y3 = y1 * 2.1;
+    if(qs('sv-price-val')) qs('sv-price-val').textContent = '₩ '+fmt(sim.price);
+    if(qs('sv-rate-val'))  qs('sv-rate-val').textContent = r.toFixed(1)+'%';
+    if(qs('sv-copies-val')) qs('sv-copies-val').textContent = fmt(sim.copies)+(sim.mode==='ebook'?' DL':'부');
+    if(qs('sv-y1')) qs('sv-y1').textContent = fmt(y1);
+    if(qs('sv-y3')) qs('sv-y3').textContent = fmt(y3);
+    if(qs('sv-y1-meta')) qs('sv-y1-meta').textContent = `@ ${r.toFixed(1)}% × ${fmt(sim.copies)}${sim.mode==='ebook'?' DL':'부'} × ₩${fmt(sim.price)}`;
+  }
+
+  function bindSim(){
+    const sp=qs('sv-price'), sr=qs('sv-rate'), sc=qs('sv-copies');
+    if(sp) sp.addEventListener('input',e=>{sim.price=+e.target.value;updateSim()});
+    if(sr) sr.addEventListener('input',e=>{sim.rate=+e.target.value;updateSim()});
+    if(sc) sc.addEventListener('input',e=>{sim.copies=+e.target.value;updateSim()});
+    document.querySelectorAll('.sv-stab').forEach(t=>{
+      t.addEventListener('click',()=>{
+        document.querySelectorAll('.sv-stab').forEach(x=>x.classList.remove('on'));
+        t.classList.add('on'); sim.mode=t.dataset.mode;
+        const sp2=qs('sv-price'), sr2=qs('sv-rate');
+        if(sim.mode==='ebook'){
+          if(sp2){sp2.min=8000;sp2.max=35000;sp2.value=18000} sim.price=18000;
+          if(sr2){sr2.min=200;sr2.max=250;sr2.value=220} sim.rate=220;
+        } else {
+          if(sp2){sp2.min=15000;sp2.max=50000;sp2.value=28000} sim.price=28000;
+          if(sr2){sr2.min=100;sr2.max=120;sr2.value=110} sim.rate=110;
+        }
+        updateSim();
+      });
+    });
+    updateSim();
+  }
+  bindSim();
+
+  // Reveal observer for svr elements
+  const svio = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');svio.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+  function observeSvr(){document.querySelectorAll('.svr:not(.in)').forEach(el=>svio.observe(el))}
+  observeSvr();
+  // Re-observe when tabs switch (elements appear)
+  document.querySelectorAll('.sv-tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(observeSvr,50));
+  });
+})();
+</script>
+</body>
+</html>

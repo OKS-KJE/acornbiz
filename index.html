@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비즈니스 모델 — KJ엔지니어링 · 에이콘 출판사 · 에이콘온</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F4F0;--card:#FFFFFF;--text:#19190F;--muted:#636259;
+  --border:rgba(0,0,0,0.07);--border-md:rgba(0,0,0,0.12);
+  --p50:#EEEDFE;--p600:#534AB7;--p800:#3C3489;
+  --t50:#E1F5EE;--t600:#0F6E56;--t800:#085041;
+  --c50:#FAECE7;--c600:#993C1D;--c800:#712B13;
+  --a50:#FAEEDA;--a600:#854F0B;--a800:#633806;
+  --g50:#F1EFE8;--g600:#5F5E5A;--g800:#444441;
+}
+html,body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.65}
+
+/* ── PAGE SHELL */
+.page{max-width:960px;margin:0 auto;padding:44px 28px 88px}
+
+/* ── OVERVIEW */
+.ov-header{margin-bottom:30px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.ov-title{font-size:26px;font-weight:600;letter-spacing:-.02em;margin-bottom:4px}
+.ov-sub{font-size:13.5px;color:var(--muted)}
+
+/* KJ tier-1 */
+.kj-wrap{background:var(--p50);border:1px solid var(--p600);border-radius:16px;padding:22px 24px;margin-bottom:6px}
+.kj-title{font-size:19px;font-weight:600;color:var(--p800)}
+.kj-sub{font-size:12.5px;color:var(--p600);margin-top:2px;margin-bottom:18px}
+.kj-svc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.kj-svc-card{background:#fff;border:1px solid var(--border-md);border-radius:8px;padding:12px 15px}
+.kj-svc-name{font-size:14px;font-weight:500;margin-bottom:3px}
+.kj-svc-desc{font-size:12px;color:var(--muted)}
+.expand-section{border-top:1px dashed rgba(83,74,183,.22);padding-top:14px;display:flex;flex-direction:column;gap:9px}
+.expand-row{display:flex;align-items:flex-start;gap:10px}
+.exp-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px;white-space:nowrap;flex-shrink:0;letter-spacing:.01em}
+.exp-pill.dom{background:var(--p800);color:#fff}
+.exp-pill.glb{background:var(--a600);color:#fff}
+.exp-text{font-size:12.5px;color:var(--p800);padding-top:3px}
+.exp-text.glb{color:var(--a800)}
+
+/* Connectors */
+.conn-zone{display:flex;justify-content:space-around;padding:0 17%;margin:12px 0 10px}
+.conn{display:flex;flex-direction:column;align-items:center}
+.conn-line{width:1px;height:20px;background:var(--g600);opacity:.3}
+.conn-head{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--g600);opacity:.4}
+
+/* Tier-2 company cards */
+.t2-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.co-card{border-radius:14px;padding:20px 20px 18px;border:1px solid;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;position:relative;overflow:hidden}
+.co-card::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .15s}
+.co-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.09)}
+.co-card.teal{background:var(--t50);border-color:var(--t600)}
+.co-card.coral{background:var(--c50);border-color:var(--c600)}
+.co-name{font-size:17px;font-weight:600;margin-bottom:2px}
+.co-card.teal .co-name{color:var(--t800)}
+.co-card.coral .co-name{color:var(--c800)}
+.co-spec{font-size:12px;margin-bottom:15px}
+.co-card.teal .co-spec{color:var(--t600)}
+.co-card.coral .co-spec{color:var(--c600)}
+.co-svc{font-size:12.5px;padding:7px 12px;background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:6px}
+.co-svc:last-of-type{margin-bottom:0}
+.co-cta{display:inline-flex;align-items:center;gap:5px;margin-top:16px;font-size:12px;font-weight:500;padding:7px 14px;border-radius:100px;letter-spacing:.01em}
+.teal .co-cta,.co-card.teal .co-cta{background:var(--t600);color:#fff}
+.coral .co-cta,.co-card.coral .co-cta{background:var(--c600);color:#fff}
+
+/* ── DETAIL PAGE */
+.detail-nav{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);cursor:pointer;padding:7px 14px;border-radius:8px;border:1px solid var(--border-md);background:var(--card);transition:background .12s;font-family:inherit}
+.back-btn:hover{background:var(--bg)}
+
+.hero{border-radius:16px;padding:26px 28px 24px;margin-bottom:30px;border:1px solid}
+.hero.teal{background:var(--t50);border-color:var(--t600)}
+.hero.coral{background:var(--c50);border-color:var(--c600)}
+.hero-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;margin-bottom:10px;letter-spacing:.04em}
+.teal .hero-tag{background:var(--t600);color:#fff}
+.coral .hero-tag{background:var(--c600);color:#fff}
+.hero-name{font-size:27px;font-weight:600;letter-spacing:-.025em;margin-bottom:5px}
+.teal .hero-name{color:var(--t800)}
+.coral .hero-name{color:var(--c800)}
+.hero-tagline{font-size:14px}
+.teal .hero-tagline{color:var(--t600)}
+.coral .hero-tagline{color:var(--c600)}
+
+/* Section header */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:11px;border-bottom:1px solid var(--border)}
+.sec-head h2{font-size:15px;font-weight:600}
+.sec-badge{font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:4px;border:1px solid}
+.common-badge{background:var(--p50);color:var(--p800);border-color:var(--p600)}
+.excl-badge{background:var(--a50);color:var(--a800);border-color:var(--a600)}
+
+/* Feature grid */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.feat-grid.single{grid-template-columns:1fr}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px}
+.feat-num{font-size:11.5px;font-weight:700;letter-spacing:.06em;margin-bottom:8px}
+.teal-acc .feat-num{color:var(--t600)}
+.coral-acc .feat-num{color:var(--c600)}
+.feat-title{font-size:15px;font-weight:600;margin-bottom:10px;line-height:1.45}
+.feat-body{font-size:13px;color:var(--muted);line-height:1.8}
+.feat-body strong{color:var(--text);font-weight:500}
+
+/* Pills */
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.pill{display:inline-block;font-size:12px;font-weight:500;padding:4px 11px;border-radius:100px;border:1px solid}
+.pill.t{background:var(--t50);color:var(--t800);border-color:var(--t600)}
+.pill.c{background:var(--c50);color:var(--c800);border-color:var(--c600)}
+.pill.a{background:var(--a50);color:var(--a800);border-color:var(--a600)}
+.pill.g{background:var(--g50);color:var(--g800);border-color:var(--g600)}
+
+/* Process steps */
+.steps{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.step{font-size:11.5px;padding:3px 8px;background:var(--g50);border-radius:4px;color:var(--muted)}
+.step-arrow{font-size:10px;color:var(--muted);align-self:center}
+
+/* Channel chips */
+.channels{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.ch{font-size:11.5px;padding:3px 9px;background:var(--bg);border:1px solid var(--border-md);border-radius:100px;color:var(--muted)}
+
+@media(max-width:680px){
+  .page{padding:28px 16px 64px}
+  .kj-svc{grid-template-columns:1fr}
+  .t2-grid{grid-template-columns:1fr}
+  .conn-zone{padding:0 30%}
+  .feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const $ = document.getElementById('app');
+const go = h => {
+  if (h === 'overview' || h === '' || h === '#') { overview(); window.scrollTo(0,0); }
+  else { window.location.hash = h; window.scrollTo(0,0); }
+};
+window.addEventListener('hashchange', route);
+
+/* ─────────────────────────────── OVERVIEW */
+function overview() {
+  $.innerHTML = `
+<div class="page">
+  <div class="ov-header">
+    <div class="eyebrow">Business Model</div>
+    <h1 class="ov-title">3개 회사 비즈니스 모델 계층 구조</h1>
+    <p class="ov-sub">KJ엔지니어링 · 에이콘 출판사 · 에이콘온</p>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:8px">Top Layer · 기술 플랫폼</div>
+  <div class="kj-wrap">
+    <div class="kj-title">KJ엔지니어링</div>
+    <div class="kj-sub">최상위 · 출판 기술 플랫폼</div>
+    <div class="kj-svc">
+      <div class="kj-svc-card">
+        <div class="kj-svc-name">Publishing Studio</div>
+        <div class="kj-svc-desc">출판사 + 저·역자 통합 시스템</div>
+      </div>
+      <div class="kj-svc-card">
+        <div class="kj-svc-name">ePub 3.0 클라우드</div>
+        <div class="kj-svc-desc">전자출판 인프라 구축 서비스</div>
+      </div>
+    </div>
+    <div class="expand-section">
+      <div class="expand-row">
+        <span class="exp-pill dom">⊕ 국내 잠재 고객</span>
+        <span class="exp-text">중소 출판사 고객 추가 확보 가능 — Publishing Studio · ePub 3.0 동일 서비스 공급</span>
+      </div>
+      <div class="expand-row">
+        <span class="exp-pill glb">🌐 글로벌 (예정)</span>
+        <span class="exp-text glb">글로벌 출판사 · 저자 대상 국제 서비스 확장 예정 — Publishing Studio · ePub 3.0 글로벌 공급</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn-zone">
+    <div class="conn"><div class="conn-line"></div><div class="conn-head"></div></div>
+    <div class="conn"><div class="conn-line"></div><div class="conn-head"></div></div>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:10px">Top-2nd Layer · 자회사</div>
+  <div class="t2-grid">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="co-card teal" onclick="acornpub()" style="cursor:pointer">
+        <div class="co-name">에이콘 출판사</div>
+        <div class="co-spec">IT 기술도서 전문</div>
+        <div class="co-svc">Publishing Studio (저·역자 관리 시스템)</div>
+        <div class="co-svc">IT 기술도서 ePub 3.0 클라우드</div>
+        <div class="co-svc">글로벌 출간 지원 (Amazon KDP)</div>
+        <div style="font-size:11px;color:var(--t600);margin-top:10px;font-weight:500">클릭하면 상세 내용 보기 →</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="acornpub_landing.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:8px 16px;border-radius:100px;text-decoration:none;background:var(--t600);color:#fff;letter-spacing:.01em;transition:opacity .15s" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">랜딩 페이지 보기 →</a>
+        <a href="page_connection_map.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:8px 16px;border-radius:100px;text-decoration:none;background:var(--t800);color:#fff;letter-spacing:.01em;border:2px solid var(--t600);transition:opacity .15s" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">연결 맵 보기 ⊞</a>
+      </div>
+    </div>
+    <div class="co-card coral">
+      <div class="co-name">에이콘온</div>
+      <div class="co-spec">인문 도서 전문</div>
+      <div class="co-svc">Publishing Studio (저·역자 관리 시스템)</div>
+      <div class="co-svc">인문 도서 ePub 3.0 클라우드</div>
+      <div class="co-svc">자비 출판 서비스</div>
+      <div class="co-svc">글로벌 출간 지원 (Amazon KDP)</div>
+    </div>
+  </div>
+</div>`;
+}
+
+/* ─────────────────────────────── 에이콘 출판사 DETAIL */
+function acornpub() {
+  $.innerHTML = `
+<div class="page">
+  <div class="detail-nav">
+    <button class="back-btn" onclick="go('overview')">← 개요로 돌아가기</button>
+  </div>
+
+  <div class="hero teal">
+    <div class="hero-tag">IT 기술도서 전문</div>
+    <div class="hero-name">에이콘 출판사</div>
+    <div class="hero-tagline">IT 분야 저·역자를 위한 체계적인 출판 파트너십</div>
+  </div>
+
+  <div class="sec-head">
+    <h2>Publishing Studio — 저·역자 서비스</h2>
+    <span class="sec-badge" style="background:var(--t50);color:var(--t800);border-color:var(--t600)">출판사 + 저·역자 통합 시스템</span>
+  </div>
+
+  <div class="feat-grid teal-acc">
+
+    <div class="feat-card">
+      <div class="feat-num">01</div>
+      <div class="feat-title">투명한 인세 구조와 사전 시뮬레이션</div>
+      <div class="pills">
+        <span class="pill t">종이책 10–12%</span>
+        <span class="pill t">전자책 20–25%</span>
+        <span class="pill g">1쇄 30일 이내 지급</span>
+        <span class="pill g">분기 정산</span>
+      </div>
+      <div class="feat-body">
+        출간 전 인세 시뮬레이터로 <strong>1년·3년 예상 수익</strong>을 저자가 직접 확인하고 계약에 임할 수 있습니다. 실시간 판매 대시보드를 통해 판매 현황과 정산 내역을 언제든 조회할 수 있습니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">02</div>
+      <div class="feat-title">출판 프로세스 실시간 확인 및 협업</div>
+      <div class="steps">
+        <span class="step">계약</span><span class="step-arrow">→</span>
+        <span class="step">저술</span><span class="step-arrow">→</span>
+        <span class="step">교정교열</span><span class="step-arrow">→</span>
+        <span class="step">디자인</span><span class="step-arrow">→</span>
+        <span class="step">조판</span><span class="step-arrow">→</span>
+        <span class="step">리뷰</span><span class="step-arrow">→</span>
+        <span class="step">보도자료</span><span class="step-arrow">→</span>
+        <span class="step">마감</span><span class="step-arrow">→</span>
+        <span class="step">인쇄·출간</span>
+      </div>
+      <div class="feat-body">
+        9단계 전 공정을 Publishing Studio 대시보드에서 실시간으로 확인합니다. 단계별 <strong>KEY EVENT 자동 알림</strong>과 담당 편집자와의 실시간 메시지 협업을 지원합니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">03</div>
+      <div class="feat-title">AI 보조 출판 워크플로우</div>
+      <div class="pills">
+        <span class="pill a">평균 4–6개월 출간</span>
+        <span class="pill g">표지 시안 24시간 이내</span>
+      </div>
+      <div class="feat-body">
+        <strong>집필:</strong> AI 윤문·팩트체크 기본 도구 무상 제공<br>
+        <strong>편집:</strong> AI 교정·인덱싱으로 편집 주기 단축<br>
+        <strong>디자인:</strong> 표지·내지 시안 24시간 이내 제공<br><br>
+        원고 수령 후 평균 4–6개월 이내 출간을 목표로 합니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">04</div>
+      <div class="feat-title">11개 채널 통합 마케팅 — 저자 비용 0원</div>
+      <div class="channels">
+        <span class="ch">인스타그램 (IT/일반서 분리)</span>
+        <span class="ch">페이스북</span>
+        <span class="ch">X</span>
+        <span class="ch">LinkedIn</span>
+        <span class="ch">유튜브 숏폼·롱폼</span>
+        <span class="ch">스티비 뉴스레터 5종</span>
+        <span class="ch">카카오 챗봇</span>
+        <span class="ch">홈페이지 블로그</span>
+      </div>
+      <div class="feat-body">
+        출간과 동시에 마케팅 패키지가 <strong>자동 적용</strong>됩니다. 모든 마케팅 비용은 에이콘이 부담하며, 저자 추가 비용 없음이 원칙입니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">05</div>
+      <div class="feat-title">출간 후 도서 보완 및 추가 지원</div>
+      <div class="feat-body">
+        출간 이후에도 파트너십은 지속됩니다.<br><br>
+        <strong>정오표 업데이트</strong> 및 독자 피드백 수렴, <strong>개정판 우선 협의</strong>, 보완 자료·추가 콘텐츠 제작 지원을 제공합니다. IT 기술 변화에 따른 개정 수요를 저자와 함께 지속 관리합니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">06</div>
+      <div class="feat-title">IT 도서 특화 ePub 3.0 출간</div>
+      <div class="pills">
+        <span class="pill g">종이책</span>
+        <span class="pill g">전자책</span>
+        <span class="pill g">PDF</span>
+        <span class="pill t">ePub 3.0</span>
+      </div>
+      <div class="feat-body">
+        4종 포맷 동시 출간. ePub 3.0은 <strong>코드 블록·수식·인터랙티브 요소</strong>에 최적화된 IT 전문 템플릿을 적용합니다. KJ엔지니어링의 ePub 3.0 클라우드 인프라 기반으로 제공됩니다.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-head">
+    <h2>글로벌 출간 지원</h2>
+    <span class="sec-badge common-badge">에이콘 출판사 · 에이콘온 공통</span>
+  </div>
+  <div class="feat-grid single teal-acc">
+    <div class="feat-card">
+      <div class="feat-num">07</div>
+      <div class="feat-title">글로벌 출간 지원 — Amazon KDP</div>
+      <div class="feat-body">
+        국내 출간과 연계하여 <strong>Amazon KDP</strong>를 통한 글로벌 출간을 지원합니다. 원서 번역 방향 컨설팅, KDP 등록·메타데이터 최적화, 글로벌 프라이싱 전략 수립까지 에이콘 팀이 함께합니다.<br><br>
+        에이콘 출판사·에이콘온 모두 동일하게 제공되는 공통 서비스입니다.
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+
+/* ─────────────────────────────── 에이콘온 DETAIL */
+function acornon() {
+  $.innerHTML = `
+<div class="page">
+  <div class="detail-nav">
+    <button class="back-btn" onclick="go('overview')">← 개요로 돌아가기</button>
+  </div>
+
+  <div class="hero coral">
+    <div class="hero-tag">인문 도서 전문</div>
+    <div class="hero-name">에이콘온</div>
+    <div class="hero-tagline">인문·교양 분야 저·역자를 위한 체계적인 출판 파트너십</div>
+  </div>
+
+  <div class="sec-head">
+    <h2>Publishing Studio — 저·역자 서비스</h2>
+    <span class="sec-badge" style="background:var(--c50);color:var(--c800);border-color:var(--c600)">출판사 + 저·역자 통합 시스템</span>
+  </div>
+
+  <div class="feat-grid coral-acc">
+
+    <div class="feat-card">
+      <div class="feat-num">01</div>
+      <div class="feat-title">투명한 인세 구조와 사전 시뮬레이션</div>
+      <div class="pills">
+        <span class="pill c">종이책 10–12%</span>
+        <span class="pill c">전자책 20–25%</span>
+        <span class="pill g">1쇄 30일 이내 지급</span>
+        <span class="pill g">분기 정산</span>
+      </div>
+      <div class="feat-body">
+        출간 전 인세 시뮬레이터로 <strong>1년·3년 예상 수익</strong>을 저자가 직접 확인하고 계약에 임할 수 있습니다. 실시간 판매 대시보드를 통해 판매 현황과 정산 내역을 언제든 조회할 수 있습니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">02</div>
+      <div class="feat-title">출판 프로세스 실시간 확인 및 협업</div>
+      <div class="steps">
+        <span class="step">계약</span><span class="step-arrow">→</span>
+        <span class="step">저술</span><span class="step-arrow">→</span>
+        <span class="step">교정교열</span><span class="step-arrow">→</span>
+        <span class="step">디자인</span><span class="step-arrow">→</span>
+        <span class="step">조판</span><span class="step-arrow">→</span>
+        <span class="step">리뷰</span><span class="step-arrow">→</span>
+        <span class="step">보도자료</span><span class="step-arrow">→</span>
+        <span class="step">마감</span><span class="step-arrow">→</span>
+        <span class="step">인쇄·출간</span>
+      </div>
+      <div class="feat-body">
+        9단계 전 공정을 Publishing Studio 대시보드에서 실시간으로 확인합니다. 단계별 <strong>KEY EVENT 자동 알림</strong>과 담당 편집자와의 실시간 메시지 협업을 지원합니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">03</div>
+      <div class="feat-title">AI 보조 출판 워크플로우</div>
+      <div class="pills">
+        <span class="pill a">평균 4–6개월 출간</span>
+        <span class="pill g">표지 시안 24시간 이내</span>
+      </div>
+      <div class="feat-body">
+        <strong>집필:</strong> 인문·교양·에세이 장르 특화 AI 윤문·사실 검증 도구 무상 제공<br>
+        <strong>편집:</strong> 내러티브 흐름 분석·AI 교정·인덱싱으로 편집 주기 단축<br>
+        <strong>디자인:</strong> 표지·내지 시안 24시간 이내 제공<br><br>
+        원고 수령 후 평균 4–6개월 이내 출간을 목표로 합니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">04</div>
+      <div class="feat-title">11개 채널 통합 마케팅 — 저자 비용 0원</div>
+      <div class="channels">
+        <span class="ch">인스타그램 (인문·교양)</span>
+        <span class="ch">페이스북</span>
+        <span class="ch">X</span>
+        <span class="ch">유튜브 독서·교양</span>
+        <span class="ch">스티비 뉴스레터 5종</span>
+        <span class="ch">카카오 챗봇</span>
+        <span class="ch">홈페이지 블로그</span>
+        <span class="ch">서평 미디어 연계</span>
+      </div>
+      <div class="feat-body">
+        인문·교양서 독자층 중심 채널 운영. 출간 즉시 마케팅 패키지가 <strong>자동 적용</strong>됩니다. 모든 마케팅 비용은 에이콘온이 부담하며, 저자 추가 비용 없음이 원칙입니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">05</div>
+      <div class="feat-title">출간 후 도서 보완 및 추가 지원</div>
+      <div class="feat-body">
+        출간 이후에도 파트너십은 지속됩니다.<br><br>
+        독자 서평 수렴·큐레이션 연계, <strong>개정판 우선 협의</strong>, 보완 자료 제작, 강연·인터뷰 연결을 지원합니다. 인문 도서의 롱테일 독자층과의 지속적 관계를 에이콘온이 함께 관리합니다.
+      </div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-num">06</div>
+      <div class="feat-title">인문 도서 ePub 3.0 출간</div>
+      <div class="pills">
+        <span class="pill g">종이책</span>
+        <span class="pill g">전자책</span>
+        <span class="pill g">PDF</span>
+        <span class="pill c">ePub 3.0</span>
+      </div>
+      <div class="feat-body">
+        4종 포맷 동시 출간. 인문 도서 특화 ePub 3.0 템플릿으로 <strong>가독성과 서체 심미성</strong>을 최우선으로 구현합니다. KJ엔지니어링의 ePub 3.0 클라우드 인프라 기반으로 제공됩니다.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-head">
+    <h2>자비 출판 서비스</h2>
+    <span class="sec-badge excl-badge">에이콘온 전용</span>
+  </div>
+  <div class="feat-grid single coral-acc">
+    <div class="feat-card">
+      <div class="feat-num">07</div>
+      <div class="feat-title">자비 출판 서비스</div>
+      <div class="pills">
+        <span class="pill g">ISBN 등록·납본</span>
+        <span class="pill g">교보문고·YES24·알라딘 유통</span>
+        <span class="pill g">종이책+전자책+ePub 3.0 선택</span>
+      </div>
+      <div class="feat-body">
+        원고 접수부터 출판까지 전 과정을 에이콘온이 대행합니다. 투명한 공정 단가 견적을 제공하며, 종이책·전자책·ePub 3.0 포맷을 자유롭게 조합할 수 있습니다.<br><br>
+        ISBN 등록·납본, 교보문고·YES24·알라딘 등 국내 주요 서점 유통 채널 연결까지 <strong>원스톱</strong>으로 지원합니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h2>글로벌 출간 지원</h2>
+    <span class="sec-badge common-badge">에이콘 출판사 · 에이콘온 공통</span>
+  </div>
+  <div class="feat-grid single coral-acc">
+    <div class="feat-card">
+      <div class="feat-num">08</div>
+      <div class="feat-title">글로벌 출간 지원 — Amazon KDP</div>
+      <div class="feat-body">
+        국내 출간과 연계하여 <strong>Amazon KDP</strong>를 통한 글로벌 출간을 지원합니다. 원서 번역 방향 컨설팅, KDP 등록·메타데이터 최적화, 글로벌 프라이싱 전략 수립까지 에이콘온 팀이 함께합니다.<br><br>
+        에이콘 출판사·에이콘온 모두 동일하게 제공되는 공통 서비스입니다.
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+
+/* ─────────────────────────────── ROUTER */
+function route() {
+  const h = window.location.hash;
+  if (h === '#acornpub') acornpub();
+  else if (h === '#acornon') acornon();
+  else overview();
+}
+// 개요 직접 호출용
+window.goOverview = () => { window.location.hash = 'overview'; window.scrollTo(0,0); };
+route();
+</script>
+</body>
+</html>
