@@ -46,6 +46,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 .tn-link{background:none;border:none;font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.65);padding:6px 11px;border-radius:5px;cursor:pointer;transition:all .14s;white-space:nowrap}
 .tn-link:hover,.tn-link.on{color:#fff;background:rgba(255,255,255,.08)}
 .tn-link.on{color:var(--teal)}
+.tn-section-sep{display:flex;align-items:center}
+.tn-sec-btn{background:none;border:none;font-family:var(--sans);font-size:13px;font-weight:600;color:rgba(255,255,255,.45);padding:6px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .14s;white-space:nowrap;height:56px}
+.tn-sec-btn:hover{color:rgba(255,255,255,.8)}
+.tn-sec-btn.on{color:#fff;border-bottom-color:var(--teal)}
+.tn-subsep{width:1px;height:20px;background:rgba(255,255,255,.12);margin:0 6px}
 .tn-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .tn-user{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.55)}
 .tn-avatar{width:28px;height:28px;border-radius:50%;background:var(--teal2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
@@ -277,6 +282,63 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 
 @media(max-width:1100px){.detail-layout{grid-template-columns:1fr}.eval-panel{position:static}}
 @media(max-width:800px){.layout{grid-template-columns:1fr}.sidebar{display:none}.dash-top{grid-template-columns:repeat(3,1fr)}.dash-grid{grid-template-columns:1fr}}
+
+/* ── 보도자료 관리 스타일 ── */
+.press-inner-tab{background:none;border:none;font-family:var(--sans);font-size:13.5px;font-weight:500;padding:10px 18px;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:all .14s}
+.press-inner-tab.on{color:var(--teal2);border-bottom-color:var(--teal2);font-weight:600}
+.press-tab-pane{display:none}.press-tab-pane.on{display:block}
+.press-book-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;cursor:pointer;border:1.5px solid transparent;transition:all .14s;margin-bottom:5px}
+.press-book-item:hover{background:var(--bg)}
+.press-book-item.on{border-color:var(--teal);background:var(--teal3)}
+.press-ch-item{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:6px;border:1.5px solid var(--bdm);cursor:pointer;transition:all .13s}
+.press-ch-item:hover{border-color:var(--muted2)}
+.press-ch-item.on{border-color:var(--teal);background:var(--teal3)}
+.pc-chk{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--muted2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;transition:all .13s}
+.press-ch-item.on .pc-chk{background:var(--teal);border-color:var(--teal)}
+.gen-spinner{width:28px;height:28px;border-radius:50%;border:3px solid var(--teal3);border-top-color:var(--teal);animation:pspin .7s linear infinite;margin:0 auto}
+@keyframes pspin{to{transform:rotate(360deg)}}
+.press-card{background:var(--card);border:1px solid var(--bdm);border-radius:10px;margin-bottom:16px;overflow:hidden}
+.press-card-head{padding:14px 18px;background:var(--bg);border-bottom:1px solid var(--bdm);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.press-textarea{width:100%;min-height:130px;padding:14px 16px;border:none;font-family:var(--sans);font-size:13.5px;color:var(--text);background:var(--card);resize:vertical;outline:none;line-height:1.75}
+.press-textarea:focus{background:#FAFAF8}
+.press-foot{padding:9px 16px;background:var(--bg);border-top:1px solid var(--bdm);display:flex;align-items:center;justify-content:space-between}
+.pchar{font-family:var(--mono);font-size:11px}.pchar.ok{color:var(--teal2)}.pchar.warn{color:#C47D0E}.pchar.over{color:var(--coral)}
+.press-deploy-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;border:none;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:opacity .14s}
+.press-deploy-btn:hover{opacity:.82}
+.hist-card{background:var(--card);border:1px solid var(--bdm);border-radius:10px;overflow:hidden}
+.hist-row{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--bdm)}
+.hist-row:last-child{border-bottom:none}
+.hist-ico2{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+
+/* ── AI 자동 평가 ── */
+.ai-eval-btn{
+  width:100%;padding:10px;border-radius:8px;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:13.5px;font-weight:600;
+  background:linear-gradient(135deg,var(--navy),#1a3a6c);color:#fff;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:opacity .15s;margin-bottom:10px;
+}
+.ai-eval-btn:hover{opacity:.86}
+.ai-eval-btn:disabled{opacity:.45;cursor:not-allowed}
+.ai-result-box{
+  background:var(--bg);border:1px solid var(--bdm);border-radius:8px;
+  padding:14px;margin-top:10px;font-size:13px;color:var(--text);
+  line-height:1.75;display:none;
+}
+.ai-result-box.show{display:block}
+.ai-score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:10px 0}
+.ai-score-cell{text-align:center;padding:8px 4px;background:var(--card);border:1px solid var(--bdm);border-radius:7px}
+.ai-score-num{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--burg)}
+.ai-score-lbl{font-size:9.5px;color:var(--muted2);margin-top:2px}
+.ai-reason{font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:8px;padding:10px 12px;background:var(--card);border-radius:6px;border-left:3px solid var(--teal2)}
+.ai-apply-btn{width:100%;padding:9px;background:var(--teal2);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);margin-top:8px;transition:opacity .15s}
+.ai-apply-btn:hover{opacity:.84}
+.ai-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:aispin .6s linear infinite}
+@keyframes aispin{to{transform:rotate(360deg)}}
+.ai-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;margin-top:6px;margin-right:4px}
+.ai-tag.str{background:var(--teal3);color:var(--teal2)}
+.ai-tag.warn{background:#FAEEDA;color:#C47D0E}
+.ai-tag.rec{background:#EDE9FE;color:#4C2E9A}
 </style>
 </head>
 <body>
@@ -288,9 +350,20 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
     <span class="tn-badge">편집부</span>
   </a>
   <ul class="tn-links">
-    <li><button class="tn-link on" onclick="showPage('dashboard')">대시보드</button></li>
-    <li><button class="tn-link" onclick="showPage('proposals')">제안서 목록</button></li>
-    <li><button class="tn-link" onclick="showPage('analytics')">통계</button></li>
+    <li class="tn-section-sep">
+      <button class="tn-sec-btn on" id="sec-btn-proposal" onclick="switchSection('proposal')">📋 제안서 관리</button>
+    </li>
+    <li class="tn-section-sep">
+      <button class="tn-sec-btn" id="sec-btn-press" onclick="switchSection('press')">📣 보도자료 관리</button>
+    </li>
+    <li class="tn-subsep"></li>
+    <!-- 제안서 서브 탭 -->
+    <li class="sub-nav proposal-sub"><button class="tn-link on" id="subnav-dashboard" onclick="showPage('dashboard')">대시보드</button></li>
+    <li class="sub-nav proposal-sub"><button class="tn-link" id="subnav-proposals" onclick="showPage('proposals')">제안서 목록</button></li>
+    <li class="sub-nav proposal-sub"><button class="tn-link" id="subnav-analytics" onclick="showPage('analytics')">통계</button></li>
+    <!-- 보도자료 서브 탭 -->
+    <li class="sub-nav press-sub" style="display:none"><button class="tn-link" id="subnav-press-gen" onclick="showPage('press-gen')">보도자료 생성</button></li>
+    <li class="sub-nav press-sub" style="display:none"><button class="tn-link" id="subnav-press-history" onclick="showPage('press-history')">배포 이력</button></li>
   </ul>
   <div class="tn-right">
     <div class="tn-user">
@@ -304,11 +377,39 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 <div class="layout">
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sb-sec">
-      <div class="sb-sec-label">보기</div>
+    <!-- 제안서 관리 사이드바 -->
+    <div class="sb-sec" id="sb-proposal-sec">
+      <div class="sb-sec-label">제안서 관리</div>
       <button class="sb-item on" onclick="showPage('dashboard')"><span class="sb-item-ico">📊</span>대시보드<span class="sb-cnt" id="sb-all-cnt">0</span></button>
       <button class="sb-item" onclick="showPage('proposals')"><span class="sb-item-ico">📋</span>전체 제안서<span class="sb-cnt" id="sb-list-cnt">0</span></button>
       <button class="sb-item" onclick="showPage('analytics')"><span class="sb-item-ico">📈</span>통계 분석</button>
+    </div>
+    <!-- 보도자료 관리 사이드바 -->
+    <div class="sb-sec" id="sb-press-sec" style="display:none">
+      <div class="sb-sec-label">보도자료 관리</div>
+      <button class="sb-item" id="sb-press-gen" onclick="showPage('press-gen')"><span class="sb-item-ico">✨</span>보도자료 생성</button>
+      <button class="sb-item" id="sb-press-hist" onclick="showPage('press-history')"><span class="sb-item-ico">📋</span>배포 이력</button>
+    </div>
+    <!-- 도서 필터 (보도자료용) -->
+    <div class="sb-sec" id="sb-press-books" style="display:none">
+      <div class="sb-sec-label">도서 선택</div>
+      <input type="text" id="pressBookSearch" placeholder="도서 검색…"
+        style="width:100%;padding:7px 10px;border:1.5px solid var(--bdm);border-radius:7px;font-family:var(--sans);font-size:12px;outline:none;margin-bottom:8px;background:var(--bg)"
+        oninput="renderPressBookList()">
+      <div id="pressBookList" style="max-height:240px;overflow-y:auto"></div>
+    </div>
+    <!-- 채널 선택 (보도자료용) -->
+    <div class="sb-sec" id="sb-press-ch" style="display:none">
+      <div class="sb-sec-label" style="margin-bottom:6px">채널 선택</div>
+      <div style="display:flex;gap:6px;margin-bottom:8px">
+        <button onclick="selectAllCh(true)" style="flex:1;font-size:11px;padding:4px;border:1px solid var(--bdm);border-radius:5px;background:var(--bg);cursor:pointer;font-family:var(--sans)">전체</button>
+        <button onclick="selectAllCh(false)" style="flex:1;font-size:11px;padding:4px;border:1px solid var(--bdm);border-radius:5px;background:var(--bg);cursor:pointer;font-family:var(--sans)">해제</button>
+      </div>
+      <div id="pressChGrid" style="display:flex;flex-direction:column;gap:5px"></div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
+        <button class="save-btn" onclick="generateAll()">✨ AI 자동 생성</button>
+        <button onclick="generateTemplate()" style="width:100%;padding:8px;background:none;border:1.5px solid var(--bdm);border-radius:7px;font-size:13px;cursor:pointer;font-family:var(--sans)">📝 템플릿 작성</button>
+      </div>
     </div>
     <div class="sb-sec">
       <div class="sb-sec-label">상태별 필터</div>
@@ -404,6 +505,55 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
       <div class="dash-grid" id="analytics-grid"></div>
     </div>
 
+    <!-- ══ PRESS GEN PAGE ══ -->
+    <div class="page" id="page-press-gen">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px">Press &amp; SNS</div>
+          <h1 style="font-size:20px;font-weight:700;letter-spacing:-.02em">보도자료 생성 · 배포</h1>
+        </div>
+        <div id="press-top-actions" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      </div>
+      <!-- API Key 바 -->
+      <div id="press-apikey-bar" style="background:#FAEEDA;border:1px solid #EF9F27;border-radius:8px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:13px;font-weight:600;color:#C47D0E;flex-shrink:0">🔑 Anthropic API Key</span>
+        <input type="password" id="apiKeyInput" placeholder="sk-ant-…" style="flex:1;min-width:180px;padding:7px 12px;border:1px solid #EF9F27;border-radius:6px;font-family:var(--mono);font-size:12px;background:#fff;outline:none">
+        <button onclick="saveApiKey()" style="padding:7px 14px;background:#EF9F27;color:#fff;border:none;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--sans)">저장</button>
+        <span style="font-size:11px;color:#8a6020">브라우저에만 저장됩니다</span>
+      </div>
+      <!-- 탭 -->
+      <div style="display:flex;gap:0;border-bottom:2px solid var(--bdm);margin-bottom:22px">
+        <button class="press-inner-tab on" data-ptab="press-full" onclick="switchPressTab(this)">📰 전체 보도자료</button>
+        <button class="press-inner-tab" data-ptab="press-sns" onclick="switchPressTab(this)">📱 SNS 포스트</button>
+      </div>
+      <div id="ptab-press-full" class="press-tab-pane on">
+        <div id="pressContent">
+          <div style="text-align:center;padding:60px 20px;color:var(--muted2)">
+            <div style="font-size:40px;margin-bottom:10px;opacity:.4">📰</div>
+            <div style="font-size:16px;font-weight:600;margin-bottom:6px;color:var(--muted)">보도자료를 생성해보세요</div>
+            <div style="font-size:13px">왼쪽에서 도서를 선택하고 「AI 자동 생성」을 클릭하세요</div>
+          </div>
+        </div>
+      </div>
+      <div id="ptab-press-sns" class="press-tab-pane" style="display:none">
+        <div id="snsContent">
+          <div style="text-align:center;padding:60px 20px;color:var(--muted2)">
+            <div style="font-size:40px;margin-bottom:10px;opacity:.4">📱</div>
+            <div style="font-size:16px;font-weight:600;margin-bottom:6px;color:var(--muted)">SNS 포스트를 생성해보세요</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /page-press-gen -->
+
+    <!-- ══ PRESS HISTORY PAGE ══ -->
+    <div class="page" id="page-press-history">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px">
+        <h1 style="font-size:20px;font-weight:700;letter-spacing:-.02em">배포 이력</h1>
+        <button onclick="clearHistory()" style="padding:8px 16px;background:none;border:1.5px solid var(--coral);color:var(--coral);border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--sans)">🗑 이력 초기화</button>
+      </div>
+      <div id="historyContent"></div>
+    </div><!-- /page-press-history -->
+
   </main>
 </div>
 
@@ -449,25 +599,353 @@ function saveProposals() { localStorage.setItem('acorn_proposals', JSON.stringif
 // ═══════════════════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════════════════
+// ── 섹션 전환 ──
+let currentSection = 'proposal';
+function switchSection(sec) {
+  currentSection = sec;
+  document.querySelectorAll('.tn-sec-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('sec-btn-' + sec)?.classList.add('on');
+  // 서브 탭 표시/숨김
+  document.querySelectorAll('.sub-nav.proposal-sub').forEach(el => el.style.display = sec==='proposal' ? '' : 'none');
+  document.querySelectorAll('.sub-nav.press-sub').forEach(el => el.style.display = sec==='press' ? '' : 'none');
+  // 사이드바 섹션 표시/숨김
+  document.getElementById('sb-proposal-sec').style.display = sec==='proposal' ? '' : 'none';
+  document.getElementById('sb-press-sec').style.display    = sec==='press' ? '' : 'none';
+  document.getElementById('sb-press-books').style.display  = sec==='press' ? '' : 'none';
+  document.getElementById('sb-press-ch').style.display     = sec==='press' ? '' : 'none';
+  // 상태 필터·카테고리 사이드바
+  const stFilter = document.getElementById('sb-proposal-sec')?.nextElementSibling;
+  // 첫 페이지로
+  if (sec === 'proposal') showPage('dashboard');
+  else { showPage('press-gen'); renderPressBookList(); renderPressChannels(); }
+}
+
 function showPage(name) {
   currentPage = name;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
   document.getElementById('page-'+name)?.classList.add('on');
+  // 제안서 서브탭
   document.querySelectorAll('.tn-link').forEach(l => l.classList.remove('on'));
   document.querySelectorAll('.sb-item').forEach(l => l.classList.remove('on'));
   if (name==='dashboard') {
-    document.querySelectorAll('.tn-link')[0].classList.add('on');
-    document.querySelectorAll('.sb-item')[0].classList.add('on');
+    document.getElementById('subnav-dashboard')?.classList.add('on');
+    document.querySelectorAll('#sb-proposal-sec .sb-item')[0]?.classList.add('on');
     renderDashboard();
   } else if (name==='proposals') {
-    document.querySelectorAll('.tn-link')[1].classList.add('on');
-    document.querySelectorAll('.sb-item')[1].classList.add('on');
+    document.getElementById('subnav-proposals')?.classList.add('on');
+    document.querySelectorAll('#sb-proposal-sec .sb-item')[1]?.classList.add('on');
     renderProposalList();
   } else if (name==='analytics') {
-    document.querySelectorAll('.tn-link')[2].classList.add('on');
+    document.getElementById('subnav-analytics')?.classList.add('on');
     renderAnalytics();
+  } else if (name==='press-gen') {
+    document.getElementById('subnav-press-gen')?.classList.add('on');
+    document.getElementById('sb-press-gen')?.classList.add('on');
+    initPressApiKey();
+  } else if (name==='press-history') {
+    document.getElementById('subnav-press-history')?.classList.add('on');
+    document.getElementById('sb-press-hist')?.classList.add('on');
+    renderHistory();
   }
-  renderSidebar();
+  if (currentSection === 'proposal') renderSidebar();
+}
+
+// ── 보도자료 탭 내부 전환 ──
+function switchPressTab(btn) {
+  document.querySelectorAll('.press-inner-tab').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.press-tab-pane').forEach(p => p.style.display = 'none');
+  document.getElementById('ptab-' + btn.dataset.ptab).style.display = 'block';
+}
+
+// ════════════════════════════════════════
+// 보도자료 · SNS 배포 시스템
+// ════════════════════════════════════════
+const PRESS_BOOKS = [
+  {id:1,title:'파이썬으로 배우는 LLM 엔지니어링',sub:'LangChain부터 RAG, 파인튜닝까지',auth:'김민준 지음',cat:'AI·머신러닝',tags:['신간','AI','Python'],price:'38,000',bg:'#1a3a5c',fg:'#5BC8F5',ct:'LLM\nEng.',paper:'38,000',ebook:'26,600',isbn:'978-89-6077-000-0',pages:520,pub:'2025.03',desc:'ChatGPT·Claude·Gemini를 실무에 적용하는 개발자를 위한 종합 가이드.',aname:'김민준',atitle:'AI 엔지니어 / LLM 전문가'},
+  {id:2,title:'쿠버네티스 운영 실전 가이드',sub:'프로덕션 환경의 K8s 아키텍처와 최적화',auth:'이서연 지음',cat:'클라우드·DevOps',tags:['베스트셀러','K8s'],price:'42,000',bg:'#0d3b5e',fg:'#3DB8E0',ct:'K8s\nOps',paper:'42,000',ebook:'29,400',isbn:'978-89-6077-001-7',pages:612,pub:'2025.01',desc:'쿠버네티스를 프로덕션 환경에서 운영하는 엔지니어를 위한 심층 가이드.',aname:'이서연',atitle:'SRE / 클라우드 아키텍트'},
+  {id:3,title:'실전 사이버보안 침투테스트',sub:'Kali Linux로 배우는 공격과 방어 전략',auth:'박지현 지음',cat:'보안·네트워크',tags:['신간','보안'],price:'36,000',bg:'#1a1a2e',fg:'#E94560',ct:'Cyber\nSec',paper:'36,000',ebook:'25,200',isbn:'978-89-6077-002-4',pages:480,pub:'2025.04',desc:'실무 침투테스터가 직접 쓴 현장 중심 가이드.',aname:'박지현',atitle:'침투테스트 전문가 / OSCP'},
+  {id:4,title:'Go 언어로 만드는 고성능 서버',sub:'동시성 프로그래밍과 마이크로서비스 실전',auth:'최현우 지음',cat:'프로그래밍',tags:['Go','백엔드'],price:'35,000',bg:'#00758f',fg:'#79D7E7',ct:'Go\nPerf',paper:'35,000',ebook:'24,500',isbn:'978-89-6077-003-1',pages:440,pub:'2025.02',desc:'Go 언어의 고루틴·채널을 활용한 고성능 백엔드 서버 구현 가이드.',aname:'최현우',atitle:'백엔드 엔지니어'},
+  {id:5,title:'생성형 AI 시대의 UX 디자인',sub:'AI 제품을 위한 인터랙션 원칙과 패턴',auth:'강나영 지음',cat:'AI·머신러닝',tags:['UX','AI'],price:'33,000',bg:'#6a0572',fg:'#F4A7D9',ct:'AI\nUX',paper:'33,000',ebook:'23,100',isbn:'978-89-6077-004-8',pages:380,pub:'2025.03',desc:'AI 제품을 설계하는 UX 디자이너와 PM을 위한 실전 가이드.',aname:'강나영',atitle:'UX 디자인 리서처'},
+  {id:6,title:'아파치 카프카 실전 아키텍처',sub:'대용량 데이터 스트리밍 설계와 운영',auth:'윤성호 지음',cat:'데이터·DB',tags:['Kafka','데이터'],price:'40,000',bg:'#1a1a1a',fg:'#FF6B35',ct:'Kafka',paper:'40,000',ebook:'28,000',isbn:'978-89-6077-005-5',pages:580,pub:'2024.12',desc:'실무에서 바로 적용할 수 있는 Kafka 아키텍처 설계와 운영 가이드.',aname:'윤성호',atitle:'데이터 엔지니어'},
+  {id:7,title:'제로 트러스트 보안 아키텍처',sub:'현대 기업 보안 모델의 설계와 구현',auth:'한정훈 지음',cat:'보안·네트워크',tags:['보안','제로트러스트'],price:'39,000',bg:'#0a2e1c',fg:'#00E676',ct:'Zero\nTrust',paper:'39,000',ebook:'27,300',isbn:'978-89-6077-006-2',pages:500,pub:'2024.11',desc:'NIST SP 800-207 기반 제로 트러스트 보안 모델 구현 가이드.',aname:'한정훈',atitle:'보안 아키텍트 / CISSP'},
+  {id:8,title:'리액트 18 + Next.js 14 마스터',sub:'서버 컴포넌트부터 App Router까지',auth:'임지훈 지음',cat:'프로그래밍',tags:['React','Next.js'],price:'37,000',bg:'#20232a',fg:'#61DAFB',ct:'React\n18',paper:'37,000',ebook:'25,900',isbn:'978-89-6077-007-9',pages:560,pub:'2024.10',desc:'React 18 Concurrent 기능과 Next.js 14 App Router 완결 가이드.',aname:'임지훈',atitle:'프론트엔드 엔지니어'},
+  {id:9,title:'AWS 솔루션 아키텍처 실전',sub:'SAA-C03 자격증과 실무를 동시에',auth:'정미라 지음',cat:'클라우드·DevOps',tags:['AWS','자격증'],price:'44,000',bg:'#232f3e',fg:'#FF9900',ct:'AWS\nArch',paper:'44,000',ebook:'30,800',isbn:'978-89-6077-008-6',pages:640,pub:'2024.09',desc:'AWS SAA-C03 시험 합격과 실무 설계 역량을 동시에 키우는 올인원 가이드.',aname:'정미라',atitle:'AWS 공인 솔루션 아키텍트'},
+  {id:10,title:'MLOps 실전: ML 파이프라인 자동화',sub:'Kubeflow·MLflow·Airflow 통합 운영',auth:'노민준 지음',cat:'AI·머신러닝',tags:['MLOps','ML'],price:'41,000',bg:'#0d1b2a',fg:'#4CC9F0',ct:'MLOps',paper:'41,000',ebook:'28,700',isbn:'978-89-6077-011-6',pages:544,pub:'2024.07',desc:'ML 모델을 프로덕션에 배포하고 지속적으로 운영하기 위한 MLOps 실전 가이드.',aname:'노민준',atitle:'ML 엔지니어'},
+];
+const PRESS_CHANNELS = [
+  {id:'instagram',name:'Instagram',ico:'📷',bg:'#F5EAF7',color:'#C13584',limit:2200,hint:'해시태그 다수'},
+  {id:'facebook', name:'Facebook', ico:'📘',bg:'#E8F0FE',color:'#1877F2',limit:63206,hint:'링크 공유'},
+  {id:'x',        name:'X (Twitter)',ico:'𝕏',bg:'#E8E8E8',color:'#000',  limit:280,  hint:'280자'},
+  {id:'linkedin', name:'LinkedIn', ico:'💼',bg:'#E8F4FE',color:'#0A66C2',limit:3000, hint:'전문가 톤'},
+  {id:'blog',     name:'블로그',   ico:'✍️',bg:'#E8F5EE',color:'#03C75A',limit:10000,hint:'SEO'},
+  {id:'github',   name:'GitHub',   ico:'⌥', bg:'#F0EEF8',color:'#24292F',limit:65536,hint:'Markdown'},
+  {id:'newsletter',name:'뉴스레터',ico:'✉️',bg:'#FFF4E8',color:'#E8A33A',limit:50000,hint:'구독자'},
+];
+
+let pressSelectedBook = null;
+let pressSelectedChs  = new Set(['instagram','x','linkedin','blog']);
+let pressGenerated    = {};
+let pressApiKey       = '';
+let deployHistory     = [];
+
+function initPressApiKey() {
+  pressApiKey = localStorage.getItem('acorn_apikey') || '';
+  deployHistory = JSON.parse(localStorage.getItem('acorn_press_history') || '[]');
+  const inp = document.getElementById('apiKeyInput');
+  if (inp && pressApiKey) inp.value = '●'.repeat(20);
+  // top actions
+  document.getElementById('press-top-actions').innerHTML = `
+    <button onclick="deployAll()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--teal);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans)">🚀 전체 채널 배포</button>
+    <button onclick="downloadTxt()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:none;border:1.5px solid var(--bdm);border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--sans)">💾 .txt 저장</button>`;
+}
+
+function saveApiKey() {
+  const v = document.getElementById('apiKeyInput')?.value.trim();
+  if (!v || v.startsWith('●')) { toast('API Key를 입력해주세요'); return; }
+  pressApiKey = v;
+  localStorage.setItem('acorn_apikey', v);
+  document.getElementById('apiKeyInput').value = '●'.repeat(20);
+  toast('API Key가 저장됐습니다');
+}
+
+function renderPressBookList() {
+  const q = (document.getElementById('pressBookSearch')?.value || '').toLowerCase();
+  const list = PRESS_BOOKS.filter(b => !q || b.title.toLowerCase().includes(q));
+  document.getElementById('pressBookList').innerHTML = list.map(b => `
+    <div class="press-book-item${pressSelectedBook?.id===b.id?' on':''}" onclick="selectPressBook(${b.id})">
+      <div style="width:32px;height:44px;border-radius:3px;background:${b.bg};color:${b.fg};display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;text-align:center;flex-shrink:0;white-space:pre-line;line-height:1.2;font-family:var(--mono)">${b.ct}</div>
+      <div style="min-width:0;flex:1">
+        <div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${b.title}</div>
+        <div style="font-size:10.5px;color:var(--muted2)">${b.auth} · ₩${b.price}</div>
+      </div>
+    </div>`).join('');
+}
+
+function selectPressBook(id) {
+  pressSelectedBook = PRESS_BOOKS.find(b => b.id === id);
+  pressGenerated = {};
+  renderPressBookList();
+  toast(`✅ ${pressSelectedBook.title} 선택됨`);
+}
+
+function renderPressChannels() {
+  document.getElementById('pressChGrid').innerHTML = PRESS_CHANNELS.map(c => `
+    <div class="press-ch-item${pressSelectedChs.has(c.id)?' on':''}" onclick="togglePressCh('${c.id}')">
+      <div class="pc-chk">${pressSelectedChs.has(c.id)?'✓':''}</div>
+      <div style="width:22px;height:22px;border-radius:5px;background:${c.bg};display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">${c.ico}</div>
+      <span style="font-size:12px;font-weight:500;color:var(--text);flex:1">${c.name}</span>
+      <span style="font-family:var(--mono);font-size:9.5px;color:var(--muted2)">${c.limit>=10000?'장문':c.limit+'자'}</span>
+    </div>`).join('');
+}
+
+function togglePressCh(id) {
+  pressSelectedChs.has(id) ? pressSelectedChs.delete(id) : pressSelectedChs.add(id);
+  renderPressChannels();
+}
+function selectAllCh(v) {
+  if (v) PRESS_CHANNELS.forEach(c => pressSelectedChs.add(c.id));
+  else pressSelectedChs.clear();
+  renderPressChannels();
+}
+
+async function callClaude(prompt) {
+  const key = pressApiKey || localStorage.getItem('acorn_apikey') || '';
+  if (!key) throw new Error('API Key가 없습니다');
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+  });
+  if (!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.error?.message||`API 오류 ${res.status}`); }
+  const d = await res.json();
+  return d.content?.[0]?.text||'';
+}
+
+function getChTone(id){ return {instagram:'감성적·해시태그 많음',facebook:'친근한 톤·링크 클릭 유도',x:'핵심 임팩트 메시지',linkedin:'전문가적 비즈니스 톤',blog:'상세 서평·SEO',github:'Markdown·기술 독자',newsletter:'구독자 맞춤·상세'}[id]||'전문적 어조'; }
+function getHashtags(b, chId){ const base=['#에이콘출판사','#신간','#IT도서']; const cat={'AI·머신러닝':['#AI','#머신러닝'],'클라우드·DevOps':['#클라우드','#DevOps'],'보안·네트워크':['#보안','#사이버보안'],'프로그래밍':['#프로그래밍','#개발'],'데이터·DB':['#데이터']}[b.cat]||[]; const tags=b.tags.map(t=>'#'+t.replace(/\s/g,'')); const all=[...new Set([...base,...cat,...tags])]; return chId==='x'?all.slice(0,3).join(' '):all.join(' '); }
+function getSnsUrl(id){ return {instagram:'https://www.instagram.com/acornpub/',facebook:'https://www.facebook.com/acornpub',x:'https://twitter.com/compose/tweet',linkedin:'https://www.linkedin.com/feed/',blog:'https://blog.naver.com/acornpub',github:'https://github.com/AcornPublishing',newsletter:'https://stibee.com'}[id]||'#'; }
+
+async function generateAll() {
+  if (!pressSelectedBook){ toast('도서를 먼저 선택해주세요'); return; }
+  const key = pressApiKey || localStorage.getItem('acorn_apikey') || '';
+  if (!key){ toast('API Key를 먼저 입력해주세요'); return; }
+  if (!pressSelectedChs.size){ toast('채널을 선택해주세요'); return; }
+  const loading = (msg) => `<div style="text-align:center;padding:60px 20px"><div class="gen-spinner" style="margin-bottom:14px"></div><div style="font-size:14px;color:var(--muted)">${msg}</div></div>`;
+  document.getElementById('pressContent').innerHTML = loading('보도자료 생성 중…');
+  document.getElementById('snsContent').innerHTML   = loading('SNS 포스트 생성 중…');
+  const b = pressSelectedBook;
+  const chs = PRESS_CHANNELS.filter(c => pressSelectedChs.has(c.id));
+  try {
+    const pressText = await callClaude(`에이콘출판사 홍보 담당자로서 공식 보도자료를 작성해주세요.\n도서: ${b.title} (${b.sub})\n저자: ${b.aname} (${b.atitle})\n정가: ₩${b.price} / ${b.pages}p / ${b.pub} / ISBN: ${b.isbn}\n소개: ${b.desc}\n\n형식: 제목 → 리드 문단 → 도서소개 → 저자코멘트 → 도서정보표 → 출판사소개 → 문의처(02-2653-7600, acornpub@acornpub.co.kr)`);
+    pressGenerated.press = pressText;
+    const snsResults = await Promise.all(chs.map(async ch => ({
+      id: ch.id,
+      text: await callClaude(`에이콘출판사 SNS 담당자로서 ${ch.name} 포스트를 ${ch.limit}자 이내로 작성해주세요.\n도서: ${b.title} — ${b.desc.slice(0,150)}\n톤: ${getChTone(ch.id)}\n해시태그: ${getHashtags(b,ch.id)}\nCTA 포함. 포스트 본문만 작성하세요.`)
+    })));
+    pressGenerated.sns = {};
+    snsResults.forEach(r => { pressGenerated.sns[r.id] = r.text; });
+    renderPressResult();
+    renderSnsResult();
+    toast('✅ 보도자료와 SNS 포스트 생성 완료!');
+  } catch(e) {
+    const err = `<div style="text-align:center;padding:60px 20px;color:var(--coral)"><div style="font-size:30px;margin-bottom:10px">⚠️</div><div style="font-weight:600">${e.message}</div></div>`;
+    document.getElementById('pressContent').innerHTML = err;
+    document.getElementById('snsContent').innerHTML   = err;
+  }
+}
+
+function generateTemplate() {
+  if (!pressSelectedBook){ toast('도서를 먼저 선택해주세요'); return; }
+  const b = pressSelectedBook;
+  const today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+  pressGenerated.press = `【보도자료】 에이콘출판사 신간 안내\n\n■ 제목: ${b.title}\n■ 부제: ${b.sub}\n\n${today}\n\n에이콘출판사(대표 황영주)는 ${b.pub} 『${b.title}』(${b.aname})을 출간했습니다.\n\n▶ 도서 소개\n${b.desc}\n\n▶ 저자 소개\n${b.aname}은 ${b.atitle}입니다.\n\n▶ 도서 정보\n- 제목: ${b.title}\n- 저자: ${b.aname}\n- 출판사: 에이콘출판사\n- 정가: ₩${b.price}\n- 페이지: ${b.pages}p\n- ISBN: ${b.isbn}\n\n▶ 문의\n에이콘출판사 편집부 · 02-2653-7600 · acornpub@acornpub.co.kr`;
+  pressGenerated.sns = {};
+  PRESS_CHANNELS.forEach(ch => { if (pressSelectedChs.has(ch.id)) pressGenerated.sns[ch.id] = `📚 신간!\n\n『${b.title}』\n${b.sub}\n\n${b.desc.slice(0,80)}…\n\n👉 https://acornpub.co.kr\n\n${getHashtags(b,ch.id)}`; });
+  renderPressResult(); renderSnsResult();
+  toast('📝 템플릿 로드 완료. 편집 후 배포하세요.');
+}
+
+function renderPressResult() {
+  if (!pressGenerated.press) return;
+  const b = pressSelectedBook;
+  const today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('pressContent').innerHTML = `
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+      <button id="btn-copy-press" onclick="pressCopy('press-ta','btn-copy-press')" style="padding:7px 14px;border:1.5px solid var(--bdm);border-radius:7px;font-size:12.5px;cursor:pointer;background:var(--bg);font-family:var(--sans)">📋 전체 복사</button>
+      <button onclick="downloadTxt()" style="padding:7px 14px;border:1.5px solid var(--bdm);border-radius:7px;font-size:12.5px;cursor:pointer;background:var(--bg);font-family:var(--sans)">💾 .txt 저장</button>
+      <button onclick="pressCopyRecord('press','press-ta')" style="padding:7px 14px;border:none;border-radius:7px;font-size:12.5px;cursor:pointer;background:var(--teal);color:#fff;font-family:var(--sans);font-weight:600">✅ 배포 완료 기록</button>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--bdm);border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)">
+      <div style="background:var(--navy);padding:16px 22px;display:flex;justify-content:space-between;align-items:center">
+        <div style="font-family:var(--serif);font-size:16px;font-weight:700;color:#fff">【보 도 자 료】 ${b.title}</div>
+        <div style="font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,.45)">${today}</div>
+      </div>
+      <textarea id="press-ta" class="press-textarea" style="min-height:360px"
+        oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'">${pressGenerated.press}</textarea>
+      <div style="background:var(--bg);border-top:1px solid var(--bdm);padding:14px 18px;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;font-size:12.5px">
+        ${[['도서명',b.title],['저자',`${b.aname} (${b.atitle})`],['정가',`₩${b.price}`],['ISBN',b.isbn],['페이지',`${b.pages}p`],['출간일',b.pub]].map(([l,v])=>`<div><span style="font-weight:600;color:var(--muted)">${l}</span> ${v}</div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderSnsResult() {
+  if (!pressGenerated.sns) return;
+  const chs = PRESS_CHANNELS.filter(c => pressSelectedChs.has(c.id) && pressGenerated.sns[c.id]);
+  document.getElementById('snsContent').innerHTML = `
+    <div style="display:flex;justify-content:flex-end;margin-bottom:14px">
+      <button onclick="deployAll()" style="padding:8px 18px;background:var(--teal);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans)">🚀 전체 채널 복사·배포</button>
+    </div>
+    ${chs.map(ch=>`
+    <div class="press-card">
+      <div class="press-card-head">
+        <div style="display:flex;align-items:center;gap:9px">
+          <div style="width:28px;height:28px;border-radius:6px;background:${ch.bg};display:flex;align-items:center;justify-content:center;font-size:14px">${ch.ico}</div>
+          <div><div style="font-size:13px;font-weight:700">${ch.name}</div><div style="font-size:10.5px;color:var(--muted2)">${ch.hint} · 최대 ${ch.limit>=10000?'장문':ch.limit+'자'}</div></div>
+        </div>
+        <div style="display:flex;gap:5px">
+          <button id="cpbtn-${ch.id}" onclick="pressCopy('snsta-${ch.id}','cpbtn-${ch.id}')" style="padding:4px 10px;border:1px solid var(--bdm);border-radius:5px;font-size:11px;cursor:pointer;background:var(--bg);font-family:var(--mono)">📋 복사</button>
+          <button onclick="regenSns('${ch.id}')" style="padding:4px 10px;border:1px solid var(--bdm);border-radius:5px;font-size:11px;cursor:pointer;background:var(--bg);font-family:var(--mono)">🔄 재생성</button>
+        </div>
+      </div>
+      <textarea class="press-textarea" id="snsta-${ch.id}" oninput="updatePressCount('${ch.id}',${ch.limit},this.value)">${pressGenerated.sns[ch.id]||''}</textarea>
+      <div class="press-foot">
+        <span class="pchar ok" id="pcnt-${ch.id}">${(pressGenerated.sns[ch.id]||'').length} / ${ch.limit}자</span>
+        <div style="display:flex;gap:5px">
+          <button onclick="pressCopyRecord('${ch.id}','snsta-${ch.id}')" style="padding:5px 10px;background:#FAEEDA;border:1px solid #EF9F27;border-radius:6px;font-size:11.5px;cursor:pointer;color:#C47D0E;font-family:var(--sans);font-weight:600">✅ 복사+기록</button>
+          <a href="${getSnsUrl(ch.id)}" target="_blank" class="press-deploy-btn" style="background:${ch.color};color:#fff;font-size:11.5px;padding:5px 10px">↗ 열기</a>
+        </div>
+      </div>
+    </div>`).join('')}`;
+}
+
+function updatePressCount(id, limit, val) {
+  const el = document.getElementById('pcnt-'+id);
+  if (!el) return;
+  el.textContent = val.length+' / '+limit+'자';
+  el.className = 'pchar '+(val.length>limit?'over':val.length>limit*.9?'warn':'ok');
+  if (!pressGenerated.sns) pressGenerated.sns = {};
+  pressGenerated.sns[id] = val;
+}
+
+async function pressCopy(taId, btnId) {
+  const ta = document.getElementById(taId);
+  if (!ta) return;
+  try { await navigator.clipboard.writeText(ta.value); } catch(e){}
+  const btn = document.getElementById(btnId);
+  if (btn){ const old=btn.textContent; btn.textContent='✅ 복사됨'; setTimeout(()=>btn.textContent=old,2000); }
+  toast('클립보드에 복사됐습니다');
+}
+
+async function pressCopyRecord(chId, taId) {
+  const ta = document.getElementById(taId);
+  if (!ta || !pressSelectedBook) return;
+  try { await navigator.clipboard.writeText(ta.value); } catch(e){}
+  const ch = PRESS_CHANNELS.find(c=>c.id===chId)||{name:'보도자료',ico:'📰'};
+  addHistory({ book:pressSelectedBook.title, channel:ch.name, ico:ch.ico||'📰', type:'copy', time:new Date().toLocaleString('ko-KR') });
+  toast(`✅ ${ch.name} 복사 + 이력 기록`);
+}
+
+async function regenSns(chId) {
+  if (!pressSelectedBook){ toast('도서를 선택해주세요'); return; }
+  const key = pressApiKey || localStorage.getItem('acorn_apikey')||'';
+  if (!key){ toast('API Key가 없습니다'); return; }
+  const ch = PRESS_CHANNELS.find(c=>c.id===chId);
+  const b  = pressSelectedBook;
+  const ta = document.getElementById('snsta-'+chId);
+  if (ta){ ta.value='재생성 중…'; ta.disabled=true; }
+  try {
+    const text = await callClaude(`에이콘출판사 SNS 담당자로서 ${ch.name} 포스트를 ${ch.limit}자 이내로 작성해주세요.\n도서: ${b.title} — ${b.desc.slice(0,150)}\n톤: ${getChTone(chId)}\n해시태그: ${getHashtags(b,chId)}\nCTA 포함. 포스트 본문만.`);
+    if (!pressGenerated.sns) pressGenerated.sns={};
+    pressGenerated.sns[chId]=text;
+    if (ta){ ta.value=text; ta.disabled=false; updatePressCount(chId,ch.limit,text); }
+    toast(`✅ ${ch.name} 재생성 완료`);
+  } catch(e){ if(ta){ta.value=pressGenerated.sns?.[chId]||'';ta.disabled=false;} toast('실패: '+e.message); }
+}
+
+async function deployAll() {
+  if (!pressGenerated.sns||!pressSelectedBook){ toast('먼저 포스트를 생성하세요'); return; }
+  const chs = PRESS_CHANNELS.filter(c=>pressSelectedChs.has(c.id)&&pressGenerated.sns?.[c.id]);
+  for (const ch of chs) {
+    const ta = document.getElementById('snsta-'+ch.id);
+    if (ta){ try{await navigator.clipboard.writeText(ta.value);}catch(e){} }
+    addHistory({book:pressSelectedBook.title,channel:ch.name,ico:ch.ico,type:'copy',time:new Date().toLocaleString('ko-KR')});
+  }
+  toast(`✅ ${chs.length}개 채널 일괄 복사·기록 완료`);
+}
+
+function downloadTxt() {
+  if (!pressGenerated.press){ toast('보도자료를 먼저 생성해주세요'); return; }
+  const ta = document.getElementById('press-ta');
+  const text = ta?ta.value:pressGenerated.press;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));
+  a.download = `보도자료_${pressSelectedBook?.title||'draft'}_${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+  toast('📄 파일 저장됩니다');
+}
+
+// 배포 이력
+function addHistory(item) {
+  deployHistory.unshift(item);
+  if (deployHistory.length>100) deployHistory=deployHistory.slice(0,100);
+  localStorage.setItem('acorn_press_history',JSON.stringify(deployHistory));
+  renderHistory();
+}
+function renderHistory() {
+  const el = document.getElementById('historyContent');
+  if (!el) return;
+  if (!deployHistory.length) { el.innerHTML='<div style="text-align:center;padding:60px;color:var(--muted2)"><div style="font-size:32px;margin-bottom:10px">📋</div>배포 이력이 없습니다</div>'; return; }
+  el.innerHTML=`<div class="hist-card">${deployHistory.map((h,i)=>`
+    <div class="hist-row">
+      <div class="hist-ico2" style="background:${i%2?'#FAEEDA':'var(--teal3)'}">${h.ico}</div>
+      <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${h.book}</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--muted2)">${h.channel} · ${h.time}</div></div>
+      <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:${h.type==='copy'?'#FAEEDA':'var(--teal3)'};color:${h.type==='copy'?'#C47D0E':'var(--teal2)'}">${h.type==='copy'?'복사됨':'배포됨'}</span>
+    </div>`).join('')}</div>`;
+}
+function clearHistory() {
+  if (!confirm('배포 이력을 모두 삭제하시겠습니까?')) return;
+  deployHistory=[]; localStorage.removeItem('acorn_press_history'); renderHistory(); toast('이력 초기화됨');
 }
 
 // ═══════════════════════════════════════════
@@ -734,6 +1212,21 @@ function openDetail(id) {
           <div class="grade-badge grade-${grade}" id="det-grade-badge">${grade}</div>
         </div>
         <div class="eval-card-body">
+          <!-- AI 자동 평가 버튼 -->
+          <button class="ai-eval-btn" id="ai-eval-btn-${p.id}" onclick="runAiEval('${p.id}')">
+            ✨ Claude AI 자동 평가
+          </button>
+          <!-- AI 평가 결과 -->
+          <div class="ai-result-box" id="ai-result-${p.id}">
+            <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);margin-bottom:8px">— AI 평가 결과 —</div>
+            <div class="ai-score-grid" id="ai-score-grid-${p.id}"></div>
+            <div class="ai-reason" id="ai-reason-${p.id}"></div>
+            <div id="ai-tags-${p.id}" style="margin-top:8px"></div>
+            <button class="ai-apply-btn" onclick="applyAiScore('${p.id}')">↑ 점수 적용하기</button>
+          </div>
+          <div style="height:1px;background:var(--bdm);margin:12px 0"></div>
+          <!-- 수동 슬라이더 -->
+          <div style="font-size:11px;color:var(--muted2);margin-bottom:8px;letter-spacing:.04em">수동 조정</div>
           <div class="score-section">
             ${[['market','시장성'],['diff','차별성'],['author','저자 적합도'],['plan','기획 완성도'],['pub','출간 가능성']].map(([k,l])=>`
               <div class="score-row">
@@ -908,6 +1401,190 @@ function changeStatus(id, status) {
   openDetail(id);
 }
 
+// ════════════════════════════════════════
+// Claude AI 자동 평가
+// ════════════════════════════════════════
+async function runAiEval(id) {
+  const p = proposals.find(x => x.id === id);
+  if (!p) return;
+  const key = localStorage.getItem('acorn_apikey') || '';
+  if (!key) {
+    toast('API Key가 없습니다. 보도자료 관리 탭에서 API Key를 먼저 저장해주세요.');
+    return;
+  }
+
+  const btn = document.getElementById('ai-eval-btn-' + id);
+  const resBox = document.getElementById('ai-result-' + id);
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="ai-spinner"></span> Claude가 제안서를 분석하고 있습니다…'; }
+  if (resBox) resBox.classList.remove('show');
+
+  const prompt = `당신은 에이콘출판사 편집장입니다. 아래 출간 제안서를 분석하고 평가해주세요.
+
+## 제안서 정보
+- 도서 가제: ${p.title || '미입력'}
+- 카테고리: ${p.cat || '미입력'}
+- 출판 방식: ${p.svc || '기획출판'}
+- 저자: ${p.author || '미입력'} (${p.org || ''} · ${p.pos || ''})
+- 저자 경력: ${p.career || '미입력'}
+- 한 줄 요약: ${p.summary || '미입력'}
+- 타깃 독자: ${p.audience_text || '미입력'}
+- 예상 분량: ${p.pages || 0}p · 예상 정가: ₩${p.price || 0}
+- 경쟁 도서: ${p.competitors || '미입력'}
+- 차별점: ${p.differentiator || '미입력'}
+- SNS/온라인 채널: ${p.mkt_online || '미입력'}
+- 미디어 전략: ${p.mkt_media || '미입력'}
+- 런칭 프로모션: ${p.mkt_promo || '미입력'}
+
+## 평가 기준
+다음 5개 항목을 각각 0~100점으로 평가하고, 반드시 아래 JSON 형식으로만 응답하세요.
+다른 설명 없이 JSON만 출력하세요.
+
+{
+  "scores": {
+    "market": <0-100, 시장성·수요·타이밍>,
+    "diff": <0-100, 차별성·독창성·경쟁우위>,
+    "author": <0-100, 저자 신뢰도·경력·플랫폼>,
+    "plan": <0-100, 기획 완성도·구체성·현실성>,
+    "pub": <0-100, 출간 가능성·편집 난이도·리스크>
+  },
+  "grade": "<S|A|B|C|D>",
+  "recommend": "<채택|보완요청|반려>",
+  "summary": "<3-4문장 종합 평가 의견>",
+  "strengths": ["강점1", "강점2", "강점3"],
+  "warnings": ["주의사항1", "주의사항2"],
+  "suggestions": ["개선제안1", "개선제안2", "개선제안3"]
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1200,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API 오류 ${res.status}`);
+    }
+
+    const data = await res.json();
+    const raw  = data.content?.[0]?.text || '';
+
+    // JSON 파싱
+    let result;
+    try {
+      const jsonStr = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+      result = JSON.parse(jsonStr);
+    } catch(e) {
+      throw new Error('AI 응답 파싱 실패: ' + raw.slice(0, 100));
+    }
+
+    // ── 결과 렌더링 ──
+    const sc = result.scores || {};
+    const scoreLabels = { market:'시장성', diff:'차별성', author:'저자 적합도', plan:'기획 완성도', pub:'출간 가능성' };
+    const scoreColors = (v) => v >= 80 ? '#0F6E56' : v >= 65 ? '#C47D0E' : '#C83232';
+
+    document.getElementById('ai-score-grid-' + id).innerHTML =
+      Object.entries(scoreLabels).map(([k, l]) => `
+        <div class="ai-score-cell">
+          <div class="ai-score-num" style="color:${scoreColors(sc[k]||0)}">${sc[k]||0}</div>
+          <div class="ai-score-lbl">${l}</div>
+        </div>`).join('');
+
+    document.getElementById('ai-reason-' + id).innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:13px;font-weight:700;color:var(--text)">${result.grade || 'B'}등급</span>
+        <span style="font-size:12px;padding:2px 10px;border-radius:100px;font-weight:600;
+          background:${{ '채택':'var(--teal3)', '보완요청':'#FAEEDA', '반려':'#FEE8E8' }[result.recommend] || 'var(--bg)'};
+          color:${{ '채택':'var(--teal2)', '보완요청':'#C47D0E', '반려':'var(--red)' }[result.recommend] || 'var(--muted)'}">
+          ${result.recommend || '검토 필요'}
+        </span>
+      </div>
+      <div style="font-size:13px;line-height:1.75;color:var(--text)">${result.summary || ''}</div>`;
+
+    const tagsHTML = [
+      ...(result.strengths || []).map(s => `<span class="ai-tag str">✓ ${s}</span>`),
+      ...(result.warnings  || []).map(w => `<span class="ai-tag warn">⚠ ${w}</span>`),
+      ...(result.suggestions||[]).map(r => `<span class="ai-tag rec">→ ${r}</span>`),
+    ].join('');
+    document.getElementById('ai-tags-' + id).innerHTML = tagsHTML;
+
+    // 평가 결과를 임시 저장
+    p._aiScores   = sc;
+    p._aiResult   = result;
+
+    if (resBox) resBox.classList.add('show');
+
+    // 히스토리에 AI 평가 기록
+    p.history = p.history || [];
+    p.history.push({
+      who: 'Claude AI',
+      time: new Date().toISOString().slice(0, 10),
+      txt: `AI 자동 평가 완료 — ${result.grade}등급 (${result.recommend}). ${result.summary?.slice(0, 80)}…`
+    });
+    saveProposals();
+    toast('✅ Claude AI 평가 완료');
+
+  } catch(e) {
+    toast('AI 평가 실패: ' + e.message);
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '✨ Claude AI 자동 평가'; }
+  }
+}
+
+// AI 점수를 수동 슬라이더에 적용
+function applyAiScore(id) {
+  const p = proposals.find(x => x.id === id);
+  if (!p || !p._aiScores) { toast('AI 평가 결과가 없습니다'); return; }
+  const sc = p._aiScores;
+  p.scores = { ...p.scores, ...sc };
+
+  // 슬라이더 UI 업데이트
+  Object.entries(sc).forEach(([k, v]) => {
+    const slider = document.querySelector(`#page-detail input.score-slider[oninput*="'${id}','${k}'"]`);
+    const valEl  = document.getElementById(`sv-${id}-${k}`);
+    if (slider) slider.value = v;
+    if (valEl)  valEl.textContent = v + '점';
+  });
+
+  // 총점 재계산
+  const total = totalScore(p);
+  const grade = scoreGrade(total);
+  const tv = document.getElementById('ts-val-' + id);
+  const tg = document.getElementById('ts-grade-' + id);
+  const gb = document.getElementById('det-grade-badge');
+  if (tv) tv.textContent = Math.round(total);
+  if (tg) tg.textContent = gradeDesc(grade);
+  if (gb) { gb.textContent = grade; gb.className = 'grade-badge grade-' + grade; }
+
+  // 추천 상태 자동 적용
+  if (p._aiResult?.recommend) {
+    const recMap = { '채택': '채택', '보완요청': '보완요청', '반려': '반려' };
+    const newStatus = recMap[p._aiResult.recommend];
+    if (newStatus && newStatus !== p.status) {
+      p.status = newStatus;
+      p.history = p.history || [];
+      p.history.push({
+        who: 'Claude AI → 편집장',
+        time: new Date().toISOString().slice(0, 10),
+        txt: `AI 평가 점수 적용 — 상태 자동 변경: ${newStatus}`
+      });
+    }
+  }
+
+  saveProposals();
+  toast(`✅ AI 점수(평균 ${Math.round(totalScore(p))}점) 적용 완료`);
+}
+
 function updateScore(id, key, val) {
   const p = proposals.find(x=>x.id===id);
   if(!p) return;
@@ -1049,7 +1726,7 @@ document.getElementById('modal-overlay').addEventListener('click', e => {
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
-showPage('dashboard');
+switchSection('proposal');
 </script>
 </body>
 </html>
