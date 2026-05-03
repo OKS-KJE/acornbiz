@@ -184,19 +184,12 @@ function overview() {
 
   <div class="eyebrow" style="margin-bottom:10px">Top-2nd Layer · 자회사</div>
   <div class="t2-grid">
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="co-card teal" onclick="acornpub()" style="cursor:pointer">
-        <div class="co-name">에이콘 출판사</div>
-        <div class="co-spec">IT 기술도서 전문</div>
-        <div class="co-svc">Publishing Studio (저·역자 관리 시스템)</div>
-        <div class="co-svc">IT 기술도서 ePub 3.0 클라우드</div>
-        <div class="co-svc">글로벌 출간 지원 (Amazon KDP)</div>
-        <div style="font-size:11px;color:var(--t600);margin-top:10px;font-weight:500">클릭하면 상세 내용 보기 →</div>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a href="acornpub_landing.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:8px 16px;border-radius:100px;text-decoration:none;background:var(--t600);color:#fff;letter-spacing:.01em;transition:opacity .15s" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">랜딩 페이지 보기 →</a>
-        <a href="page_connection_map.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:8px 16px;border-radius:100px;text-decoration:none;background:var(--t800);color:#fff;letter-spacing:.01em;border:2px solid var(--t600);transition:opacity .15s" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">연결 맵 보기 ⊞</a>
-      </div>
+    <div class="co-card teal" onclick="window.open('acornpub_landing.html','_blank')" style="cursor:pointer" title="에이콘 출판사 랜딩 페이지 열기">
+      <div class="co-name">에이콘 출판사</div>
+      <div class="co-spec">IT 기술도서 전문</div>
+      <div class="co-svc">Publishing Studio (저·역자 관리 시스템)</div>
+      <div class="co-svc">IT 기술도서 ePub 3.0 클라우드</div>
+      <div class="co-svc">글로벌 출간 지원 (Amazon KDP)</div>
     </div>
     <div class="co-card coral">
       <div class="co-name">에이콘온</div>
@@ -205,135 +198,6 @@ function overview() {
       <div class="co-svc">인문 도서 ePub 3.0 클라우드</div>
       <div class="co-svc">자비 출판 서비스</div>
       <div class="co-svc">글로벌 출간 지원 (Amazon KDP)</div>
-    </div>
-  </div>
-</div>`;
-}
-
-/* ─────────────────────────────── 에이콘 출판사 DETAIL */
-function acornpub() {
-  $.innerHTML = `
-<div class="page">
-  <div class="detail-nav">
-    <button class="back-btn" onclick="go('overview')">← 개요로 돌아가기</button>
-  </div>
-
-  <div class="hero teal">
-    <div class="hero-tag">IT 기술도서 전문</div>
-    <div class="hero-name">에이콘 출판사</div>
-    <div class="hero-tagline">IT 분야 저·역자를 위한 체계적인 출판 파트너십</div>
-  </div>
-
-  <div class="sec-head">
-    <h2>Publishing Studio — 저·역자 서비스</h2>
-    <span class="sec-badge" style="background:var(--t50);color:var(--t800);border-color:var(--t600)">출판사 + 저·역자 통합 시스템</span>
-  </div>
-
-  <div class="feat-grid teal-acc">
-
-    <div class="feat-card">
-      <div class="feat-num">01</div>
-      <div class="feat-title">투명한 인세 구조와 사전 시뮬레이션</div>
-      <div class="pills">
-        <span class="pill t">종이책 10–12%</span>
-        <span class="pill t">전자책 20–25%</span>
-        <span class="pill g">1쇄 30일 이내 지급</span>
-        <span class="pill g">분기 정산</span>
-      </div>
-      <div class="feat-body">
-        출간 전 인세 시뮬레이터로 <strong>1년·3년 예상 수익</strong>을 저자가 직접 확인하고 계약에 임할 수 있습니다. 실시간 판매 대시보드를 통해 판매 현황과 정산 내역을 언제든 조회할 수 있습니다.
-      </div>
-    </div>
-
-    <div class="feat-card">
-      <div class="feat-num">02</div>
-      <div class="feat-title">출판 프로세스 실시간 확인 및 협업</div>
-      <div class="steps">
-        <span class="step">계약</span><span class="step-arrow">→</span>
-        <span class="step">저술</span><span class="step-arrow">→</span>
-        <span class="step">교정교열</span><span class="step-arrow">→</span>
-        <span class="step">디자인</span><span class="step-arrow">→</span>
-        <span class="step">조판</span><span class="step-arrow">→</span>
-        <span class="step">리뷰</span><span class="step-arrow">→</span>
-        <span class="step">보도자료</span><span class="step-arrow">→</span>
-        <span class="step">마감</span><span class="step-arrow">→</span>
-        <span class="step">인쇄·출간</span>
-      </div>
-      <div class="feat-body">
-        9단계 전 공정을 Publishing Studio 대시보드에서 실시간으로 확인합니다. 단계별 <strong>KEY EVENT 자동 알림</strong>과 담당 편집자와의 실시간 메시지 협업을 지원합니다.
-      </div>
-    </div>
-
-    <div class="feat-card">
-      <div class="feat-num">03</div>
-      <div class="feat-title">AI 보조 출판 워크플로우</div>
-      <div class="pills">
-        <span class="pill a">평균 4–6개월 출간</span>
-        <span class="pill g">표지 시안 24시간 이내</span>
-      </div>
-      <div class="feat-body">
-        <strong>집필:</strong> AI 윤문·팩트체크 기본 도구 무상 제공<br>
-        <strong>편집:</strong> AI 교정·인덱싱으로 편집 주기 단축<br>
-        <strong>디자인:</strong> 표지·내지 시안 24시간 이내 제공<br><br>
-        원고 수령 후 평균 4–6개월 이내 출간을 목표로 합니다.
-      </div>
-    </div>
-
-    <div class="feat-card">
-      <div class="feat-num">04</div>
-      <div class="feat-title">11개 채널 통합 마케팅 — 저자 비용 0원</div>
-      <div class="channels">
-        <span class="ch">인스타그램 (IT/일반서 분리)</span>
-        <span class="ch">페이스북</span>
-        <span class="ch">X</span>
-        <span class="ch">LinkedIn</span>
-        <span class="ch">유튜브 숏폼·롱폼</span>
-        <span class="ch">스티비 뉴스레터 5종</span>
-        <span class="ch">카카오 챗봇</span>
-        <span class="ch">홈페이지 블로그</span>
-      </div>
-      <div class="feat-body">
-        출간과 동시에 마케팅 패키지가 <strong>자동 적용</strong>됩니다. 모든 마케팅 비용은 에이콘이 부담하며, 저자 추가 비용 없음이 원칙입니다.
-      </div>
-    </div>
-
-    <div class="feat-card">
-      <div class="feat-num">05</div>
-      <div class="feat-title">출간 후 도서 보완 및 추가 지원</div>
-      <div class="feat-body">
-        출간 이후에도 파트너십은 지속됩니다.<br><br>
-        <strong>정오표 업데이트</strong> 및 독자 피드백 수렴, <strong>개정판 우선 협의</strong>, 보완 자료·추가 콘텐츠 제작 지원을 제공합니다. IT 기술 변화에 따른 개정 수요를 저자와 함께 지속 관리합니다.
-      </div>
-    </div>
-
-    <div class="feat-card">
-      <div class="feat-num">06</div>
-      <div class="feat-title">IT 도서 특화 ePub 3.0 출간</div>
-      <div class="pills">
-        <span class="pill g">종이책</span>
-        <span class="pill g">전자책</span>
-        <span class="pill g">PDF</span>
-        <span class="pill t">ePub 3.0</span>
-      </div>
-      <div class="feat-body">
-        4종 포맷 동시 출간. ePub 3.0은 <strong>코드 블록·수식·인터랙티브 요소</strong>에 최적화된 IT 전문 템플릿을 적용합니다. KJ엔지니어링의 ePub 3.0 클라우드 인프라 기반으로 제공됩니다.
-      </div>
-    </div>
-
-  </div>
-
-  <div class="sec-head">
-    <h2>글로벌 출간 지원</h2>
-    <span class="sec-badge common-badge">에이콘 출판사 · 에이콘온 공통</span>
-  </div>
-  <div class="feat-grid single teal-acc">
-    <div class="feat-card">
-      <div class="feat-num">07</div>
-      <div class="feat-title">글로벌 출간 지원 — Amazon KDP</div>
-      <div class="feat-body">
-        국내 출간과 연계하여 <strong>Amazon KDP</strong>를 통한 글로벌 출간을 지원합니다. 원서 번역 방향 컨설팅, KDP 등록·메타데이터 최적화, 글로벌 프라이싱 전략 수립까지 에이콘 팀이 함께합니다.<br><br>
-        에이콘 출판사·에이콘온 모두 동일하게 제공되는 공통 서비스입니다.
-      </div>
     </div>
   </div>
 </div>`;
