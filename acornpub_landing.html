@@ -340,6 +340,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 
     </ul>
     <a class="ncta" href="publishing-proposal.html">저자 등록 신청 →</a>
+    <a href="press_sns.html" target="_blank" style="margin-left:8px;flex-shrink:0;background:rgba(239,159,39,.25);color:#EF9F27;font-size:12px;font-weight:600;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(239,159,39,.4);transition:all .15s" onmouseover="this.style.background='rgba(239,159,39,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(239,159,39,.25)';this.style.color='#EF9F27'">📣 보도자료·SNS</a>
     <a href="page_connection_map.html" target="_blank" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⊞ 연결 맵</a>
     <a href="acorn_admin.html" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⚙ 관리자</a>
   </div>
@@ -630,7 +631,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 .sv-tl-wk .wk{font-size:9.5px;color:var(--ink-mute);display:block;letter-spacing:.18em;text-transform:uppercase;margin-bottom:2px;font-style:normal;font-weight:600}
 .sv-tl-h{font-family:var(--ksr);font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:3px}
 .sv-tl-p{font-size:11.5px;color:var(--ink-mute);line-height:1.6}
-.sv-ai-tag{
+/* .sv-ai-tag — removed */
+.sv-ai-tag-unused{
   display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;
   color:var(--burg);background:rgba(122,31,43,.08);padding:2px 6px;border-radius:2px;
   margin-top:4px;margin-right:4px;
@@ -1073,7 +1075,6 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
       .pp-tl-wk .wk{font-size:8.5px;color:var(--ink-mute);display:block;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1px;font-style:normal;font-weight:600}
       .pp-tl-h{font-family:var(--ksr);font-weight:600;font-size:12px;color:var(--ink);margin-bottom:2px}
       .pp-tl-p{font-size:10.5px;color:var(--ink-mute);line-height:1.5}
-      .pp-ai-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.08em;color:var(--burg);background:rgba(15,110,86,.08);padding:1px 5px;border-radius:2px;margin-top:3px;margin-right:3px}
       .pp-tl-summary{margin-top:14px;padding:12px 16px;background:var(--ink);color:var(--paper-light);border-radius:2px;display:flex;justify-content:space-between;align-items:center}
       .pp-tl-sl{font-family:var(--display);font-style:italic;font-size:10px;color:var(--gold-soft);letter-spacing:.14em;text-transform:uppercase}
       .pp-tl-sr{font-family:var(--display);font-weight:300;font-size:22px;font-style:italic;color:var(--paper-light)}
@@ -1155,9 +1156,9 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="promises-shell">
         <!-- 헤드 -->
         <div class="promises-head">
-          <div class="sv-sec-num">— Chapter I · 다섯 가지 약속 —</div>
-          <h2 class="sv-sec-title">저자를 위한, <em>5가지 약속</em>.</h2>
-          <p class="sv-sec-lede sv-sec-lede--sm">에이콘은 단순한 출판 대행이 아닙니다 — 인세·워크플로우·마케팅·사후 지원·글로벌까지, 모든 단계에서 지키는 약속입니다.</p>
+          <div class="sv-sec-num">— Chapter I · 여섯 가지 약속 —</div>
+          <h2 class="sv-sec-title">저자를 위한, <em>6가지 약속</em>.</h2>
+          <p class="sv-sec-lede sv-sec-lede--sm">에이콘은 단순한 출판 대행이 아닙니다 — 인세·일정 관리·마케팅·사후 지원·ePub 3.x·Amazon KDP 글로벌까지, 모든 단계에서 지키는 약속입니다.</p>
         </div>
 
         <!-- 탭 레이아웃 -->
@@ -1166,7 +1167,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
           <!-- 좌: 탭 목록 -->
           <nav class="promises-nav">
             <div class="pnav-header">
-              <span class="pnav-header-en">— 5 Promises —</span>
+              <span class="pnav-header-en">— 6 Promises —</span>
               <span class="pnav-header-ko">약속을 선택하세요</span>
             </div>
             <button class="pnav-item on" onclick="setPromise(this,0)">
@@ -1180,8 +1181,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
             <button class="pnav-item" onclick="setPromise(this,1)">
               <div class="pnav-roman">II</div>
               <div class="pnav-texts">
-                <div class="pnav-num">Promise · AI-Assisted</div>
-                <div class="pnav-title">AI 보조 출판 워크플로우</div>
+                <div class="pnav-num">Promise · Timeline</div>
+                <div class="pnav-title">출판 프로세스 실시간 확인 및 협업</div>
               </div>
               <div class="pnav-dot"></div>
             </button>
@@ -1204,8 +1205,16 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
             <button class="pnav-item" onclick="setPromise(this,4)">
               <div class="pnav-roman">V</div>
               <div class="pnav-texts">
+                <div class="pnav-num">Promise · ePub 3.x</div>
+                <div class="pnav-title">ePub 3.x 인터랙티브 전자책</div>
+              </div>
+              <div class="pnav-dot"></div>
+            </button>
+            <button class="pnav-item" onclick="setPromise(this,5)">
+              <div class="pnav-roman">VI</div>
+              <div class="pnav-texts">
                 <div class="pnav-num">Promise · Global</div>
-                <div class="pnav-title">ePub 3.x 및 Amazon KDP 글로벌 출간 지원</div>
+                <div class="pnav-title">Amazon KDP 글로벌 출간 지원</div>
               </div>
               <div class="pnav-dot"></div>
             </button>
@@ -1221,48 +1230,65 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
                   <div class="pp-roman">I</div>
                   <div class="pp-meta">
                     <div class="pp-meta-en">Promise · Royalty</div>
-                    <div class="pp-meta-num">10–12% · 20–25% · D+30</div>
+                    <div class="pp-meta-num">기획 8–12% · 자비 90% · 분기 정산</div>
                   </div>
                 </div>
                 <h3 class="pp-title">투명한 인세 구조와<br><em>사전 시뮬레이션</em>.</h3>
-                <p class="pp-desc">종이책 <b>10–12%</b>, 전자책 <b>20–25%</b> — 업계 최상위 표준. 출간 전 인세 시뮬레이터로 1년·3년 예상 수익을 직접 확인하실 수 있습니다. <b>1쇄 인세는 출간일 기준 30일 이내 지급</b>, 2쇄부터 분기별 정산.</p>
-                <ul class="pp-points">
-                  <li><span class="pp-lbl">종이책 인세율</span><span class="pp-val"><span class="hi">10 – 12%</span> · 정가 기준</span></li>
-                  <li><span class="pp-lbl">전자책 인세율</span><span class="pp-val"><span class="hi">20 – 25%</span> · 정가 기준</span></li>
-                  <li><span class="pp-lbl">1쇄 인세 지급</span><span class="pp-val">출간일 + 30일 이내</span></li>
-                  <li><span class="pp-lbl">2쇄 이후 정산</span><span class="pp-val">분기별 정산</span></li>
-                </ul>
+                <p class="pp-desc">출판 방식에 따라 인세 구조가 다릅니다. <b>기획출판</b>은 종이책 정가의 8–12%, 전자책 정산액의 20%. <b>자비출판</b>은 최종 입금액에서 수수료 10%를 제한 순수익의 90%를 인세로 지급합니다. 인세는 <b>분기별 정산, 익월 25일 지급</b>. 출간 전 인세 시뮬레이터로 1년·3년 예상 수익을 저자가 직접 확인하고 계약에 임할 수 있으며, <b>실시간 판매 대시보드</b>를 통해 판매 현황과 정산 내역을 언제든 조회할 수 있습니다.</p>
+                <!-- 기획출판 인세 기준표 -->
+                <div style="margin-top:16px">
+                  <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--burg);margin-bottom:8px;font-family:var(--display);font-style:italic">— 기획출판 인세 기준 —</div>
+                  <ul class="pp-points">
+                    <li><span class="pp-lbl">종이책 — 초판</span><span class="pp-val"><span class="hi">정가의 8–12%</span> × 발행 부수</span></li>
+                    <li><span class="pp-lbl">종이책 — 2쇄~</span><span class="pp-val">정가의 8–12% × <span class="hi">판매 부수</span></span></li>
+                    <li><span class="pp-lbl">전자책</span><span class="pp-val">판매정산액의 <span class="hi">20%</span> · 전자책 정가 = 종이책×80%</span></li>
+                  </ul>
+                </div>
+                <!-- 자비출판 인세 기준표 -->
+                <div style="margin-top:14px">
+                  <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--burg);margin-bottom:8px;font-family:var(--display);font-style:italic">— 자비출판 인세 기준 —</div>
+                  <ul class="pp-points">
+                    <li><span class="pp-lbl">전자책</span><span class="pp-val">플랫폼 정산 후 순수익의 <span class="hi">90%</span> (수수료 10% 공제)</span></li>
+                    <li><span class="pp-lbl">종이책</span><span class="pp-val">서점 정산액 − 유통 관리비(정가×10%) 후 <span class="hi">전액 지급</span></span></li>
+                    <li><span class="pp-lbl">정산 시기</span><span class="pp-val">분기별 · 익월 25일 지급 (최소 ₩10,000)</span></li>
+                  </ul>
+                </div>
               </div>
               <div>
                 <div class="pp-card top-burg">
                   <div class="pp-card-head">
                     <div><span class="pp-card-en">— Royalty Simulator —</span><h4>인세 사전 시뮬레이터</h4></div>
                     <div class="pp-sim-tabs">
-                      <span class="pp-stab on" data-mode="print">종이책</span>
-                      <span class="pp-stab" data-mode="ebook">전자책</span>
+                      <span class="pp-stab on" data-mode="planning-paper">기획·종이책</span>
+                      <span class="pp-stab" data-mode="planning-ebook">기획·전자책</span>
+                      <span class="pp-stab" data-mode="self">자비출판</span>
                     </div>
                   </div>
                   <div class="pp-sim-row">
                     <div class="pp-sim-rt"><span class="pp-sim-lbl">정가</span><span class="pp-sim-val" id="pp-price-val">₩ 28,000</span></div>
-                    <input type="range" class="pp-slider" id="pp-price" min="15000" max="50000" step="1000" value="28000">
+                    <input type="range" class="pp-slider" id="pp-price" min="15000" max="60000" step="1000" value="28000">
+                  </div>
+                  <div class="pp-sim-row" id="pp-row-rate">
+                    <div class="pp-sim-rt"><span class="pp-sim-lbl" id="pp-rate-lbl">인세율</span><span class="pp-sim-val" id="pp-rate-val">10.0%</span></div>
+                    <input type="range" class="pp-slider" id="pp-rate" min="80" max="120" step="5" value="100">
                   </div>
                   <div class="pp-sim-row">
-                    <div class="pp-sim-rt"><span class="pp-sim-lbl">인세율</span><span class="pp-sim-val" id="pp-rate-val">11.0%</span></div>
-                    <input type="range" class="pp-slider" id="pp-rate" min="100" max="120" step="5" value="110">
-                  </div>
-                  <div class="pp-sim-row">
-                    <div class="pp-sim-rt"><span class="pp-sim-lbl">1년 예상 판매</span><span class="pp-sim-val" id="pp-copies-val">2,000부</span></div>
+                    <div class="pp-sim-rt"><span class="pp-sim-lbl" id="pp-copies-lbl">예상 판매</span><span class="pp-sim-val" id="pp-copies-val">2,000부</span></div>
                     <input type="range" class="pp-slider" id="pp-copies" min="500" max="10000" step="100" value="2000">
+                  </div>
+                  <!-- 자비: 공급율·수수료 안내 -->
+                  <div id="pp-self-info" style="display:none;padding:8px 12px;background:rgba(122,31,43,.06);border-radius:4px;font-size:11.5px;color:var(--ink-mute);margin:4px 0;line-height:1.6">
+                    ※ 자비출판: 전자책 — 플랫폼 정산 후 순수익 × 90% / 종이책 — 서점 정산액 − 정가×10% (유통관리비)
                   </div>
                   <div class="pp-sim-result">
                     <div class="pp-res">
-                      <div class="pp-res-lbl">1년 인세</div>
-                      <div class="pp-res-num"><span class="cur">₩</span><span id="pp-y1">6,160,000</span></div>
-                      <div class="pp-res-meta" id="pp-y1-meta">@ 11% × 2,000부 × ₩28,000</div>
+                      <div class="pp-res-lbl">1년 예상 인세</div>
+                      <div class="pp-res-num"><span class="cur">₩</span><span id="pp-y1">0</span></div>
+                      <div class="pp-res-meta" id="pp-y1-meta"></div>
                     </div>
                     <div class="pp-res hi">
                       <div class="pp-res-lbl">3년 누적 인세</div>
-                      <div class="pp-res-num"><span class="cur">₩</span><span id="pp-y3">14,784,000</span></div>
+                      <div class="pp-res-num"><span class="cur">₩</span><span id="pp-y3">0</span></div>
                       <div class="pp-res-meta" id="pp-y3-meta">— 보수 추정 (재쇄 포함)</div>
                     </div>
                   </div>
@@ -1270,34 +1296,34 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
               </div>
             </div>
 
-            <!-- Panel 1: AI 워크플로우 -->
+            <!-- Panel 1: 효율적 일정 관리 -->
             <div class="ppanel" id="pp-1">
               <div>
                 <div class="pp-tag">
                   <div class="pp-roman">II</div>
                   <div class="pp-meta">
-                    <div class="pp-meta-en">Promise · AI-Assisted</div>
-                    <div class="pp-meta-num">4–6 months · LLM-augmented</div>
+                    <div class="pp-meta-en">Promise · Timeline</div>
+                    <div class="pp-meta-num">9 Steps · Publishing Studio · 실시간 협업</div>
                   </div>
                 </div>
-                <h3 class="pp-title">AI 보조<br><em>출판 워크플로우</em>.</h3>
-                <p class="pp-desc"><b>집필</b> 단계에서는 AI 윤문·팩트체크 도구를 무상 제공합니다. <b>편집</b>은 AI 교정·인덱싱으로 주기를 단축하고, <b>디자인</b>은 표지·내지 시안을 24시간 이내 회신합니다. 평균 출간 소요 기간 — <b>원고 수령 후 4–6개월</b>.</p>
+                <h3 class="pp-title">출판 프로세스<br><em>실시간 확인 및 협업</em>.</h3>
+                <p class="pp-desc">출판 전 공정 9단계를 <b>Publishing Studio 대시보드</b>에서 실시간으로 확인합니다. 단계별 KEY EVENT 자동 알림과 담당 편집자와의 실시간 메시지 협업을 지원하여, 저자는 원고 수령부터 출간까지 모든 진행 상황을 투명하게 파악할 수 있습니다.</p>
                 <ul class="pp-points">
-                  <li><span class="pp-lbl">집필 보조 (AI 윤문·팩트체크)</span><span class="pp-val"><span class="hi">무상 제공</span></span></li>
-                  <li><span class="pp-lbl">편집 (AI 교정·인덱싱)</span><span class="pp-val">주기 단축</span></li>
-                  <li><span class="pp-lbl">표지·내지 시안 회신</span><span class="pp-val">24h 이내</span></li>
+                  <li><span class="pp-lbl">Publishing Studio</span><span class="pp-val"><span class="hi">9단계 전 공정 실시간 확인</span></span></li>
+                  <li><span class="pp-lbl">KEY EVENT 알림</span><span class="pp-val">단계별 자동 알림</span></li>
+                  <li><span class="pp-lbl">편집자 협업</span><span class="pp-val">실시간 메시지 지원</span></li>
                   <li><span class="pp-lbl">평균 출간 소요</span><span class="pp-val"><span class="hi">4–6개월</span></span></li>
                 </ul>
               </div>
               <div>
                 <div class="pp-card top-gold">
-                  <div class="pp-card-head"><div><span class="pp-card-en">— Avg. Production Timeline —</span><h4>출간 일정 표준안</h4></div></div>
-                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>1–4</div><div><div class="pp-tl-h">원고 수령 · 검토</div><div class="pp-tl-p">편집장 직접 검토 · 구조 의견 회신</div><span class="pp-ai-tag">[ai] 팩트체크</span><span class="pp-ai-tag">[ai] 윤문</span></div></div>
-                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>5–10</div><div><div class="pp-tl-h">1차 · 2차 교정</div><div class="pp-tl-p">편집자 + AI 협업 교정 · 저자 확인 사이클</div><span class="pp-ai-tag">[ai] 자동 교정</span><span class="pp-ai-tag">[ai] 인덱싱</span></div></div>
-                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>11–14</div><div><div class="pp-tl-h">표지 · 내지 디자인</div><div class="pp-tl-p">시안 24시간 이내 회신 · 저자 의견 반영</div><span class="pp-ai-tag">[ai] 시안 생성</span></div></div>
-                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>15–18</div><div><div class="pp-tl-h">최종 교정 · 인쇄 · 배포</div><div class="pp-tl-p">온라인·오프라인 채널 동시 입고</div></div></div>
-                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Week</span>19–24</div><div><div class="pp-tl-h">마케팅 가속 · KDP 동시 출간</div><div class="pp-tl-p">11개 채널 동시 점화</div></div></div>
-                  <div class="pp-tl-summary"><div class="pp-tl-sl">— 원고에서 출간까지 —</div><div class="pp-tl-sr">4–6<small>개월</small></div></div>
+                  <div class="pp-card-head"><div><span class="pp-card-en">— Publishing Studio · 9 Steps —</span><h4>출판 공정 9단계</h4></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Step</span>1–2</div><div><div class="pp-tl-h">원고 수령 · 기획 검토</div><div class="pp-tl-p">편집장 직접 검토 · 구조 의견 회신 · KEY EVENT 알림</div></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Step</span>3–4</div><div><div class="pp-tl-h">1차 · 2차 교정</div><div class="pp-tl-p">편집자 협업 교정 · 저자 확인 사이클 · 실시간 메시지</div></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Step</span>5–6</div><div><div class="pp-tl-h">표지 · 내지 디자인</div><div class="pp-tl-p">시안 24시간 이내 회신 · 저자 의견 반영</div></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Step</span>7–8</div><div><div class="pp-tl-h">최종 교정 · 인쇄 · 배포</div><div class="pp-tl-p">온라인·오프라인 채널 동시 입고</div></div></div>
+                  <div class="pp-tl-row"><div class="pp-tl-wk"><span class="wk">Step</span>9</div><div><div class="pp-tl-h">마케팅 · KDP 출간</div><div class="pp-tl-p">11개 채널 동시 점화 · Publishing Studio 완료 알림</div></div></div>
+                  <div class="pp-tl-summary"><div class="pp-tl-sl">— 전 공정 Publishing Studio 실시간 확인 —</div><div class="pp-tl-sr">4–6<small>개월</small></div></div>
                 </div>
               </div>
             </div>
@@ -1318,7 +1344,6 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
                   <li><span class="pp-lbl">SNS · 영상 채널</span><span class="pp-val">7개 채널</span></li>
                   <li><span class="pp-lbl">뉴스레터 · 메신저</span><span class="pp-val">스티비 5종 + 카카오</span></li>
                   <li><span class="pp-lbl">홈페이지 블로그 · SEO</span><span class="pp-val">자동 게시</span></li>
-                  <li><span class="pp-lbl">저자 부담 비용</span><span class="pp-val"><span class="hi">₩ 0</span></span></li>
                 </ul>
               </div>
               <div>
@@ -1337,7 +1362,6 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
                     <div class="pp-ch-item"><div class="pp-ch-num">10</div><div class="pp-ch-ico">⌘</div><div class="pp-ch-name">블로그</div><div class="pp-ch-sub">SEO 최적화</div></div>
                     <div class="pp-ch-item"><div class="pp-ch-num">11</div><div class="pp-ch-ico">⊕</div><div class="pp-ch-name">통합 캠페인</div><div class="pp-ch-sub">Cross-channel</div></div>
                   </div>
-                  <div class="pp-ch-zero"><div class="pp-ch-zero-l"><small>— Author Cost —</small>저자 부담 비용</div><div class="pp-ch-zero-r">₩ 0<small>원</small></div></div>
                 </div>
               </div>
             </div>
@@ -1349,16 +1373,16 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
                   <div class="pp-roman">IV</div>
                   <div class="pp-meta">
                     <div class="pp-meta-en">Promise · After-Care</div>
-                    <div class="pp-meta-num">Daily · Audit-grade · Revision</div>
+                    <div class="pp-meta-num">Daily · Transparent · Revision</div>
                   </div>
                 </div>
                 <h3 class="pp-title">출간 후에도<br><em>함께합니다</em>.</h3>
-                <p class="pp-desc">정오표 업데이트, 독자 피드백 수렴, <b>개정판 우선 협의</b>. 실시간 판매 대시보드로 국내·KDP 글로벌 판매를 <b>하나의 화면</b>에서 확인. <b>외부감사 기준 정산 명세 공개.</b></p>
+                <p class="pp-desc">정오표 업데이트, 독자 피드백 수렴, <b>개정판 우선 협의</b>. 실시간 판매 대시보드로 국내·KDP 글로벌 판매를 <b>하나의 화면</b>에서 확인하고 정산 내역을 투명하게 조회할 수 있습니다.</p>
                 <ul class="pp-points">
                   <li><span class="pp-lbl">정오표 · 독자 피드백</span><span class="pp-val">지속 관리</span></li>
                   <li><span class="pp-lbl">개정판 협의 우선권</span><span class="pp-val">저자 우선 제공</span></li>
                   <li><span class="pp-lbl">판매 대시보드 갱신</span><span class="pp-val">Daily · 매일</span></li>
-                  <li><span class="pp-lbl">정산 명세 투명성</span><span class="pp-val"><span class="hi">외부감사 기준 공개</span></span></li>
+                  <li><span class="pp-lbl">정산 명세</span><span class="pp-val"><span class="hi">투명하게 공개</span></span></li>
                 </ul>
               </div>
               <div>
@@ -1384,29 +1408,66 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
                       <div class="pp-dash-ch-item"><div class="pp-dash-ch-l">알라딘<small>온라인 · 국내</small></div><div class="pp-dash-ch-r">218부<small>↑ +4</small></div></div>
                       <div class="pp-dash-ch-item"><div class="pp-dash-ch-l">Amazon US<small>KDP · English</small></div><div class="pp-dash-ch-r">218 units<small>↑ +5</small></div></div>
                     </div>
-                    <div class="pp-dash-audit"><div class="pp-dash-audit-l">— Audit-Grade —<b>외부감사 기준 정산 명세 공개</b></div><div class="pp-dash-audit-r">✓ Verified</div></div>
+                    <div class="pp-dash-audit"><div class="pp-dash-audit-l">— Transparent Settlement —<b>정산 내역 실시간 조회</b></div><div class="pp-dash-audit-r">✓ Real-time</div></div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Panel 4: ePub + KDP -->
+            <!-- Panel 4: ePub 3.x -->
             <div class="ppanel" id="pp-4">
               <div>
                 <div class="pp-tag">
                   <div class="pp-roman">V</div>
                   <div class="pp-meta">
-                    <div class="pp-meta-en">Promise · Global Reach</div>
-                    <div class="pp-meta-num">ePub 3.0 · KDP 70% · EN/JP/CN</div>
+                    <div class="pp-meta-en">Promise · ePub 3.x</div>
+                    <div class="pp-meta-num">Interactive · Multi-format · Free</div>
                   </div>
                 </div>
-                <h3 class="pp-title">ePub 3.x 및<br><em>Amazon KDP</em> 글로벌 출간 지원.</h3>
-                <p class="pp-desc">종이책·전자책·PDF·<b>ePub 3.0</b> 4종 포맷 동시 출간. IT 도서는 코드 블록·수식 최적화, 인문 도서는 서체 심미성 특화 템플릿 적용. 원고 채택 시 <b>영문판 동시 출간 옵션</b> 제공. Amazon KDP <b>70% 인세 구간</b> 자동 설정.</p>
+                <h3 class="pp-title">ePub 3.x<br><em>인터랙티브 전자책</em>.</h3>
+                <p class="pp-desc">종이책·전자책·PDF·<b>ePub 3.0</b> 4종 포맷 동시 출간. ePub 3.0은 코드 블록·수식·인터랙티브 요소에 최적화된 <b>IT 전문 템플릿</b>을 적용합니다. ePub 3.0 클라우드 인프라 기반으로 제공됩니다.</p>
                 <ul class="pp-points">
-                  <li><span class="pp-lbl">Amazon KDP 인세 구간</span><span class="pp-val">70% · 자동 설정</span></li>
-                  <li><span class="pp-lbl">예상 부수당 인세 (USD)</span><span class="pp-val"><span class="hi">$2 — $7</span></span></li>
+                  <li><span class="pp-lbl">제공 포맷</span><span class="pp-val">종이책 · 전자책 · PDF · <span class="hi">ePub 3.0</span></span></li>
+                  <li><span class="pp-lbl">IT 도서 템플릿</span><span class="pp-val">코드 블록 · 수식 최적화</span></li>
+                  <li><span class="pp-lbl">제공 인프라</span><span class="pp-val"><span class="hi">ePub 3.0 클라우드</span> 기반</span></li>
+                </ul>
+              </div>
+              <div>
+                <div class="pp-card top-gold">
+                  <div class="pp-card-head"><div><span class="pp-card-en">— ePub 3.0 Feature Set —</span><h4>인터랙티브 기능 지원</h4></div></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+                    <div style="padding:12px;background:var(--paper);border-radius:4px;border:1px solid var(--rule-soft)">
+                      <div style="font-size:10px;font-weight:700;color:var(--burg);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-family:var(--display);font-style:italic">IT 도서</div>
+                      <div style="font-size:12px;color:var(--ink);line-height:1.7">코드 하이라이팅<br>인라인 툴팁<br>GitHub 연동<br>수식(MathML)<br>SVG 다이어그램</div>
+                    </div>
+                    <div style="padding:12px;background:var(--paper);border-radius:4px;border:1px solid var(--rule-soft)">
+                      <div style="font-size:10px;font-weight:700;color:var(--burg);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-family:var(--display);font-style:italic">인문 도서</div>
+                      <div style="font-size:12px;color:var(--ink);line-height:1.7">서체 최적화<br>장 시작 요약<br>인터랙티브 퀴즈<br>정오표 패치<br>보너스 콘텐츠</div>
+                    </div>
+                  </div>
+                  <div style="margin-top:12px;padding:10px 14px;background:rgba(122,31,43,.05);border-radius:4px;font-size:12px;color:var(--ink-mute);text-align:center">
+                    ePub 3.0 클라우드 인프라 기반 · IT 전문 템플릿 적용
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 5: Amazon KDP -->
+            <div class="ppanel" id="pp-5">
+              <div>
+                <div class="pp-tag">
+                  <div class="pp-roman">VI</div>
+                  <div class="pp-meta">
+                    <div class="pp-meta-en">Promise · Global</div>
+                    <div class="pp-meta-num">KDP 70% · EN/JP/CN · D+0</div>
+                  </div>
+                </div>
+                <h3 class="pp-title">Amazon KDP<br><em>글로벌 출간 지원</em>.</h3>
+                <p class="pp-desc">원고 채택 시 <b>영문판 동시 출간 옵션</b> 제공. Amazon KDP <b>70% 인세 구간</b> 자동 설정. 영어·일본어·중국어 현지 파트너 매칭으로 글로벌 독자에게 동시 도달합니다.</p>
+                <ul class="pp-points">
+                  <li><span class="pp-lbl">Amazon KDP 인세</span><span class="pp-val">70% 구간 · <span class="hi">자동 설정</span></span></li>
+                  <li><span class="pp-lbl">부수당 인세 (USD)</span><span class="pp-val"><span class="hi">$2 — $7</span></span></li>
                   <li><span class="pp-lbl">현지화 언어</span><span class="pp-val">EN · JP · CN</span></li>
-                  <li><span class="pp-lbl">ePub 3.0 포맷</span><span class="pp-val">IT · 인문 특화 템플릿</span></li>
                 </ul>
               </div>
               <div>
@@ -1445,55 +1506,109 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
         if(idx===0) bindPPSim();
       }
 
-      // 인세 시뮬레이터 (컴팩트 버전)
+      // 인세 시뮬레이터 (3모드: 기획종이 / 기획전자 / 자비출판)
       (function(){
         const fmt = n => Math.round(n).toLocaleString('ko-KR');
-        let ppSim = {mode:'print', price:28000, rate:110, copies:2000};
+        let ppSim = {mode:'planning-paper', price:28000, rate:100, copies:2000};
+
         function updatePP(){
-          const r = ppSim.rate/10;
-          const y1 = ppSim.price * (r/100) * ppSim.copies;
+          const pv  = document.getElementById('pp-price-val');
+          const rv  = document.getElementById('pp-rate-val');
+          const cv  = document.getElementById('pp-copies-val');
+          const y1v = document.getElementById('pp-y1');
+          const y3v = document.getElementById('pp-y3');
+          const y1m = document.getElementById('pp-y1-meta');
+          const y3m = document.getElementById('pp-y3-meta');
+          const rl  = document.getElementById('pp-rate-lbl');
+          const cl  = document.getElementById('pp-copies-lbl');
+          const si  = document.getElementById('pp-self-info');
+          const rr  = document.getElementById('pp-row-rate');
+
+          const price = ppSim.price;
+          let y1 = 0, meta = '';
+
+          if (ppSim.mode === 'planning-paper') {
+            // 기획출판 종이책: 초판 = 정가 × 인세율% × 발행부수
+            const r = ppSim.rate / 10;
+            y1 = price * (r / 100) * ppSim.copies;
+            meta = `정가 ₩${fmt(price)} × ${r.toFixed(1)}% × ${fmt(ppSim.copies)}부`;
+            if (rv)  rv.textContent  = r.toFixed(1) + '%';
+            if (rl)  rl.textContent  = '인세율 (8–12%)';
+            if (cl)  cl.textContent  = '발행 부수';
+            if (cv)  cv.textContent  = fmt(ppSim.copies) + '부';
+            if (rr)  rr.style.display = '';
+            if (si)  si.style.display = 'none';
+          } else if (ppSim.mode === 'planning-ebook') {
+            // 기획출판 전자책: 판매정산액 × 20% / 전자책 정가 = 종이책×80%
+            const ePrice = Math.round(price * 0.8);
+            y1 = ePrice * 0.20 * ppSim.copies;
+            meta = `전자책 정가 ₩${fmt(ePrice)}(종이책×80%) × 20% × ${fmt(ppSim.copies)}DL`;
+            if (rv)  rv.textContent  = '20% 고정';
+            if (rl)  rl.textContent  = '인세율 (고정)';
+            if (cl)  cl.textContent  = '예상 다운로드';
+            if (cv)  cv.textContent  = fmt(ppSim.copies) + ' DL';
+            if (rr)  rr.style.display = 'none';
+            if (si)  si.style.display = 'none';
+          } else {
+            // 자비출판: 전자책 — 플랫폼 정산 후 순수익×90% (플랫폼 수수료 30% 가정)
+            // 종이책 — 서점 공급가(정가×65%) − 유통관리비(정가×10%) = 정가×55% 전액 지급
+            const ebookNetUnit = price * 0.70 * 0.90;  // 플랫폼 30% 수수료 후 90%
+            const paperNetUnit = price * 0.65 - price * 0.10; // 공급가 − 유통관리비
+            const blended = (ebookNetUnit + paperNetUnit) / 2;  // 혼합 평균 표시
+            y1 = blended * ppSim.copies;
+            meta = `혼합 평균 ₩${fmt(Math.round(blended))}/부 × ${fmt(ppSim.copies)}부 (전자책+종이책)`;
+            if (rv)  rv.textContent  = '90% (전자책) / 전액(종이책)';
+            if (rl)  rl.textContent  = '인세 방식';
+            if (cl)  cl.textContent  = '예상 판매';
+            if (cv)  cv.textContent  = fmt(ppSim.copies) + '부';
+            if (rr)  rr.style.display = 'none';
+            if (si)  si.style.display = 'block';
+          }
+
           const y3 = y1 * 2.1;
-          const pv=document.getElementById('pp-price-val');
-          const rv=document.getElementById('pp-rate-val');
-          const cv=document.getElementById('pp-copies-val');
-          const y1v=document.getElementById('pp-y1');
-          const y3v=document.getElementById('pp-y3');
-          const y1m=document.getElementById('pp-y1-meta');
-          const y3m=document.getElementById('pp-y3-meta');
-          if(pv) pv.textContent='₩ '+fmt(ppSim.price);
-          if(rv) rv.textContent=r.toFixed(1)+'%';
-          if(cv) cv.textContent=fmt(ppSim.copies)+(ppSim.mode==='ebook'?' DL':'부');
-          if(y1v) y1v.textContent=fmt(y1);
-          if(y3v) y3v.textContent=fmt(y3);
-          if(y1m) y1m.textContent=`@ ${r.toFixed(1)}% × ${fmt(ppSim.copies)}${ppSim.mode==='ebook'?' DL':'부'} × ₩${fmt(ppSim.price)}`;
-          if(y3m) y3m.textContent='— 보수 추정 (재쇄 포함)';
+          if (pv)  pv.textContent  = '₩ ' + fmt(price);
+          if (y1v) y1v.textContent = fmt(y1);
+          if (y3v) y3v.textContent = fmt(y3);
+          if (y1m) y1m.textContent = meta;
+          if (y3m) y3m.textContent = '— 보수 추정 (재쇄 포함)';
         }
+
         window.bindPPSim = function(){
-          const sp=document.getElementById('pp-price');
-          const sr=document.getElementById('pp-rate');
-          const sc=document.getElementById('pp-copies');
-          if(sp) sp.oninput=e=>{ppSim.price=+e.target.value;updatePP()};
-          if(sr) sr.oninput=e=>{ppSim.rate=+e.target.value;updatePP()};
-          if(sc) sc.oninput=e=>{ppSim.copies=+e.target.value;updatePP()};
-          document.querySelectorAll('.pp-stab').forEach(t=>{
-            t.onclick=()=>{
-              document.querySelectorAll('.pp-stab').forEach(x=>x.classList.remove('on'));
-              t.classList.add('on'); ppSim.mode=t.dataset.mode;
-              const sp2=document.getElementById('pp-price');
-              const sr2=document.getElementById('pp-rate');
-              if(ppSim.mode==='ebook'){
-                if(sp2){sp2.min=8000;sp2.max=35000;sp2.value=18000} ppSim.price=18000;
-                if(sr2){sr2.min=200;sr2.max=250;sr2.value=220} ppSim.rate=220;
+          const sp = document.getElementById('pp-price');
+          const sr = document.getElementById('pp-rate');
+          const sc = document.getElementById('pp-copies');
+          if (sp) sp.oninput = e => { ppSim.price   = +e.target.value; updatePP(); };
+          if (sr) sr.oninput = e => { ppSim.rate    = +e.target.value; updatePP(); };
+          if (sc) sc.oninput = e => { ppSim.copies  = +e.target.value; updatePP(); };
+
+          document.querySelectorAll('.pp-stab').forEach(t => {
+            t.onclick = () => {
+              document.querySelectorAll('.pp-stab').forEach(x => x.classList.remove('on'));
+              t.classList.add('on');
+              ppSim.mode = t.dataset.mode;
+
+              const sp2 = document.getElementById('pp-price');
+              const sr2 = document.getElementById('pp-rate');
+              const sc2 = document.getElementById('pp-copies');
+              if (ppSim.mode === 'planning-ebook') {
+                if (sp2) { sp2.min=15000; sp2.max=50000; sp2.value=28000; } ppSim.price=28000;
+                ppSim.copies = 1000;
+                if (sc2) { sc2.min=100; sc2.max=5000; sc2.value=1000; }
+              } else if (ppSim.mode === 'self') {
+                if (sp2) { sp2.min=15000; sp2.max=60000; sp2.value=28000; } ppSim.price=28000;
+                ppSim.copies = 500;
+                if (sc2) { sc2.min=100; sc2.max=5000; sc2.value=500; }
               } else {
-                if(sp2){sp2.min=15000;sp2.max=50000;sp2.value=28000} ppSim.price=28000;
-                if(sr2){sr2.min=100;sr2.max=120;sr2.value=110} ppSim.rate=110;
+                if (sp2) { sp2.min=15000; sp2.max=60000; sp2.value=28000; } ppSim.price=28000;
+                if (sr2) { sr2.min=80; sr2.max=120; sr2.value=100; } ppSim.rate=100;
+                ppSim.copies = 2000;
+                if (sc2) { sc2.min=500; sc2.max=10000; sc2.value=2000; }
               }
               updatePP();
             };
           });
           updatePP();
         };
-        // 초기 실행 (Panel 0이 기본 on)
         bindPPSim();
       })();
       </script>
@@ -1510,7 +1625,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
         <div class="sv-proc-strip svr">
           <div class="sv-proc-step"><div class="sv-proc-num">— Step I —</div><div class="sv-proc-ico">i</div><div class="sv-proc-title">제안서 작성</div><div class="sv-proc-sub">5분 작성<br>AI 자동 분석</div><div class="sv-proc-arr"></div></div>
           <div class="sv-proc-step"><div class="sv-proc-num">— Step II —</div><div class="sv-proc-ico">ii</div><div class="sv-proc-title">평가 · 채택</div><div class="sv-proc-sub">편집장 검토<br>5영업일 회신</div><div class="sv-proc-arr"></div></div>
-          <div class="sv-proc-step"><div class="sv-proc-num">— Step III —</div><div class="sv-proc-ico">iii</div><div class="sv-proc-title">계약 · 집필</div><div class="sv-proc-sub">표준 인세 적용<br>AI 윤문 지원</div><div class="sv-proc-arr"></div></div>
+          <div class="sv-proc-step"><div class="sv-proc-num">— Step III —</div><div class="sv-proc-ico">iii</div><div class="sv-proc-title">계약 · 집필</div><div class="sv-proc-sub">표준 인세 적용<br>편집자 협업</div><div class="sv-proc-arr"></div></div>
           <div class="sv-proc-step"><div class="sv-proc-num">— Step IV —</div><div class="sv-proc-ico">iv</div><div class="sv-proc-title">편집 · 출간</div><div class="sv-proc-sub">4–6개월<br>표지 24h 회신</div><div class="sv-proc-arr"></div></div>
           <div class="sv-proc-step"><div class="sv-proc-num">— Step V —</div><div class="sv-proc-ico">v</div><div class="sv-proc-title">글로벌 · 정산</div><div class="sv-proc-sub">11채널 마케팅<br>분기별 정산</div></div>
         </div>
@@ -1588,7 +1703,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 
                 <!-- 설명 줄 -->
                 <div id="psvc-desc" style="margin-top:8px;padding:9px 12px;background:#EBE1CD;border-radius:2px;border-left:2px solid #7A1F2B;font-size:11px;color:#3A3D45;line-height:1.65;font-family:inherit">
-                  인세 계약 기반 공동 출판. AI 보조 워크플로우, 11개 채널 마케팅 포함. 편집장 5영업일 회신.
+                  인세 계약 기반 공동 출판. 9단계 Publishing Studio 실시간 확인, 11개 채널 마케팅 포함. 편집장 5영업일 회신.
                 </div>
               </div>
 
@@ -1609,7 +1724,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
     let pSvcType = 'planning';
     let pSvcAmazon = false;
     const pDescs = {
-      planning: '인세 계약 기반 공동 출판. AI 보조 워크플로우, 11개 채널 마케팅 포함. 편집장 5영업일 회신.',
+      planning: '인세 계약 기반 공동 출판. 9단계 Publishing Studio 실시간 확인, 11개 채널 마케팅 포함. 편집장 5영업일 회신.',
       self:     '원고를 전달하시면 교정·디자인·조판·ISBN 등록·서점 유통까지 에이콘이 대행합니다.',
     };
     const ACTIVE_STYLE  = {border:'1.5px solid #7A1F2B', background:'#faf4ef'};
