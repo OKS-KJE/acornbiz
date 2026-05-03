@@ -3,919 +3,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>에이콘출판사 — 페이지 연결 맵</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>에이콘출판사 · 페이지 연결 맵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <style>
-:root {
-  --bg:      #F5F4F0;
-  --bg2:     #FFFFFF;
-  --bg3:     #EEECEA;
-  --border:  rgba(0,0,0,.07);
-  --border2: rgba(0,0,0,.13);
-  --text:    #1A1F2E;
-  --muted:   #4A5568;
-  --muted2:  #6B7280;
+:root{
+  --bg:#F4F1EB; --bg2:#FDFCF8; --bg3:#EAE6DC;
+  --ink:#1C1A16; --ink2:#4A4540; --ink3:#8A8278;
+  --rule:#D8D2C6; --rule2:#C4BCAC;
+  --hub-c:#085041; --hub-bg:#E0F0EA; --hub-bd:#085041;
+  --spa-c:#1249A0; --spa-bg:#E3EAF8; --spa-bd:#1249A0;
+  --file-c:#4C2E9A; --file-bg:#EAE6F8; --file-bd:#4C2E9A;
+  --ext-c:#8A5000;  --ext-bg:#F5EDDC; --ext-bd:#C27A08;
+  --red-c:#8B1C1C;  --red-bg:#F5E0E0; --red-bd:#C83232;
+  --data-c:#5E6B3A; --data-bg:#EAF0DC; --data-bd:#7A9048;
+  --serif:'Noto Serif KR',serif;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Pretendard',-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh}
 
-  /* 노드 컬러 팔레트 */
-  --hub:       #085041;
-  --hub-bg:    rgba(15,110,86,.07);
-  --hub-bd:    rgba(15,110,86,.3);
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;border-bottom:1px solid rgba(255,255,255,.06)}
+.tb-brand{display:flex;align-items:center;gap:10px}
+.tb-pulse{width:8px;height:8px;border-radius:50%;background:var(--hub-c);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(8,80,65,.4)}50%{box-shadow:0 0 0 6px rgba(8,80,65,.1)}}
+.tb-title{font-family:var(--serif);font-size:14px;font-weight:600;color:#fff}
+.tb-sub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.4);margin-left:6px}
+.tb-right{display:flex;align-items:center;gap:8px}
+.tb-btn{font-family:var(--mono);font-size:11px;font-weight:500;padding:5px 13px;border-radius:5px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);text-decoration:none;background:transparent;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tb-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.tb-btn.acc{background:var(--hub-c);border-color:var(--hub-c);color:#fff}
+.tb-btn.acc:hover{opacity:.85}
 
-  --spa:       #1249A0;
-  --spa-bg:    rgba(18,73,160,.06);
-  --spa-bd:    rgba(18,73,160,.25);
+/* LEGEND */
+.lgbar{background:var(--bg2);border-bottom:1px solid var(--rule);padding:10px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.lgi{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink2)}
+.lgd{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.lgsep{width:1px;height:16px;background:var(--rule2)}
 
-  --file:      #4C2E9A;
-  --file-bg:   rgba(76,46,154,.06);
-  --file-bd:   rgba(76,46,154,.25);
+/* CANVAS */
+.canvas{max-width:1380px;margin:0 auto;padding:36px 28px 80px}
 
-  --ext:       #8A5000;
-  --ext-bg:    rgba(138,80,0,.06);
-  --ext-bd:    rgba(138,80,0,.25);
+/* SECTION */
+.sec{margin-bottom:44px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sec-num{font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 9px;border-radius:4px;background:var(--ink);color:var(--bg);letter-spacing:.08em}
+.sec-title{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink)}
+.sec-ln{flex:1;height:1px;background:var(--rule)}
 
-  --sub:       #065C3E;
-  --sub-bg:    rgba(6,92,62,.05);
-  --sub-bd:    rgba(6,92,62,.22);
+/* DIAGRAM WRAP */
+.diag-wrap{background:var(--bg2);border:1px solid var(--rule);border-radius:14px;padding:24px;margin-bottom:24px;overflow-x:auto}
+.diag-title{font-family:var(--serif);font-weight:600;font-size:15px;margin-bottom:16px;color:var(--ink)}
 
-  --red:       #8B1C1C;
-  --red-bg:    rgba(139,28,28,.05);
-  --red-bd:    rgba(139,28,28,.22);
+/* FILES GRID */
+.files-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:0}
+.file-chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:9px;border:1.5px solid;text-decoration:none;transition:all .15s}
+.file-chip:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.fc-ico{font-size:18px;flex-shrink:0}
+.fc-name{font-family:var(--mono);font-size:11px;font-weight:600}
+.fc-desc{font-size:11px;color:var(--ink3);margin-top:1px}
+.fc-hub{background:var(--hub-bg);border-color:var(--hub-bd)}
+.fc-file{background:var(--file-bg);border-color:var(--file-bd)}
+.fc-red{background:var(--red-bg);border-color:var(--red-bd)}
+.fc-map{background:var(--file-bg);border-color:var(--file-bd);border-left-width:4px}
 
-  --serif: 'Noto Serif KR', serif;
-  --mono:  'JetBrains Mono', monospace;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--bg); }
-body {
-  font-family: var(--serif);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
+/* FLOW */
+.flow-wrap{background:var(--bg2);border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin-bottom:0}
+.flow-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--rule);overflow-x:auto;padding:4px 4px 0;gap:2px}
+.flow-tab{background:transparent;border:none;border-bottom:2.5px solid transparent;font-family:var(--sans);font-size:12px;font-weight:500;padding:9px 14px;cursor:pointer;color:var(--ink3);white-space:nowrap;transition:all .15s;margin-bottom:-1px}
+.flow-tab:hover{color:var(--ink)}
+.flow-tab.on{color:var(--ink);border-bottom-color:var(--hub-c);font-weight:600;background:var(--bg2);border-radius:6px 6px 0 0}
+.flow-body{padding:20px 24px}
+.flow-steps{display:flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:13px}
+.fs{padding:8px 14px;border-radius:8px;border:1.5px solid var(--rule);background:var(--bg2);color:var(--ink);font-weight:500;white-space:nowrap}
+.fs.start{background:var(--hub-bg);border-color:var(--hub-bd);color:var(--hub-c);font-weight:700}
+.fs.end{background:var(--file-bg);border-color:var(--file-bd);color:var(--file-c);font-weight:700}
+.fs.act{background:transparent;border-style:dashed;border-color:var(--ink3);color:var(--ink3);font-size:12px;font-style:italic;font-family:var(--serif)}
+.fa{color:var(--hub-c);font-weight:700;font-size:16px;margin:0 1px}
+.flow-desc{margin-top:12px;font-size:12.5px;color:var(--ink2);line-height:1.75;padding:12px 16px;background:var(--bg3);border-radius:8px}
 
-/* ── 헤더 ── */
-.header {
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  padding: 18px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(8px);background:rgba(255,255,255,.85);
-}
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.header-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--hub);
-  box-shadow: 0 0 8px var(--hub);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
-.header-title {
-  font-family: var(--serif);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -.01em;
-}
-.header-sub {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: .04em;
-}
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.legend {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  color: var(--text);
-  font-weight: 500;
-}
-.legend-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+/* TABLE */
+.tbl-wrap{background:var(--bg2);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.tbl-head{padding:16px 22px 12px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between}
+.tbl-title{font-family:var(--serif);font-weight:600;font-size:15px}
+table.ct{width:100%;border-collapse:collapse}
+table.ct th{background:var(--bg3);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);padding:10px 18px;text-align:left;border-bottom:1px solid var(--rule)}
+table.ct td{padding:10px 18px;border-bottom:1px solid var(--rule);font-size:13px;vertical-align:middle}
+table.ct tr:last-child td{border-bottom:none}
+table.ct tr:hover td{background:rgba(0,0,0,.015)}
+.ct-from{font-family:var(--mono);font-size:11px;color:var(--ink2);font-weight:500}
+.ct-arr{text-align:center;color:var(--ink3)}
+.ct-to{font-weight:500;color:var(--ink)}
+.ct-how{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.bdg{font-family:var(--mono);font-size:9px;font-weight:600;padding:2px 7px;border-radius:10px}
+.bdg-new{background:#DBEAFE;color:#1249A0}
+.bdg-both{background:#D1FAE5;color:#065C3E}
+.bdg-ext{background:#FEF3C7;color:#7A4400}
 
-/* ── 메인 캔버스 ── */
-.canvas {
-  padding: 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
+/* DATA FLOW */
+.df-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.df-card{background:var(--data-bg);border:1.5px solid var(--data-bd);border-radius:10px;padding:14px 16px}
+.df-key{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--data-c);margin-bottom:5px}
+.df-val{font-size:12.5px;color:var(--ink);line-height:1.65}
 
-/* ── 섹션 라벨 ── */
-.sec-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.sec-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.sec-wrap {
-  margin-bottom: 36px;
-}
-
-/* ── 노드 공통 ── */
-.node {
-  position: relative;
-  border-radius: 10px;
-  border: 1px solid;
-  cursor: pointer;
-  transition: all .2s;
-  user-select: none;
-}
-.node:hover { transform: translateY(-2px); }
-.node-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  display: block;
-}
-.node-title {
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.35;
-}
-.node-sub {
-  font-family: var(--mono);
-  font-size: 10px;
-  margin-top: 3px;
-  color: var(--muted);
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 100px;
-  margin-top: 5px;
-}
-
-/* ── 허브 노드 ── */
-.node-hub {
-  background: var(--hub-bg);
-  border-color: var(--hub-bd);
-  padding: 20px 28px;
-  width: 100%;
-  max-width: 460px;
-  margin: 0 auto;
-  text-align: center;
-  box-shadow: 0 2px 24px rgba(15,110,86,.10);
-}
-.node-hub:hover { box-shadow: 0 4px 32px rgba(15,110,86,.18); }
-.node-hub .node-tag { color: var(--hub); text-align: center; }
-.node-hub .node-title { font-size: 17px; font-family: var(--mono); color: var(--text); }
-.node-hub .node-sub { color: var(--muted); }
-
-/* ── 그리드 ── */
-.row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* ── SPA 노드 ── */
-.node-spa {
-  background: var(--spa-bg);
-  border-color: var(--spa-bd);
-  padding: 12px 16px;
-  min-width: 110px;
-  flex: 1;
-  max-width: 160px;
-}
-.node-spa:hover { border-color: var(--spa); }
-.node-spa .node-tag { color: var(--spa); }
-.node-spa .node-title { font-size: 12px; }
-
-/* ── 파일 노드 ── */
-.node-file {
-  background: var(--file-bg);
-  border-color: var(--file-bd);
-  padding: 16px 20px;
-  flex: 1;
-  min-width: 180px;
-  max-width: 280px;
-}
-.node-file:hover { border-color: var(--file); box-shadow: 0 4px 16px rgba(109,68,199,.12); }
-.node-file .node-tag { color: var(--file); }
-
-/* ── 외부 노드 ── */
-.node-ext {
-  background: var(--ext-bg);
-  border-color: var(--ext-bd);
-  padding: 12px 16px;
-  flex: 1;
-  min-width: 130px;
-  max-width: 220px;
-}
-.node-ext:hover { border-color: var(--ext); }
-.node-ext .node-tag { color: var(--ext); }
-.node-ext .node-title { font-size: 12px; }
-
-/* ── 서브 노드 ── */
-.node-sub-item {
-  background: var(--sub-bg);
-  border-color: var(--sub-bd);
-  padding: 9px 13px;
-  flex: 1;
-  min-width: 90px;
-  max-width: 140px;
-}
-.node-sub-item:hover { border-color: var(--sub); }
-.node-sub-item .node-tag { color: var(--sub); font-size: 8px; }
-.node-sub-item .node-title { font-size: 11px; }
-
-/* ── 관리자 서브 ── */
-.node-red-item {
-  background: var(--red-bg);
-  border-color: var(--red-bd);
-  padding: 9px 13px;
-  flex: 1;
-  min-width: 90px;
-  max-width: 160px;
-}
-.node-red-item:hover { border-color: var(--red); }
-.node-red-item .node-tag { color: var(--red); font-size: 8px; }
-.node-red-item .node-title { font-size: 11px; }
-
-/* ── 연결선 ── */
-.connector {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  gap: 6px;
-  margin-bottom: 0;
-}
-.conn-line {
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.04));
-}
-.conn-arrow {
-  display: flex;
-  justify-content: center;
-  color: var(--muted2);
-  font-size: 14px;
-  transform: rotate(90deg);
-}
-.conn-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted2);
-  letter-spacing: .04em;
-}
-.conn-multi {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  height: 44px;
-  position: relative;
-}
-.conn-multi::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,0,0,.1), transparent);
-}
-
-/* ── 흐름 화살표 ── */
-.flow-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 3px 10px;
-  border-radius: 100px;
-  border: 1px solid var(--border2);
-  color: var(--text);
-  background: var(--bg3);
-  cursor: default;
-}
-
-/* ── 큰 섹션 ── */
-.section-block {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  margin-bottom: 12px;
-}
-.section-block-title {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  color: var(--text);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-}
-.section-block-title span {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-}
-
-/* ── 상세 패널 ── */
-.detail-panel {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px 20px;
-  margin-top: 10px;
-  display: none;
-  animation: fadeIn .2s ease;
-}
-.detail-panel.open { display: block; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
-.detail-title {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text);
-  margin-bottom: 10px;
-  letter-spacing: .08em;
-  font-weight: 600;
-}
-.detail-row {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 12.5px;
-}
-.detail-row:last-child { border-bottom: none; }
-.dr-from { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 110px; flex-shrink: 0; font-weight:500; }
-.dr-arrow { color: var(--muted2); flex-shrink: 0; }
-.dr-to { color: var(--text); flex: 1; }
-.dr-how { font-family: var(--mono); font-size: 10px; color: var(--muted); }
-.dr-badge { font-family: var(--mono); font-size: 9px; padding: 1px 7px; border-radius: 100px; flex-shrink: 0; }
-.bd-new  { background: #DBEAFE; color: #1249A0; border: 1px solid rgba(18,73,160,.25); }
-.bd-both { background: #D1FAE5; color: #065C3E; border: 1px solid rgba(6,92,62,.25); }
-.bd-ext  { background: #FEF3C7; color: #7A4400; border: 1px solid rgba(138,80,0,.28); }
-
-/* ── 큰 연결 테이블 ── */
-.conn-table { width: 100%; border-collapse: collapse; }
-.conn-table th {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  text-align: left;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border2);
-  background: var(--bg3);
-}
-.conn-table td {
-  font-size: 12.5px;
-  padding: 9px 12px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-.conn-table tr:last-child td { border-bottom: none; }
-.conn-table tr:hover td { background: rgba(0,0,0,.025); }
-.ct-from { font-family: var(--mono); font-size: 11px; color: var(--text); font-weight:500; }
-.ct-arrow { color: var(--muted2); text-align: center; }
-.ct-to { font-weight: 500; }
-.ct-how { font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
-
-/* ── 토글 ── */
-.toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--serif);
-  color: var(--text);
-  padding: 0;
-  gap: 12px;
-}
-.toggle-chevron {
-  font-size: 12px;
-  color: var(--muted2);
-  transition: transform .2s;
-}
-.toggle-btn.open .toggle-chevron { transform: rotate(180deg); }
-
-/* ── 스크롤바 ── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg3); }
-::-webkit-scrollbar-thumb { background: var(--muted2); border-radius: 3px; opacity:.6; }
-
-/* ── 반응형 ── */
-@media (max-width: 800px) {
-  .canvas { padding: 20px 16px; }
-  .header { padding: 14px 20px; }
-  .legend { display: none; }
-  .row { gap: 7px; }
-  .node-file { min-width: 150px; }
-}
+@media(max-width:900px){.files-grid{grid-template-columns:1fr 1fr}.df-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.canvas{padding:20px 14px 60px}.files-grid{grid-template-columns:1fr}.lgbar{gap:12px}}
 </style>
 </head>
 <body>
 
-<!-- ── 헤더 ── -->
-<header class="header">
-  <div class="header-brand">
-    <div class="header-dot"></div>
-    <div>
-      <div class="header-title">에이콘출판사 · 페이지 연결 맵</div>
-      <div class="header-sub">Page Connection Map v1.0</div>
-    </div>
+<nav class="topbar">
+  <div class="tb-brand">
+    <div class="tb-pulse"></div>
+    <span class="tb-title">에이콘출판사 · 페이지 연결 맵</span>
+    <span class="tb-sub">Page Connection Map</span>
   </div>
-  <div class="header-right">
-    <a href="index.html" style="flex-shrink:0;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.7);padding:6px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.18);text-decoration:none;transition:all .15s;white-space:nowrap" onmouseover="this.style.background='rgba(255,255,255,.1)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='rgba(255,255,255,.7)'">← 비즈니스 모델</a>
-    <div class="legend">
-      <div class="legend-item"><span class="legend-dot" style="background:var(--hub)"></span>메인 허브</div>
-      <div class="legend-item"><span class="legend-dot" style="background:var(--spa)"></span>SPA 내부 페이지</div>
-      <div class="legend-item"><span class="legend-dot" style="background:var(--file)"></span>외부 HTML 파일</div>
-      <div class="legend-item"><span class="legend-dot" style="background:var(--ext)"></span>외부 서비스</div>
-      <div class="legend-item"><span class="legend-dot" style="background:var(--sub)"></span>서브 메뉴</div>
-    </div>
+  <div class="tb-right">
+    <a href="index.html" class="tb-btn">← 비즈니스 모델</a>
+    <a href="acornpub_landing.html" target="_blank" class="tb-btn acc">🏠 랜딩 열기</a>
   </div>
-</header>
+</nav>
+
+<div class="lgbar">
+  <div class="lgi"><div class="lgd" style="background:var(--hub-c)"></div>메인 허브</div>
+  <div class="lgsep"></div>
+  <div class="lgi"><div class="lgd" style="background:var(--spa-c)"></div>SPA 내부 페이지</div>
+  <div class="lgsep"></div>
+  <div class="lgi"><div class="lgd" style="background:var(--file-c)"></div>외부 HTML 파일</div>
+  <div class="lgsep"></div>
+  <div class="lgi"><div class="lgd" style="background:var(--ext-c)"></div>외부 서비스</div>
+  <div class="lgsep"></div>
+  <div class="lgi"><div class="lgd" style="background:var(--red-c)"></div>관리자</div>
+  <div class="lgsep"></div>
+  <div class="lgi" style="font-family:var(--mono);font-size:11px;color:var(--ink3)">실선 = 직접 이동 &nbsp;|&nbsp; 점선 = 외부 서비스</div>
+</div>
 
 <div class="canvas">
 
-  <!-- ══ 1. 허브 ══ -->
-  <div class="sec-wrap">
-    <div class="sec-label">01 · 메인 허브</div>
-    <div class="row">
-      <div class="node node-hub" onclick="toggleDetail('d-hub')">
-        <div class="toggle-btn" id="btn-hub">
-          <div style="flex:1">
-            <span class="node-tag">Hub · acornpub_landing.html</span>
-            <div class="node-title">에이콘출판사 메인 홈</div>
-            <div class="node-sub">모든 페이지의 출발점 · 내부 SPA 라우팅 + 외부 파일 연결</div>
-          </div>
-          <span class="toggle-chevron">▾</span>
-        </div>
-        <div class="detail-panel" id="d-hub">
-          <a href="acornpub_landing.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:5px;border:1px solid var(--hub);color:var(--hub);text-decoration:none;background:transparent;transition:all .15s" onmouseover="this.style.background='var(--hub)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--hub)'">↗ acornpub_landing.html 열기</a>
-          <div class="detail-title" style="margin-top:12px">진입 방법</div>
-          <div class="detail-row"><span class="dr-from">모든 외부 파일</span><span class="dr-arrow">→</span><span class="dr-to">← 에이콘 홈 / ← 홈으로 / ← 에이콘 출판사 버튼</span><span class="dr-badge bd-both">양방향</span></div>
-          <div class="detail-row"><span class="dr-from">직접 접속</span><span class="dr-arrow">→</span><span class="dr-to">URL 직접 입력 또는 북마크</span><span class="dr-how">—</span></div>
-        </div>
-      </div>
+  <!-- 1. 구조 다이어그램 -->
+  <div class="sec">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <span class="sec-title">전체 페이지 구조 · 연결 흐름</span>
+      <div class="sec-ln"></div>
     </div>
-  </div>
 
-  <!-- ── 연결선 ── -->
-  <div style="display:flex;justify-content:center;align-items:center;height:32px;gap:8px;margin-bottom:0">
-    <div style="width:1px;height:32px;background:linear-gradient(to bottom,rgba(15,110,86,.35),rgba(0,0,0,.03))"></div>
-    <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">go() · SPA 라우팅</span>
-  </div>
+    <div class="diag-wrap">
+      <div class="diag-title">계층별 연결 구조도</div>
+      <svg viewBox="0 0 1100 500" width="100%" style="min-width:720px;overflow:visible" font-family="'Pretendard',sans-serif">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9z" fill="#085041"/></marker>
+          <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9z" fill="#1249A0"/></marker>
+          <marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9z" fill="#4C2E9A"/></marker>
+          <marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9z" fill="#8A5000"/></marker>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9z" fill="#C83232"/></marker>
+        </defs>
 
-  <!-- ══ 2. SPA 내부 페이지 ══ -->
-  <div class="sec-wrap">
-    <div class="sec-label">02 · 내부 SPA 페이지 (동일 파일 내 go() 라우팅)</div>
-    <div class="row">
+        <!-- LAYER LABELS -->
+        <text x="12" y="58" font-size="9" fill="#8A8278" font-family="'JetBrains Mono',monospace" font-weight="600" letter-spacing="0.1em">LAYER 0 · HUB</text>
+        <text x="12" y="168" font-size="9" fill="#8A8278" font-family="'JetBrains Mono',monospace" font-weight="600" letter-spacing="0.1em">LAYER 1 · SPA</text>
+        <text x="12" y="296" font-size="9" fill="#8A8278" font-family="'JetBrains Mono',monospace" font-weight="600" letter-spacing="0.1em">LAYER 2 · FILES</text>
+        <text x="12" y="420" font-size="9" fill="#8A8278" font-family="'JetBrains Mono',monospace" font-weight="600" letter-spacing="0.1em">LAYER 3 · EXTERNAL</text>
 
-      <div class="node node-spa" onclick="toggleDetail('d-home')">
-        <button class="toggle-btn" id="btn-home">
-          <div><span class="node-tag">go('home')</span><div class="node-title">홈 · 도서목록</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-home">
-          <div class="detail-row"><span class="dr-from">진입</span><span class="dr-arrow">→</span><span class="dr-to">로고 클릭, Book 메뉴, 푸터</span></div>
-          <div class="detail-row"><span class="dr-from">도서 카드</span><span class="dr-arrow">→</span><span class="dr-to">도서 상세 오버레이</span></div>
-          <div class="detail-row"><span class="dr-from">상세 내 구매</span><span class="dr-arrow">→</span><span class="dr-to">교보·YES24·알라딘 (새 탭)</span></div>
-          <div class="detail-row"><span class="dr-from">전자책 구매</span><span class="dr-arrow">→</span><span class="dr-to">MyPage (새 탭)</span></div>
-        </div>
-      </div>
+        <!-- 가로 구분선 -->
+        <line x1="12" y1="64" x2="1088" y2="64" stroke="#D8D2C6" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="12" y1="174" x2="1088" y2="174" stroke="#D8D2C6" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="12" y1="302" x2="1088" y2="302" stroke="#D8D2C6" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="12" y1="425" x2="1088" y2="425" stroke="#D8D2C6" stroke-width="1" stroke-dasharray="3 4"/>
 
-      <div class="node node-spa" onclick="toggleDetail('d-about')">
-        <button class="toggle-btn" id="btn-about">
-          <div><span class="node-tag">go('about')</span><div class="node-title">About Us</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-about">
-          <div class="detail-row"><span class="dr-from">내용</span><span class="dr-arrow">→</span><span class="dr-to">회사 소개 · 연혁 · 찾아오시는 길</span></div>
-          <div class="detail-row"><span class="dr-from">주소</span><span class="dr-arrow">→</span><span class="dr-to">(07547) 강서구 양천로 583 우림블루나인 A동 2009호</span></div>
-        </div>
-      </div>
+        <!-- HUB -->
+        <rect x="330" y="70" width="440" height="68" rx="12" fill="#E0F0EA" stroke="#085041" stroke-width="2.5"/>
+        <text x="550" y="97" text-anchor="middle" font-size="16" font-weight="700" fill="#085041" font-family="'Noto Serif KR',serif">acornpub_landing.html</text>
+        <text x="550" y="118" text-anchor="middle" font-size="11" fill="#085041" font-family="'JetBrains Mono',monospace">에이콘출판사 메인 허브 · 모든 페이지의 출발점</text>
 
-      <div class="node node-spa" onclick="toggleDetail('d-service')">
-        <button class="toggle-btn" id="btn-service">
-          <div><span class="node-tag">go('service')</span><div class="node-title">저자 서비스</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-service">
-          <div class="detail-row"><span class="dr-from">하위 탭</span><span class="dr-arrow">→</span><span class="dr-to">기획출판 · 자비출판 · Amazon KDP</span></div>
-          <div class="detail-row"><span class="dr-from">5가지 약속</span><span class="dr-arrow">→</span><span class="dr-to">좌우 탭 패널 (인세/타임라인/11채널/대시보드/KDP)</span></div>
-          <div class="detail-row"><span class="dr-from">출간 제안하기</span><span class="dr-arrow">→</span><span class="dr-to">publishing-proposal.html</span></div>
-          <div class="detail-row"><span class="dr-from">저자 사이트</span><span class="dr-arrow">→</span><span class="dr-to">author.acornpub.kr (새 탭)</span></div>
-        </div>
-      </div>
+        <!-- HUB → SPA 화살표 -->
+        <path d="M390 138 Q 180 152 127 180" fill="none" stroke="#1249A0" stroke-width="1.2" stroke-opacity=".55" marker-end="url(#as)"/>
+        <path d="M440 138 Q 310 150 243 180" fill="none" stroke="#1249A0" stroke-width="1.2" stroke-opacity=".55" marker-end="url(#as)"/>
+        <path d="M490 138 Q 440 152 388 180" fill="none" stroke="#1249A0" stroke-width="1.2" stroke-opacity=".55" marker-end="url(#as)"/>
+        <path d="M550 138 L 550 180" fill="none" stroke="#1249A0" stroke-width="1.5" stroke-opacity=".65" marker-end="url(#as)"/>
+        <path d="M610 138 Q 660 152 668 180" fill="none" stroke="#1249A0" stroke-width="1.2" stroke-opacity=".55" marker-end="url(#as)"/>
+        <path d="M660 138 Q 790 152 837 180" fill="none" stroke="#1249A0" stroke-width="1.2" stroke-opacity=".55" marker-end="url(#as)"/>
 
-      <div class="node node-spa" onclick="toggleDetail('d-reader')">
-        <button class="toggle-btn" id="btn-reader">
-          <div><span class="node-tag">go('reader')</span><div class="node-title">멤버십 라운지</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-reader">
-          <div class="detail-row"><span class="dr-from">내용</span><span class="dr-arrow">→</span><span class="dr-to">무료 멤버십 서비스 소개 (저자Q&A/얼리액세스/ePub/보완자료/정오표/강연)</span></div>
-          <div class="detail-row"><span class="dr-from">드롭다운</span><span class="dr-arrow">→</span><span class="dr-to">📚 내 서재 (MyPage) · 📖 ePub 3.0 리더 (새 탭)</span></div>
-          <div class="detail-row"><span class="dr-from">무료 멤버십 시작</span><span class="dr-arrow">→</span><span class="dr-to">MyPage 연결 예정</span></div>
-        </div>
-      </div>
+        <!-- go() 레이블 -->
+        <rect x="492" y="145" width="36" height="14" rx="3" fill="#E3EAF8"/>
+        <text x="510" y="155" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go()</text>
 
-      <div class="node node-spa" onclick="toggleDetail('d-errata')">
-        <button class="toggle-btn" id="btn-errata">
-          <div><span class="node-tag">go('errata')</span><div class="node-title">오류 신고</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-errata">
-          <div class="detail-row"><span class="dr-from">폼</span><span class="dr-arrow">→</span><span class="dr-to">도서명 · ISBN · 페이지 · 오류유형 · 내용 입력</span></div>
-          <div class="detail-row"><span class="dr-from">제출</span><span class="dr-arrow">→</span><span class="dr-to">완료 메시지 표시 (in-page)</span></div>
-          <div class="detail-row"><span class="dr-from">이메일 신고</span><span class="dr-arrow">→</span><span class="dr-to">editor@acornpub.co.kr (mailto)</span></div>
-        </div>
-      </div>
+        <!-- SPA 6개 -->
+        <rect x="60" y="180" width="134" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
+        <text x="127" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">홈·도서목록</text>
+        <text x="127" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('home')</text>
 
-      <div class="node node-spa" onclick="toggleDetail('d-sns')">
-        <button class="toggle-btn" id="btn-sns">
-          <div><span class="node-tag">go('sns')</span><div class="node-title">SNS 채널 관리</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-sns">
-          <div class="detail-row"><span class="dr-from">채널 8개</span><span class="dr-arrow">→</span><span class="dr-to">Instagram · Facebook · YouTube · LinkedIn · X · 블로그 · GitHub · 뉴스레터</span></div>
-          <div class="detail-row"><span class="dr-from">URL 저장</span><span class="dr-arrow">→</span><span class="dr-to">localStorage 영속화 → nav 드롭다운 링크 즉시 반영</span></div>
-        </div>
-      </div>
+        <rect x="208" y="180" width="120" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
+        <text x="268" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">About Us</text>
+        <text x="268" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('about')</text>
 
+        <rect x="342" y="180" width="128" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
+        <text x="406" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">저자 서비스</text>
+        <text x="406" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('service')</text>
+
+        <rect x="484" y="180" width="132" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
+        <text x="550" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">멤버십 라운지</text>
+        <text x="550" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('reader')</text>
+
+        <rect x="630" y="180" width="118" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
+        <text x="689" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">오류 신고</text>
+        <text x="689" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('errata')</text>
+
+        <rect x="762" y="180" width="118" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
+        <text x="821" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">SNS 채널</text>
+        <text x="821" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('sns')</text>
+
+        <!-- HUB → FILE 화살표 -->
+        <path d="M420 138 Q 170 250 120 308" fill="none" stroke="#4C2E9A" stroke-width="1.5" stroke-opacity=".5" marker-end="url(#af)"/>
+        <path d="M490 138 Q 350 250 288 308" fill="none" stroke="#4C2E9A" stroke-width="1.5" stroke-opacity=".5" marker-end="url(#af)"/>
+        <path d="M555 138 Q 505 245 480 308" fill="none" stroke="#4C2E9A" stroke-width="1.5" stroke-opacity=".5" marker-end="url(#af)"/>
+        <path d="M630 138 Q 720 245 740 308" fill="none" stroke="#C83232" stroke-width="1.5" stroke-opacity=".5" marker-end="url(#ar)"/>
+        <path d="M700 104 Q 920 70 990 308" fill="none" stroke="#4C2E9A" stroke-width="1.2" stroke-opacity=".35" stroke-dasharray="5 4" marker-end="url(#af)"/>
+
+        <!-- FILE CARDS -->
+        <!-- proposal -->
+        <rect x="20" y="308" width="196" height="68" rx="10" fill="#EAE6F8" stroke="#4C2E9A" stroke-width="1.8"/>
+        <text x="118" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#4C2E9A">publishing-proposal.html</text>
+        <text x="118" y="347" text-anchor="middle" font-size="10" fill="#4C2E9A">출간 제안서 7단계 SPA</text>
+        <text x="118" y="363" text-anchor="middle" font-size="9" fill="#4C2E9A" font-family="'JetBrains Mono',monospace">← 에이콘 출판사 (돌아가기)</text>
+
+        <!-- mypage -->
+        <rect x="232" y="308" width="182" height="68" rx="10" fill="#EAE6F8" stroke="#4C2E9A" stroke-width="1.8"/>
+        <text x="323" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#4C2E9A">mypage.html</text>
+        <text x="323" y="347" text-anchor="middle" font-size="10" fill="#4C2E9A">독자 MyPage · 내 서재</text>
+        <text x="323" y="363" text-anchor="middle" font-size="9" fill="#4C2E9A" font-family="'JetBrains Mono',monospace">⇄ epub_reader · ← 홈</text>
+
+        <!-- epub -->
+        <rect x="430" y="308" width="196" height="68" rx="10" fill="#EAE6F8" stroke="#4C2E9A" stroke-width="1.8"/>
+        <text x="528" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#4C2E9A">epub_reader.html</text>
+        <text x="528" y="347" text-anchor="middle" font-size="10" fill="#4C2E9A">ePub 3.0 인터랙티브 리더</text>
+        <text x="528" y="363" text-anchor="middle" font-size="9" fill="#4C2E9A" font-family="'JetBrains Mono',monospace">⇄ mypage · ← 홈</text>
+
+        <!-- admin -->
+        <rect x="642" y="308" width="172" height="68" rx="10" fill="#F5E0E0" stroke="#C83232" stroke-width="1.8"/>
+        <text x="728" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#8B1C1C">acorn_admin.html</text>
+        <text x="728" y="347" text-anchor="middle" font-size="10" fill="#8B1C1C">편집부 제안서 관리자</text>
+        <text x="728" y="363" text-anchor="middle" font-size="9" fill="#8B1C1C" font-family="'JetBrains Mono',monospace">← 홈으로 (돌아가기)</text>
+
+        <!-- conn_map_v2 (강조) -->
+        <rect x="830" y="308" width="240" height="68" rx="10" fill="#EAE6F8" stroke="#4C2E9A" stroke-width="2.5"/>
+        <rect x="830" y="308" width="7" height="68" rx="3" fill="#4C2E9A"/>
+        <text x="960" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#4C2E9A">connection_map_v2.html</text>
+        <text x="960" y="347" text-anchor="middle" font-size="10" fill="#4C2E9A">저자서비스·멤버십 상세 맵</text>
+        <text x="960" y="363" text-anchor="middle" font-size="9" fill="#4C2E9A" font-family="'JetBrains Mono',monospace">3패널 · 30연결 · 6 시나리오</text>
+
+        <!-- mypage ⇄ epub 양방향 -->
+        <path d="M414 338 Q 440 330 430 338" fill="none" stroke="#4C2E9A" stroke-width="1.8" marker-end="url(#af)"/>
+        <path d="M430 355 Q 420 362 414 355" fill="none" stroke="#4C2E9A" stroke-width="1.8" marker-end="url(#af)"/>
+
+        <!-- EXTERNAL LAYER -->
+        <!-- 교보 -->
+        <rect x="20" y="432" width="178" height="44" rx="8" fill="#F5EDDC" stroke="#C27A08" stroke-width="1.2"/>
+        <text x="109" y="450" text-anchor="middle" font-size="11" font-weight="600" fill="#8A5000">교보·YES24·알라딘</text>
+        <text x="109" y="466" text-anchor="middle" font-size="9.5" fill="#8A5000">도서 구매 채널</text>
+
+        <!-- author -->
+        <rect x="212" y="432" width="168" height="44" rx="8" fill="#F5EDDC" stroke="#C27A08" stroke-width="1.2"/>
+        <text x="296" y="450" text-anchor="middle" font-size="11" font-weight="600" fill="#8A5000">author.acornpub.kr</text>
+        <text x="296" y="466" text-anchor="middle" font-size="9.5" fill="#8A5000">저자 전용 사이트</text>
+
+        <!-- email -->
+        <rect x="394" y="432" width="198" height="44" rx="8" fill="#F5EDDC" stroke="#C27A08" stroke-width="1.2"/>
+        <text x="493" y="450" text-anchor="middle" font-size="10" font-weight="600" fill="#8A5000">editor@acornpub.co.kr</text>
+        <text x="493" y="466" text-anchor="middle" font-size="9.5" fill="#8A5000">도입 상담 이메일</text>
+
+        <!-- SNS -->
+        <rect x="606" y="432" width="202" height="44" rx="8" fill="#F5EDDC" stroke="#C27A08" stroke-width="1.2"/>
+        <text x="707" y="450" text-anchor="middle" font-size="11" font-weight="600" fill="#8A5000">SNS 7채널</text>
+        <text x="707" y="466" text-anchor="middle" font-size="9.5" fill="#8A5000">IG · FB · YT · LI · X · Blog · GH</text>
+
+        <!-- localStorage -->
+        <rect x="822" y="432" width="248" height="44" rx="8" fill="#EAF0DC" stroke="#7A9048" stroke-width="1.2"/>
+        <text x="946" y="450" text-anchor="middle" font-size="10.5" font-weight="600" fill="#5E6B3A">localStorage 공유</text>
+        <text x="946" y="466" text-anchor="middle" font-size="9.5" fill="#5E6B3A">proposals · sns · 읽기진행 · 북마크</text>
+
+        <!-- 외부 점선 화살표 -->
+        <path d="M127 376 Q 100 400 109 432" fill="none" stroke="#C27A08" stroke-width="1" stroke-opacity=".45" stroke-dasharray="4 3" marker-end="url(#ae)"/>
+        <path d="M323 376 Q 300 400 296 432" fill="none" stroke="#C27A08" stroke-width="1" stroke-opacity=".45" stroke-dasharray="4 3" marker-end="url(#ae)"/>
+        <path d="M528 376 Q 500 400 493 432" fill="none" stroke="#C27A08" stroke-width="1" stroke-opacity=".45" stroke-dasharray="4 3" marker-end="url(#ae)"/>
+        <path d="M689 376 Q 707 400 707 432" fill="none" stroke="#C27A08" stroke-width="1" stroke-opacity=".45" stroke-dasharray="4 3" marker-end="url(#ae)"/>
+        <path d="M821 342 Q 946 400 946 432" fill="none" stroke="#7A9048" stroke-width="1" stroke-opacity=".4" stroke-dasharray="4 3" marker-end="url(#ae)"/>
+      </svg>
     </div>
-  </div>
 
-  <!-- ── 연결선 ── -->
-  <div style="display:flex;justify-content:center;align-items:center;height:32px;gap:8px">
-    <div style="width:1px;height:32px;background:linear-gradient(to bottom,rgba(109,68,199,.35),rgba(0,0,0,.03))"></div>
-    <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">href · target="_blank"</span>
-  </div>
-
-  <!-- ══ 3. 외부 HTML 파일 ══ -->
-  <div class="sec-wrap">
-    <div class="sec-label">03 · 외부 HTML 파일 (독립 페이지)</div>
-    <div class="row" style="align-items:flex-start">
-
-      <!-- publishing-proposal -->
-      <div class="node node-file" onclick="toggleDetail('d-proposal')">
-        <button class="toggle-btn" id="btn-proposal">
-          <div>
-            <span class="node-tag">publishing-proposal.html</span>
-            <div class="node-title">출간 제안서</div>
-            <div class="node-sub">7단계 SPA 양식</div>
-          </div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-proposal">
-          <div class="detail-title">진입 경로 (랜딩 → proposal)</div>
-          <div class="detail-row"><span class="dr-from">nav CTA</span><span class="dr-arrow">→</span><span class="dr-to">저자 등록 신청 →</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">저자서비스 히어로</span><span class="dr-arrow">→</span><span class="dr-to">출간 제안하기 →</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">기획/자비/KDP 탭</span><span class="dr-arrow">→</span><span class="dr-to">각 상담 신청 버튼</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">제안서 목업 카드</span><span class="dr-arrow">→</span><span class="dr-to">출간 제안서 작성하기 →</span><span class="dr-badge bd-new">직접</span></div>
-          <div style="margin-top:10px" class="detail-title">내부 구성 (7단계)</div>
-          <div class="detail-row"><span class="dr-from">Step 1</span><span class="dr-arrow">→</span><span class="dr-to">저자 정보 + 출판 서비스 선택 + SNS 채널 (동적 추가)</span></div>
-          <div class="detail-row"><span class="dr-from">Step 2</span><span class="dr-arrow">→</span><span class="dr-to">도서 개요 (카테고리 대/세분류, 분량→정가 자동계산)</span></div>
-          <div class="detail-row"><span class="dr-from">Step 3</span><span class="dr-arrow">→</span><span class="dr-to">시장·독자 + 마케팅 전략 (카테고리 연동 예시)</span></div>
-          <div class="detail-row"><span class="dr-from">Step 4</span><span class="dr-arrow">→</span><span class="dr-to">인세 시뮬레이션 (기획/자비 탭 + 자비 비용 시뮬레이터)</span></div>
-          <div class="detail-row"><span class="dr-from">Step 5</span><span class="dr-arrow">→</span><span class="dr-to">ePub 3.0 저자 지원 체크리스트 (16항목)</span></div>
-          <div class="detail-row"><span class="dr-from">Step 6</span><span class="dr-arrow">→</span><span class="dr-to">원고 파일 첨부 (최대 3개, 드래그앤드롭)</span></div>
-          <div class="detail-row"><span class="dr-from">Step 7</span><span class="dr-arrow">→</span><span class="dr-to">검토·제출 + 필수 동의 3항목</span></div>
-          <div style="margin-top:10px" class="detail-title">돌아가기</div>
-          <div class="detail-row"><span class="dr-from">nav 좌측</span><span class="dr-arrow">→</span><span class="dr-to">← 에이콘 출판사</span><span class="dr-badge bd-both">랜딩</span></div>
-          <div class="detail-row"><span class="dr-from">완료 화면</span><span class="dr-arrow">→</span><span class="dr-to">에이콘 출판사로 돌아가기</span><span class="dr-badge bd-both">랜딩</span></div>
-          <a href="publishing-proposal.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:5px;border:1px solid var(--file);color:var(--file);text-decoration:none;background:transparent;transition:all .15s" onmouseover="this.style.background='var(--file)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--file)'">↗ publishing-proposal.html 열기</a>
-        </div>
-      </div>
-
-      <!-- MyPage -->
-      <div class="node node-file" onclick="toggleDetail('d-mypage')">
-        <button class="toggle-btn" id="btn-mypage">
-          <div>
-            <span class="node-tag">mypage.html</span>
-            <div class="node-title">독자 MyPage</div>
-            <div class="node-sub">내 서재 · 독자 서비스</div>
-          </div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-mypage">
-          <div class="detail-title">진입 경로</div>
-          <div class="detail-row"><span class="dr-from">도서 상세</span><span class="dr-arrow">→</span><span class="dr-to">전자책 + ePub 3.0 구매 버튼</span><span class="dr-badge bd-new">새 탭</span></div>
-          <div class="detail-row"><span class="dr-from">멤버십 라운지 드롭다운</span><span class="dr-arrow">→</span><span class="dr-to">📚 내 서재 (MyPage)</span><span class="dr-badge bd-new">새 탭</span></div>
-          <div class="detail-row"><span class="dr-from">도서 상세 배너</span><span class="dr-arrow">→</span><span class="dr-to">📚 내 서재 (MyPage) →</span><span class="dr-badge bd-new">새 탭</span></div>
-          <div style="margin-top:10px" class="detail-title">내부 구성 (goView 라우팅)</div>
-          <div class="detail-row"><span class="dr-from">탐색</span><span class="dr-arrow">→</span><span class="dr-to">대시보드 · 내 서재 · 구매 이력 · 읽기 통계</span></div>
-          <div class="detail-row"><span class="dr-from">독자 서비스</span><span class="dr-arrow">→</span><span class="dr-to">저자 Q&A · 오류·오탈자 신고 · 출판사 문의</span></div>
-          <div class="detail-row"><span class="dr-from">계정</span><span class="dr-arrow">→</span><span class="dr-to">계정 설정 (프로필·비밀번호·알림·읽기환경) · 결제수단</span></div>
-          <div class="detail-row"><span class="dr-from">알림 설정</span><span class="dr-arrow">→</span><span class="dr-to">신간·EPUB·리마인더·마케팅 + Q&A답변·오류처리·문의답변 토글</span></div>
-          <div style="margin-top:10px" class="detail-title">연결</div>
-          <div class="detail-row"><span class="dr-from">topbar ← 에이콘 홈</span><span class="dr-arrow">→</span><span class="dr-to">acornpub_landing.html</span><span class="dr-badge bd-both">랜딩</span></div>
-          <div class="detail-row"><span class="dr-from">이어서 읽기 아이콘</span><span class="dr-arrow">→</span><span class="dr-to">epub_reader</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">내 서재 도서 카드</span><span class="dr-arrow">→</span><span class="dr-to">EPUB 리더 (readerLink)</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">출판사 문의 이메일</span><span class="dr-arrow">→</span><span class="dr-to">mailto:acornpub@acornpub.co.kr</span><span class="dr-badge bd-ext">외부</span></div>
-          <a href="mypage.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:5px;border:1px solid var(--file);color:var(--file);text-decoration:none;background:transparent;transition:all .15s" onmouseover="this.style.background='var(--file)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--file)'">↗ MyPage 열기</a>
-        </div>
-      </div>
-
-      <!-- EPUB 리더 -->
-      <div class="node node-file" onclick="toggleDetail('d-epub')">
-        <button class="toggle-btn" id="btn-epub">
-          <div>
-            <span class="node-tag">epub_reader.html</span>
-            <div class="node-title">ePub 3.0 리더</div>
-            <div class="node-sub">생성형 AI의 부상</div>
-          </div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-epub">
-          <div class="detail-title">진입 경로</div>
-          <div class="detail-row"><span class="dr-from">MyPage 이어서 읽기</span><span class="dr-arrow">→</span><span class="dr-to">topbar 우측 아이콘</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">MyPage 내 서재</span><span class="dr-arrow">→</span><span class="dr-to">도서 카드 클릭</span><span class="dr-badge bd-new">직접</span></div>
-          <div class="detail-row"><span class="dr-from">멤버십 라운지 드롭다운</span><span class="dr-arrow">→</span><span class="dr-to">📖 ePub 3.0 리더</span><span class="dr-badge bd-new">새 탭</span></div>
-          <div class="detail-row"><span class="dr-from">도서 상세 배너</span><span class="dr-arrow">→</span><span class="dr-to">📖 ePub 3.0 리더 미리보기 →</span><span class="dr-badge bd-new">새 탭</span></div>
-          <div style="margin-top:10px" class="detail-title">내부 기능</div>
-          <div class="detail-row"><span class="dr-from">TOC</span><span class="dr-arrow">→</span><span class="dr-to">챕터별 목차 (10장 + 서문)</span></div>
-          <div class="detail-row"><span class="dr-from">기능</span><span class="dr-arrow">→</span><span class="dr-to">북마크 · 형광펜 · 검색 · 읽기 진행도 · 다크/라이트 · 폰트크기</span></div>
-          <div style="margin-top:10px" class="detail-title">돌아가기</div>
-          <div class="detail-row"><span class="dr-from">topbar 홈 버튼</span><span class="dr-arrow">→</span><span class="dr-to">acornpub_landing.html</span><span class="dr-badge bd-both">랜딩</span></div>
-          <div class="detail-row"><span class="dr-from">topbar ← 내 서재</span><span class="dr-arrow">→</span><span class="dr-to">mypage.html</span><span class="dr-badge bd-both">MyPage</span></div>
-          <a href="epub_reader.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:5px;border:1px solid var(--file);color:var(--file);text-decoration:none;background:transparent;transition:all .15s" onmouseover="this.style.background='var(--file)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--file)'">↗ EPUB3 리더 열기</a>
-        </div>
-      </div>
-
-      <!-- 관리자 -->
-      <div class="node node-file" style="border-color:var(--red-bd);background:var(--red-bg)" onclick="toggleDetail('d-admin')">
-        <button class="toggle-btn" id="btn-admin">
-          <div>
-            <span class="node-tag" style="color:var(--red)">acorn_admin.html</span>
-            <div class="node-title">편집부 관리자</div>
-            <div class="node-sub">제안서 평가·관리</div>
-          </div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-admin">
-          <div class="detail-title">진입 경로</div>
-          <div class="detail-row"><span class="dr-from">nav 우측</span><span class="dr-arrow">→</span><span class="dr-to">⚙ 편집부 버튼</span><span class="dr-badge bd-new">직접</span></div>
-          <div style="margin-top:10px" class="detail-title">내부 구성</div>
-          <div class="detail-row"><span class="dr-from">대시보드</span><span class="dr-arrow">→</span><span class="dr-to">KPI 5개 · 카테고리/월별 차트 · 최근 5건 테이블</span></div>
-          <div class="detail-row"><span class="dr-from">제안서 목록</span><span class="dr-arrow">→</span><span class="dr-to">검색·상태·유형·정렬 필터 · 카드 목록</span></div>
-          <div class="detail-row"><span class="dr-from">제안서 상세</span><span class="dr-arrow">→</span><span class="dr-to">도서 개요·마케팅·인세 시뮬레이션·ePub 체크 표시</span></div>
-          <div class="detail-row"><span class="dr-from">평가 패널</span><span class="dr-arrow">→</span><span class="dr-to">상태변경(5가지) · 5항목 점수 슬라이더 · S/A/B/C/D 등급</span></div>
-          <div class="detail-row"><span class="dr-from">메모·히스토리</span><span class="dr-arrow">→</span><span class="dr-to">편집자 메모 저장 · 검토 히스토리 추가</span></div>
-          <div class="detail-row"><span class="dr-from">통계 분석</span><span class="dr-arrow">→</span><span class="dr-to">채택률·평균점수·카테고리/상태 분포</span></div>
-          <div class="detail-row"><span class="dr-from">데이터</span><span class="dr-arrow">→</span><span class="dr-to">localStorage 영속화 · 직접 등록 모달</span></div>
-          <div style="margin-top:10px" class="detail-title">돌아가기</div>
-          <div class="detail-row"><span class="dr-from">topbar</span><span class="dr-arrow">→</span><span class="dr-to">← 홈으로 버튼</span><span class="dr-badge bd-both">랜딩</span></div>
-          <a href="acorn_admin.html" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:5px;border:1px solid var(--red);color:var(--red);text-decoration:none;background:transparent;transition:all .15s" onmouseover="this.style.background='var(--red)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--red)'">↗ acorn_admin.html 열기</a>
-        </div>
-      </div>
-
-      <!-- connection_map_v2 -->
-      <div class="node node-file" onclick="toggleDetail('d-connv2')" style="border-left:4px solid #4C2E9A">
-        <button class="toggle-btn" id="btn-connv2">
-          <div>
-            <span class="node-tag">connection_map_v2.html</span>
-            <div class="node-title">저자서비스 · 멤버십 연결맵</div>
-            <div class="node-sub">3패널 · 30연결 · 6 시나리오</div>
-          </div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-connv2">
-          <div class="detail-title">구성</div>
-          <div class="detail-row"><span class="dr-from">패널 1</span><span class="dr-arrow">→</span><span class="dr-to">Landing Page (acornpub_landing.html)</span></div>
-          <div class="detail-row"><span class="dr-from">패널 2</span><span class="dr-arrow">→</span><span class="dr-to">저자 서비스 (go('service') · goSvc)</span></div>
-          <div class="detail-row"><span class="dr-from">패널 3</span><span class="dr-arrow">→</span><span class="dr-to">멤버십 라운지 (go('reader') · MyPage · EPUB)</span></div>
-          <div class="detail-row"><span class="dr-from">시나리오</span><span class="dr-arrow">→</span><span class="dr-to">기획출판 제안 · 자비출판 견적 · KDP · 멤버십 가입 · ePub · Q&A</span></div>
-          <a href="connection_map_v2.html" target="_blank" onclick="event.stopPropagation()"
-             style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:5px;border:1px solid #4C2E9A;color:#4C2E9A;text-decoration:none;background:transparent;transition:all .15s"
-             onmouseover="this.style.background='#4C2E9A';this.style.color='#fff'"
-             onmouseout="this.style.background='transparent';this.style.color='#4C2E9A'">↗ connection_map_v2.html 열기</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══ 4. 외부 서비스 ══ -->
-  <div class="sec-wrap">
-    <div class="sec-label">04 · 외부 서비스 · 채널</div>
-    <div class="row">
-
-      <div class="node node-ext" onclick="toggleDetail('d-bookstore')">
-        <button class="toggle-btn" id="btn-bookstore">
-          <div><span class="node-tag">도서 유통 채널</span><div class="node-title">교보문고 · YES24 · 알라딘</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-bookstore">
-          <div class="detail-row"><span class="dr-from">진입</span><span class="dr-arrow">→</span><span class="dr-to">도서 상세 종이책 구매 버튼</span><span class="dr-badge bd-ext">새 탭</span></div>
-          <div class="detail-row"><span class="dr-from">URL</span><span class="dr-arrow">→</span><span class="dr-to">kyobobook.co.kr · yes24.com · aladin.co.kr</span></div>
-        </div>
-      </div>
-
-      <div class="node node-ext" onclick="toggleDetail('d-author-site')">
-        <button class="toggle-btn" id="btn-author-site">
-          <div><span class="node-tag">저자 포털</span><div class="node-title">author.acornpub.kr</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-author-site">
-          <div class="detail-row"><span class="dr-from">nav 드롭다운</span><span class="dr-arrow">→</span><span class="dr-to">저자 Service ▾ → 저자 사이트 →</span><span class="dr-badge bd-ext">새 탭</span></div>
-          <div class="detail-row"><span class="dr-from">저자 서비스 히어로</span><span class="dr-arrow">→</span><span class="dr-to">저자 사이트 접속 → 버튼</span><span class="dr-badge bd-ext">새 탭</span></div>
-        </div>
-      </div>
-
-      <div class="node node-ext" onclick="toggleDetail('d-email')">
-        <button class="toggle-btn" id="btn-email">
-          <div><span class="node-tag">이메일</span><div class="node-title">편집부 연락처</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-email">
-          <div class="detail-row"><span class="dr-from">도입상담</span><span class="dr-arrow">→</span><span class="dr-to">editor@acornpub.co.kr</span></div>
-          <div class="detail-row"><span class="dr-from">일반 문의</span><span class="dr-arrow">→</span><span class="dr-to">acornpub@acornpub.co.kr</span></div>
-          <div class="detail-row"><span class="dr-from">오류 신고</span><span class="dr-arrow">→</span><span class="dr-to">editor@acornpub.co.kr</span></div>
-          <div class="detail-row"><span class="dr-from">대표전화</span><span class="dr-arrow">→</span><span class="dr-to">02-2653-7600</span></div>
-        </div>
-      </div>
-
-      <div class="node node-ext" onclick="toggleDetail('d-sns-ch')">
-        <button class="toggle-btn" id="btn-sns-ch">
-          <div><span class="node-tag">SNS · 7채널</span><div class="node-title">공식 소셜 채널</div></div>
-          <span class="toggle-chevron">▾</span>
-        </button>
-        <div class="detail-panel" id="d-sns-ch">
-          <div class="detail-row"><span class="dr-from">Instagram</span><span class="dr-arrow">→</span><span class="dr-to">instagram.com/acornpub (IT전용 · 일반서)</span></div>
-          <div class="detail-row"><span class="dr-from">Facebook</span><span class="dr-arrow">→</span><span class="dr-to">facebook.com/acornpub</span></div>
-          <div class="detail-row"><span class="dr-from">YouTube</span><span class="dr-arrow">→</span><span class="dr-to">youtube.com/@acornpub (Shorts · Long-form)</span></div>
-          <div class="detail-row"><span class="dr-from">LinkedIn</span><span class="dr-arrow">→</span><span class="dr-to">linkedin.com/company/acornpub</span></div>
-          <div class="detail-row"><span class="dr-from">X (Twitter)</span><span class="dr-arrow">→</span><span class="dr-to">twitter.com/acornpub</span></div>
-          <div class="detail-row"><span class="dr-from">블로그</span><span class="dr-arrow">→</span><span class="dr-to">blog.naver.com/acornpub</span></div>
-          <div class="detail-row"><span class="dr-from">GitHub</span><span class="dr-arrow">→</span><span class="dr-to">github.com/AcornPublishing</span></div>
-          <div class="detail-row"><span class="dr-from">관리</span><span class="dr-arrow">→</span><span class="dr-to">SNS 채널 관리 페이지에서 URL 수정 · localStorage 저장</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══ 저자서비스·멤버십 연결맵 ══ -->
-  <div class="sec-wrap" style="margin-bottom:20px">
-    <div class="sec-label">저자 서비스 · 멤버십 라운지 상세 연결맵</div>
-    <div style="background:rgba(76,46,154,.08);border:2px solid #4C2E9A;border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">Landing ↔ 저자 서비스 ↔ 멤버십 라운지 상세 연결 맵</div>
-        <div style="font-family:var(--mono);font-size:11.5px;color:#4C2E9A;font-weight:500">connection_map_v2.html · 3패널 · 30연결 · 6가지 사용자 시나리오</div>
-      </div>
-      <a href="connection_map_v2.html" target="_blank"
-         style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;font-weight:700;padding:11px 22px;border-radius:8px;border:none;color:#fff;text-decoration:none;background:#4C2E9A;white-space:nowrap;box-shadow:0 2px 12px rgba(76,46,154,.3);transition:all .15s"
-         onmouseover="this.style.background='#3a2175';this.style.boxShadow='0 4px 18px rgba(76,46,154,.45)'"
-         onmouseout="this.style.background='#4C2E9A';this.style.boxShadow='0 2px 12px rgba(76,46,154,.3)'">
-        ↗ connection_map_v2.html 열기
+    <!-- 파일 바로가기 -->
+    <div class="files-grid">
+      <a href="acornpub_landing.html" target="_blank" class="file-chip fc-hub">
+        <span class="fc-ico">🏠</span>
+        <div><div class="fc-name" style="color:var(--hub-c)">acornpub_landing.html</div><div class="fc-desc">에이콘출판사 메인 허브</div></div>
+      </a>
+      <a href="publishing-proposal.html" target="_blank" class="file-chip fc-file">
+        <span class="fc-ico">📝</span>
+        <div><div class="fc-name" style="color:var(--file-c)">publishing-proposal.html</div><div class="fc-desc">출간 제안서 7단계</div></div>
+      </a>
+      <a href="mypage.html" target="_blank" class="file-chip fc-file">
+        <span class="fc-ico">📚</span>
+        <div><div class="fc-name" style="color:var(--file-c)">mypage.html</div><div class="fc-desc">독자 MyPage · 내 서재</div></div>
+      </a>
+      <a href="epub_reader.html" target="_blank" class="file-chip fc-file">
+        <span class="fc-ico">📖</span>
+        <div><div class="fc-name" style="color:var(--file-c)">epub_reader.html</div><div class="fc-desc">ePub 3.0 인터랙티브 리더</div></div>
+      </a>
+      <a href="acorn_admin.html" target="_blank" class="file-chip fc-red">
+        <span class="fc-ico">⚙️</span>
+        <div><div class="fc-name" style="color:var(--red-c)">acorn_admin.html</div><div class="fc-desc">편집부 제안서 관리자</div></div>
+      </a>
+      <a href="connection_map_v2.html" target="_blank" class="file-chip fc-map">
+        <span class="fc-ico">🗺️</span>
+        <div><div class="fc-name" style="color:var(--file-c)">connection_map_v2.html</div><div class="fc-desc">저자서비스·멤버십 상세 연결맵</div></div>
       </a>
     </div>
   </div>
 
-  <!-- ══ 5. 전체 연결 요약 테이블 ══ -->
-  <div class="section-block">
-    <button class="toggle-btn open" id="btn-table" onclick="toggleDetail('d-table');this.classList.toggle('open')">
-      <div class="section-block-title" style="margin-bottom:0;border-bottom:none;padding-bottom:0">
-        <span style="background:var(--hub)"></span>
-        05 · 전체 연결 요약 테이블
+  <!-- 2. 사용자 흐름 -->
+  <div class="sec">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <span class="sec-title">대표 사용자 흐름 6가지</span>
+      <div class="sec-ln"></div>
+    </div>
+    <div class="flow-wrap">
+      <div class="flow-tabs" id="flowTabs"></div>
+      <div class="flow-body">
+        <div class="flow-steps" id="flowSteps"></div>
+        <div class="flow-desc" id="flowDesc"></div>
       </div>
-      <span class="toggle-chevron" style="color:var(--muted2)">▾</span>
-    </button>
-    <div class="detail-panel open" id="d-table" style="margin-top:16px">
-      <table class="conn-table">
-        <thead>
-          <tr>
-            <th>출발</th>
-            <th style="width:36px">→</th>
-            <th>도착</th>
-            <th>진입 수단</th>
-            <th>방향</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="ct-from">랜딩</td><td class="ct-arrow">→</td><td class="ct-to">publishing-proposal.html</td><td class="ct-how">nav CTA · 저자서비스 버튼 (4곳)</td><td><span class="dr-badge bd-new">단방향</span></td></tr>
-          <tr><td class="ct-from">랜딩</td><td class="ct-arrow">↔</td><td class="ct-to">mypage.html</td><td class="ct-how">전자책 구매 · 멤버십 드롭다운</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">랜딩</td><td class="ct-arrow">↔</td><td class="ct-to">epub_reader</td><td class="ct-how">멤버십 드롭다운 · 도서 상세 배너</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">랜딩</td><td class="ct-arrow">↔</td><td class="ct-to">acorn_admin.html</td><td class="ct-how">nav ⚙ 편집부 버튼</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">proposal</td><td class="ct-arrow">→</td><td class="ct-to">랜딩</td><td class="ct-how">nav ← 에이콘 출판사 · 완료화면 버튼</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">MyPage</td><td class="ct-arrow">↔</td><td class="ct-to">EPUB 리더</td><td class="ct-how">이어서 읽기 아이콘 · ← 내 서재</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">MyPage</td><td class="ct-arrow">→</td><td class="ct-to">랜딩</td><td class="ct-how">topbar ← 에이콘 홈</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">EPUB 리더</td><td class="ct-arrow">→</td><td class="ct-to">랜딩</td><td class="ct-how">topbar 홈 버튼</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">admin</td><td class="ct-arrow">→</td><td class="ct-to">랜딩</td><td class="ct-how">topbar ← 홈으로</td><td><span class="dr-badge bd-both">양방향</span></td></tr>
-          <tr><td class="ct-from">도서 상세(랜딩)</td><td class="ct-arrow">→</td><td class="ct-to">교보·YES24·알라딘</td><td class="ct-how">종이책 구매 버튼</td><td><span class="dr-badge bd-ext">외부 새 탭</span></td></tr>
-          <tr><td class="ct-from">저자서비스(랜딩)</td><td class="ct-arrow">→</td><td class="ct-to">author.acornpub.kr</td><td class="ct-how">저자 사이트 버튼</td><td><span class="dr-badge bd-ext">외부 새 탭</span></td></tr>
-          <tr><td class="ct-from">오류신고(랜딩·MyPage)</td><td class="ct-arrow">→</td><td class="ct-to">editor@acornpub.co.kr</td><td class="ct-how">이메일 링크</td><td><span class="dr-badge bd-ext">외부 mailto</span></td></tr>
-          <tr><td class="ct-from">SNS채널(랜딩)</td><td class="ct-arrow">→</td><td class="ct-to">Instagram · FB · YT · LinkedIn · X · Blog · GitHub</td><td class="ct-how">nav 드롭다운 · SNS 관리 페이지</td><td><span class="dr-badge bd-ext">외부 새 탭</span></td></tr>
-        </tbody>
+    </div>
+  </div>
+
+  <!-- 3. 연결 요약 테이블 -->
+  <div class="sec">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <span class="sec-title">전체 연결 요약 · 13개 경로</span>
+      <div class="sec-ln"></div>
+    </div>
+    <div class="tbl-wrap">
+      <div class="tbl-head">
+        <span class="tbl-title">출발 → 도착 · 진입 수단 · 방향</span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--ink3)">행 클릭 시 해당 파일 열기</span>
+      </div>
+      <table class="ct">
+        <thead><tr><th>출발</th><th style="width:30px"></th><th>도착</th><th>진입 수단</th><th>방향</th></tr></thead>
+        <tbody id="connTbody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- ══ 6. 데이터 흐름 ══ -->
-  <div class="section-block">
-    <button class="toggle-btn" id="btn-data" onclick="toggleDetail('d-data');this.classList.toggle('open')">
-      <div class="section-block-title" style="margin-bottom:0;border-bottom:none;padding-bottom:0">
-        <span style="background:var(--ext)"></span>
-        06 · 데이터 흐름 (localStorage)
-      </div>
-      <span class="toggle-chevron" style="color:var(--muted2)">▾</span>
-    </button>
-    <div class="detail-panel" id="d-data" style="margin-top:16px">
-      <div class="detail-row"><span class="dr-from">acorn_proposals</span><span class="dr-arrow">→</span><span class="dr-to">publishing-proposal.html 제출 데이터 → acorn_admin.html 평가·관리</span></div>
-      <div class="detail-row"><span class="dr-from">acorn_sns</span><span class="dr-arrow">→</span><span class="dr-to">SNS 채널 관리 페이지에서 수정 → nav 드롭다운 링크 즉시 반영</span></div>
-      <div class="detail-row"><span class="dr-from">MyPage 서재</span><span class="dr-arrow">→</span><span class="dr-to">구매 이력·읽기 진행도·북마크·형광펜 (localStorage)</span></div>
-      <div class="detail-row"><span class="dr-from">EPUB 리더</span><span class="dr-arrow">→</span><span class="dr-to">읽기 위치·북마크·형광펜·설정 저장</span></div>
+  <!-- 4. 데이터 흐름 -->
+  <div class="sec">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <span class="sec-title">데이터 흐름 (localStorage)</span>
+      <div class="sec-ln"></div>
     </div>
-  </div>
-
-  <div style="text-align:center;padding:32px 0 12px;font-family:var(--mono);font-size:10.5px;color:var(--muted2)">
-    에이콘출판사 · 에이콘온 · KJ엔지니어링 &nbsp;|&nbsp; Page Connection Map v1.0 &nbsp;|&nbsp; 2026
+    <div class="df-grid">
+      <div class="df-card"><div class="df-key">acorn_proposals</div><div class="df-val">publishing-proposal.html 제출 데이터 → acorn_admin.html에서 평가·상태관리·점수 기록</div></div>
+      <div class="df-card"><div class="df-key">acorn_sns</div><div class="df-val">SNS 채널 관리 페이지 URL 수정 → nav 드롭다운 링크 즉시 반영</div></div>
+      <div class="df-card"><div class="df-key">mypage 서재 데이터</div><div class="df-val">구매 이력 · 읽기 진행도 · 북마크 · 형광펜 → 재방문 시 복원</div></div>
+      <div class="df-card"><div class="df-key">epub_reader 설정</div><div class="df-val">읽기 위치 · 북마크 · 형광펜 · 다크/라이트 모드 · 폰트 크기 설정 저장</div></div>
+    </div>
   </div>
 
 </div>
 
 <script>
-function toggleDetail(id) {
-  const panel = document.getElementById(id);
-  if (!panel) return;
-  panel.classList.toggle('open');
+const FLOWS=[
+  {label:'✍️ 기획출판 제안',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 저자 Service'},{t:'arr'},{t:'step',text:'저자 서비스 뷰'},{t:'arr'},{t:'act',text:'기획출판 탭'},{t:'arr'},{t:'act',text:'출간 제안하기'},{t:'arr'},{t:'end',text:'publishing-proposal.html'}],desc:'nav 「저자 Service」 → go(\'service\') → 기획출판 탭 → 「출간 제안하기」 버튼 → publishing-proposal.html (7단계 SPA). 제안서 완료 후 nav의 「← 에이콘 출판사」로 Landing으로 복귀.'},
+  {label:'💰 자비출판 견적',steps:[{t:'start',text:'저자 서비스'},{t:'arr'},{t:'act',text:'자비출판 탭'},{t:'arr'},{t:'step',text:'비용 시뮬레이터'},{t:'arr'},{t:'act',text:'옵션 체크박스 선택'},{t:'arr'},{t:'end',text:'손익분기점 자동계산'}],desc:'자비출판 탭 선택 시 인세 시뮬레이터 아래 비용 시뮬레이터가 펼쳐집니다. 기본 100만원에 편집·디자인·마케팅·해외출간 옵션을 체크하면 총비용과 손익분기점(부수)이 실시간 계산됩니다.'},
+  {label:'🌐 KDP 글로벌 출간',steps:[{t:'start',text:'저자 서비스'},{t:'arr'},{t:'act',text:'Amazon KDP 탭'},{t:'arr'},{t:'step',text:'KDP 인세 테이블'},{t:'arr'},{t:'act',text:'글로벌 상담 신청'},{t:'arr'},{t:'end',text:'publishing-proposal.html'}],desc:'저자 서비스 > Amazon KDP 탭에서 인세 구조와 글로벌 출간 프로세스를 확인합니다. 「글로벌 출간 상담」 버튼으로 publishing-proposal.html 이동 시 KDP 옵션이 선택된 상태로 시작됩니다.'},
+  {label:'📚 멤버십 가입',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 멤버십 라운지 ▾'},{t:'arr'},{t:'step',text:'멤버십 라운지 뷰'},{t:'arr'},{t:'act',text:'무료 멤버십 시작'},{t:'arr'},{t:'end',text:'mypage.html'}],desc:'nav 「멤버십 라운지 ▾」 드롭다운 → 「📚 내 서재」 클릭 시 mypage.html 새탭. 또는 멤버십 라운지 뷰 내 CTA 「무료 멤버십 시작」 버튼으로 이동. 에이콘 멤버십은 무료이며 별도 결제 없습니다.'},
+  {label:'📖 ePub 열람',steps:[{t:'start',text:'도서 상세 모달'},{t:'arr'},{t:'act',text:'전자책+ePub 구매'},{t:'arr'},{t:'step',text:'mypage.html'},{t:'arr'},{t:'act',text:'내 서재 도서 카드'},{t:'arr'},{t:'end',text:'epub_reader.html'}],desc:'도서 상세 모달 「전자책 + ePub 구매」 → mypage.html 이동. 내 서재에서 도서 카드의 이어서 읽기 버튼 → epub_reader.html. MyPage ⇄ EPUB 리더는 topbar 버튼으로 양방향 이동 가능합니다.'},
+  {label:'💬 저자 Q&A',steps:[{t:'start',text:'멤버십 라운지'},{t:'arr'},{t:'act',text:'저자 Q&A 서비스 카드'},{t:'arr'},{t:'step',text:'mypage.html'},{t:'arr'},{t:'act',text:'사이드바 저자 Q&A'},{t:'arr'},{t:'end',text:'새 질문 작성 탭'}],desc:'멤버십 라운지 「저자 직접 Q&A」 카드 → mypage.html 저자 Q&A 뷰. 도서 선택 후 질문 작성·제출 → 저자가 5영업일 이내 직접 답변. 답변 알림은 설정 > 독자 서비스 알림에서 On/Off.'},
+];
 
-  // 버튼 chevron 토글
-  const btnId = 'btn-' + id.replace('d-','');
-  const btn = document.getElementById(btnId);
-  if (btn) {
-    const chev = btn.querySelector('.toggle-chevron');
-    if (chev) chev.style.transform = panel.classList.contains('open') ? 'rotate(180deg)' : '';
+(function(){
+  const tabs=document.getElementById('flowTabs');
+  const steps=document.getElementById('flowSteps');
+  const desc=document.getElementById('flowDesc');
+  function render(i){
+    tabs.querySelectorAll('.flow-tab').forEach((t,j)=>t.classList.toggle('on',i===j));
+    steps.innerHTML=FLOWS[i].steps.map(s=>{
+      if(s.t==='arr') return '<span class="fa">→</span>';
+      return `<span class="fs ${s.t}">${s.text}</span>`;
+    }).join('');
+    desc.textContent=FLOWS[i].desc;
   }
-}
+  FLOWS.forEach((f,i)=>{
+    const b=document.createElement('button');
+    b.className='flow-tab'+(i===0?' on':'');
+    b.textContent=f.label;
+    b.onclick=()=>render(i);
+    tabs.appendChild(b);
+  });
+  render(0);
+})();
 
-// 테이블 기본 열림
-document.addEventListener('DOMContentLoaded', () => {
-  // hub 기본 열기
-  const hub = document.getElementById('d-hub');
-  if (hub) hub.classList.add('open');
-  const btnHub = document.getElementById('btn-hub');
-  if (btnHub) { const c = btnHub.querySelector('.toggle-chevron'); if(c) c.style.transform='rotate(180deg)'; }
-});
+const ROWS=[
+  {from:'Landing',to:'publishing-proposal.html',how:'nav CTA · 저자서비스 버튼 4곳',dir:'single',file:'publishing-proposal.html'},
+  {from:'Landing',to:'mypage.html',how:'전자책 구매 버튼 · 멤버십 드롭다운',dir:'both',file:'mypage.html'},
+  {from:'Landing',to:'epub_reader.html',how:'멤버십 드롭다운 · 도서 상세 배너',dir:'both',file:'epub_reader.html'},
+  {from:'Landing',to:'acorn_admin.html',how:'nav ⚙ 편집부 버튼',dir:'both',file:'acorn_admin.html'},
+  {from:'Landing',to:'connection_map_v2.html',how:'nav ⊞ 연결 맵 버튼',dir:'single',file:'connection_map_v2.html'},
+  {from:'mypage.html',to:'epub_reader.html',how:'이어서 읽기 아이콘 / topbar ← 내 서재',dir:'both',file:'epub_reader.html'},
+  {from:'publishing-proposal.html',to:'Landing',how:'nav ← 에이콘 출판사 · 완료화면 버튼',dir:'both',file:'acornpub_landing.html'},
+  {from:'mypage.html',to:'Landing',how:'topbar ← 에이콘 홈',dir:'both',file:'acornpub_landing.html'},
+  {from:'epub_reader.html',to:'Landing',how:'topbar 홈 버튼',dir:'both',file:'acornpub_landing.html'},
+  {from:'acorn_admin.html',to:'Landing',how:'topbar ← 홈으로',dir:'both',file:'acornpub_landing.html'},
+  {from:'도서 상세(Landing)',to:'교보·YES24·알라딘',how:'종이책 구매 버튼 3개',dir:'ext',file:null},
+  {from:'저자 서비스(Landing)',to:'author.acornpub.kr',how:'저자 사이트 접속 버튼',dir:'ext',file:null},
+  {from:'SNS 채널 관리',to:'SNS 7채널',how:'nav 드롭다운 · 채널 관리 페이지',dir:'ext',file:null},
+];
+
+(function(){
+  const tbody=document.getElementById('connTbody');
+  tbody.innerHTML=ROWS.map(r=>{
+    const bdg=r.dir==='both'?'<span class="bdg bdg-both">양방향</span>':r.dir==='ext'?'<span class="bdg bdg-ext">외부새탭</span>':'<span class="bdg bdg-new">단방향</span>';
+    const st=r.file?'cursor:pointer':'';
+    const oc=r.file?`onclick="window.open('${r.file}','_blank')"` :'';
+    return `<tr style="${st}" ${oc}><td class="ct-from">${r.from}</td><td class="ct-arr">→</td><td class="ct-to">${r.to}</td><td class="ct-how">${r.how}</td><td>${bdg}</td></tr>`;
+  }).join('');
+})();
 </script>
 </body>
 </html>
