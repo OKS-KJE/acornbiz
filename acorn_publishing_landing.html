@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에이콘출판 - 당신의 책, 우리가 완성합니다</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero { padding-top: 80px !important; /* nav 바 여백 */ 
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff" fill-opacity="0.05" points="0,1000 1000,0 1000,1000"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+        
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .process h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .process-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f5576c;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 0 2rem;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .step-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #667eea;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .final-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            background: #2c3e50;
+            padding: 50px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            padding: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: fixed;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        
+        .floating-book {
+            top: 20%;
+            right: 10%;
+            font-size: 3rem;
+            animation-delay: -2s;
+        }
+        
+        .floating-pen {
+            bottom: 30%;
+            left: 5%;
+            font-size: 2.5rem;
+            animation-delay: -4s;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step,
+            .process-step:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-content {
+                margin: 1rem 0;
+            }
+            
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-element floating-book">📚</div>
+    <div class="floating-element floating-pen">✍️</div>
+    
+    <!-- Hero Section -->
+    <div style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;padding:12px 32px;background:rgba(26,26,46,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)">
+    <a href="acornpub_landing.html" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);text-decoration:none;letter-spacing:.02em;transition:color .15s;font-family:'Pretendard',-apple-system,sans-serif" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.75)'">← 이전으로 돌아가기</a>
+    <div style="flex:1"></div>
+    <a href="publishing-proposal.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:8px 20px;border-radius:8px;text-decoration:none;background:linear-gradient(135deg,#7A1F2B,#B89B54);color:#fff;letter-spacing:.02em;transition:opacity .15s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">출간 제안 시작하기 →</a>
+  </div>
+
+  <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>당신의 책, 우리가 완성합니다</h1>
+                <p class="hero-subtitle">전문가와 함께하는 완벽한 출간 여정</p>
+                <p class="hero-description">
+                    30년 경험의 에이콘출판이 제공하는 3가지 맞춤형 출간 서비스로 
+                    당신의 원고를 베스트셀러로 만들어보세요
+                </p>
+                <div class="cta-buttons">
+                    <a href="publishing-proposal.html" target="_blank" class="btn btn-primary">출간 제안 시작하기 →</a>
+                    <a href="#process" class="btn btn-secondary">출간 과정 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number">2,100+</div>
+                    <div class="stat-label">성공적인 출간</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">고객 만족도</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number">30년</div>
+                    <div class="stat-label">출판 전문 경험</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number">3가지</div>
+                    <div class="stat-label">맞춤형 출간 방식</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>나에게 맞는 출간 방식을 찾아보세요</h2>
+                <p>예산과 목표에 따라 선택할 수 있는 3가지 전문 서비스</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">🏢</div>
+                    <h3>기획 출판</h3>
+                    <p>에이콘출판이 모든 비용을 부담하고 전문적으로 기획부터 마케팅까지 진행</p>
+                    <ul class="service-features">
+                        <li>출판사 전액 투자</li>
+                        <li>전문 편집팀 배정</li>
+                        <li>전국 유통망 활용</li>
+                        <li>저자 인세 10%</li>
+                        <li>체계적 마케팅 지원</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">👤</div>
+                    <h3>자비 출판 대행</h3>
+                    <p>저자가 비용을 부담하고 에이콘출판이 전문적인 출간 대행 서비스 제공</p>
+                    <ul class="service-features">
+                        <li>저자 전액 부담</li>
+                        <li>저자 인세 100%</li>
+                        <li>빠른 출간 (2-6개월)</li>
+                        <li>완전한 저작권 보장</li>
+                        <li>전문적 품질 관리</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">🌎</div>
+                    <h3>아마존 출간 대행</h3>
+                    <p>전 세계 독자를 대상으로 아마존 킨들(Kindle) 전자책 및 종이책 출간</p>
+                    <ul class="service-features">
+                        <li>글로벌 유통망 접근</li>
+                        <li>킨들 전자책 변환</li>
+                        <li>아마존 POD 출간</li>
+                        <li>영문 메타데이터 등록</li>
+                        <li>로열티 관리 지원</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 data-aos="fade-up">간단한 5단계로 완성되는 출간 과정</h2>
+            
+            <div class="process-timeline">
+                <div class="process-step" data-aos="fade-right">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">상담 및 원고 검토</div>
+                        <div class="step-description">
+                            전문 편집자가 원고를 꼼꼼히 검토하고 최적의 출간 방식을 제안드립니다
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-left">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">계약 및 기획</div>
+                        <div class="step-description">
+                            선택한 출간 방식에 따라 계약을 체결하고 구체적인 출간 계획을 수립합니다
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-right">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">편집 및 디자인</div>
+                        <div class="step-description">
+                            전문 편집팀이 원고를 다듬고 매력적인 표지와 내지 디자인을 제작합니다
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-left">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">인쇄 및 유통</div>
+                        <div class="step-description">
+                            고품질 인쇄를 통해 책을 제작하고 전국 온오프라인 서점에 유통합니다
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-right">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">마케팅 및 사후관리</div>
+                        <div class="step-description">
+                            체계적인 마케팅을 통해 독자들에게 책을 알리고 지속적으로 관리합니다
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>성공한 저자들의 생생한 후기</h2>
+                <p>에이콘출판과 함께 꿈을 현실로 만든 저자들의 이야기</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-text">
+                        처음 출간하는 저에게 기획출판으로 기회를 주셨고, 전문적인 편집과 마케팅 덕분에 
+                        베스트셀러까지 올랐습니다. 정말 감사합니다!
+                    </div>
+                    <div class="testimonial-author">- 김○○ 작가 (IT 전문서)</div>
+                </div>
+                
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-text">
+                        자비출판 대행 서비스로 빠르게 출간했는데, 품질이 정말 만족스러웠어요. 
+                        전문 출판사와 함께해서 완성도가 높았습니다.
+                    </div>
+                    <div class="testimonial-author">- 박○○ 작가 (비즈니스서)</div>
+                </div>
+                
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-text">
+                        아마존 킨들로 전 세계 독자들을 만날 수 있게 되어 기쁩니다. 
+                        글로벌 시장 진출을 도와주셔서 감사합니다!
+                    </div>
+                    <div class="testimonial-author">- 이○○ 작가 (자기계발서)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 data-aos="fade-up">지금 시작하세요!</h2>
+            <p data-aos="fade-up" data-aos-delay="200">
+                당신의 원고가 독자들을 만날 준비가 되었다면, 
+                지금 바로 에이콘출판과 함께 출간 여정을 시작해보세요
+            </p>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="publishing-proposal.html" target="_blank" class="btn btn-primary">출간 제안 시작하기 →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Info -->
+    <section class="contact-info">
+        <div class="container">
+            <h3>에이콘출판(주)</h3>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>서울특별시 강서구 양천로 583<br>우림블루나인비즈니스센터 A동 2009호</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>02-2653-7600</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📠</div>
+                    <div>02-2653-0433</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>acornpub@acornpub.co.kr</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animate numbers
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const finalNumber = target.textContent;
+                    animateNumber(target, finalNumber);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            observer.observe(stat);
+        });
+        
+        function animateNumber(element, finalNumber) {
+            const duration = 2000;
+            const frameDuration = 1000 / 60;
+            const totalFrames = Math.round(duration / frameDuration);
+            const easeOutQuad = t => t * (2 - t);
+            
+            let frame = 0;
+            const countTo = parseInt(finalNumber.replace(/\D/g, ''));
+            const suffix = finalNumber.replace(/[\d,]/g, '');
+            
+            const counter = setInterval(() => {
+                frame++;
+                const progress = easeOutQuad(frame / totalFrames);
+                const currentCount = Math.round(countTo * progress);
+                
+                if (parseInt(currentCount) !== parseInt(element.textContent)) {
+                    element.textContent = currentCount.toLocaleString() + suffix;
+                }
+                
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                    element.textContent = finalNumber;
+                }
+            }, frameDuration);
+        }
+        
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+        
+        // Card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotateY(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotateY(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>

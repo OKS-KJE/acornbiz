@@ -323,26 +323,23 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
       <li class="hdrop">
         <button onclick="go('service')">저자 Service ▾</button>
         <ul class="dmenu">
-          <li><button onclick="goSvc('planning')">기획출판</button></li>
-          <li><button onclick="goSvc('self')">자비출판</button></li>
-          <li><button onclick="goSvc('amazon')">Amazon KDP</button></li>
-          <li><a href="https://author.acornpub.kr/" target="_blank">저자 사이트 →</a></li>
+          <li><a href="acorn_publishing_landing.html" target="_blank">서비스 소개 →</a></li>
+          <li><a href="publishing-proposal.html" target="_blank">출간 제안 시작하기 →</a></li>
+          <li><a href="author-portal.html" target="_blank">저자 사이트 →</a></li>
         </ul>
       </li>
       <li class="hdrop">
-        <a href="#" onclick="go('reader');return false">멤버십 라운지 ▾</a>
+        <a href="#" onclick="go('reader');return false">독자 Service ▾</a>
         <ul class="dmenu">
-          <li><a href="#" onclick="go('reader');return false">멤버십 소개</a></li>
+          <li><a href="#" onclick="go('reader');return false">독자 서비스 소개</a></li>
           <li><a href="mypage.html" target="_blank">📚 내 서재 (MyPage)</a></li>
           <li><a href="epub_reader.html" target="_blank">📖 ePub 3.0 리더</a></li>
         </ul>
       </li>
 
     </ul>
-    <a class="ncta" href="publishing-proposal.html">저자 등록 신청 →</a>
-    <a href="press_sns.html" target="_blank" style="margin-left:8px;flex-shrink:0;background:rgba(239,159,39,.25);color:#EF9F27;font-size:12px;font-weight:600;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(239,159,39,.4);transition:all .15s" onmouseover="this.style.background='rgba(239,159,39,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(239,159,39,.25)';this.style.color='#EF9F27'">📣 보도자료·SNS</a>
+    <a href="admin-studio.html" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⚙ 관리자</a>
     <a href="page_connection_map.html" target="_blank" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⊞ 연결 맵</a>
-    <a href="acorn_admin.html" style="margin-left:8px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:500;padding:7px 14px;border-radius:7px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.7)'">⚙ 관리자</a>
   </div>
 </nav>
 
@@ -836,7 +833,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
       <div style="height:28px"></div>
       <div class="sv-hero-btns svr">
         <a class="sv-btn sv-btn-burg" href="publishing-proposal.html">출간 제안하기 <span class="sv-btn-arr">→</span></a>
-        <a class="sv-btn sv-btn-ghost" href="https://author.acornpub.kr/" target="_blank">저자 사이트 접속 →</a>
+        <a class="sv-btn sv-btn-ghost" href="author-portal.html" target="_blank">저자 사이트 접속 →</a>
         <button class="sv-btn sv-btn-ghost" onclick="document.getElementById('sv-tabs').scrollIntoView({behavior:'smooth'})">서비스 살펴보기</button>
       </div>
     </div>
@@ -1837,7 +1834,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 <div class="pg" id="pg-reader">
 
 <style>
-/* ── Membership Lounge 전용 스타일 ── */
+/* ── Reader Service 전용 스타일 ── */
 .ml-wrap{max-width:1060px;margin:0 auto;padding:0 24px 88px}
 
 /* Hero */
@@ -2021,7 +2018,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 <!-- HERO -->
 <div class="ml-hero">
   <div class="ml-hero-in">
-    <div class="ml-eyebrow">Membership Lounge</div>
+    <div class="ml-eyebrow">Reader Service</div>
     <h1 class="ml-h1">에이콘만 줄 수 있는<br><em>독자 경험</em>.</h1>
     <p class="ml-lead">단순 도서 판매를 넘어 — <b>저자와 직접 소통하고, 책이 출간 후에도 살아있도록</b> 지원합니다.<br>교보·알라딘·YES24가 제공하지 못하는, 에이콘 독자만의 전용 서비스입니다.</p>
     <div class="ml-diff-bar">
@@ -2039,8 +2036,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 
   <!-- ── 멤버십 혜택 ── -->
   <div class="ml-sh">
-    <div class="eye">Membership Plan</div>
-    <h2>에이콘 멤버십 — 무료</h2>
+    <div class="eye">Reader Plan</div>
+    <h2>에이콘 독자 멤버십 — 무료</h2>
     <p>에이콘 도서를 구매하신 모든 독자에게 무료로 제공됩니다. 별도 요금 없이 아래 혜택을 모두 이용하세요.</p>
   </div>
   <div style="max-width:560px;margin:0 auto 64px">
@@ -2048,7 +2045,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="ml-plan-band"></div>
       <div class="ml-plan-body">
         <div class="ml-plan-badge">전체 무료 · No Cost</div>
-        <div class="ml-plan-name">에이콘 멤버십</div>
+        <div class="ml-plan-name">에이콘 독자 멤버십</div>
         <div class="ml-plan-price">0<span>원/월</span></div>
         <div class="ml-plan-desc">도서를 구매한 모든 독자에게 자동 제공 — 별도 결제 없음</div>
         <ul class="ml-plan-list">
@@ -2110,7 +2107,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="ml-svc-ico">📖</div>
       <div class="ml-svc-tag purple">ePub 3.0 Interactive</div>
       <div class="ml-svc-title">종이책을 사도<br>ePub 3.0 자동 제공</div>
-      <div class="ml-svc-desc">에이콘 도서를 어디서 구매하든 <b>멤버십 등록 후 ePub 3.0 신청</b>하면 무상 제공합니다. 코드 하이라이팅·인터랙티브 목차·하이퍼링크가 살아있습니다.</div>
+      <div class="ml-svc-desc">에이콘 도서를 어디서 구매하든 <b>독자 서비스 등록 후 ePub 3.0 신청</b>하면 무상 제공합니다. 코드 하이라이팅·인터랙티브 목차·하이퍼링크가 살아있습니다.</div>
       <ul class="ml-svc-list p">
         <li>코드 블록 하이라이팅 + 복사 기능</li>
         <li>챕터별 하이퍼링크·인터랙티브 목차</li>
@@ -2169,7 +2166,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
   <!-- ── 경쟁 비교표 ── -->
   <div class="ml-sh">
     <div class="eye">Why Acorn Lounge</div>
-    <h2>왜 에이콘 멤버십인가</h2>
+    <h2>왜 에이콘 독자 멤버십인가</h2>
     <p>일반 유통 플랫폼과의 차이를 정직하게 비교합니다.</p>
   </div>
   <div class="ml-compare">
@@ -2178,7 +2175,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
         <tr>
           <th>서비스 항목</th>
           <th>교보 / YES24 / 알라딘</th>
-          <th class="thead-acorn">에이콘 멤버십 라운지</th>
+          <th class="thead-acorn">에이콘 독자 Service</th>
         </tr>
       </thead>
       <tbody>
@@ -2229,9 +2226,9 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
   <!-- ── CTA ── -->
   <div class="ml-cta">
     <div class="ml-cta-left">
-      <div class="ml-cta-eye">Join Membership Lounge</div>
+      <div class="ml-cta-eye">Join Reader Service</div>
       <div class="ml-cta-h">지금 시작하세요 — 무료입니다</div>
-      <div class="ml-cta-d">스탠다드 멤버십은 무료입니다. ePub 3.0 수령·정오표 우선 반영·보완 자료 다운로드를 바로 이용하세요. 저자와 더 깊이 연결되고 싶다면 프리미엄으로 업그레이드하세요.</div>
+      <div class="ml-cta-d">스탠다드 독자 서비스는 무료입니다. ePub 3.0 수령·정오표 우선 반영·보완 자료 다운로드를 바로 이용하세요. 저자와 더 깊이 연결되고 싶다면 프리미엄으로 업그레이드하세요.</div>
     </div>
     <div class="ml-cta-btns">
       <a href="mypage.html" target="_blank" class="ml-btn-teal" style="text-decoration:none">무료 멤버십 시작</a>
@@ -2538,18 +2535,16 @@ window.go = function(page) {
           <li><button onclick="go('about')">About Us</button></li>
           <li><button onclick="go('home')">전체 도서</button></li>
           <li><button onclick="go('service')">저자 서비스</button></li>
-          <li><button onclick="go('reader')">멤버십 라운지</button></li>
+          <li><button onclick="go('reader')">독자 Service</button></li>
           <li><button onclick="go('errata')">오류·오탈자 신고</button></li>
         </ul>
       </div>
       <div class="fcol">
         <div class="fcolh">저자 서비스</div>
         <ul>
-          <li><button onclick="goSvc('planning')">기획출판</button></li>
-          <li><button onclick="goSvc('self')">자비출판</button></li>
-          <li><button onclick="goSvc('amazon')">Amazon KDP</button></li>
-          <li><button onclick="go('service')">도서 기획안 제안</button></li>
-          <li><a href="https://author.acornpub.kr/" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">저자 사이트 →</a></li>
+          <li><a href="acorn_publishing_landing.html" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">서비스 소개 →</a></li>
+          <li><a href="publishing-proposal.html" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">출간 제안 시작하기 →</a></li>
+          <li><a href="author-portal.html" target="_blank" style="color:rgba(255,255,255,.48);font-size:12.5px;transition:color .15s" onmouseover="this.style.color='rgba(255,255,255,.82)'" onmouseout="this.style.color='rgba(255,255,255,.48)'">저자 사이트 →</a></li>
         </ul>
       </div>
       <div class="fcol">
@@ -2718,7 +2713,7 @@ function openBook(id){
             <div class="rp-ico">🎁</div>
             <div>
               <div class="rp-h">종이책 구매 시 ePub 3.0 무료 제공</div>
-              <div class="rp-d">에이콘 멤버십 라운지 가입 후 구매하시면 ePub 3.0이 자동 연동됩니다. 저자 Q&A·독서 진행 관리·신간 알림까지.</div>
+              <div class="rp-d">에이콘 독자 Service 가입 후 구매하시면 ePub 3.0이 자동 연동됩니다. 저자 Q&A·독서 진행 관리·신간 알림까지.</div>
               <div style="display:flex;gap:8px;margin-top:7px;flex-wrap:wrap">
                 <a class="rp-cta" href="mypage.html" target="_blank" style="text-decoration:none">📚 내 서재 (MyPage) →</a>
                 <a class="rp-cta" href="epub_reader.html" target="_blank" style="text-decoration:none;color:var(--teal4)">📖 ePub 3.0 리더 미리보기 →</a>
@@ -2802,10 +2797,6 @@ function goCat(cat){
   curCat=CATS.find(c=>c.id===cat)?cat:'all';
   document.getElementById('catTitle').textContent=CATS.find(c=>c.id===cat)?.label||cat;
   go('home');
-}
-function goSvc(tab){
-  go('service');
-  setTimeout(()=>{const btn=document.querySelector(`.svtab[onclick*="'${tab}'"]`);if(btn)setSvTab(btn,tab)},60);
 }
 
 /* ─── INIT ─── */

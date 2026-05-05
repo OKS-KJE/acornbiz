@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에이콘 — 보도자료 · SNS 배포 시스템</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F3EE; --bg2:#fff; --bg3:#EDE9E0; --bg4:#E5E1D6;
+  --ink:#1A1714; --ink2:#4A4540; --ink3:#8A837A; --ink4:#B8B0A8;
+  --teal:#0F6E56; --teal2:#085041; --teal3:#E1F5EE; --teal4:#D0EDE4;
+  --amber:#EF9F27; --amberD:#C47D0E; --amberBg:#FEF3DC;
+  --red:#C83232; --redBg:#FEE8E8;
+  --navy:#0A1628; --navy2:#0D1C35;
+  --rule:#D8D2C8; --rule2:#E8E3DA;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.06);
+  --shadow2:0 2px 8px rgba(0,0,0,.06),0 12px 40px rgba(0,0,0,.10);
+  --serif:'Noto Serif KR',serif;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Pretendard',-apple-system,sans-serif;
+  --r:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;line-height:1.6}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  background:var(--navy);height:54px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-bottom:1px solid rgba(255,255,255,.07);
+}
+.tb-brand{display:flex;align-items:center;gap:10px}
+.tb-mark{width:28px;height:28px;border-radius:7px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px;font-weight:700;color:#fff}
+.tb-title{font-size:14px;font-weight:600;color:#fff}
+.tb-badge{font-family:var(--mono);font-size:9px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(29,158,117,.3);color:var(--teal3);letter-spacing:.08em;text-transform:uppercase}
+.tb-nav{display:flex;gap:6px}
+.tb-btn{font-size:12.5px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);text-decoration:none;background:transparent;cursor:pointer;font-family:var(--sans);transition:all .14s;white-space:nowrap}
+.tb-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.tb-btn.prim{background:var(--teal);border-color:var(--teal);color:#fff}
+.tb-btn.prim:hover{background:var(--teal2)}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:360px 1fr;gap:0;min-height:calc(100vh - 54px)}
+
+/* ── LEFT PANEL ── */
+.left-panel{
+  background:var(--bg2);border-right:1px solid var(--rule);
+  overflow-y:auto;height:calc(100vh - 54px);position:sticky;top:54px;
+}
+.lp-section{padding:20px 20px 0;border-bottom:1px solid var(--rule2)}
+.lp-section:last-child{border-bottom:none}
+.lp-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.lp-label::after{content:'';flex:1;height:1px;background:var(--rule2)}
+
+/* 도서 선택 */
+.book-select-item{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;
+  border-radius:8px;cursor:pointer;border:1.5px solid transparent;
+  transition:all .15s;margin-bottom:6px;
+}
+.book-select-item:hover{background:var(--bg3)}
+.book-select-item.on{border-color:var(--teal);background:var(--teal3)}
+.bsi-cover{
+  width:38px;height:52px;border-radius:4px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:#fff;text-align:center;
+  line-height:1.2;font-family:var(--mono);
+}
+.bsi-info{min-width:0;flex:1}
+.bsi-title{font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bsi-auth{font-size:11px;color:var(--ink3);margin-top:1px}
+.bsi-tags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.bsi-tag{font-family:var(--mono);font-size:9px;font-weight:600;padding:1px 6px;border-radius:3px;background:var(--amberBg);color:var(--amberD)}
+
+/* 배포 채널 선택 */
+.ch-grid{display:flex;flex-direction:column;gap:5px}
+.ch-item{
+  display:flex;align-items:center;gap:10px;padding:8px 10px;
+  border-radius:7px;border:1.5px solid var(--rule);cursor:pointer;
+  transition:all .14s;
+}
+.ch-item:hover{border-color:var(--ink3)}
+.ch-item.on{border-color:var(--teal);background:var(--teal3)}
+.ch-chk{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--ink4);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .14s}
+.ch-item.on .ch-chk{background:var(--teal);border-color:var(--teal);color:#fff;font-size:10px;font-weight:700}
+.ch-ico{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.ch-name{font-size:13px;font-weight:500;color:var(--ink)}
+.ch-limit{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-left:auto}
+
+/* ── RIGHT PANEL ── */
+.right-panel{padding:28px;overflow-y:auto}
+.rp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.rp-title{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.01em}
+.rp-actions{display:flex;gap:8px;flex-wrap:wrap}
+.action-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;padding:8px 16px;border-radius:8px;
+  border:1.5px solid var(--rule);background:var(--bg2);color:var(--ink);
+  cursor:pointer;font-family:var(--sans);transition:all .14s;white-space:nowrap;
+}
+.action-btn:hover{border-color:var(--ink2);background:var(--bg3)}
+.action-btn.prim{background:var(--teal);border-color:var(--teal);color:#fff}
+.action-btn.prim:hover{background:var(--teal2)}
+.action-btn.amber{background:var(--amberBg);border-color:var(--amber);color:var(--amberD)}
+.action-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* 탭 */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--rule);margin-bottom:24px}
+.tab{background:none;border:none;font-family:var(--sans);font-size:13.5px;font-weight:500;padding:10px 18px;cursor:pointer;color:var(--ink3);border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:all .14s;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--teal2);border-bottom-color:var(--teal2);font-weight:600}
+.tab-pane{display:none}.tab-pane.on{display:block}
+
+/* 보도자료 카드 */
+.press-card{
+  background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);
+  margin-bottom:20px;overflow:hidden;box-shadow:var(--shadow);
+}
+.press-card-head{
+  padding:16px 20px;background:var(--bg3);border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.press-card-title{font-size:13.5px;font-weight:700;color:var(--ink)}
+.press-card-actions{display:flex;gap:6px}
+.mini-btn{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;padding:4px 10px;
+  border-radius:5px;border:1px solid var(--rule);background:var(--bg2);
+  color:var(--ink2);cursor:pointer;transition:all .12s;
+}
+.mini-btn:hover{border-color:var(--teal);color:var(--teal)}
+.mini-btn.copied{background:var(--teal);border-color:var(--teal);color:#fff}
+.press-textarea{
+  width:100%;min-height:140px;padding:16px 18px;border:none;
+  font-family:var(--sans);font-size:13.5px;color:var(--ink);
+  background:var(--bg2);resize:vertical;outline:none;line-height:1.75;
+}
+.press-textarea:focus{background:#FAFAF8}
+.press-footer{
+  padding:10px 18px;background:var(--bg3);border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.char-count{font-family:var(--mono);font-size:11px}
+.char-count.ok{color:var(--teal)}
+.char-count.warn{color:var(--amber)}
+.char-count.over{color:var(--red)}
+.sns-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;
+}
+
+/* 배포 버튼 -->
+.deploy-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-top:1px solid var(--rule)}
+.deploy-btn{
+  display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+  padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans);
+  text-decoration:none;transition:all .14s;
+}
+.deploy-btn:hover{opacity:.84;transform:translateY(-1px)}
+.deploy-copy{background:var(--bg4);color:var(--ink);border:1px solid var(--rule)}
+.deploy-open{color:#fff}
+
+/* AI 생성 중 */
+.gen-loading{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 20px;gap:16px;
+}
+.gen-spinner{
+  width:36px;height:36px;border-radius:50%;
+  border:3px solid var(--teal3);border-top-color:var(--teal);
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gen-text{font-size:14px;color:var(--ink2);font-family:var(--serif)}
+.gen-step{font-family:var(--mono);font-size:11px;color:var(--ink3);animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* 빈 상태 */
+.empty-state{
+  text-align:center;padding:80px 20px;
+  color:var(--ink3);
+}
+.empty-ico{font-size:48px;margin-bottom:12px;opacity:.4}
+.empty-title{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink2);margin-bottom:6px}
+.empty-sub{font-size:13.5px;line-height:1.7}
+
+/* 전체 보도자료 */
+.full-press{
+  background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);
+  overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;
+}
+.fp-head{
+  padding:20px 24px;background:var(--navy);color:#fff;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+}
+.fp-title{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1.35}
+.fp-date{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+.fp-body{padding:24px;font-size:14px;color:var(--ink);line-height:1.85}
+.fp-body h3{font-family:var(--serif);font-size:15px;font-weight:700;margin:20px 0 8px;color:var(--navy)}
+.fp-body p{margin-bottom:12px}
+.fp-body ul{margin:8px 0 12px 20px}
+.fp-body li{margin-bottom:5px}
+.fp-spec{background:var(--bg3);border:1px solid var(--rule);border-radius:8px;padding:16px 20px;margin:16px 0}
+.fp-spec-row{display:grid;grid-template-columns:90px 1fr;gap:6px;font-size:13px;padding:4px 0;border-bottom:1px solid var(--rule2)}
+.fp-spec-row:last-child{border-bottom:none}
+.fp-spec-lbl{font-weight:600;color:var(--ink2)}
+.fp-spec-val{color:var(--ink)}
+
+/* 배포 이력 */
+.hist-item{
+  display:flex;align-items:center;gap:14px;padding:12px 0;
+  border-bottom:1px solid var(--rule2);
+}
+.hist-item:last-child{border-bottom:none}
+.hist-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hist-body{flex:1;min-width:0}
+.hist-title{font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:2px}
+.hist-status{font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px}
+.st-done{background:var(--teal3);color:var(--teal2)}
+.st-copy{background:var(--amberBg);color:var(--amberD)}
+
+/* API KEY 입력 */
+.apikey-box{
+  background:var(--amberBg);border:1px solid var(--amber);border-radius:8px;
+  padding:14px 18px;margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.apikey-box label{font-size:13px;font-weight:600;color:var(--amberD);flex-shrink:0}
+.apikey-input{
+  flex:1;min-width:200px;padding:7px 12px;border:1px solid var(--amber);
+  border-radius:6px;font-family:var(--mono);font-size:12px;background:var(--bg2);
+  color:var(--ink);outline:none;
+}
+.apikey-input:focus{border-color:var(--amberD)}
+
+/* toast */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  background:var(--navy);color:#fff;font-size:13.5px;font-weight:500;
+  padding:12px 20px;border-radius:9px;border-left:3px solid var(--teal);
+  box-shadow:0 8px 32px rgba(0,0,0,.2);
+  opacity:0;transform:translateY(12px);
+  transition:all .3s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* 반응형 */
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .left-panel{position:static;height:auto;max-height:320px}
+}
+@media(max-width:600px){.right-panel{padding:16px}.rp-top{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- ── TOPBAR ── -->
+<nav class="topbar">
+  <div class="tb-brand">
+    <div class="tb-mark">A</div>
+    <span class="tb-title">에이콘 보도자료 · SNS 배포</span>
+    <span class="tb-badge">Press & SNS</span>
+  </div>
+  <div class="tb-nav">
+    <a href="acornpub_landing.html" class="tb-btn">← 랜딩</a>
+    <a href="acorn_admin.html" class="tb-btn">⚙ 관리자</a>
+    <button class="tb-btn prim" onclick="openHistoryTab()">📋 배포 이력</button>
+  </div>
+</nav>
+
+<!-- ── LAYOUT ── -->
+<div class="layout">
+
+  <!-- ── LEFT ── -->
+  <aside class="left-panel">
+
+    <!-- API KEY -->
+    <div class="lp-section" style="padding-bottom:16px">
+      <div class="lp-label">Anthropic API Key</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <input type="password" id="apiKeyInput" class="apikey-input" style="flex:1"
+          placeholder="sk-ant-..." value="">
+        <button class="mini-btn" onclick="saveApiKey()">저장</button>
+      </div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:6px">AI 자동 생성에 필요합니다. 브라우저에만 저장됩니다.</div>
+    </div>
+
+    <!-- 도서 선택 -->
+    <div class="lp-section" style="padding-bottom:16px">
+      <div class="lp-label">도서 선택</div>
+      <input type="text" id="bookSearch" placeholder="도서명 검색…"
+        style="width:100%;padding:8px 12px;border:1.5px solid var(--rule);border-radius:7px;font-family:var(--sans);font-size:13px;outline:none;margin-bottom:10px;background:var(--bg)"
+        oninput="renderBookList()">
+      <div id="bookList" style="max-height:260px;overflow-y:auto"></div>
+    </div>
+
+    <!-- 배포 채널 -->
+    <div class="lp-section" style="padding:16px 20px 20px">
+      <div class="lp-label" style="margin-bottom:8px">배포 채널 선택</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <button class="mini-btn" onclick="selectAllCh(true)">전체 선택</button>
+        <button class="mini-btn" onclick="selectAllCh(false)">전체 해제</button>
+      </div>
+      <div class="ch-grid" id="chGrid"></div>
+    </div>
+
+    <!-- 생성 버튼 -->
+    <div style="padding:16px 20px 24px">
+      <button class="action-btn prim" style="width:100%;justify-content:center;font-size:14px;padding:12px" onclick="generateAll()">
+        ✨ AI 보도자료 + SNS 포스트 생성
+      </button>
+      <button class="action-btn" style="width:100%;justify-content:center;margin-top:6px" onclick="generateTemplate()">
+        📝 템플릿으로 직접 작성
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── RIGHT ── -->
+  <main class="right-panel">
+
+    <!-- 탭 -->
+    <div class="tabs">
+      <button class="tab on" data-tab="press" onclick="switchTab(this)">📰 전체 보도자료</button>
+      <button class="tab" data-tab="sns" onclick="switchTab(this)">📱 SNS 포스트</button>
+      <button class="tab" data-tab="history" id="histTab" onclick="switchTab(this)">📋 배포 이력</button>
+    </div>
+
+    <!-- 전체 보도자료 탭 -->
+    <div class="tab-pane on" id="tab-press">
+      <div id="pressContent">
+        <div class="empty-state">
+          <div class="empty-ico">📰</div>
+          <div class="empty-title">보도자료를 생성해보세요</div>
+          <div class="empty-sub">왼쪽에서 도서를 선택하고<br>「AI 보도자료 + SNS 포스트 생성」을 클릭하세요</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SNS 포스트 탭 -->
+    <div class="tab-pane" id="tab-sns">
+      <div id="snsContent">
+        <div class="empty-state">
+          <div class="empty-ico">📱</div>
+          <div class="empty-title">SNS 포스트를 생성해보세요</div>
+          <div class="empty-sub">각 채널에 최적화된 포스트가<br>자동으로 생성됩니다</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 배포 이력 탭 -->
+    <div class="tab-pane" id="tab-history">
+      <div class="rp-top" style="margin-bottom:16px">
+        <span class="rp-title">배포 이력</span>
+        <button class="action-btn" onclick="clearHistory()" style="color:var(--red)">🗑 이력 초기화</button>
+      </div>
+      <div id="historyContent"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+// 도서 데이터
+// ══════════════════════════════════════════
+const BOOKS = [
+  {id:1, title:'파이썬으로 배우는 LLM 엔지니어링', sub:'LangChain부터 RAG, 파인튜닝까지', auth:'김민준 지음', cat:'AI·머신러닝', tags:['신간','AI','Python'], price:'38,000', bg:'#1a3a5c', fg:'#5BC8F5', ct:'LLM\nEng.', paper:'38,000', ebook:'26,600', isbn:'978-89-6077-000-0', pages:520, pub:'2025.03', desc:'ChatGPT·Claude·Gemini를 실무에 적용하는 개발자를 위한 종합 가이드. LangChain 프레임워크부터 RAG 시스템 구축, LoRA 파인튜닝, 프로덕션 배포까지 단계별로 다룹니다.', aname:'김민준', atitle:'AI 엔지니어 / LLM 전문가'},
+  {id:2, title:'쿠버네티스 운영 실전 가이드', sub:'프로덕션 환경의 K8s 아키텍처와 최적화', auth:'이서연 지음', cat:'클라우드·DevOps', tags:['베스트셀러','K8s'], price:'42,000', bg:'#0d3b5e', fg:'#3DB8E0', ct:'K8s\nOps', paper:'42,000', ebook:'29,400', isbn:'978-89-6077-001-7', pages:612, pub:'2025.01', desc:'쿠버네티스를 프로덕션 환경에서 운영하는 엔지니어를 위한 심층 가이드. 아키텍처 설계부터 장애 대응, 비용 최적화까지 실무 노하우를 담았습니다.', aname:'이서연', atitle:'SRE / 클라우드 아키텍트'},
+  {id:3, title:'실전 사이버보안 침투테스트', sub:'Kali Linux로 배우는 공격과 방어 전략', auth:'박지현 지음', cat:'보안·네트워크', tags:['신간','보안'], price:'36,000', bg:'#1a1a2e', fg:'#E94560', ct:'Cyber\nSec', paper:'36,000', ebook:'25,200', isbn:'978-89-6077-002-4', pages:480, pub:'2025.04', desc:'실무 침투테스터가 직접 쓴 현장 중심 가이드. Kali Linux 기반 도구 활용부터 윤리적 해킹의 법적 테두리까지 체계적으로 안내합니다.', aname:'박지현', atitle:'침투테스트 전문가 / OSCP'},
+  {id:4, title:'Go 언어로 만드는 고성능 서버', sub:'동시성 프로그래밍과 마이크로서비스 실전', auth:'최현우 지음', cat:'프로그래밍', tags:['Go','백엔드'], price:'35,000', bg:'#00758f', fg:'#79D7E7', ct:'Go\nPerf', paper:'35,000', ebook:'24,500', isbn:'978-89-6077-003-1', pages:440, pub:'2025.02', desc:'Go 언어의 고루틴·채널을 활용한 고성능 백엔드 서버 구현 가이드.', aname:'최현우', atitle:'백엔드 엔지니어'},
+  {id:5, title:'생성형 AI 시대의 UX 디자인', sub:'AI 제품을 위한 인터랙션 원칙과 패턴', auth:'강나영 지음', cat:'AI·머신러닝', tags:['UX','AI'], price:'33,000', bg:'#6a0572', fg:'#F4A7D9', ct:'AI\nUX', paper:'33,000', ebook:'23,100', isbn:'978-89-6077-004-8', pages:380, pub:'2025.03', desc:'ChatGPT·Copilot 등 AI 제품을 설계하는 UX 디자이너와 PM을 위한 실전 가이드.', aname:'강나영', atitle:'UX 디자인 리서처'},
+  {id:6, title:'아파치 카프카 실전 아키텍처', sub:'대용량 데이터 스트리밍 설계와 운영', auth:'윤성호 지음', cat:'데이터·DB', tags:['Kafka','데이터'], price:'40,000', bg:'#1a1a1a', fg:'#FF6B35', ct:'Kafka', paper:'40,000', ebook:'28,000', isbn:'978-89-6077-005-5', pages:580, pub:'2024.12', desc:'실무에서 바로 적용할 수 있는 Kafka 아키텍처 설계와 운영 가이드.', aname:'윤성호', atitle:'데이터 엔지니어'},
+  {id:7, title:'제로 트러스트 보안 아키텍처', sub:'현대 기업 보안 모델의 설계와 구현', auth:'한정훈 지음', cat:'보안·네트워크', tags:['보안','제로트러스트'], price:'39,000', bg:'#0a2e1c', fg:'#00E676', ct:'Zero\nTrust', paper:'39,000', ebook:'27,300', isbn:'978-89-6077-006-2', pages:500, pub:'2024.11', desc:'NIST SP 800-207 기반 제로 트러스트 보안 모델 구현 가이드.', aname:'한정훈', atitle:'보안 아키텍트 / CISSP'},
+  {id:8, title:'리액트 18 + Next.js 14 마스터', sub:'서버 컴포넌트부터 App Router까지', auth:'임지훈 지음', cat:'프로그래밍', tags:['React','Next.js'], price:'37,000', bg:'#20232a', fg:'#61DAFB', ct:'React\n18', paper:'37,000', ebook:'25,900', isbn:'978-89-6077-007-9', pages:560, pub:'2024.10', desc:'React 18의 Concurrent 기능과 Next.js 14 App Router를 실전 프로젝트로 익히는 완결 가이드.', aname:'임지훈', atitle:'프론트엔드 엔지니어'},
+  {id:9, title:'AWS 솔루션 아키텍처 실전', sub:'SAA-C03 자격증과 실무를 동시에', auth:'정미라 지음', cat:'클라우드·DevOps', tags:['AWS','자격증'], price:'44,000', bg:'#232f3e', fg:'#FF9900', ct:'AWS\nArch', paper:'44,000', ebook:'30,800', isbn:'978-89-6077-008-6', pages:640, pub:'2024.09', desc:'AWS SAA-C03 시험 합격과 실무 설계 역량을 동시에 키우는 올인원 가이드.', aname:'정미라', atitle:'AWS 공인 솔루션 아키텍트'},
+  {id:10, title:'PostgreSQL 성능 최적화', sub:'인덱스 설계부터 쿼리 튜닝, 파티셔닝까지', auth:'오준혁 지음', cat:'데이터·DB', tags:['PostgreSQL','DB'], price:'38,000', bg:'#336791', fg:'#fff', ct:'PgSQL', paper:'38,000', ebook:'26,600', isbn:'978-89-6077-009-3', pages:488, pub:'2024.08', desc:'DBA와 백엔드 개발자를 위한 PostgreSQL 성능 튜닝 심층 가이드.', aname:'오준혁', atitle:'DBA / 데이터 아키텍트'},
+  {id:11, title:'디지털 시대의 철학적 사유', sub:'AI·알고리즘 시대, 인간을 다시 묻다', auth:'송하은 지음', cat:'인문·교양', tags:['인문','철학'], price:'22,000', bg:'#2c1810', fg:'#D4A574', ct:'哲學', paper:'22,000', ebook:'15,400', isbn:'978-89-6077-010-9', pages:280, pub:'2025.01', desc:'철학자의 눈으로 바라본 AI·소셜미디어·알고리즘 시대의 인간 조건.', aname:'송하은', atitle:'철학 박사 / 연구자'},
+  {id:12, title:'MLOps 실전: ML 파이프라인 자동화', sub:'Kubeflow·MLflow·Airflow 통합 운영', auth:'노민준 지음', cat:'AI·머신러닝', tags:['MLOps','ML'], price:'41,000', bg:'#0d1b2a', fg:'#4CC9F0', ct:'MLOps', paper:'41,000', ebook:'28,700', isbn:'978-89-6077-011-6', pages:544, pub:'2024.07', desc:'머신러닝 모델을 프로덕션에 배포하고 지속적으로 운영하기 위한 MLOps 실전 가이드.', aname:'노민준', atitle:'ML 엔지니어 / MLOps 전문가'},
+];
+
+// ══════════════════════════════════════════
+// SNS 채널 정의
+// ══════════════════════════════════════════
+const CHANNELS = [
+  {id:'instagram', name:'Instagram',    ico:'📷', bg:'#F5EAF7', color:'#C13584', limit:2200, hint:'이미지 중심 · 해시태그 다수'},
+  {id:'facebook',  name:'Facebook',     ico:'📘', bg:'#E8F0FE', color:'#1877F2', limit:63206,hint:'긴 글 가능 · 링크 공유'},
+  {id:'x',         name:'X (Twitter)',  ico:'𝕏',  bg:'#E8E8E8', color:'#000',    limit:280,  hint:'280자 · 핵심 메시지'},
+  {id:'linkedin',  name:'LinkedIn',     ico:'💼', bg:'#E8F4FE', color:'#0A66C2', limit:3000, hint:'전문가 톤 · IT 종사자'},
+  {id:'blog',      name:'블로그 (Naver)',ico:'✍️', bg:'#E8F5EE', color:'#03C75A', limit:10000,hint:'상세 리뷰 · SEO 최적화'},
+  {id:'github',    name:'GitHub',       ico:'⌥',  bg:'#F0EEF8', color:'#24292F', limit:65536,hint:'기술 독자 · Markdown'},
+  {id:'newsletter',name:'뉴스레터',     ico:'✉️', bg:'#FFF4E8', color:'#E8A33A', limit:50000,hint:'구독자 대상 · 상세 정보'},
+];
+
+// ══════════════════════════════════════════
+// 상태
+// ══════════════════════════════════════════
+let selectedBook = null;
+let selectedChs  = new Set(['instagram','x','linkedin','blog']);
+let generated    = {};   // {press, sns:{chId:text}, ...}
+let apiKey       = '';
+let deployHistory= [];
+
+// ══════════════════════════════════════════
+// 초기화
+// ══════════════════════════════════════════
+(function init(){
+  apiKey = localStorage.getItem('acorn_apikey') || '';
+  if (apiKey) document.getElementById('apiKeyInput').value = '●'.repeat(20);
+  deployHistory = JSON.parse(localStorage.getItem('acorn_press_history') || '[]');
+  renderBookList();
+  renderChannels();
+  renderHistory();
+})();
+
+// ══════════════════════════════════════════
+// API KEY
+// ══════════════════════════════════════════
+function saveApiKey(){
+  const v = document.getElementById('apiKeyInput').value.trim();
+  if (!v || v.startsWith('●')) { showToast('API Key를 입력해주세요'); return; }
+  apiKey = v;
+  localStorage.setItem('acorn_apikey', v);
+  document.getElementById('apiKeyInput').value = '●'.repeat(20);
+  showToast('API Key가 저장됐습니다');
+}
+
+// ══════════════════════════════════════════
+// 도서 목록
+// ══════════════════════════════════════════
+function renderBookList(){
+  const q   = document.getElementById('bookSearch').value.toLowerCase();
+  const list= BOOKS.filter(b => !q || b.title.toLowerCase().includes(q) || b.cat.toLowerCase().includes(q));
+  document.getElementById('bookList').innerHTML = list.map(b => `
+    <div class="book-select-item${selectedBook?.id===b.id?' on':''}" onclick="selectBook(${b.id})">
+      <div class="bsi-cover" style="background:${b.bg};color:${b.fg}">${b.ct}</div>
+      <div class="bsi-info">
+        <div class="bsi-title">${b.title}</div>
+        <div class="bsi-auth">${b.auth} · ₩${b.price}</div>
+        <div class="bsi-tags">${b.tags.map(t=>`<span class="bsi-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+
+function selectBook(id){
+  selectedBook = BOOKS.find(b => b.id === id);
+  generated = {};
+  renderBookList();
+  document.getElementById('pressContent').innerHTML = `
+    <div class="empty-state">
+      <div class="empty-ico">✅</div>
+      <div class="empty-title">${selectedBook.title}</div>
+      <div class="empty-sub">도서가 선택됐습니다.<br>채널을 선택하고 「AI 보도자료 생성」을 클릭하세요.</div>
+    </div>`;
+  document.getElementById('snsContent').innerHTML = document.getElementById('pressContent').innerHTML;
+}
+
+// ══════════════════════════════════════════
+// 채널
+// ══════════════════════════════════════════
+function renderChannels(){
+  document.getElementById('chGrid').innerHTML = CHANNELS.map(c => `
+    <div class="ch-item${selectedChs.has(c.id)?' on':''}" onclick="toggleCh('${c.id}')">
+      <div class="ch-chk">${selectedChs.has(c.id)?'✓':''}</div>
+      <div class="ch-ico" style="background:${c.bg}">${c.ico}</div>
+      <span class="ch-name">${c.name}</span>
+      <span class="ch-limit">${c.limit>=10000?'장문':c.limit+'자'}</span>
+    </div>`).join('');
+}
+function toggleCh(id){
+  selectedChs.has(id)?selectedChs.delete(id):selectedChs.add(id);
+  renderChannels();
+}
+function selectAllCh(v){
+  if (v) CHANNELS.forEach(c=>selectedChs.add(c.id));
+  else selectedChs.clear();
+  renderChannels();
+}
+
+// ══════════════════════════════════════════
+// AI 생성
+// ══════════════════════════════════════════
+async function generateAll(){
+  if (!selectedBook){ showToast('도서를 먼저 선택해주세요'); return; }
+  if (!apiKey){ showToast('API Key를 먼저 입력해주세요'); return; }
+  if (selectedChs.size === 0){ showToast('배포 채널을 하나 이상 선택해주세요'); return; }
+
+  const loadHTML = `<div class="gen-loading"><div class="gen-spinner"></div>
+    <div class="gen-text">AI가 보도자료를 작성하고 있습니다…</div>
+    <div class="gen-step" id="genStep">전체 보도자료 생성 중</div></div>`;
+  document.getElementById('pressContent').innerHTML = loadHTML;
+  document.getElementById('snsContent').innerHTML   = loadHTML;
+
+  const b = selectedBook;
+  const chList = CHANNELS.filter(c => selectedChs.has(c.id));
+
+  // 전체 보도자료 생성
+  const stepEl = () => document.getElementById('genStep');
+  try {
+    if (stepEl()) stepEl().textContent = '📰 전체 보도자료 생성 중…';
+    const pressText = await callClaude(`
+당신은 IT 전문 출판사 에이콘출판사의 홍보 담당자입니다.
+아래 도서 정보를 바탕으로 언론사에 배포할 공식 보도자료를 한국어로 작성해주세요.
+
+도서 정보:
+- 제목: ${b.title}
+- 부제: ${b.sub}
+- 저자: ${b.aname} (${b.atitle})
+- 카테고리: ${b.cat}
+- 태그: ${b.tags.join(', ')}
+- 정가: ₩${b.price}
+- 페이지: ${b.pages}p
+- 출간일: ${b.pub}
+- ISBN: ${b.isbn}
+- 소개: ${b.desc}
+
+보도자료 형식:
+1. 제목 (도서명 + 핵심 가치 한 줄)
+2. 소제목 (부제 + 독자 대상)
+3. 리드 문단 (핵심 내용 2-3문장)
+4. 도서 소개 (상세 내용, 저자 배경, 차별점)
+5. 저자 코멘트 (저자가 직접 말하는 형식)
+6. 도서 정보 요약 (제목/저자/출판사/가격/ISBN)
+7. 출판사 소개 (에이콘출판사: 1996년 창립, IT 전문 출판사, 2,000여종 출간)
+8. 문의처 (에이콘출판사 홍보팀: 02-2653-7600, acornpub@acornpub.co.kr)
+
+전문적이고 신뢰감 있는 어조로 작성해주세요. 독자는 IT 미디어 기자와 블로거입니다.`);
+
+    generated.press = pressText;
+
+    // SNS 포스트 생성
+    const snsPromises = chList.map(async ch => {
+      if (stepEl()) stepEl().textContent = `📱 ${ch.name} 포스트 생성 중…`;
+      const text = await callClaude(`
+당신은 에이콘출판사의 SNS 마케팅 담당자입니다.
+아래 도서에 대한 ${ch.name} 전용 포스트를 작성해주세요.
+
+도서: ${b.title}
+부제: ${b.sub}
+저자: ${b.aname}
+카테고리: ${b.cat}
+소개: ${b.desc}
+정가: ₩${b.price}
+
+${ch.name} 특성:
+- 최대 글자수: ${ch.limit}자 (${ch.hint})
+- 채널 톤: ${getChTone(ch.id)}
+
+요구사항:
+- ${ch.limit}자 이내로 작성
+- 에이콘출판사 공식 계정 톤 유지
+- 구매 링크: https://acornpub.co.kr
+- 이모지 적절히 활용 (${ch.id==='linkedin'?'절제':'자유롭게'})
+- 해시태그: ${getHashtags(b, ch.id)}
+- 마지막 줄에 CTA(Call to Action) 포함
+포스트 본문만 작성하세요. 설명이나 메타 정보 없이 SNS에 바로 올릴 수 있는 텍스트만 작성해주세요.`);
+      return { id: ch.id, text };
+    });
+
+    const snsResults = await Promise.all(snsPromises);
+    generated.sns = {};
+    snsResults.forEach(r => { generated.sns[r.id] = r.text; });
+
+    renderPressTab();
+    renderSnsTab();
+    switchTabById('press');
+    showToast('✅ 보도자료와 SNS 포스트가 생성됐습니다!');
+
+  } catch(e) {
+    document.getElementById('pressContent').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-ico">⚠️</div>
+        <div class="empty-title">생성 중 오류가 발생했습니다</div>
+        <div class="empty-sub">${e.message}<br><br>API Key를 확인하거나 잠시 후 다시 시도해주세요.</div>
+      </div>`;
+    document.getElementById('snsContent').innerHTML = document.getElementById('pressContent').innerHTML;
+  }
+}
+
+// ══════════════════════════════════════════
+// 템플릿 직접 작성
+// ══════════════════════════════════════════
+function generateTemplate(){
+  if (!selectedBook){ showToast('도서를 먼저 선택해주세요'); return; }
+  const b = selectedBook;
+  const today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+
+  generated.press = `【보도자료】 에이콘출판사 신간 안내
+
+■ 제목: ${b.title}
+■ 부제: ${b.sub}
+
+${today}
+
+에이콘출판사(대표 황영주)는 ${b.pub} ${b.title}(${b.aname})을 출간했습니다.
+
+▶ 도서 소개
+${b.desc}
+
+▶ 저자 소개
+${b.aname}은 ${b.atitle}입니다.
+
+▶ 도서 정보
+- 제목: ${b.title}
+- 저자: ${b.aname}
+- 출판사: 에이콘출판사
+- 정가: ₩${b.price}
+- 페이지: ${b.pages}p
+- ISBN: ${b.isbn}
+- 출간일: ${b.pub}
+
+▶ 출판사 소개
+에이콘출판사는 1996년 설립된 국내 대표 IT 전문 출판사로, 2,000여 종의 기술도서를 출간해왔습니다.
+
+▶ 문의
+에이콘출판사 편집부
+Tel: 02-2653-7600 | Email: acornpub@acornpub.co.kr`;
+
+  generated.sns = {};
+  CHANNELS.forEach(ch => {
+    if (selectedChs.has(ch.id)) {
+      generated.sns[ch.id] = getDefaultPost(b, ch);
+    }
+  });
+
+  renderPressTab();
+  renderSnsTab();
+  switchTabById('press');
+  showToast('📝 템플릿이 로드됐습니다. 내용을 편집해주세요.');
+}
+
+function getDefaultPost(b, ch){
+  const tags = getHashtags(b, ch.id);
+  const short = `📚 신간 출간 안내!\n\n『${b.title}』\n${b.sub}\n\n${b.aname} | ₩${b.price}\n\n${b.desc.slice(0,100)}…\n\n👉 자세히 보기: https://acornpub.co.kr\n\n${tags}`;
+  return short;
+}
+
+// ══════════════════════════════════════════
+// Claude API 호출
+// ══════════════════════════════════════════
+async function callClaude(prompt){
+  const res = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true',
+    },
+    body: JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1500,
+      messages:[{role:'user',content:prompt}]
+    })
+  });
+  if (!res.ok){
+    const err = await res.json().catch(()=>({}));
+    throw new Error(err.error?.message || `API 오류 ${res.status}`);
+  }
+  const data = await res.json();
+  return data.content?.[0]?.text || '';
+}
+
+// ══════════════════════════════════════════
+// 렌더링 — 전체 보도자료
+// ══════════════════════════════════════════
+function renderPressTab(){
+  if (!generated.press){ return; }
+  const b = selectedBook;
+  const today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+
+  document.getElementById('pressContent').innerHTML = `
+    <div class="rp-top">
+      <div>
+        <div class="rp-title">전체 보도자료</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:3px">${b.title} · 생성일 ${today}</div>
+      </div>
+      <div class="rp-actions">
+        <button class="action-btn" onclick="copyText('press-ta','btn-copy-press')">
+          <span id="btn-copy-press">📋 전체 복사</span>
+        </button>
+        <button class="action-btn" onclick="downloadTxt()">💾 .txt 저장</button>
+        <button class="action-btn prim" onclick="copyAndRecord('press','press-ta')">✅ 배포 완료 기록</button>
+      </div>
+    </div>
+    <div class="full-press">
+      <div class="fp-head">
+        <div>
+          <div class="fp-title">【보 도 자 료】 ${b.title}</div>
+          <div class="fp-date">에이콘출판사 · ${today} · 즉시 배포 가능</div>
+        </div>
+        <div style="text-align:right;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5)">
+          ISBN ${b.isbn}<br>₩${b.price} · ${b.pages}p
+        </div>
+      </div>
+      <div class="fp-body">
+        <textarea id="press-ta" class="press-textarea" style="min-height:400px;font-size:13.5px"
+          oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"
+          >${generated.press}</textarea>
+        <div class="fp-spec">
+          <div class="fp-spec-row"><span class="fp-spec-lbl">도서명</span><span class="fp-spec-val">${b.title}</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">저자</span><span class="fp-spec-val">${b.aname} (${b.atitle})</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">출판사</span><span class="fp-spec-val">에이콘출판사</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">정가</span><span class="fp-spec-val">종이책 ₩${b.paper} / 전자책 ₩${b.ebook}</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">페이지</span><span class="fp-spec-val">${b.pages}p</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">ISBN</span><span class="fp-spec-val">${b.isbn}</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">출간일</span><span class="fp-spec-val">${b.pub}</span></div>
+          <div class="fp-spec-row"><span class="fp-spec-lbl">카테고리</span><span class="fp-spec-val">${b.cat}</span></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════
+// 렌더링 — SNS 포스트
+// ══════════════════════════════════════════
+function renderSnsTab(){
+  if (!generated.sns){ return; }
+  const b = selectedBook;
+  const activeChs = CHANNELS.filter(c => selectedChs.has(c.id) && generated.sns[c.id]);
+
+  document.getElementById('snsContent').innerHTML = `
+    <div class="rp-top">
+      <div class="rp-title">SNS 포스트 (${activeChs.length}개 채널)</div>
+      <div class="rp-actions">
+        <button class="action-btn prim" onclick="deployAll()">🚀 전체 채널 배포</button>
+      </div>
+    </div>
+    ${activeChs.map(ch => renderSnsCard(ch, b)).join('')}`;
+}
+
+function renderSnsCard(ch, b){
+  const text  = generated.sns[ch.id] || '';
+  const len   = text.length;
+  const over  = len > ch.limit;
+  const warn  = len > ch.limit * 0.9;
+  const countClass = over?'over':warn?'warn':'ok';
+  const snsUrl = getSnsUrl(ch.id);
+
+  return `
+    <div class="press-card">
+      <div class="press-card-head">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:30px;height:30px;border-radius:7px;background:${ch.bg};display:flex;align-items:center;justify-content:center;font-size:15px">${ch.ico}</div>
+          <div>
+            <div class="press-card-title">${ch.name}</div>
+            <div style="font-size:11px;color:var(--ink3)">${ch.hint}</div>
+          </div>
+        </div>
+        <div class="press-card-actions">
+          <button class="mini-btn" id="copy-btn-${ch.id}" onclick="copyText('ta-${ch.id}','copy-btn-${ch.id}')">📋 복사</button>
+          <button class="mini-btn" onclick="regenSns('${ch.id}')">🔄 재생성</button>
+        </div>
+      </div>
+      <textarea class="press-textarea" id="ta-${ch.id}"
+        oninput="updateCount('${ch.id}',${ch.limit},this.value)"
+        >${text}</textarea>
+      <div class="press-footer">
+        <div class="char-count ${countClass}" id="cnt-${ch.id}">${len.toLocaleString()} / ${ch.limit.toLocaleString()}자</div>
+        <div style="display:flex;gap:6px">
+          <button class="mini-btn" onclick="copyAndRecord('${ch.id}','ta-${ch.id}')" style="background:var(--amberBg);border-color:var(--amber);color:var(--amberD)">✅ 복사 후 기록</button>
+          <a href="${snsUrl}" target="_blank" class="mini-btn deploy-btn deploy-open" style="background:${ch.color};color:#fff;text-decoration:none">↗ ${ch.name} 열기</a>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════
+// 개별 SNS 재생성
+// ══════════════════════════════════════════
+async function regenSns(chId){
+  if (!selectedBook || !apiKey){ showToast('도서와 API Key를 확인해주세요'); return; }
+  const ch = CHANNELS.find(c => c.id === chId);
+  const b  = selectedBook;
+  const ta = document.getElementById('ta-' + chId);
+  if (ta) { ta.value = '생성 중…'; ta.disabled = true; }
+  try {
+    const text = await callClaude(`
+에이콘출판사 SNS 마케팅 담당자로서 ${ch.name} 전용 포스트를 작성해주세요.
+도서: ${b.title} — ${b.desc.slice(0,200)}
+${ch.limit}자 이내, ${getChTone(chId)}, 해시태그: ${getHashtags(b, ch)}, CTA 포함.
+포스트 본문만 작성하세요.`);
+    generated.sns[chId] = text;
+    if (ta) { ta.value = text; ta.disabled = false; updateCount(chId, ch.limit, text); }
+    showToast(`✅ ${ch.name} 포스트 재생성 완료`);
+  } catch(e){
+    if (ta) { ta.value = generated.sns[chId]||''; ta.disabled = false; }
+    showToast('재생성 실패: ' + e.message);
+  }
+}
+
+// ══════════════════════════════════════════
+// 유틸
+// ══════════════════════════════════════════
+function updateCount(chId, limit, val){
+  const el = document.getElementById('cnt-'+chId);
+  if (!el) return;
+  const l = val.length;
+  el.textContent = l.toLocaleString()+' / '+limit.toLocaleString()+'자';
+  el.className = 'char-count '+(l>limit?'over':l>limit*.9?'warn':'ok');
+  generated.sns[chId] = val;
+}
+
+function getChTone(id){
+  return {
+    instagram:'감성적·해시태그 많음·이미지 설명 포함',
+    facebook:'친근한 톤·링크 클릭 유도·적절한 이모지',
+    x:'한 눈에 들어오는 핵심 메시지·임팩트',
+    linkedin:'전문가적 톤·기술적 인사이트 강조·비즈니스',
+    blog:'상세한 서평 스타일·SEO·목차 소개·독자 타깃',
+    github:'Markdown 형식·기술 독자·코드 관련 내용 강조',
+    newsletter:'구독자 맞춤·상세 정보·구매 혜택·개인적 어조',
+  }[id] || '전문적이고 신뢰감 있는 어조';
+}
+
+function getHashtags(b, ch){
+  const base = ['#에이콘출판사','#신간','#IT도서','#개발자'];
+  const cat  = {
+    'AI·머신러닝':['#AI','#머신러닝','#인공지능','#딥러닝'],
+    '클라우드·DevOps':['#클라우드','#DevOps','#쿠버네티스','#AWS'],
+    '보안·네트워크':['#보안','#사이버보안','#정보보안'],
+    '프로그래밍':['#프로그래밍','#개발','#코딩'],
+    '데이터·DB':['#데이터엔지니어링','#데이터베이스','#빅데이터'],
+    '인문·교양':['#인문학','#교양','#독서'],
+  }[b.cat] || [];
+  const tags = b.tags.map(t => '#'+t.replace(/\s/g,''));
+  const chId = typeof ch === 'string' ? ch : ch.id;
+  const all  = [...new Set([...base,...cat,...tags])];
+  return chId === 'x' ? all.slice(0,3).join(' ') : all.join(' ');
+}
+
+function getSnsUrl(id){
+  const urls = {
+    instagram:'https://www.instagram.com/acornpub/',
+    facebook:'https://www.facebook.com/acornpub',
+    x:'https://twitter.com/compose/tweet',
+    linkedin:'https://www.linkedin.com/sharing/share-offsite/?url=https://acornpub.co.kr',
+    blog:'https://blog.naver.com/acornpub',
+    github:'https://github.com/AcornPublishing',
+    newsletter:'https://stibee.com/api/v1.0/emails/subscribe/acornpub',
+  };
+  return urls[id] || '#';
+}
+
+async function copyText(taId, btnId){
+  const ta = document.getElementById(taId);
+  if (!ta) return;
+  try {
+    await navigator.clipboard.writeText(ta.value);
+    const btn = document.getElementById(btnId);
+    const old = btn?.textContent;
+    if (btn){ btn.textContent = '✅ 복사됨'; btn.classList.add('copied'); }
+    setTimeout(()=>{ if(btn){ btn.textContent=old; btn.classList.remove('copied'); } }, 2000);
+    showToast('클립보드에 복사됐습니다');
+  } catch(e){ showToast('복사 실패 (수동으로 선택하세요)'); }
+}
+
+async function copyAndRecord(chId, taId){
+  const ta = document.getElementById(taId);
+  if (!ta || !selectedBook) return;
+  try { await navigator.clipboard.writeText(ta.value); } catch(e){}
+  const ch = CHANNELS.find(c=>c.id===chId) || {name:'보도자료', ico:'📰'};
+  addHistory({
+    book: selectedBook.title,
+    channel: ch.name,
+    ico: ch.ico || '📰',
+    type: 'copy',
+    time: new Date().toLocaleString('ko-KR'),
+  });
+  showToast(`✅ 복사 + ${ch.name} 배포 이력 기록 완료`);
+}
+
+async function deployAll(){
+  if (!generated.sns || !selectedBook){ showToast('먼저 포스트를 생성하세요'); return; }
+  const chs = CHANNELS.filter(c=>selectedChs.has(c.id)&&generated.sns[c.id]);
+  for (const ch of chs){
+    const ta = document.getElementById('ta-'+ch.id);
+    if (ta){
+      try { await navigator.clipboard.writeText(ta.value); } catch(e){}
+    }
+    addHistory({ book:selectedBook.title, channel:ch.name, ico:ch.ico, type:'copy', time:new Date().toLocaleString('ko-KR') });
+  }
+  showToast(`✅ ${chs.length}개 채널 포스트를 복사하고 배포 이력에 기록했습니다!`);
+}
+
+function downloadTxt(){
+  if (!generated.press){ showToast('보도자료를 먼저 생성해주세요'); return; }
+  const ta = document.getElementById('press-ta');
+  const text = ta ? ta.value : generated.press;
+  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = `보도자료_${selectedBook.title}_${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+  showToast('📄 보도자료 파일이 저장됩니다');
+}
+
+// ══════════════════════════════════════════
+// 배포 이력
+// ══════════════════════════════════════════
+function addHistory(item){
+  deployHistory.unshift(item);
+  if (deployHistory.length > 100) deployHistory = deployHistory.slice(0,100);
+  localStorage.setItem('acorn_press_history', JSON.stringify(deployHistory));
+  renderHistory();
+}
+
+function renderHistory(){
+  const el = document.getElementById('historyContent');
+  if (!deployHistory.length){
+    el.innerHTML = '<div class="empty-state"><div class="empty-ico">📋</div><div class="empty-title">배포 이력이 없습니다</div><div class="empty-sub">포스트를 복사하거나 배포하면 이력이 기록됩니다</div></div>';
+    return;
+  }
+  el.innerHTML = `
+    <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:4px 20px;box-shadow:var(--shadow)">
+      ${deployHistory.map((h,i)=>`
+        <div class="hist-item">
+          <div class="hist-ico" style="background:${i%2?'var(--amberBg)':'var(--teal3)'}">${h.ico}</div>
+          <div class="hist-body">
+            <div class="hist-title">${h.book}</div>
+            <div class="hist-meta">${h.channel} · ${h.time}</div>
+          </div>
+          <span class="hist-status ${h.type==='copy'?'st-copy':'st-done'}">${h.type==='copy'?'복사됨':'배포됨'}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function clearHistory(){
+  if (!confirm('배포 이력을 모두 삭제하시겠습니까?')) return;
+  deployHistory = [];
+  localStorage.removeItem('acorn_press_history');
+  renderHistory();
+  showToast('이력이 초기화됐습니다');
+}
+
+// ══════════════════════════════════════════
+// 탭 전환
+// ══════════════════════════════════════════
+function switchTab(btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('tab-'+btn.dataset.tab).classList.add('on');
+}
+function switchTabById(id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('on'));
+  const btn = document.querySelector(`.tab[data-tab="${id}"]`);
+  if (btn) btn.classList.add('on');
+  document.getElementById('tab-'+id)?.classList.add('on');
+}
+function openHistoryTab(){ switchTabById('history'); }
+
+// ══════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>

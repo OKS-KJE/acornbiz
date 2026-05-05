@@ -205,7 +205,7 @@ table.ct tr:hover td{background:rgba(0,0,0,.015)}
         <text x="406" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('service')</text>
 
         <rect x="484" y="180" width="132" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
-        <text x="550" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">멤버십 라운지</text>
+        <text x="550" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1249A0">독자 Service</text>
         <text x="550" y="217" text-anchor="middle" font-size="9" fill="#1249A0" font-family="'JetBrains Mono',monospace">go('reader')</text>
 
         <rect x="630" y="180" width="118" height="50" rx="8" fill="#E3EAF8" stroke="#1249A0" stroke-width="1.5"/>
@@ -244,7 +244,7 @@ table.ct tr:hover td{background:rgba(0,0,0,.015)}
 
         <!-- admin -->
         <rect x="642" y="308" width="172" height="68" rx="10" fill="#F5E0E0" stroke="#C83232" stroke-width="1.8"/>
-        <text x="728" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#8B1C1C">acorn_admin.html</text>
+        <text x="728" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#8B1C1C">admin-studio.html</text>
         <text x="728" y="347" text-anchor="middle" font-size="10" fill="#8B1C1C">편집부 제안서 관리자</text>
         <text x="728" y="363" text-anchor="middle" font-size="9" fill="#8B1C1C" font-family="'JetBrains Mono',monospace">← 홈으로 (돌아가기)</text>
 
@@ -312,9 +312,9 @@ table.ct tr:hover td{background:rgba(0,0,0,.015)}
         <span class="fc-ico">📖</span>
         <div><div class="fc-name" style="color:var(--file-c)">epub_reader.html</div><div class="fc-desc">ePub 3.0 인터랙티브 리더</div></div>
       </a>
-      <a href="acorn_admin.html" target="_blank" class="file-chip fc-red">
+      <a href="admin-studio.html" target="_blank" class="file-chip fc-red">
         <span class="fc-ico">⚙️</span>
-        <div><div class="fc-name" style="color:var(--red-c)">acorn_admin.html</div><div class="fc-desc">편집부 제안서 관리자</div></div>
+        <div><div class="fc-name" style="color:var(--red-c)">admin-studio.html</div><div class="fc-desc">편집부 제안서 관리자</div></div>
       </a>
       <a href="connection_map_v2.html" target="_blank" class="file-chip fc-map">
         <span class="fc-ico">🗺️</span>
@@ -366,7 +366,7 @@ table.ct tr:hover td{background:rgba(0,0,0,.015)}
       <div class="sec-ln"></div>
     </div>
     <div class="df-grid">
-      <div class="df-card"><div class="df-key">acorn_proposals</div><div class="df-val">publishing-proposal.html 제출 데이터 → acorn_admin.html에서 평가·상태관리·점수 기록</div></div>
+      <div class="df-card"><div class="df-key">acorn_proposals</div><div class="df-val">publishing-proposal.html 제출 데이터 → admin-studio.html에서 평가·상태관리·점수 기록</div></div>
       <div class="df-card"><div class="df-key">acorn_sns</div><div class="df-val">SNS 채널 관리 페이지 URL 수정 → nav 드롭다운 링크 즉시 반영</div></div>
       <div class="df-card"><div class="df-key">mypage 서재 데이터</div><div class="df-val">구매 이력 · 읽기 진행도 · 북마크 · 형광펜 → 재방문 시 복원</div></div>
       <div class="df-card"><div class="df-key">epub_reader 설정</div><div class="df-val">읽기 위치 · 북마크 · 형광펜 · 다크/라이트 모드 · 폰트 크기 설정 저장</div></div>
@@ -377,12 +377,12 @@ table.ct tr:hover td{background:rgba(0,0,0,.015)}
 
 <script>
 const FLOWS=[
-  {label:'✍️ 기획출판 제안',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 저자 Service'},{t:'arr'},{t:'step',text:'저자 서비스 뷰'},{t:'arr'},{t:'act',text:'기획출판 탭'},{t:'arr'},{t:'act',text:'출간 제안하기'},{t:'arr'},{t:'end',text:'publishing-proposal.html'}],desc:'nav 「저자 Service」 → go(\'service\') → 기획출판 탭 → 「출간 제안하기」 버튼 → publishing-proposal.html (7단계 SPA). 제안서 완료 후 nav의 「← 에이콘 출판사」로 Landing으로 복귀.'},
-  {label:'💰 자비출판 견적',steps:[{t:'start',text:'저자 서비스'},{t:'arr'},{t:'act',text:'자비출판 탭'},{t:'arr'},{t:'step',text:'비용 시뮬레이터'},{t:'arr'},{t:'act',text:'옵션 체크박스 선택'},{t:'arr'},{t:'end',text:'손익분기점 자동계산'}],desc:'자비출판 탭 선택 시 인세 시뮬레이터 아래 비용 시뮬레이터가 펼쳐집니다. 기본 100만원에 편집·디자인·마케팅·해외출간 옵션을 체크하면 총비용과 손익분기점(부수)이 실시간 계산됩니다.'},
-  {label:'🌐 KDP 글로벌 출간',steps:[{t:'start',text:'저자 서비스'},{t:'arr'},{t:'act',text:'Amazon KDP 탭'},{t:'arr'},{t:'step',text:'KDP 인세 테이블'},{t:'arr'},{t:'act',text:'글로벌 상담 신청'},{t:'arr'},{t:'end',text:'publishing-proposal.html'}],desc:'저자 서비스 > Amazon KDP 탭에서 인세 구조와 글로벌 출간 프로세스를 확인합니다. 「글로벌 출간 상담」 버튼으로 publishing-proposal.html 이동 시 KDP 옵션이 선택된 상태로 시작됩니다.'},
-  {label:'📚 멤버십 가입',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 멤버십 라운지 ▾'},{t:'arr'},{t:'step',text:'멤버십 라운지 뷰'},{t:'arr'},{t:'act',text:'무료 멤버십 시작'},{t:'arr'},{t:'end',text:'mypage.html'}],desc:'nav 「멤버십 라운지 ▾」 드롭다운 → 「📚 내 서재」 클릭 시 mypage.html 새탭. 또는 멤버십 라운지 뷰 내 CTA 「무료 멤버십 시작」 버튼으로 이동. 에이콘 멤버십은 무료이며 별도 결제 없습니다.'},
-  {label:'📖 ePub 열람',steps:[{t:'start',text:'도서 상세 모달'},{t:'arr'},{t:'act',text:'전자책+ePub 구매'},{t:'arr'},{t:'step',text:'mypage.html'},{t:'arr'},{t:'act',text:'내 서재 도서 카드'},{t:'arr'},{t:'end',text:'epub_reader.html'}],desc:'도서 상세 모달 「전자책 + ePub 구매」 → mypage.html 이동. 내 서재에서 도서 카드의 이어서 읽기 버튼 → epub_reader.html. MyPage ⇄ EPUB 리더는 topbar 버튼으로 양방향 이동 가능합니다.'},
-  {label:'💬 저자 Q&A',steps:[{t:'start',text:'멤버십 라운지'},{t:'arr'},{t:'act',text:'저자 Q&A 서비스 카드'},{t:'arr'},{t:'step',text:'mypage.html'},{t:'arr'},{t:'act',text:'사이드바 저자 Q&A'},{t:'arr'},{t:'end',text:'새 질문 작성 탭'}],desc:'멤버십 라운지 「저자 직접 Q&A」 카드 → mypage.html 저자 Q&A 뷰. 도서 선택 후 질문 작성·제출 → 저자가 5영업일 이내 직접 답변. 답변 알림은 설정 > 독자 서비스 알림에서 On/Off.'},
+  {label:'✍️ 출간 제안',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 저자 Service ▾'},{t:'arr'},{t:'act',text:'출간 제안 시작하기'},{t:'arr'},{t:'end',text:'publishing-proposal.html'}],desc:'nav 「저자 Service ▾」 드롭다운 → 「출간 제안 시작하기 →」 클릭 → publishing-proposal.html (6단계 SPA). 또는 저자 Service 섹션의 「출간 제안하기」 버튼으로 동일하게 이동.'},
+  {label:'📋 서비스 소개',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 저자 Service ▾'},{t:'arr'},{t:'act',text:'서비스 소개 →'},{t:'arr'},{t:'end',text:'acorn_publishing_landing.html'}],desc:'nav 「저자 Service ▾」 → 「서비스 소개 →」 → acorn_publishing_landing.html 새탭. 기획출판·자비출판·Amazon KDP 서비스 상세 안내 페이지. 페이지 내 「← 이전으로 돌아가기」 및 「출간 제안 시작하기」 버튼 제공.'},
+  {label:'🌐 저자 포털',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 저자 Service ▾'},{t:'arr'},{t:'act',text:'저자 사이트 →'},{t:'arr'},{t:'end',text:'author-portal.html'}],desc:'nav 「저자 Service ▾」 → 「저자 사이트 →」 → author-portal.html 새탭. 저자 전용 포털로 대시보드(인세)·프로젝트·최근 이벤트·알림·편집자 메시지 5개 메뉴 제공. 사이드바 「← 랜딩 페이지로」로 복귀.'},
+  {label:'⚙ 관리자 스튜디오',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav ⚙ 관리자'},{t:'arr'},{t:'end',text:'admin-studio.html'}],desc:'nav 우측 「⚙ 관리자」 버튼 → admin-studio.html. 대시보드·기획안 관리·프로젝트·판매·보도자료·설정 포함. 사이드바 「← 랜딩 페이지로」로 복귀. 기획안 관리의 「+ 새 기획안 작성」 → publishing-proposal.html 새탭.'},
+  {label:'📚 독자 서비스',steps:[{t:'start',text:'Landing 홈'},{t:'arr'},{t:'act',text:'nav 독자 Service ▾'},{t:'arr'},{t:'step',text:'독자 서비스 뷰'},{t:'arr'},{t:'act',text:'내 서재'},{t:'arr'},{t:'end',text:'mypage.html'}],desc:'nav 「독자 Service ▾」(구 독자 Service) → 독자 서비스 뷰. 드롭다운의 「📚 내 서재」 → mypage.html 새탭. 독자 서비스는 무료이며 ePub 3.0·저자 Q&A·독서 관리·신간 알림 제공.'},
+  {label:'📖 ePub 열람',steps:[{t:'start',text:'도서 상세 모달'},{t:'arr'},{t:'act',text:'전자책+ePub 구매'},{t:'arr'},{t:'step',text:'mypage.html'},{t:'arr'},{t:'act',text:'내 서재 도서 카드'},{t:'arr'},{t:'end',text:'epub_reader.html'}],desc:'도서 상세 모달 「전자책 + ePub 구매」 → mypage.html. 내 서재 도서 카드의 「이어서 읽기」 → epub_reader.html. MyPage ⇄ EPUB 리더는 topbar 버튼으로 양방향 이동 가능.'},
 ];
 
 (function(){
@@ -408,19 +408,21 @@ const FLOWS=[
 })();
 
 const ROWS=[
-  {from:'Landing',to:'publishing-proposal.html',how:'nav CTA · 저자서비스 버튼 4곳',dir:'single',file:'publishing-proposal.html'},
-  {from:'Landing',to:'mypage.html',how:'전자책 구매 버튼 · 멤버십 드롭다운',dir:'both',file:'mypage.html'},
-  {from:'Landing',to:'epub_reader.html',how:'멤버십 드롭다운 · 도서 상세 배너',dir:'both',file:'epub_reader.html'},
-  {from:'Landing',to:'acorn_admin.html',how:'nav ⚙ 편집부 버튼',dir:'both',file:'acorn_admin.html'},
-  {from:'Landing',to:'connection_map_v2.html',how:'nav ⊞ 연결 맵 버튼',dir:'single',file:'connection_map_v2.html'},
-  {from:'mypage.html',to:'epub_reader.html',how:'이어서 읽기 아이콘 / topbar ← 내 서재',dir:'both',file:'epub_reader.html'},
-  {from:'publishing-proposal.html',to:'Landing',how:'nav ← 에이콘 출판사 · 완료화면 버튼',dir:'both',file:'acornpub_landing.html'},
-  {from:'mypage.html',to:'Landing',how:'topbar ← 에이콘 홈',dir:'both',file:'acornpub_landing.html'},
-  {from:'epub_reader.html',to:'Landing',how:'topbar 홈 버튼',dir:'both',file:'acornpub_landing.html'},
-  {from:'acorn_admin.html',to:'Landing',how:'topbar ← 홈으로',dir:'both',file:'acornpub_landing.html'},
+  {from:'Landing',to:'publishing-proposal.html',how:'저자 Service ▾ → 출간 제안 시작하기 / 저자서비스 섹션 버튼',dir:'single',file:'publishing-proposal.html'},
+  {from:'Landing',to:'acorn_publishing_landing.html',how:'저자 Service ▾ → 서비스 소개 →',dir:'single',file:'acorn_publishing_landing.html'},
+  {from:'acorn_publishing_landing.html',to:'Landing',how:'← 이전으로 돌아가기 버튼',dir:'both',file:'acornpub_landing.html'},
+  {from:'acorn_publishing_landing.html',to:'publishing-proposal.html',how:'출간 제안 시작하기 버튼 (헤더·본문·하단)',dir:'single',file:'publishing-proposal.html'},
+  {from:'Landing',to:'author-portal.html',how:'저자 Service ▾ → 저자 사이트 → / 저자 서비스 섹션',dir:'single',file:'author-portal.html'},
+  {from:'author-portal.html',to:'Landing',how:'사이드바 ← 랜딩 페이지로',dir:'both',file:'acornpub_landing.html'},
+  {from:'Landing',to:'admin-studio.html',how:'nav ⚙ 관리자 버튼',dir:'single',file:'admin-studio.html'},
+  {from:'admin-studio.html',to:'Landing',how:'사이드바 ← 랜딩 페이지로',dir:'both',file:'acornpub_landing.html'},
+  {from:'admin-studio.html',to:'publishing-proposal.html',how:'기획안 관리 + 새 기획안 작성 버튼',dir:'single',file:'publishing-proposal.html'},
+  {from:'Landing',to:'mypage.html',how:'독자 Service ▾ → 📚 내 서재 / 전자책 구매',dir:'both',file:'mypage.html'},
+  {from:'Landing',to:'epub_reader.html',how:'독자 Service ▾ → 📖 ePub 리더 / 도서 상세',dir:'both',file:'epub_reader.html'},
+  {from:'Landing',to:'page_connection_map.html',how:'nav ⊞ 연결 맵 버튼',dir:'single',file:'page_connection_map.html'},
+  {from:'mypage.html',to:'epub_reader.html',how:'이어서 읽기 / topbar ← 내 서재',dir:'both',file:'epub_reader.html'},
+  {from:'publishing-proposal.html',to:'Landing',how:'완료화면 버튼',dir:'both',file:'acornpub_landing.html'},
   {from:'도서 상세(Landing)',to:'교보·YES24·알라딘',how:'종이책 구매 버튼 3개',dir:'ext',file:null},
-  {from:'저자 서비스(Landing)',to:'author.acornpub.kr',how:'저자 사이트 접속 버튼',dir:'ext',file:null},
-  {from:'SNS 채널 관리',to:'SNS 7채널',how:'nav 드롭다운 · 채널 관리 페이지',dir:'ext',file:null},
 ];
 
 (function(){

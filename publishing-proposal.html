@@ -303,7 +303,7 @@ nav{
 }
 .checkbox b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
 
-/* ---------- SIM CSS (자비출판용) ---------- */
+/* ---------- ROYALTY SIM ---------- */
 .sim-card{
   background:var(--paper-light);border:1px solid var(--rule);
   border-radius:3px;padding:32px;box-shadow:var(--shadow);
@@ -631,14 +631,6 @@ nav{
   .sc-radio-grid{grid-template-columns:1fr}
   .sc-bep-grid{grid-template-columns:1fr 1fr}
 }
-
-/* ── 작성 상태 배지 ── */
-.field-status{display:flex;align-items:center;gap:6px;margin-top:5px;min-height:18px}
-.status-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:100px;transition:all .2s}
-.status-badge.done{background:#D1FAE5;color:#065C3E}
-.status-badge.empty{background:#F3F4F6;color:#9CA3AF}
-.status-badge.done::before{content:'✓  '}
-.status-badge.empty::before{content:'○  '}
 </style>
 </head>
 <body>
@@ -694,7 +686,7 @@ nav{
       <div class="main-head">
         <div class="main-step">— Step <span class="cur">1</span> of 6<span class="pct">· 약 1분 소요</span> —</div>
         <h2 class="main-title">먼저, <span class="em">저자님</span>에 대해<br>알려주세요.</h2>
-        <p class="main-sub">집필 경력과 전문 분야는 도서의 신뢰성을 결정하는 가장 중요한 요소 중 하나입니다.작성 여부가 라벨 옆에 자동으로 표시됩니다.</p>
+        <p class="main-sub">집필 경력과 전문 분야는 도서의 신뢰성을 결정하는 가장 중요한 요소 중 하나입니다.<b>30자 이상 자세히 작성</b>하실수록 평가 정확도가 높아집니다.</p>
       </div>
 
       <!-- ──────── 출판 서비스 선택 ──────── -->
@@ -751,7 +743,7 @@ nav{
       <div class="form-grid">
         <div class="field">
           <label>이름 <span class="req">*</span></label>
-          <input class="input" id="f-name" placeholder="홍길동" oninput="qiSyncBookInfo(); const _fv=parseInt(this.value)||0; const _sp=document.getElementById('s-price'); const _dp=document.getElementById('d-price'); if(_sp&&_fv>=12000&&_fv<=60000){_sp.value=_fv; if(_dp)_dp.textContent='₩'+_fv.toLocaleString('ko-KR'); calcRoyalty();}">
+          <input class="input" id="f-name" placeholder="홍길동" oninput="qiSyncBookInfo()">
         </div>
         <div class="field">
           <label>이메일 <span class="req">*</span></label>
@@ -770,13 +762,13 @@ nav{
           <input class="input" id="f-position" placeholder="교수 / 시니어 엔지니어 등">
         </div>
         <div class="field full">
-          <label>경력 · 전문 분야 <span class="req">*</span><span class="status-badge empty" id="hint-career">미작성</span></label>
+          <label>경력 · 전문 분야 <span class="req">*</span><span class="hint" id="hint-career">0 / 권장 100+</span></label>
           <p class="desc">현재 어떤 일을 하시고, 어떤 분야의 전문성을 보유하셨나요? 책을 쓰는 데 결정적인 자산이 되는 경험을 자세히 적어주세요.</p>
-          <textarea class="textarea" id="f-career" oninput="updateStatus('f-career',10); updateHintStatus('hint-career',this.value,10); autoSaveTick()" placeholder="예: 10년차 ML 엔지니어로 추천 시스템·랭킹 모델 개발. 전 직장에서 일 1억건의 추천 트래픽을 처리하는 시스템 설계. 최근 3년은 LLM 기반 검색 시스템에 집중..."></textarea>
+          <textarea class="textarea" id="f-career" placeholder="예: 10년차 ML 엔지니어로 추천 시스템·랭킹 모델 개발. 전 직장에서 일 1억건의 추천 트래픽을 처리하는 시스템 설계. 최근 3년은 LLM 기반 검색 시스템에 집중..."></textarea>
         </div>
         <div class="field full">
           <label>강연 · 출판 · 발표 경험<span class="hint">선택</span></label>
-          <textarea class="textarea" id="f-talks" oninput="updateStatus('f-talks',1)" placeholder="기술 컨퍼런스 발표, 사내 교육, 블로그 운영, 기존 출판 도서 등"></textarea>
+          <textarea class="textarea" id="f-talks" placeholder="기술 컨퍼런스 발표, 사내 교육, 블로그 운영, 기존 출판 도서 등"></textarea>
         </div>
 
         <!-- SNS · 블로그 · GitHub 다중 입력 -->
@@ -824,7 +816,7 @@ nav{
           <button type="button" onclick="addSnsChannel()" style="margin-top:8px;display:inline-flex;align-items:center;gap:7px;padding:8px 16px;background:none;border:1.5px dashed var(--rule);border-radius:2px;font-size:12.5px;color:var(--ink-mute);cursor:pointer;font-family:inherit;transition:all .18s" onmouseover="this.style.borderColor='var(--burgundy)';this.style.color='var(--burgundy)'" onmouseout="this.style.borderColor='var(--rule)';this.style.color='var(--ink-mute)'">
             <span style="font-size:16px;line-height:1">＋</span> 채널 추가
           </button>
-          <input type="hidden" id="f-online" oninput="updateStatus('f-online',1)">
+          <input type="hidden" id="f-online">
         </div>
       </div>
     </section>
@@ -841,7 +833,7 @@ nav{
         <!-- 가제 -->
         <div class="field full">
           <label>가제 <span class="req">*</span></label>
-          <input class="input" id="f-title" placeholder="예: 하이엔드 Python 데이터 엔지니어링" oninput="qiSyncBookInfo(); const _fv=parseInt(this.value)||0; const _sp=document.getElementById('s-price'); const _dp=document.getElementById('d-price'); if(_sp&&_fv>=12000&&_fv<=60000){_sp.value=_fv; if(_dp)_dp.textContent='₩'+_fv.toLocaleString('ko-KR'); calcRoyalty();}">
+          <input class="input" id="f-title" placeholder="예: 하이엔드 Python 데이터 엔지니어링" oninput="qiSyncBookInfo()">
         </div>
 
         <!-- 1.1 카테고리 대분류 -->
@@ -880,16 +872,16 @@ nav{
 
         <!-- 한 줄 요약 -->
         <div class="field full">
-          <label>한 줄 요약 <span class="req">*</span><span class="status-badge empty" id="hint-summary">미작성</span></label>
+          <label>한 줄 요약 <span class="req">*</span><span class="hint" id="hint-summary">0 / 권장 60+</span></label>
           <p class="desc">서점 표지 옆에 들어갈 한 문장 — 누구를 위한, 어떤 가치를 주는 책인지 명확히.</p>
-          <textarea class="textarea" id="f-summary" oninput="updateStatus('f-summary',10); updateHintStatus('hint-summary',this.value,10); autoSaveTick()" style="min-height:70px" placeholder="예: 추천 시스템을 처음부터 운영 단계까지 만들어보고 싶은 ML 엔지니어를 위한 실전 가이드"></textarea>
+          <textarea class="textarea" id="f-summary" style="min-height:70px" placeholder="예: 추천 시스템을 처음부터 운영 단계까지 만들어보고 싶은 ML 엔지니어를 위한 실전 가이드"></textarea>
         </div>
 
         <!-- 상세 개요 -->
         <div class="field full">
-          <label>목차 · 상세 개요 <span class="req">*</span><span class="status-badge empty" id="hint-outline">미작성</span></label>
+          <label>목차 · 상세 개요 <span class="req">*</span><span class="hint" id="hint-outline">0 / 권장 300+</span></label>
           <p class="desc">목차 구성안, 각 챕터에서 다룰 내용, 책의 전반적 흐름을 자유롭게 작성해주세요.</p>
-          <textarea class="textarea tall" id="f-outline" oninput="updateStatus('f-outline',20); updateHintStatus('hint-outline',this.value,20); autoSaveTick()" placeholder="Part 1. 기초 이론
+          <textarea class="textarea tall" id="f-outline" placeholder="Part 1. 기초 이론
 - 1장. 개요 및 배경
 - 2장. 핵심 개념 정리
 Part 2. 실전 구현
@@ -911,7 +903,7 @@ Part 2. 실전 구현
         <div class="field">
           <label>예상 정가</label>
           <div class="input-wrap">
-            <input class="input with-suffix" id="f-price" type="number" placeholder="28,000" min="10000" max="100000" step="100" oninput="qiSyncBookInfo(); const _fv=parseInt(this.value)||0; const _sp=document.getElementById('s-price'); const _dp=document.getElementById('d-price'); if(_sp&&_fv>=12000&&_fv<=60000){_sp.value=_fv; if(_dp)_dp.textContent='₩'+_fv.toLocaleString('ko-KR'); calcRoyalty();}">
+            <input class="input with-suffix" id="f-price" type="number" placeholder="28,000" min="10000" max="100000" step="100" oninput="qiSyncBookInfo()">
             <span class="input-suffix">원</span>
           </div>
           <p class="desc" id="f-price-auto" style="margin-top:4px;color:var(--burgundy);font-size:11.5px;display:none">— 분량 기준 자동 계산값 (수동 수정 가능)</p>
@@ -937,24 +929,24 @@ Part 2. 실전 구현
 
         <!-- 1.3 핵심 타깃 독자 직접 작성 -->
         <div class="field full">
-          <label>핵심 타깃 독자 <span class="req">*</span><span class="status-badge empty" id="hint-audience">미작성</span></label>
+          <label>핵심 타깃 독자 <span class="req">*</span><span class="hint" id="hint-audience">0 / 권장 100+</span></label>
           <p class="desc">어떤 독자가 이 책을 사야 하는지 직접 작성해주세요. 경력·직군·수준·관심사 등을 구체적으로 기술할수록 좋습니다.</p>
-          <textarea class="textarea" id="f-audience-text" oninput="updateStatus('f-audience-text',10); updateHintStatus('hint-audience',this.value,10); autoSaveTick()" placeholder="예: 파이썬 기초는 알지만 실무 ML 시스템 전체를 구축해본 경험이 부족한 2–5년차 데이터 엔지니어. 추천·검색·광고 시스템을 운영하는 스타트업 ML 팀. 취업을 앞두고 포트폴리오를 강화하려는 AI 부트캠프 수료생."></textarea>
+          <textarea class="textarea" id="f-audience-text" placeholder="예: 파이썬 기초는 알지만 실무 ML 시스템 전체를 구축해본 경험이 부족한 2–5년차 데이터 엔지니어. 추천·검색·광고 시스템을 운영하는 스타트업 ML 팀. 취업을 앞두고 포트폴리오를 강화하려는 AI 부트캠프 수료생."></textarea>
           <input type="hidden" id="f-audience-hidden">
         </div>
 
         <!-- 경쟁 도서 -->
         <div class="field full">
-          <label>경쟁 · 유사 도서 <span class="req">*</span><span class="status-badge empty" id="hint-comp">미작성</span></label>
+          <label>경쟁 · 유사 도서 <span class="req">*</span><span class="hint" id="hint-comp">0 / 권장 200+</span></label>
           <p class="desc">국내·해외 유사 도서 2–5권과 그 강점·약점을 짧게 적어주세요.</p>
-          <textarea class="textarea" id="f-competitors" oninput="updateStatus('f-competitors',20); updateHintStatus('hint-comp',this.value,20); autoSaveTick()" placeholder="예: 『추천 시스템 입문』(O 출판사, 2022) — 이론 중심, 운영 단계 노하우 부족. 『Practical Recommender Systems』(영문) — 실무적이나 한국 IT 환경 사례 없음."></textarea>
+          <textarea class="textarea" id="f-competitors" placeholder="예: 『추천 시스템 입문』(O 출판사, 2022) — 이론 중심, 운영 단계 노하우 부족. 『Practical Recommender Systems』(영문) — 실무적이나 한국 IT 환경 사례 없음."></textarea>
         </div>
 
         <!-- 차별점 -->
         <div class="field full">
-          <label>차별점 · 핵심 가치 <span class="req">*</span><span class="status-badge empty" id="hint-diff">미작성</span></label>
+          <label>차별점 · 핵심 가치 <span class="req">*</span><span class="hint" id="hint-diff">0 / 권장 150+</span></label>
           <p class="desc">기존 도서들과 비교했을 때 이 책만의 결정적 차별점은 무엇입니까?</p>
-          <textarea class="textarea" id="f-differentiator" oninput="updateStatus('f-differentiator',20); updateHintStatus('hint-diff',this.value,20); autoSaveTick()" placeholder="예: 1) 운영 단계(모니터링·A/B 테스트·롤백)까지 다루는 유일한 한국어 도서 2) 모든 코드를 GitHub 공개 3) 저자 실무 경험 기반 사례 중심"></textarea>
+          <textarea class="textarea" id="f-differentiator" placeholder="예: 1) 운영 단계(모니터링·A/B 테스트·롤백)까지 다루는 유일한 한국어 도서 2) 모든 코드를 GitHub 공개 3) 저자 실무 경험 기반 사례 중심"></textarea>
         </div>
 
         <!-- ─── 2. 마케팅 전략 ─── -->
@@ -966,7 +958,7 @@ Part 2. 실전 구현
         <div class="field full">
           <label>2.1 &nbsp;온라인 마케팅 채널 활동 전략 <span class="req">*</span></label>
           <p class="desc">보유한 SNS·유튜브·블로그·뉴스레터 채널과 출간 전후 활용 계획을 구체적으로 작성해주세요. 팔로워 규모·활동 빈도도 함께 기재해주시면 평가에 도움이 됩니다.</p>
-          <textarea class="textarea" id="f-mkt-online" oninput="updateStatus('f-mkt-online',1)" placeholder="예: 기술 블로그 (월 3만 UV, 벨로그 @xxx) — 출간 6주 전부터 챕터 요약 연재 예정.
+          <textarea class="textarea" id="f-mkt-online" placeholder="예: 기술 블로그 (월 3만 UV, 벨로그 @xxx) — 출간 6주 전부터 챕터 요약 연재 예정.
 LinkedIn 팔로워 2,800명 — 주 2회 IT 인사이트 포스팅, 출간 후 북 리뷰 협업 5인 예정.
 YouTube 채널 없음 — 에이콘 공식 채널과의 협업 의향 있음."></textarea>
         </div>
@@ -975,7 +967,7 @@ YouTube 채널 없음 — 에이콘 공식 채널과의 협업 의향 있음."><
         <div class="field full">
           <label>2.2 &nbsp;언론 · 미디어 노출 전략</label>
           <p class="desc">IT 전문 매체·팟캐스트·커뮤니티(OKKY·Inflearn·LinkedIn 그룹 등) 노출 계획, 보도자료 배포 협력 의향을 작성해주세요.</p>
-          <textarea class="textarea" id="f-mkt-media" oninput="updateStatus('f-mkt-media',1)" placeholder="예: 인프런 공식 파트너십 통한 강의 연계 출시 예정.
+          <textarea class="textarea" id="f-mkt-media" placeholder="예: 인프런 공식 파트너십 통한 강의 연계 출시 예정.
 IT 전문 뉴스레터 '데이터리안' 기고 협의 중.
 팟캐스트 '개발자의 품격' 출연 경험 있음 — 재출연 의향.
 보도자료 배포: 출판사 제공 템플릿 활용 예정."></textarea>
@@ -985,7 +977,7 @@ IT 전문 뉴스레터 '데이터리안' 기고 협의 중.
         <div class="field full">
           <label>2.3 &nbsp;기타 저자 협력 마케팅 가능 범위</label>
           <p class="desc">저자 직접 참여 가능한 활동(강연·독자 행사·기업 출장 교육 등) 범위와 의향을 작성해주세요.</p>
-          <textarea class="textarea" id="f-mkt-collab" oninput="updateStatus('f-mkt-collab',1)" placeholder="예: 출간 후 3개월간 격주 독자 Q&A 웨비나 직접 진행 가능.
+          <textarea class="textarea" id="f-mkt-collab" placeholder="예: 출간 후 3개월간 격주 독자 Q&A 웨비나 직접 진행 가능.
 기업 교육 출장 강의 의향 있음 (월 최대 2회).
 IT 컨퍼런스 발표 통한 도서 홍보 적극 참여 가능.
 에이콘 북클럽 오프라인 초청 참여 가능."></textarea>
@@ -995,7 +987,7 @@ IT 컨퍼런스 발표 통한 도서 홍보 적극 참여 가능.
         <div class="field full">
           <label>2.4 &nbsp;초기 런칭 프로모션 아이디어</label>
           <p class="desc">출간 초기 1–3개월 판매를 견인할 프로모션 아이디어가 있다면 자유롭게 제안해주세요.</p>
-          <textarea class="textarea" id="f-mkt-promo" oninput="updateStatus('f-mkt-promo',1)" placeholder="예: 얼리버드 200부 사인본 한정 판매.
+          <textarea class="textarea" id="f-mkt-promo" placeholder="예: 얼리버드 200부 사인본 한정 판매.
 GitHub 레포지터리에 챕터별 실습 코드 공개 → 스타 캠페인 연계.
 LinkedIn 챌린지 이벤트 (#데이터엔지니어링챌린지).
 무료 워크샵 티켓 도서 동봉 프로모션 제안."></textarea>
@@ -1135,13 +1127,7 @@ LinkedIn 챌린지 이벤트 (#데이터엔지니어링챌린지).
       @media(max-width:640px){
         .epub-items{grid-template-columns:1fr}
       }
-      
-/* ── 검토 페이지 배지 ── */
-.rv-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 9px;border-radius:100px}
-.rv-done{background:#D1FAE5;color:#065C3E}
-.rv-empty{background:#F3F4F6;color:#9CA3AF}
-.rv-nil{color:var(--ink-mute);font-style:italic;font-family:var(--display)}
-</style>
+      </style>
 
       <!-- ── 1. 용어 툴팁 + 미니 용어집 ── -->
       <div class="epub-section">
@@ -1406,7 +1392,7 @@ LinkedIn 챌린지 이벤트 (#데이터엔지니어링챌린지).
         <div class="field full">
           <label>비고 · 추가 코멘트<span class="hint">선택</span></label>
           <p class="desc">ePub 3.0 지원과 관련하여 편집부에 전달하고 싶은 내용이나 추가 아이디어를 자유롭게 작성해주세요.</p>
-          <textarea class="textarea" id="f-note-epub" oninput="updateStatus('f-note-epub',1)" placeholder="예: 모든 코드 예제의 GitHub 레포지터리를 이미 보유하고 있습니다. / 직접 작성한 다이어그램 SVG 파일 50개를 제공할 수 있습니다. / 일부 챕터는 인터랙티브 실습 환경 연동을 제안드립니다. 등"></textarea>
+          <textarea class="textarea" id="f-note-epub" placeholder="예: 모든 코드 예제의 GitHub 레포지터리를 이미 보유하고 있습니다. / 직접 작성한 다이어그램 SVG 파일 50개를 제공할 수 있습니다. / 일부 챕터는 인터랙티브 실습 환경 연동을 제안드립니다. 등"></textarea>
         </div>
       </div>
 
@@ -1417,116 +1403,523 @@ LinkedIn 챌린지 이벤트 (#데이터엔지니어링챌린지).
       <div class="main-head">
         <div class="main-step">— Step <span class="cur">5</span> of 6<span class="pct">· 약 2분 소요</span> —</div>
         <h2 class="main-title">인세 <span class="em">사전 시뮬레이션</span>.</h2>
-        <p class="main-sub">출판 방식(기획/자비)을 선택하고 예상 정가와 판매 부수를 조정하면 <b>1년·3년 예상 인세</b>를 미리 확인할 수 있습니다. 시뮬레이션 결과는 제안서에 포함되지 않으며 참고용입니다.</p>
+        <p class="main-sub">출간 유형에 따른 예상 인세를 확인하세요. Step 1에서 선택한 출판 방식이 자동 적용됩니다. 수동으로 값을 조정할 수 있습니다.</p>
       </div>
 
-      <!-- 출판 방식 탭 -->
-      <div style="display:flex;gap:0;border-bottom:2px solid var(--rule);margin-bottom:24px">
-        <button class="sim-type-tab on" data-type="planning" onclick="setSimType('planning')">기획출판</button>
-        <button class="sim-type-tab" data-type="self" onclick="setSimType('self')">자비출판</button>
+      <!-- 출판 유형 탭 (Step 1 연동) -->
+      <div style="display:flex;gap:0;border-bottom:2px solid var(--rule);margin-bottom:28px" id="sim-type-tabs">
+        <button class="sim-type-tab on" id="stab-planning" onclick="setSimType('planning')"
+          style="background:none;border:none;font-family:var(--korean-serif);font-size:14px;font-weight:500;padding:12px 24px;cursor:pointer;color:var(--burgundy);border-bottom:3px solid var(--burgundy);margin-bottom:-2px;transition:all .18s">기획출판</button>
+        <button class="sim-type-tab" id="stab-self" onclick="setSimType('self')"
+          style="background:none;border:none;font-family:var(--korean-serif);font-size:14px;font-weight:500;padding:12px 24px;cursor:pointer;color:var(--ink-mute);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .18s">자비출판</button>
       </div>
 
-      <!-- 기획출판 슬라이더 영역 -->
+
+      <!-- ── 자비출판 서비스 견적서 ── -->
+      <div id="self-cost-block" style="display:none;margin-top:8px">
+
+        <!-- 헤더 -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:14px 18px;background:var(--burgundy);border-radius:4px;margin-bottom:0">
+          <div>
+            <div style="font-family:var(--display);font-style:italic;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px">Self-Publishing · Service Quotation</div>
+            <div style="font-family:var(--korean-serif);font-size:16px;font-weight:700;color:#fff">자비출판 서비스 항목 및 견적서</div>
+          </div>
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(255,255,255,.55)" id="quote-date"></div>
+        </div>
+
+        <!-- A. 도서 정보 -->
+        <div style="border:1px solid var(--rule);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;margin-bottom:20px">
+          <div style="background:var(--paper-deep);padding:9px 18px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;background:var(--burgundy);color:#fff">A</span>
+            <span style="font-family:var(--korean-serif);font-size:13px;font-weight:700;color:var(--ink)">도서 정보</span>
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <tr>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);width:160px;background:var(--paper-light);font-weight:600;color:var(--ink)">A.1 도서명 (가제)</td>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);color:var(--ink)" id="qi-title">—</td>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);width:140px;background:var(--paper-light);font-weight:600;color:var(--ink)">A.2 저자명</td>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);color:var(--ink)" id="qi-author">—</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);background:var(--paper-light);font-weight:600;color:var(--ink)">A.3 원고 작성률</td>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft)">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <input type="range" min="0" max="100" value="0" id="qi-progress-slider"
+                    style="-webkit-appearance:none;width:160px;height:4px;background:var(--paper-deep);border-radius:2px;outline:none"
+                    oninput="document.getElementById('qi-progress-val').textContent=this.value+'%'">
+                  <span id="qi-progress-val" style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--burgundy)">0%</span>
+                </div>
+              </td>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);background:var(--paper-light);font-weight:600;color:var(--ink)">A.4 페이지 수</td>
+              <td style="padding:10px 18px;border-bottom:1px solid var(--rule-soft);font-family:var(--mono);font-weight:600;color:var(--burgundy)" id="qi-pages">—</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- B. 서비스 항목 및 견적 -->
+        <div style="border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:20px">
+          <div style="background:var(--paper-deep);padding:9px 18px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;background:var(--burgundy);color:#fff">B</span>
+            <span style="font-family:var(--korean-serif);font-size:13px;font-weight:700;color:var(--ink)">서비스 항목 및 견적</span>
+          </div>
+
+          <!-- 테이블 헤더 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;background:var(--paper-deep);border-bottom:2px solid var(--rule);font-size:10.5px;font-weight:700;color:var(--ink-mute);font-family:var(--mono);letter-spacing:.06em">
+            <div style="padding:8px 8px"></div>
+            <div style="padding:8px 14px">서비스 항목</div>
+            <div style="padding:8px 12px">세부 내용</div>
+            <div style="padding:8px 8px;text-align:center">단가</div>
+            <div style="padding:8px 8px;text-align:center">수량/페이지</div>
+            <div style="padding:8px 14px;text-align:right">금액</div>
+          </div>
+
+          <!-- B.1 표준 패키지 (필수) -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule);background:rgba(122,31,43,.03)">
+            <div style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--burgundy);font-family:var(--mono)">B.1</div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">표준 패키지</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:2px">기본 서비스 · 필수 포함</div>
+              <span style="font-size:9px;font-weight:700;padding:1px 7px;border-radius:3px;background:var(--burgundy);color:#fff;letter-spacing:.06em">필수</span>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute);line-height:1.6">ISBN 등록 · 기본 편집 · 표준 표지 · 온라인 유통(교보·YES24·알라딘)</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px">—</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:700;font-size:13px;color:var(--burgundy)">1,000,000</div>
+          </div>
+
+          <!-- B.2 편집 서비스 섹션 헤더 -->
+          <div style="padding:7px 14px;background:var(--paper-light);border-bottom:1px solid var(--rule-soft);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.04em">B.2 편집 서비스 <span style="font-weight:400;color:var(--ink-mute)">(선택)</span></div>
+
+          <!-- B.2.1 전문 편집 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule-soft);cursor:pointer;transition:background .12s" id="row-opt-edit" onclick="qiToggle(this,'opt-edit')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff;transition:all .14s" id="chk-opt-edit"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.2.1 전문 편집 서비스</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:1px">Option 1</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute)">전문 편집자의 심화 편집 작업 (교정·교열·윤문)</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">5,000<span style="font-size:9px">/p</span></div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--burgundy)" id="qty-opt-edit">—</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-opt-edit">—</div>
+          </div>
+
+          <!-- B.2.2 전문 감수 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule-soft);cursor:pointer;transition:background .12s" id="row-opt-review" onclick="qiToggle(this,'opt-review')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff;transition:all .14s" id="chk-opt-review"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.2.2 전문 감수 서비스</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:1px">Option 2</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute)">해당 분야 전문가의 내용 검증 및 감수</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">2,200<span style="font-size:9px">/p</span></div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--burgundy)" id="qty-opt-review">—</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-opt-review">—</div>
+          </div>
+
+          <!-- B.3 디자인 서비스 섹션 헤더 -->
+          <div style="padding:7px 14px;background:var(--paper-light);border-bottom:1px solid var(--rule-soft);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.04em">B.3 디자인 서비스 <span style="font-weight:400;color:var(--ink-mute)">(선택)</span></div>
+
+          <!-- B.3.1 본문 내지 디자인 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule-soft);cursor:pointer;transition:background .12s" id="row-opt-design" onclick="qiToggle(this,'opt-design')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff;transition:all .14f" id="chk-opt-design"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.3.1 본문 내지 디자인</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:1px">Option 3</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute)">인디자인 내지 편집 · 가독성 최적화 레이아웃</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">5,000<span style="font-size:9px">/p</span></div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--burgundy)" id="qty-opt-design">—</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-opt-design">—</div>
+          </div>
+
+          <!-- B.3.2 맞춤형 표지 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .12s" id="row-opt-cover" onclick="qiToggle(this,'opt-cover')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff;transition:all .14s" id="chk-opt-cover"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.3.2 맞춤형 표지 디자인</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:1px">Option 4</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute)">시안 3개 제공 · 수정 2회 포함</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">1식</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-opt-cover">—</div>
+          </div>
+
+          <!-- C. 도서 제작 섹션 헤더 -->
+          <div style="padding:7px 14px;background:var(--paper-light);border-bottom:1px solid var(--rule-soft);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.04em">C. 도서 제작 (인쇄)</div>
+
+          <!-- 판형 선택 -->
+          <div style="padding:12px 18px;border-bottom:1px solid var(--rule-soft);display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+            <div style="font-size:12px;font-weight:600;color:var(--ink);width:80px;flex-shrink:0">판형 선택</div>
+            <div style="display:flex;gap:8px">
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12.5px;padding:6px 14px;border:1.5px solid;border-radius:4px;transition:all .13s" id="lbl-pr-a" style="border-color:var(--burgundy);background:rgba(122,31,43,.06);color:var(--ink)">
+                <input type="radio" name="qiPrintType" value="a" checked onchange="qiSelectPrint('a')" style="accent-color:var(--burgundy)"> 일반서적 (155×224)
+              </label>
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12.5px;padding:6px 14px;border:1.5px solid var(--rule);border-radius:4px;transition:all .13s" id="lbl-pr-b">
+                <input type="radio" name="qiPrintType" value="b" onchange="qiSelectPrint('b')" style="accent-color:var(--burgundy)"> 기술서적 (188×235)
+              </label>
+            </div>
+          </div>
+          <!-- 색도 선택 -->
+          <div style="padding:12px 18px;border-bottom:1px solid var(--rule-soft);display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+            <div style="font-size:12px;font-weight:600;color:var(--ink);width:80px;flex-shrink:0">본문 컬러</div>
+            <div style="display:flex;gap:8px">
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12.5px;padding:6px 14px;border:1.5px solid var(--burgundy);border-radius:4px;background:rgba(122,31,43,.06)" id="lbl-col-1">
+                <input type="radio" name="qiColor" value="1" checked onchange="qiSelectColor(1)" style="accent-color:var(--burgundy)"> 1도 (흑백)
+              </label>
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12.5px;padding:6px 14px;border:1.5px solid var(--rule);border-radius:4px" id="lbl-col-4">
+                <input type="radio" name="qiColor" value="4" onchange="qiSelectColor(4)" style="accent-color:var(--burgundy)"> 4도 (컬러)
+              </label>
+            </div>
+          </div>
+          <!-- 인쇄 부수 선택 -->
+          <div style="padding:12px 18px;border-bottom:1px solid var(--rule-soft);display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+            <div style="font-size:12px;font-weight:600;color:var(--ink);width:80px;flex-shrink:0">인쇄 부수</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap" id="qi-qty-btns">
+              <button class="qi-qty-btn on" data-qty="500"  onclick="qiSelectQty(this,500)">500부</button>
+              <button class="qi-qty-btn"     data-qty="1000" onclick="qiSelectQty(this,1000)">1,000부</button>
+              <button class="qi-qty-btn"     data-qty="1500" onclick="qiSelectQty(this,1500)">1,500부</button>
+              <button class="qi-qty-btn"     data-qty="3000" onclick="qiSelectQty(this,3000)">3,000부</button>
+            </div>
+          </div>
+          <!-- 도서 제작 금액 행 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule)">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:50%;background:var(--burgundy);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:9px;font-weight:700;color:#fff">✓</div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">도서 제작 (인쇄·용지)</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:1px" id="qi-print-label">일반서적 · 1도 · 500부</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute)" id="qi-print-detail">인쇄비 + 용지비</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink)" id="qi-print-unit">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px" id="qi-print-qty">—</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:700;font-size:13px;color:var(--burgundy)" id="amt-print">—</div>
+          </div>
+
+          <!-- B.3.3 ePub 제작 서비스 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .12s" id="row-opt-epub" onclick="qiToggle(this,'opt-epub')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff;transition:all .14s" id="chk-opt-epub"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.3.3 ePub 3.0 전자책 제작</div>
+              <div style="font-size:10.5px;color:var(--ink-mute);margin-top:1px">Option 5</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute);line-height:1.6">인터랙티브 ePub 3.0 제작 · PDF 포함 · 전자책 전용 편집·포맷 최적화</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">1식</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-opt-epub">—</div>
+          </div>
+
+          <!-- B.4 마케팅 섹션 헤더 -->
+          <div style="padding:7px 14px;background:var(--paper-light);border-bottom:1px solid var(--rule-soft);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.04em">B.4 마케팅 패키지 <span style="font-weight:400;color:var(--ink-mute)">(선택)</span></div>
+
+          <!-- B.4.1 기본 마케팅 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule-soft);cursor:pointer;transition:background .12s" id="row-mkt-basic" onclick="qiToggle(this,'mkt-basic')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff" id="chk-mkt-basic"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.4.1 기본 마케팅 패키지</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute);line-height:1.6">SNS 마케팅(4주) · 보도자료 작성·배포 · 온라인 서점 프로모션</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">1식</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-mkt-basic">—</div>
+          </div>
+
+          <!-- B.4.2 프리미엄 마케팅 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .12s" id="row-mkt-premium" onclick="qiToggle(this,'mkt-premium')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff" id="chk-mkt-premium"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">B.4.2 프리미엄 마케팅 패키지</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute);line-height:1.6">기본 패키지 포함 · 인플루언서 마케팅 · 북 트레일러 영상 제작</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">1식</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-mkt-premium">—</div>
+          </div>
+
+          <!-- C. 해외 출간 섹션 헤더 -->
+          <div style="padding:7px 14px;background:var(--paper-light);border-bottom:1px solid var(--rule-soft);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.04em">C. 해외 출간 서비스 <span style="font-weight:400;color:var(--ink-mute)">(선택)</span></div>
+
+          <!-- C.1 Amazon KDP -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule-soft);cursor:pointer;transition:background .12s" id="row-kdp" onclick="qiToggle(this,'kdp')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff" id="chk-kdp"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">C.1 아마존 킨들 출간</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute);line-height:1.6">영문 메타데이터 · KDP 최적화 · 전자책 표지 · 계정 설정·등록 · 영문 소개서 작성</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">—</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">1식</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-kdp">—</div>
+          </div>
+
+          <!-- C.2 번역 -->
+          <div style="display:grid;grid-template-columns:32px 2fr 1.5fr 90px 100px 100px;align-items:center;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .12s" id="row-trans" onclick="qiToggle(this,'trans')">
+            <div style="padding:10px 8px;text-align:center">
+              <div style="width:18px;height:18px;border-radius:3px;border:1.5px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:11px;font-weight:700;color:#fff" id="chk-trans"></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink);font-size:13px">C.2 번역 서비스</div>
+              <div style="font-size:10.5px;color:var(--ink-mute)">한국어 ↔ 영어</div>
+            </div>
+            <div style="padding:10px 12px;font-size:11.5px;color:var(--ink-mute)">전문 번역가 번역 · 페이지 수 자동 계산</div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)">15,000<span style="font-size:9px">/p</span></div>
+            <div style="padding:10px 8px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--burgundy)" id="qty-trans">—</div>
+            <div style="padding:10px 14px;text-align:right;font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink)" id="amt-trans">—</div>
+          </div>
+
+          <!-- 소계 / 부가세 / 합계 -->
+          <div style="background:var(--paper-deep)">
+            <div style="display:flex;justify-content:flex-end;align-items:center;padding:9px 18px;border-bottom:1px solid var(--rule-soft);gap:60px;font-size:13px">
+              <span style="font-weight:600;color:var(--ink-mute)">소 계</span>
+              <span style="font-family:var(--mono);font-weight:600;color:var(--ink);min-width:100px;text-align:right" id="qi-subtotal">0</span>
+            </div>
+            <div style="display:flex;justify-content:flex-end;align-items:center;padding:9px 18px;border-bottom:1px solid var(--rule-soft);gap:60px;font-size:13px">
+              <span style="font-weight:600;color:var(--ink-mute)">부가세 (10%)</span>
+              <span style="font-family:var(--mono);font-weight:600;color:var(--ink);min-width:100px;text-align:right" id="qi-vat">0</span>
+            </div>
+            <div style="display:flex;justify-content:flex-end;align-items:center;padding:12px 18px;gap:60px">
+              <span style="font-family:var(--korean-serif);font-size:15px;font-weight:700;color:var(--burgundy)">합 계 (VAT 포함)</span>
+              <span style="font-family:var(--mono);font-size:17px;font-weight:700;color:var(--burgundy);min-width:100px;text-align:right" id="qi-total">₩ 0</span>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- ── 자비출판 인세 · 손익분기점 시뮬레이션 ── -->
+      <div id="self-sim-block" style="display:none;margin-top:24px">
+
+        <!-- 연동 안내 배너 -->
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--paper-deep);border:1px solid var(--rule);border-radius:6px;margin-bottom:20px">
+          <span style="font-size:16px">🔗</span>
+          <div style="font-size:12.5px;color:var(--ink-mute)">위 견적서의 <b style="color:var(--burgundy)">합계(VAT 포함)</b>가 아래 손익분기점 계산에 자동 반영됩니다. 서비스 항목을 선택하면 BEP가 즉시 갱신됩니다.</div>
+        </div>
+
+        <!-- 정가 슬라이더 (인세 시뮬용) -->
+        <div style="background:var(--paper-deep);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;margin-bottom:20px">
+          <div style="font-family:var(--korean-serif);font-size:14px;font-weight:700;color:var(--ink);margin-bottom:14px">📊 인세 · 손익분기점 시뮬레이션</div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+            <div style="font-size:12.5px;font-weight:600;color:var(--ink);width:80px;flex-shrink:0">도서 정가</div>
+            <input type="range" id="self-price-slider" min="10000" max="80000" step="1000" value="28000"
+              style="-webkit-appearance:none;flex:1;min-width:180px;height:4px;background:var(--paper);border-radius:2px;outline:none"
+              oninput="document.getElementById('self-price-disp').textContent='₩'+parseInt(this.value).toLocaleString('ko-KR'); var qs=document.getElementById('qi-price-slider'); if(qs){qs.value=this.value; var qd=document.getElementById('qi-price-disp'); if(qd)qd.textContent='₩'+parseInt(this.value).toLocaleString('ko-KR');} selfSimUpdate();">
+            <span id="self-price-disp" style="font-family:var(--mono);font-size:14px;font-weight:700;color:var(--burgundy);width:90px;text-align:right">₩28,000</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <div style="font-size:12.5px;font-weight:600;color:var(--ink);width:80px;flex-shrink:0">총 서비스 비용</div>
+            <div style="font-family:var(--mono);font-size:14px;font-weight:700;color:var(--burgundy)" id="self-total-cost-disp">₩0 <span style="font-size:11px;color:var(--ink-mute);font-weight:400">(VAT 포함 · 견적서 자동 연동)</span></div>
+          </div>
+        </div>
+
+        <!-- 3채널 BEP 그리드 -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
+
+          <!-- 종이책 -->
+          <div style="background:var(--paper-deep);border:1px solid var(--rule);border-radius:8px;padding:16px 18px">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px">📦 종이책</div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:3px">공급가 <span style="color:var(--ink-mute);font-size:10.5px">(정가 × 65%)</span></div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px" id="self-paper-supply">—</div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:3px">부당 인세 <span style="font-size:10.5px">(공급가 × 90%)</span></div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px" id="self-paper-royalty">—</div>
+            <div style="height:1px;background:var(--rule);margin-bottom:12px"></div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:4px">손익분기점</div>
+            <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--burgundy);line-height:1" id="self-paper-bep">—</div>
+            <div style="font-size:10.5px;color:var(--ink-mute);margin-top:3px">부</div>
+          </div>
+
+          <!-- 전자책 -->
+          <div style="background:var(--paper-deep);border:1px solid var(--rule);border-radius:8px;padding:16px 18px">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px">📱 전자책</div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:3px">전자책 정가 <span style="font-size:10.5px">(× 70%)</span></div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px" id="self-ebook-price">—</div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:3px">부당 인세 <span style="font-size:10.5px">(전자책가 × 90%)</span></div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px" id="self-ebook-royalty">—</div>
+            <div style="height:1px;background:var(--rule);margin-bottom:12px"></div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:4px">손익분기점</div>
+            <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--burgundy);line-height:1" id="self-ebook-bep">—</div>
+            <div style="font-size:10.5px;color:var(--ink-mute);margin-top:3px">다운로드</div>
+          </div>
+
+          <!-- Amazon KDP -->
+          <div style="background:var(--paper-deep);border:1px solid var(--rule);border-radius:8px;padding:16px 18px">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px">🌐 Amazon KDP</div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:3px">KDP 정가 (USD)</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+              <span style="font-size:13px;color:var(--ink-mute)">$</span>
+              <input type="number" id="self-kdp-price" min="4" max="50" step="1" value="14"
+                style="width:60px;padding:4px 8px;border:1.5px solid var(--rule);border-radius:4px;font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--paper-light);outline:none"
+                oninput="selfSimUpdate()">
+            </div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:3px">KDP 인세 <span style="font-size:10.5px">(× 70%)</span></div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px" id="self-kdp-royalty">—</div>
+            <div style="height:1px;background:var(--rule);margin-bottom:12px"></div>
+            <div style="font-size:11.5px;color:var(--ink-mute);margin-bottom:4px">손익분기점</div>
+            <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--burgundy);line-height:1" id="self-kdp-bep">—</div>
+            <div style="font-size:10.5px;color:var(--ink-mute);margin-top:3px">units</div>
+          </div>
+        </div>
+
+        <div style="padding:10px 16px;background:var(--paper-light);border:1px solid var(--rule-soft);border-radius:6px;font-size:11.5px;color:var(--ink-mute);line-height:1.7">
+          ※ 자비출판 인세율 90% 적용 · 종이책 공급율 65% · 전자책 정가의 70% 기준 · Amazon KDP 환율 1,350원 적용
+        </div>
+
+      </div>
+      <!-- ── /자비출판 시뮬레이션 ── -->
+
+      <!-- ── 자비출판 비고 ── -->
+      <div id="self-note-block" style="display:none;margin-top:16px">
+          <!-- E. 기타 (저자 코멘트) -->
+          <div style="border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:20px">
+            <div style="background:var(--paper-deep);padding:9px 18px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px">
+              <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;background:var(--burgundy);color:#fff">E</span>
+              <span style="font-family:var(--korean-serif);font-size:13px;font-weight:700;color:var(--ink)">기타 요청 및 코멘트</span>
+            </div>
+            <div style="padding:16px 18px">
+              <textarea class="textarea" id="f-note-selfcost" style="min-height:80px"
+                placeholder="예산 제약, 희망 출간 일정, 추가 문의 사항, 특수 요청 등을 자유롭게 작성해주세요."></textarea>
+            </div>
+          </div>
+
+          <!-- 결제 조건 / 작업 일정 -->
+          <div class="sc-terms" style="margin-top:0">
+            <div class="sc-terms-tabs">
+              <button class="sc-terms-tab on" onclick="scTab(this,'pay')">결제 조건</button>
+              <button class="sc-terms-tab" onclick="scTab(this,'schedule')">작업 일정</button>
+              <button class="sc-terms-tab" onclick="scTab(this,'notice')">유의사항</button>
+            </div>
+            <div class="sc-terms-pane on" id="sct-pay"><ul><li>비용 지급 일정은 아래와 같으며 저작자는 각 기일에 맞춰 지급해야 합니다.</li><li><b>계약금 30%</b> — 계약 체결 후 7일 이내</li><li><b>중도금 40%</b> — 최종 편집본 완료 후 7일 이내</li><li><b>잔금 30%</b> — 서점 유통 전 안내 후 7일 이내</li></ul></div>
+            <div class="sc-terms-pane" id="sct-schedule">
+              <div style="margin-bottom:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-family:var(--display);font-style:italic">총 소요 기간: 편집 가능한 원고 제출 후 약 3개월</div>
+              <div class="sc-step-row"><div class="sc-step-num">1단계 · 2주</div><div class="sc-step-txt"><b>원고 검토 및 기획</b></div></div>
+              <div class="sc-step-row"><div class="sc-step-num">2단계 · 4주</div><div class="sc-step-txt"><b>편집 및 감수</b></div></div>
+              <div class="sc-step-row"><div class="sc-step-num">3단계 · 3주</div><div class="sc-step-txt"><b>디자인 및 레이아웃</b></div></div>
+              <div class="sc-step-row"><div class="sc-step-num">4단계 · 2주</div><div class="sc-step-txt"><b>파일 제작</b></div></div>
+              <div class="sc-step-row"><div class="sc-step-num">5단계 · 2주</div><div class="sc-step-txt"><b>등록 및 검수 (전자책)</b></div></div>
+              <div class="sc-step-row"><div class="sc-step-num">6단계 · 3주</div><div class="sc-step-txt"><b>출간 및 유통 (종이책)</b></div></div>
+            </div>
+            <div class="sc-terms-pane" id="sct-notice"><ul><li>본 견적서는 발행일로부터 <b>30일간</b> 유효합니다.</li><li>원고 상태·분량에 따라 추가 비용이 발생할 수 있습니다.</li><li><b>저작권은 저자</b>에게 있으며, 출판권과 배타적발행권은 출판사에 있습니다.</li><li>인쇄 후 교정 요청 시 별도 비용이 발생합니다.</li><li>마케팅 서비스 효과는 보장되지 않습니다.</li></ul></div>
+          </div>
+
+        </div>
+      </div>
+      <!-- ── /자비출판 비고 ── -->
+      <!-- ── /자비출판 견적서 ── -->
+
+      <!-- 기획출판 인세 시뮬레이션 영역 -->
       <div id="planning-sim-body">
-        <!-- 공통 안내 배지 -->
-        <div id="sim-info-badge" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;padding:12px 16px;background:var(--paper-light);border:1px solid var(--rule);border-radius:2px;font-size:12px;color:var(--ink-soft)">
-          <span>📌 공급율: <b style="color:var(--burgundy)">정가의 65%</b></span>
-          <span>📌 종이책 초판 인세: <b style="color:var(--burgundy)">정가의 8–12% × 발행부수</b></span>
-          <span>📌 전자책 인세: <b style="color:var(--burgundy)">판매정산액의 20%</b></span>
+      <!-- 공통 안내 배지 -->
+      <div id="sim-info-badge" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;padding:12px 16px;background:var(--paper-light);border:1px solid var(--rule);border-radius:2px;font-size:12px;color:var(--ink-soft)">
+        <span>📌 공급율: <b style="color:var(--burgundy)">정가의 65%</b></span>
+        <span id="sim-badge-print">📖 종이책 인세율: <b style="color:var(--burgundy)" id="sim-badge-pr">10%</b></span>
+        <span id="sim-badge-copies">📦 초판 기준: <b style="color:var(--burgundy)">1,000부</b></span>
+        <span id="sim-badge-ebook">📱 전자책 인세율: <b style="color:var(--burgundy)" id="sim-badge-er">20%</b></span>
+        <span>🌐 KDP: 업계 평균 적용</span>
+      </div>
+
+      <!-- 종이책 -->
+      <div class="sim-card">
+        <div class="sim-h">
+          <div><h3><small id="sim-print-small">— Print · 기획출판 기준 —</small>종이책 인세</h3></div>
+          <div style="font-family:var(--display);font-style:italic;color:var(--ink-mute);font-size:12px;letter-spacing:.12em" id="sim-print-label">공급율 65% · 인세율 10%</div>
         </div>
+        <div class="sim-row">
+          <div class="sim-row-top"><span class="sim-row-label">정가</span><span class="sim-row-val" id="sv-price">₩ 28,000</span></div>
+          <input type="range" class="sim-slider" id="s-price" min="15000" max="80000" step="500" value="28000">
+        </div>
+        <div class="sim-row">
+          <div class="sim-row-top"><span class="sim-row-label">종이책 인세율</span><span class="sim-row-val" id="sv-rate">10.0%</span></div>
+          <input type="range" class="sim-slider" id="s-rate" min="100" max="200" step="5" value="100">
+        </div>
+        <div class="sim-row">
+          <div class="sim-row-top"><span class="sim-row-label">1년 예상 판매부수</span><span class="sim-row-val" id="sv-copies">1,000부</span></div>
+          <input type="range" class="sim-slider" id="s-copies" min="100" max="10000" step="100" value="1000">
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:var(--paper-deep);border-radius:2px;font-size:11.5px;color:var(--ink-mute);font-family:var(--mono)">
+          부수당 인세: <b id="sim-per-copy" style="color:var(--burgundy)">₩1,820</b>
+          &nbsp;(정가 × 65% 공급가 × 인세율)
+        </div>
+      </div>
 
-        <div class="sim-grid">
-          <div class="sim-controls">
-            <div class="sim-row">
-              <label class="sim-label">도서 정가</label>
-              <div class="sim-slider-wrap">
-                <input type="range" class="sim-slider" id="s-price" min="12000" max="60000" step="1000" value="38000"
-                  oninput="$('d-price').textContent='₩'+parseInt(this.value).toLocaleString('ko-KR'); calcRoyalty()">
-                <div class="sim-disp" id="d-price">₩38,000</div>
-              </div>
-            </div>
-            <div class="sim-row" id="rate-row">
-              <label class="sim-label">인세율</label>
-              <div class="sim-slider-wrap">
-                <input type="range" class="sim-slider" id="s-rate" min="80" max="120" step="5" value="100"
-                  oninput="$('d-rate').textContent=(this.value/10).toFixed(1)+'%'; calcRoyalty()">
-                <div class="sim-disp" id="d-rate">10.0%</div>
-              </div>
-            </div>
-            <div class="sim-row">
-              <label class="sim-label" id="copies-label">1년 예상 판매</label>
-              <div class="sim-slider-wrap">
-                <input type="range" class="sim-slider" id="s-copies" min="300" max="10000" step="100" value="2000"
-                  oninput="$('d-copies').textContent=parseInt(this.value).toLocaleString('ko-KR')+'부'; calcRoyalty()">
-                <div class="sim-disp" id="d-copies">2,000부</div>
-              </div>
-            </div>
-            <div class="sim-row">
-              <label class="sim-label" style="align-items:flex-start;padding-top:4px">
-                <span>전자책 동시 출간</span>
-                <input type="checkbox" id="s-ebook" onchange="toggleEbook(this.checked)" style="margin-top:3px">
-              </label>
-              <div id="ebook-panel" style="display:none;flex:1">
-                <div class="sim-slider-wrap" style="margin-bottom:10px">
-                  <input type="range" class="sim-slider" id="s-erate" min="200" max="250" step="5" value="200"
-                    oninput="$('d-erate').textContent=(this.value/10).toFixed(1)+'%'; calcRoyalty()">
-                  <div class="sim-disp" id="d-erate">20.0%</div>
-                </div>
-                <div class="sim-slider-wrap">
-                  <input type="range" class="sim-slider" id="s-edl" min="100" max="5000" step="100" value="500"
-                    oninput="$('d-edl').textContent=parseInt(this.value).toLocaleString('ko-KR')+'DL'; calcRoyalty()">
-                  <div class="sim-disp" id="d-edl">500 DL</div>
-                </div>
-              </div>
-            </div>
-            <div class="sim-row">
-              <label class="sim-label" style="align-items:flex-start;padding-top:4px">
-                <span>Amazon KDP</span>
-                <input type="checkbox" id="s-kdp" onchange="toggleKdp(this.checked)" style="margin-top:3px">
-              </label>
-              <div id="kdp-panel" style="display:none;flex:1">
-                <div class="sim-slider-wrap">
-                  <input type="range" class="sim-slider" id="s-kdpunits" min="100" max="5000" step="100" value="500"
-                    oninput="$('d-kdpunits').textContent=parseInt(this.value).toLocaleString('ko-KR')+'units'; calcRoyalty()">
-                  <div class="sim-disp" id="d-kdpunits">500 units</div>
-                </div>
-              </div>
-            </div>
+      <!-- 전자책 + KDP -->
+      <div class="sim-card">
+        <div class="sim-h">
+          <div><h3><small>— Digital & Global —</small>전자책 · KDP 글로벌</h3></div>
+        </div>
+        <label class="checkbox" style="margin-bottom:14px">
+          <input type="checkbox" id="s-ebook-on" checked>
+          <span class="cbox"></span>
+          <span id="ebook-check-label"><b>전자책 동시 출간</b><br><small style="color:var(--ink-mute);font-size:11px" id="ebook-sub">인세율 20% · 종이책 50% 부수 기준</small></span>
+        </label>
+        <div id="ebook-section" class="sim-section">
+          <div class="sim-row">
+            <div class="sim-row-top"><span class="sim-row-label">전자책 정가</span><span class="sim-row-val" id="sv-eprice">₩ 18,000</span></div>
+            <input type="range" class="sim-slider" id="s-eprice" min="6000" max="50000" step="500" value="18000">
           </div>
-
-          <!-- 결과 -->
-          <div class="sim-result">
-            <div class="sim-result-item">
-              <div class="sim-result-label">1년 인세 (KRW)</div>
-              <div class="sim-result-num"><span class="currency">₩</span><span id="r-y1">0</span></div>
-              <div class="sim-result-meta" id="r-y1-meta"></div>
-            </div>
-            <div class="sim-result-item">
-              <div class="sim-result-label">3년 누적 인세</div>
-              <div class="sim-result-num"><span class="currency">₩</span><span id="r-y3">0</span></div>
-            </div>
-            <div class="sim-result-item">
-              <div class="sim-result-label">KDP 예상 (USD)</div>
-              <div class="sim-result-num"><span class="currency">$</span><span id="r-kdp">0</span></div>
-              <div class="sim-result-meta" id="r-kdp-meta">미선택</div>
-            </div>
+          <div class="sim-row">
+            <div class="sim-row-top"><span class="sim-row-label">전자책 인세율</span><span class="sim-row-val" id="sv-erate">20.0%</span></div>
+            <input type="range" class="sim-slider" id="s-erate" min="200" max="950" step="5" value="200">
+          </div>
+          <div class="sim-row">
+            <div class="sim-row-top"><span class="sim-row-label">1년 예상 다운로드</span><span class="sim-row-val" id="sv-edl">500 DL</span></div>
+            <input type="range" class="sim-slider" id="s-edl" min="100" max="8000" step="100" value="500">
           </div>
         </div>
-
-        <!-- 비고 (기획출판) -->
-        <div style="margin-top:24px" class="form-grid cols-1">
-          <div class="field full">
-            <label>비고 · 추가 코멘트<span class="hint">선택</span></label>
-            <p class="desc">인세 조건·초판 부수·특수 계약 조건 등 편집부에 전달하고 싶은 사항을 자유롭게 작성해주세요.</p>
-            <textarea class="textarea" id="f-note-royalty" placeholder="예: 초판 1,500부 이상 계약을 희망합니다. / 전자책 독점 기간 없이 동시 출간을 원합니다. / 공동 저자 인세 분배 방식에 대해 협의가 필요합니다. 등"></textarea>
+        <label class="checkbox" style="margin-top:18px;margin-bottom:14px">
+          <input type="checkbox" id="s-kdp-on">
+          <span class="cbox"></span>
+          <span><b>Amazon KDP 글로벌 출간</b><br><small style="color:var(--ink-mute);font-size:11px" id="kdp-sub">업계 평균 적용 · KDP 70% 인세 구간 · USD 4.99 표준</small></span>
+        </label>
+        <div id="kdp-section" class="sim-section muted">
+          <div class="sim-row">
+            <div class="sim-row-top"><span class="sim-row-label">영문판 1년 판매 (units)</span><span class="sim-row-val" id="sv-kdp">300 units</span></div>
+            <input type="range" class="sim-slider" id="s-kdp" min="50" max="5000" step="50" value="300">
           </div>
         </div>
+      </div>
+
+      <!-- 결과 -->
+      <div class="sim-result">
+        <div class="sim-result-item">
+          <div class="sim-result-label">1년 인세 (KRW)</div>
+          <div class="sim-result-num"><span class="currency">₩</span><span id="r-y1">0</span></div>
+          <div class="sim-result-meta" id="r-y1-meta">종이 + 전자</div>
+        </div>
+        <div class="sim-result-item">
+          <div class="sim-result-label">3년 누적 (KRW)</div>
+          <div class="sim-result-num"><span class="currency">₩</span><span id="r-y3">0</span></div>
+          <div class="sim-result-meta">— 보수적 재쇄 추정</div>
+        </div>
+        <div class="sim-result-item">
+          <div class="sim-result-label">KDP 글로벌 (USD)</div>
+          <div class="sim-result-num"><span class="currency">$</span><span id="r-kdp">0</span></div>
+          <div class="sim-result-meta" id="r-kdp-meta">미선택</div>
+        </div>
+      </div>
+      <!-- 비고 (기획출판) -->
+      <div style="margin-top:24px" class="form-grid cols-1">
+        <div class="field full">
+          <label>비고 · 추가 코멘트<span class="hint">선택</span></label>
+          <p class="desc">인세 조건·초판 부수·특수 계약 조건 등 편집부에 전달하고 싶은 사항을 자유롭게 작성해주세요.</p>
+          <textarea class="textarea" id="f-note-royalty" placeholder="예: 초판 1,500부 이상 계약을 희망합니다. / 전자책 독점 기간 없이 동시 출간을 원합니다. / 공동 저자 인세 분배 방식에 대해 협의가 필요합니다. 등"></textarea>
+        </div>
+      </div>
       </div><!-- /planning-sim-body -->
 
-      <!-- 자비출판 견적서 -->
-      <div id="self-cost-block" style="display:none;margin-top:8px"></div>
-      <div id="self-sim-block" style="display:none;margin-top:24px"></div>
-      <div id="self-note-block" style="display:none;margin-top:16px"></div>
 
     </section>
 
@@ -1733,17 +2126,7 @@ function showPanel(idx){
   $('btn-next').classList.toggle('btn-burgundy', idx !== STEPS.length-1);
   window.scrollTo({top:0,behavior:'smooth'});
   if(idx === 4) { /* ePub 체크리스트 - 별도 init 불필요 */ }
-  if(idx === STEPS.length - 1) {
-    // 최신 입력값 동기화 후 렌더
-    const audEl = document.getElementById('f-audience-text');
-    if (audEl) state.data.audience_text = audEl.value.trim();
-    const catEl = document.getElementById('f-category') || document.querySelector('#f-category-chips .chip.on');
-    if (catEl && catEl.value) state.data.category = catEl.value;
-    else if (catEl && catEl.dataset && catEl.dataset.val) state.data.category = catEl.dataset.val;
-    // epubSelected Set → state.data.epub 동기화
-    state.data.epub = Array.from(typeof epubSelected !== 'undefined' ? epubSelected : []);
-    renderReview();
-  }
+  if(idx === 5) renderReview();
 }
 function goTo(idx){
   if(idx >= 0 && idx < STEPS.length) {
@@ -1774,20 +2157,8 @@ function bind(id, key){
  'f-career:career','f-talks:talks','f-online:online',
  'f-title:title','f-summary:summary','f-outline:outline',
  'f-pages:pages','f-price:price',
- 'f-competitors:competitors','f-differentiator:differentiator',
- 'f-audience-text:audience_text'
+ 'f-competitors:competitors','f-differentiator:differentiator'
 ].forEach(p => { const [id,k] = p.split(':'); bind(id,k); });
-
-// ePub 체크박스 → state.data.epub 배열 저장
-function bindEpubCheckboxes(){
-  $$('.epub-check').forEach(cb => {
-    cb.addEventListener('change', () => {
-      state.data.epub = Array.from($$('.epub-check:checked')).map(c => c.value || c.id);
-      autoSaveTick();
-    });
-  });
-}
-bindEpubCheckboxes();
 
 // Category chips (single) — 구 UI 호환 (요소 없으면 skip)
 $$('#f-category-chips .chip').forEach(c => {
@@ -1813,13 +2184,59 @@ $$('#f-audience-chips .chip').forEach(c => {
 });
 
 function updateHints(){
-  updateHintStatus('hint-career',   state.data.career||'',        10);
-  updateHintStatus('hint-summary',  state.data.summary||'',       10);
-  updateHintStatus('hint-outline',  state.data.outline||'',       20);
-  updateHintStatus('hint-comp',     state.data.competitors||'',   20);
-  updateHintStatus('hint-diff',     state.data.differentiator||'',20);
-  updateHintStatus('hint-audience', $$('#f-audience-text')?.value||'', 10);
+  const h = (id,n) => { const el=$(id); if(el) el.textContent = (state.data[n]||'').length + ' / 권장 ' + el.textContent.split('권장 ')[1]; };
+  $('hint-career').textContent = (state.data.career||'').length + ' / 권장 100+';
+  $('hint-summary').textContent = (state.data.summary||'').length + ' / 권장 60+';
+  $('hint-outline').textContent = (state.data.outline||'').length + ' / 권장 300+';
+  $('hint-comp').textContent = (state.data.competitors||'').length + ' / 권장 200+';
+  $('hint-diff').textContent = (state.data.differentiator||'').length + ' / 권장 150+';
 }
+
+// ============== ROYALTY SIM ==============
+function updateSim(){
+  const r = state.data.royalty;
+  $('sv-price').textContent = '₩ ' + fmt(r.price);
+  $('sv-rate').textContent = (r.rate/10).toFixed(1) + '%';
+  $('sv-copies').textContent = fmt(r.copies) + '부';
+  if($('sv-eprice')) $('sv-eprice').textContent = '₩ ' + fmt(r.eprice);
+  if($('sv-erate'))  $('sv-erate').textContent = (r.erate/10).toFixed(1) + '%';
+  if($('sv-edl'))    $('sv-edl').textContent = fmt(r.edl) + ' DL';
+  if($('sv-kdp'))    $('sv-kdp').textContent = fmt(r.kdp) + ' units';
+
+  $('ebook-section').classList.toggle('muted', !r.ebookOn);
+  $('kdp-section').classList.toggle('muted', !r.kdpOn);
+
+  // 공급율 65% 적용: 인세 = 정가 × 65% × 인세율
+  const SUPPLY = 0.65;
+  const printY1 = r.price * SUPPLY * (r.rate/1000) * r.copies;
+  const ebookY1 = r.ebookOn ? r.eprice * SUPPLY * (r.erate/1000) * r.edl : 0;
+  const y1 = printY1 + ebookY1;
+  const y3 = y1 * 2.1;
+  const kdpY1 = r.kdpOn ? r.kdp * 3.49 : 0; // $4.99 × 70%
+
+  $('r-y1').textContent = fmt(y1);
+  $('r-y3').textContent = fmt(y3);
+  $('r-kdp').textContent = r.kdpOn ? fmt(kdpY1) : '0';
+  $('r-y1-meta').textContent = r.ebookOn
+    ? `종이 ₩${fmt(Math.round(printY1/10000))}만 + 전자 ₩${fmt(Math.round(ebookY1/10000))}만`
+    : `종이책만`;
+  $('r-kdp-meta').textContent = r.kdpOn ? `${fmt(r.kdp)} × $3.49` : '미선택';
+
+  // 부수당 인세 표시
+  const perCopy = Math.round(r.price * SUPPLY * (r.rate/1000));
+  if($('sim-per-copy')) $('sim-per-copy').textContent = '₩' + fmt(perCopy);
+}
+const calcRoyalty = updateSim; // alias
+
+['s-price:price','s-rate:rate','s-copies:copies','s-eprice:eprice','s-erate:erate','s-edl:edl','s-kdp:kdp'].forEach(p => {
+  const [id,k] = p.split(':');
+  const el = $(id); if (!el) return;
+  el.addEventListener('input', e => { state.data.royalty[k] = +e.target.value; updateSim(); autoSaveTick(); });
+});
+$('s-ebook-on').addEventListener('change', e => { state.data.royalty.ebookOn = e.target.checked; updateSim(); autoSaveTick(); });
+$('s-kdp-on').addEventListener('change', e => { state.data.royalty.kdpOn = e.target.checked; updateSim(); autoSaveTick(); });
+
+updateSim();
 
 // ============== AI EVALUATION ==============
 const AXIS_LABELS = ['시장성','차별성','저자 적합도','기획 완성도','출간 가능성'];
@@ -1896,108 +2313,56 @@ function evaluate(){
 }
 
 // ============== REVIEW STEP ==============
-// ── 검토 페이지 배지 헬퍼 (template literal 밖에서 정의) ──
-function rvDone(v, minLen) {
-  minLen = minLen || 1;
-  if ((v || '').trim().length >= minLen) {
-    return '<span class="rv-badge rv-done">✓ 작성완료</span>';
-  }
-  return '<span class="rv-badge rv-empty">○ 미작성</span>';
-}
-function rvEmpty(s) {
-  return s ? s : '<span class="rv-nil">미입력</span>';
-}
-function rvEpubBadge(cnt) {
-  if (cnt > 0) return '<span class="rv-badge rv-done">✓ ' + cnt + '개 선택</span>';
-  return '<span class="rv-badge rv-empty">○ 미선택</span>';
-}
-
-function renderReview() {
-  var d = state.data;
-  var e = state.evaluation;
-  // ePub: epubSelected Set 또는 state.data.epub 에서 count
-  var epubCnt = (typeof epubSelected !== 'undefined' && epubSelected.size > 0)
-    ? epubSelected.size
-    : (state.data.epub || []).length;
-  var pagesStr = d.pages ? d.pages + 'p' : '-';
-  var priceStr = d.price ? '₩' + fmt(d.price) : '-';
-  // 타깃 독자: audience_text textarea 값 사용
-  var audText = (d.audience_text || (document.getElementById('f-audience-text') ? document.getElementById('f-audience-text').value : '') || '').trim();
-  var posStr = d.position ? '· ' + d.position : '';
-
-
-  var html = '';
-
-  // 1. 저자 정보
-  html += '<div class="review-card">';
-  html += '<h4>저자 정보 <a href="#" data-go="0">수정</a></h4>';
-  html += '<div class="review-row"><span class="review-row-l">이름</span><span class="review-row-r">' + rvEmpty(d.name) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">이메일</span><span class="review-row-r">' + rvEmpty(d.email) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">소속</span><span class="review-row-r">' + rvEmpty(d.org) + ' ' + posStr + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">경력</span><span class="review-row-r">' + rvDone(d.career, 10) + '</span></div>';
-  html += '</div>';
-
-  // 2. 도서 개요
-  html += '<div class="review-card">';
-  html += '<h4>도서 개요 <a href="#" data-go="1">수정</a></h4>';
-  html += '<div class="review-row"><span class="review-row-l">가제</span><span class="review-row-r">' + rvEmpty(d.title) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">카테고리</span><span class="review-row-r">' + rvEmpty(d.category) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">분량 · 정가</span><span class="review-row-r">' + pagesStr + ' · ' + priceStr + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">한 줄 요약</span><span class="review-row-r">' + rvDone(d.summary, 10) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">상세 개요</span><span class="review-row-r">' + rvDone(d.outline, 20) + '</span></div>';
-  html += '</div>';
-
-  // 3. 시장 · 독자
-  html += '<div class="review-card">';
-  html += '<h4>시장 · 독자 <a href="#" data-go="2">수정</a></h4>';
-  html += '<div class="review-row"><span class="review-row-l">타깃 독자</span><span class="review-row-r">' + rvDone(audText, 10) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">경쟁 도서</span><span class="review-row-r">' + rvDone(d.competitors, 10) + '</span></div>';
-  html += '<div class="review-row"><span class="review-row-l">차별점</span><span class="review-row-r">' + rvDone(d.differentiator, 10) + '</span></div>';
-  html += '</div>';
-
-  // 4. ePub 3.0
-  html += '<div class="review-card">';
-  html += '<h4>ePub 3.0 저자 지원 <a href="#" data-go="3">다시 보기</a></h4>';
-  html += '<div class="review-row"><span class="review-row-l">선택 항목 수</span><span class="review-row-r">' + rvEpubBadge(epubCnt) + '</span></div>';
-  // 섹션별 선택 키 목록
-  // ePub 키 → 한국어 이름 매핑
-  var EPUB_NAMES = {
-    'glossary-inline' : '본문 인라인 툴팁',
-    'glossary-mini'   : '권말 미니 용어집',
-    'summary-head'    : '장 시작 미리보기 요약',
-    'summary-tail'    : '장 끝 핵심 요약',
-    'check-qa'        : '독자 Q&A 인터랙션',
-    'check-quiz'      : '인터랙티브 퀴즈',
-    'check-list'      : '체크리스트',
-    'update-errata'   : '정오표 업데이트',
-    'update-tech'     : '기술 업데이트 패치',
-    'update-bonus'    : '보너스 콘텐츠 추가',
-    'code-comment'    : '코드 블록 주석',
-    'code-github'     : 'GitHub 연동',
-    'code-run'        : '코드 실행 환경 연결',
-    'fig-hires'       : '고해상도 이미지',
-    'fig-svg'         : 'SVG 벡터 다이어그램',
-    'fig-caption'     : '그림 상세 캡션'
-  };
-  var selectedKeys = typeof epubSelected !== 'undefined' && epubSelected.size > 0
-    ? Array.from(epubSelected)
-    : (state.data.epub || []);
-  if (selectedKeys.length > 0) {
-    var epubNameList = selectedKeys.map(function(k){ return EPUB_NAMES[k] || k; }).join(' · ');
-    html += '<div class="review-row" style="align-items:flex-start;gap:6px">';
-    html += '<span class="review-row-l">선택 항목</span>';
-    html += '<span style="font-size:12px;color:var(--ink2);line-height:1.8;flex:1">' + epubNameList + '</span>';
-    html += '</div>';
-  }
-  html += '</div>';
-
-  // 평가 결과 섹션 삭제됨
-
-  document.getElementById('review-grid').innerHTML = html;
-  var links = document.querySelectorAll('#review-grid a[data-go]');
-  links.forEach(function(a) {
-    a.addEventListener('click', function(ev) { ev.preventDefault(); goTo(+a.dataset.go); });
-  });
+function renderReview(){
+  const d = state.data;
+  const e = state.evaluation;
+  const r = d.royalty;
+  const printY1 = r.price * (r.rate/1000) * r.copies;
+  const ebookY1 = r.ebookOn ? r.eprice * (r.erate/1000) * r.edl : 0;
+  const y1 = printY1 + ebookY1;
+  const empty = (s) => s ? s : '<span class="empty" style="color:var(--ink-mute);font-style:italic;font-family:var(--display)">미입력</span>';
+  
+  $('review-grid').innerHTML = `
+    <div class="review-card">
+      <h4>저자 정보 <a href="#" data-go="0">수정</a></h4>
+      <div class="review-row"><span class="review-row-l">이름</span><span class="review-row-r">${empty(d.name)}</span></div>
+      <div class="review-row"><span class="review-row-l">이메일</span><span class="review-row-r">${empty(d.email)}</span></div>
+      <div class="review-row"><span class="review-row-l">소속</span><span class="review-row-r">${empty(d.org)} ${d.position?'· '+d.position:''}</span></div>
+      <div class="review-row"><span class="review-row-l">경력</span><span class="review-row-r">${(d.career||'').length} 자</span></div>
+    </div>
+    <div class="review-card">
+      <h4>도서 개요 <a href="#" data-go="1">수정</a></h4>
+      <div class="review-row"><span class="review-row-l">가제</span><span class="review-row-r">${empty(d.title)}</span></div>
+      <div class="review-row"><span class="review-row-l">카테고리</span><span class="review-row-r">${empty(d.category)}</span></div>
+      <div class="review-row"><span class="review-row-l">분량 · 정가</span><span class="review-row-r">${d.pages?d.pages+'p':'-'} · ${d.price?'₩'+fmt(d.price):'-'}</span></div>
+      <div class="review-row"><span class="review-row-l">개요</span><span class="review-row-r">${(d.outline||'').length} 자</span></div>
+    </div>
+    <div class="review-card">
+      <h4>시장 · 독자 <a href="#" data-go="2">수정</a></h4>
+      <div class="review-row"><span class="review-row-l">타깃 독자</span><span class="review-row-r"><span class="chips-mini">${(d.audience||[]).map(a=>`<span class="chip-mini">${a}</span>`).join('')||'<span class="empty">미선택</span>'}</span></span></div>
+      <div class="review-row"><span class="review-row-l">경쟁 도서</span><span class="review-row-r">${(d.competitors||'').length} 자</span></div>
+      <div class="review-row"><span class="review-row-l">차별점</span><span class="review-row-r">${(d.differentiator||'').length} 자</span></div>
+    </div>
+    <div class="review-card">
+      <h4>ePub 3.0 저자 지원 <a href="#" data-go="3">다시 보기</a></h4>
+      <div class="review-row"><span class="review-row-l">종이책 정가 · 인세율</span><span class="review-row-r">₩${fmt(r.price)} · ${(r.rate/10).toFixed(1)}%</span></div>
+      <div class="review-row"><span class="review-row-l">1년 예상 부수</span><span class="review-row-r">${fmt(r.copies)}부</span></div>
+      <div class="review-row"><span class="review-row-l">전자책 동시 출간</span><span class="review-row-r">${r.ebookOn?'O · '+(r.erate/10).toFixed(1)+'%':'미선택'}</span></div>
+      <div class="review-row"><span class="review-row-l">KDP 글로벌</span><span class="review-row-r">${r.kdpOn?'O · '+fmt(r.kdp)+' units':'미선택'}</span></div>
+      <div class="review-row"><span class="review-row-l">1년 예상 인세</span><span class="review-row-r" style="color:var(--burgundy);font-weight:700">₩${fmt(y1)}</span></div>
+    </div>
+    <div class="review-card" style="grid-column:1/-1">
+      <h4>인세 시뮬레이션 <a href="#" data-go="4">수정</a></h4>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;gap:24px;flex-wrap:wrap">
+        <div style="font-family:var(--display);font-style:italic;font-weight:300;font-size:64px;line-height:1;color:var(--burgundy)">${e?e.grade:'?'}</div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:600;margin-bottom:6px">${e?e.total:0} / 100</div>
+          <div style="font-size:13px;color:var(--ink-soft);line-height:1.6">${e?e.verdict:'평가 미실행'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+  $$('#review-grid a[data-go]').forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); goTo(+a.dataset.go); }));
 }
 
 // ============== VALIDATION ==============
@@ -2007,7 +2372,7 @@ function validate(step){
   if(step === 0){
     if(!d.name) problem = '이름을 입력해주세요.';
     else if(!d.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) problem = '유효한 이메일을 입력해주세요.';
-    else if(!(d.career||'').trim()) problem = '경력 · 전문 분야를 작성해주세요.';
+    else if((d.career||'').length < 30) problem = '경력 · 전문 분야를 30자 이상 작성해주세요.';
   } else if(step === 1){
     if(!d.title) problem = '책의 가제를 입력해주세요.';
     else {
@@ -2016,13 +2381,13 @@ function validate(step){
       if (!catVal) problem = '카테고리를 선택해주세요. (대분류 선택 후 세부 카테고리도 선택해주세요)';
       else { if(!d.category) state.data.category = catVal; }
     }
-    if(!problem && !d.summary?.trim()) problem = '한 줄 요약을 작성해주세요.';
-    if(!problem && !d.outline?.trim()) problem = '상세 개요를 작성해주세요.';
+    if(!problem && (!d.summary || d.summary.length < 20)) problem = '한 줄 요약을 20자 이상 작성해주세요.';
+    if(!problem && (!d.outline || d.outline.length < 100)) problem = '상세 개요를 100자 이상 작성해주세요.';
   } else if(step === 2){
     const audText = document.getElementById('f-audience-text')?.value?.trim() || '';
-    if(!audText.trim()) problem = '핵심 타깃 독자를 작성해주세요.';
-    else if(!(d.competitors||'').trim()) problem = '경쟁 도서 분석을 작성해주세요.';
-    else if(!(d.differentiator||'').trim()) problem = '차별점을 작성해주세요.';
+    if(audText.length < 20) problem = '핵심 타깃 독자를 20자 이상 직접 작성해주세요.';
+    else if((d.competitors||'').length < 50) problem = '경쟁 도서 분석을 50자 이상 작성해주세요.';
+    else if((d.differentiator||'').length < 50) problem = '차별점을 50자 이상 작성해주세요.';
     if(!problem) state.data.audience_text = audText;
   } else if(step === 5){
     if(!$('c1').checked || !$('c2').checked) problem = '필수 동의 항목에 체크해주세요.';
@@ -2256,13 +2621,90 @@ function autoPrice() {
   }
   qiSyncBookInfo();
   const sp = document.getElementById('s-price');
-  const dp = document.getElementById('d-price');
-  if (sp && floored >= 12000 && floored <= 60000) {
+  if (sp && floored >= 15000 && floored <= 80000) {
     sp.value = floored;
-    if (dp) dp.textContent = '₩' + floored.toLocaleString('ko-KR');
-    if (state.data.royalty) state.data.royalty.price = floored;
+    state.data.royalty.price = floored;
     calcRoyalty();
   }
+}
+
+// ============== 인세 시뮬레이터 기획/자비 분리 ==============
+// 자비: 종이·전자 모두 90%, 공급율 65% 동일 적용 → 계산공식은 기획과 같고 인세율만 다름
+const SIM_DEFAULTS = {
+  planning: { rate:100, erate:200, copies:1000, edl:500 },
+  self:     { rate:900, erate:900, copies:1000, edl:500 },
+};
+let simType = 'planning';
+
+function setSimType(type) {
+  simType = type;
+  ['planning','self'].forEach(t => {
+    const btn = document.getElementById('stab-'+t);
+    if (!btn) return;
+    const isOn = t === type;
+    btn.style.color = isOn?'var(--burgundy)':'var(--ink-mute)';
+    btn.style.borderBottomColor = isOn?'var(--burgundy)':'transparent';
+    btn.style.fontWeight = isOn?'700':'500';
+  });
+  const d = SIM_DEFAULTS[type];
+  // 슬라이더 범위 조정: 자비는 90%까지, 기획은 10~12%
+  const rateSlider = document.getElementById('s-rate');
+  const erateSlider = document.getElementById('s-erate');
+  if (type === 'self') {
+    if (rateSlider)  { rateSlider.min=100;  rateSlider.max=950;  rateSlider.step=5; }
+    if (erateSlider) { erateSlider.min=100; erateSlider.max=950; erateSlider.step=5; }
+  } else {
+    if (rateSlider)  { rateSlider.min=100;  rateSlider.max=200;  rateSlider.step=5; }
+    if (erateSlider) { erateSlider.min=200; erateSlider.max=250; erateSlider.step=5; }
+  }
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+  set('s-rate',   d.rate);
+  set('s-erate',  d.erate);
+  set('s-copies', d.copies);
+  set('s-edl',    d.edl);
+  state.data.royalty.rate  = d.rate;
+  state.data.royalty.erate = d.erate;
+
+  // 배지·레이블 업데이트
+  const badge      = document.getElementById('sim-badge-pr');
+  const ebadge     = document.getElementById('sim-badge-er');
+  const printLabel = document.getElementById('sim-print-label');
+  const printSmall = document.getElementById('sim-print-small');
+  const ebookSub   = document.getElementById('ebook-sub');
+  const kdpSub     = document.getElementById('kdp-sub');
+  if (type === 'self') {
+    if (badge)      badge.textContent = '90%';
+    if (ebadge)     ebadge.textContent = '90%';
+    if (printLabel) printLabel.textContent = '공급율 65% · 인세율 90% (자비)';
+    if (printSmall) printSmall.textContent = '— Print · 자비출판 기준 —';
+    if (ebookSub)   ebookSub.textContent = '인세율 90% · 종이책 50% 부수 기준 (자비)';
+    if (kdpSub)     kdpSub.textContent = '업계 평균 적용 · 출판사 운영관리비 제외 인세';
+  } else {
+    if (badge)      badge.textContent = '10%';
+    if (ebadge)     ebadge.textContent = '20%';
+    if (printLabel) printLabel.textContent = '공급율 65% · 인세율 10% (기획)';
+    if (printSmall) printSmall.textContent = '— Print · 기획출판 기준 —';
+    if (ebookSub)   ebookSub.textContent = '인세율 20% · 종이책 50% 부수 기준';
+    if (kdpSub)     kdpSub.textContent = '업계 평균 적용 · KDP 70% 인세 구간 · USD 4.99 표준';
+  }
+  // 자비출판 견적·시뮬·비고 블록 표시/숨김
+  const costBlock = document.getElementById('self-cost-block');
+  const simBlock  = document.getElementById('self-sim-block');
+  const noteBlock = document.getElementById('self-note-block');
+  // 기획출판 인세 슬라이더 블록 (공통 안내 배지 ~ sim-result)
+  const planningBody = document.getElementById('planning-sim-body');
+
+  if (costBlock) costBlock.style.display = type === 'self' ? 'block' : 'none';
+  if (simBlock)  simBlock.style.display  = type === 'self' ? 'block' : 'none';
+  if (noteBlock) noteBlock.style.display = type === 'self' ? 'block' : 'none';
+  if (planningBody) planningBody.style.display = type === 'planning' ? 'block' : 'none';
+
+  if (type === 'self') {
+    qiSyncBookInfo();
+    qiUpdatePrint();
+    selfSimUpdate();
+  }
+  calcRoyalty();
 }
 
 // ============== 카테고리 초기화 ==============
@@ -2785,126 +3227,6 @@ setTimeout(() => {
   const t = state.data.svcType || 'planning';
   setSimType(t);
 }, 200);
-
-
-// ── 출판 방식 전환 ──
-function setSimType(type) {
-  state.data.svcType = type;
-  // 탭 UI
-  document.querySelectorAll('.sim-type-tab').forEach(t => {
-    t.classList.toggle('on', t.dataset.type === type);
-  });
-  // 기획출판 슬라이더 영역
-  const planBody = document.getElementById('planning-sim-body');
-  const costBlock = document.getElementById('self-cost-block');
-  const simBlock  = document.getElementById('self-sim-block');
-  const noteBlock = document.getElementById('self-note-block');
-  if (planBody) planBody.style.display = type === 'planning' ? '' : 'none';
-  if (costBlock) costBlock.style.display = type === 'self' ? 'block' : 'none';
-  if (simBlock)  simBlock.style.display  = type === 'self' ? 'block' : 'none';
-  if (noteBlock) noteBlock.style.display = type === 'self' ? 'block' : 'none';
-  if (type === 'self') {
-    qiSyncBookInfo();
-    qiUpdatePrint();
-    selfSimUpdate();
-  } else {
-    calcRoyalty();
-  }
-}
-
-// ── 기획출판 인세 계산 ──
-function calcRoyalty() {
-  const price  = parseInt(document.getElementById('s-price')?.value)  || 38000;
-  const rate   = parseInt(document.getElementById('s-rate')?.value)   || 100;
-  const copies = parseInt(document.getElementById('s-copies')?.value) || 2000;
-  const ebookOn = document.getElementById('s-ebook')?.checked || false;
-  const erate  = parseInt(document.getElementById('s-erate')?.value)  || 200;
-  const edl    = parseInt(document.getElementById('s-edl')?.value)    || 500;
-  const kdpOn  = document.getElementById('s-kdp')?.checked || false;
-  const kdpUnits = parseInt(document.getElementById('s-kdpunits')?.value) || 500;
-
-  const fmt = n => Math.round(n).toLocaleString('ko-KR');
-
-  // 종이책 인세 (초판: 정가 × 인세율 × 발행부수)
-  const paperY1 = price * (rate / 1000) * copies;
-  // 전자책 인세 (전자책 정가 = 종이책×80%, 판매정산액의 20%)
-  const eprice  = Math.round(price * 0.8);
-  const ebookY1 = ebookOn ? eprice * (erate / 1000) * edl : 0;
-  // KDP: USD 표시만 (원화 환산 별도 표기, y1/y3에 미포함)
-  const kdpRoyPerUnit = 4.99 * 0.7; // $3.49/unit
-  const kdpUSD = kdpOn ? kdpUnits * kdpRoyPerUnit : 0;
-  const kdpKRW = Math.round(kdpUSD * 1350);
-
-  const y1 = paperY1 + ebookY1;
-  const y3 = Math.round(y1 * 2.1);   // 3년 누적 (재쇄 포함 보수 추정)
-
-  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-  set('r-y1', fmt(y1));
-  set('r-y3', fmt(y3));
-  set('r-kdp', kdpOn ? kdpUSD.toFixed(0) : '0');
-  set('r-y1-meta', `₩${fmt(price)} × ${(rate/10).toFixed(1)}% × ${fmt(copies)}부`);
-  set('r-kdp-meta', kdpOn
-    ? `${fmt(kdpUnits)}units × $${kdpRoyPerUnit.toFixed(2)} ≈ ₩${fmt(kdpKRW)}`
-    : '미선택');
-
-  // state 저장
-  state.data.royalty = { price, rate, copies, ebookOn, eprice, erate, edl, kdpOn, kdp: kdpUnits };
-}
-
-function toggleEbook(on) {
-  const el = document.getElementById('ebook-panel');
-  if (el) el.style.display = on ? '' : 'none';
-  calcRoyalty();
-}
-function toggleKdp(on) {
-  const el = document.getElementById('kdp-panel');
-  if (el) el.style.display = on ? '' : 'none';
-  calcRoyalty();
-}
-
-// ── 라벨 옆 작성 상태 배지 ──
-function updateHintStatus(hintId, val, minLen) {
-  const el = document.getElementById(hintId);
-  if (!el) return;
-  const filled = (val || '').trim().length >= (minLen || 1);
-  el.className = 'status-badge ' + (filled ? 'done' : 'empty');
-  el.textContent = filled ? '작성완료' : '미작성';
-}
-function updateAllHints() {
-  const d = state?.data || {};
-  updateHintStatus('hint-career',   d.career||'',        10);
-  updateHintStatus('hint-summary',  d.summary||'',       10);
-  updateHintStatus('hint-outline',  d.outline||'',       20);
-  updateHintStatus('hint-comp',     d.competitors||'',   20);
-  updateHintStatus('hint-diff',     d.differentiator||'',20);
-  const audEl = document.getElementById('f-audience-text');
-  updateHintStatus('hint-audience', audEl?.value||'', 10);
-}
-
-// ── 작성 상태 배지 업데이트 ──
-function updateStatus(id, minLen) {
-  const el  = document.getElementById(id);
-  const box = document.getElementById('status-' + id);
-  if (!el || !box) return;
-  const filled = el.value.trim().length >= (minLen || 1);
-  box.innerHTML = filled
-    ? '<span class="status-badge done">작성완료</span>'
-    : '<span class="status-badge empty">미작성</span>';
-}
-function updateAllStatuses() {
-  const fields = [
-    ['f-career',10],['f-bio',1],['f-talks',1],['f-online',1],
-    ['f-summary',10],['f-outline',20],
-    ['f-audience-text',10],['f-competitors',20],['f-differentiator',20],
-    ['f-mkt-online',1],['f-mkt-media',1],['f-mkt-collab',1],['f-mkt-promo',1],
-    ['f-note-royalty',1],['f-note-epub',1],['f-note-selfcost',1],
-  ];
-  fields.forEach(([id, min]) => updateStatus(id, min));
-}
-// 저장된 데이터 복원 시 상태 갱신
-const _origLoadState = typeof loadState === 'function' ? loadState : null;
-window.addEventListener('load', () => { setTimeout(() => { updateAllStatuses(); updateAllHints(); }, 300); });
-
 </script>
 
 <!-- ── FOOTER ── -->
